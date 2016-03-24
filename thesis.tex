@@ -105,13 +105,51 @@ describes the direction the research has taken, and how the use of techniques su
 
 \section{Outline}
 % Outline of sections goes here
-
+This report begins with a review of the literature in Section~\ref{cha:literature-review}. This review covers two main fields of research: narrative research from social science (Section~\ref{sec:narratology}), and interactive narrative research from computer science (Section~\ref{sec:implementations}).
+The ``Institutions as Story Worlds'' chapter (\ref{cha:institutions}) describes the theory and research behind instituitions, and discusses the merit of their use for describing story, comparing their use against other logics and planner-based systems.
+The ``Tropes as Story Components'' chapter (\ref{cha:tropes}), discusses the use
+of \emph{tropes} as story components, and why they improve upon existing narrative formalisms.
+Chapter~\ref{cha:tropes-and-institutions} describes how to use institutions to define tropes, and how to combine them to describe the story world for an interactive narrative. The section also describes the use of this technique to build a number of different narratives, contrasting the approach with using other techniques such as planners to build interactive narratives.
+The final chapter looks back at the research done, evaluating its potential impact and discussing possible future work. 
 
 \chapter{Literature Review}
 \label{cha:literature-review}
+This research covers a large number of fields of study, therefore an extensive
+literature review covering these fields is needed. This section starts with a
+look at the field of \emph{narratology}, or narrative theory, to gain some
+insights into the themes and components that make up stories. Looking at
+different formalisms that have been created for narrative and which themes and
+motifs recur in stories should better inform the creation of techniques with
+which to generate stories.
+
+Additionally, computers have the potential to introduce a new type of storytelling. Though computer games offer increasingly immersive interactive worlds, the form of narrative they use remains much the same: linear. A player may be able to interact with elements of a game, but the story itself remains unchanged.
+Chris Crawford refers to a new possible form of narrative as ``Interactive Storytelling'' \citep{crawford2012chris}. Though researchers and game designers have made great strides towards realising this new artform, little has been produced to capture the public imagination.
+
+% why are you looking at classic narratology?
+In order to better inform any implementation of interactive narrative, this
+review begins with an examination of the field of classic narrative theory. Following from this is a look at the emerging research in interactive and generative narrative and their implementations.
+As part of the examination of implementations of interactive narrative, this review especially focuses on agent-based systems. The section concludes with an overview of emotional models that can be used to model distinct characters using agents.
 
 \section{Narratology}
 \label{sec:narratology}
+Narratology is a deep field with many sub-fields. This review examines the parts of it that might best inform the modelling of narrative by computers, as well as the construction of interactive narrative.
+
+The first part of the overview of narratology examines research into
+categorising different types of narrative, both traditional and experimental.
+This draws from classic narratological texts, as well as work done on
+``cybertext'' and experimental narrative in the interactive age. This
+examination of recent research into non-linear narratives better informs how to better construct interactive narratives for games or simulations.
+
+Structuralist formalisms of narrative attempt to explain how stories work by
+dividing them into commonly occuring themes and motifs. This is a natural fit to
+the modelling of narratives by computer, especially if using an ontology. This
+overview of narratology starts with structuralism for this reason.
+
+After the overview of the structuralists follows a section on the use of formal
+logic for narrative modelling. The section ends with descriptions of other types
+of story components, taxonomies and ontologies used in the literature.
+
+
 
 \subsection{Types of Narrative}
 % Look at Cybertext, etc, and try to explain how best to divide different types
@@ -119,6 +157,47 @@ describes the direction the research has taken, and how the use of techniques su
 
 \subsection{Structuralist Formalisms of Narrative}
 % Propp, etc
+Attempts to organise recurring themes, roles and motifs of narrative go back at least a century. The Aarne-Thompson tale-type index \citep{aarne1987types}, first published in 1910 and later refined by Stith Thompson in 1928 and 1961, is well known amongst folklorists as a classification and analysis method for traditional folktales and myths. Aarne-Thompson's index is a taxonomy of tale themes, arranging tales into categories such as \emph{animal tales} and \emph{jokes and anecdotes}, and then sub-categories (\emph{tales of magic} and \emph{numskull [sic] stories} being two examples). This taxonomy is only two levels deep however, and only serves as a useful way to categorise individual stories or tales. In order to break down and analyse components of tales, we must dig deeper.
+
+In \emph{Structural Anthropology}, Claude L\'{e}vi-Strauss seeks to discover why myths and legends are so similar across cultures and history \citep{levi2008structural}. He concludes that there are global laws that govern the way in which people create stories, therefore these laws can be modelled as a set of rules for describing myths.
+
+His theory is that myths describe opposing forces which are resolved through mediation. The example he gives in \emph{Structural Anthropology} describes how Native American legends often contain `trickster' characters in the form of ravens or coyotes. As scavenging animals, these tricksters symbolically act as mediators between life and death.
+
+Like much of early narrative theory, there is no rigorous evaluation of L\'{e}vi-Strauss' ideas, leaving them feeling a little too opinionated and arbitrary. While interesting, L\'{e}vi-Strauss' ideas bring us no closer to developing a formal model of narrative structure. For that, we must go even further back in time, and turn to Vladimir Propp.
+
+\subsubsection{Propp's Morphology of the Folktale}
+Propp's seminal work ``The Morphology of the Folktale'' \citep{propp1968morphology}, though first published in 1928, is still a widely-used formalism for researchers and game designers looking to generate narratives procedurally. Propp identifies recurring characters and motifs in Russian folklore, distilling them down to a concise set of rules with which to describe stories.
+
+In this formalism, characters have \emph{roles}, such as \emph{hero}, \emph{villain}, \emph{dispatcher}, \emph{false hero}, and more. Characters performing a certain role are able to perform a subset of \emph{story functions}, which are actions that make the narrative progress. For example, the \emph{dispatcher} might send the \emph{hero} on a quest, or the \emph{victim} may issue an \emph{interdiction} to the \emph{villain}, which is then \emph{violated}.
+
+Propp defines a total of 31 distinct story functions, each of which is given a number and symbol in order to create a succinct way of describing entire stories. Examples of such functions are:
+
+\begin{itemize}
+  \item One of the members of a family absents himself from home: \emph{absentation}.
+  \item An interdiction is addressed to the hero: \emph{interdiction}.
+  \item The victim submits to deception and thereby unwittingly helps his enemy: \emph{complicity}.
+  \item The villain causes harm or injury to a member of the family: \emph{villainy}.
+\end{itemize}
+
+Each of these functions can vary to some degree. For example, the \emph{villainy} function can be realised as one of 19 distinct forms of villainous deed, including \emph{the villain abducts a person}, \emph{the villain seizes the daylight}, and \emph{the villain makes a threat of cannibalism}.
+
+These functions are enacted by characters following certain roles. Each role (or \emph{dramatis personae} in Propp's definition) has a \emph{sphere of action} consisting of the functions that they are able to perform at any point in the story. Propp defines seven roles that have distict spheres of action: \emph{villain}, \emph{donor}, \emph{helper}, \emph{princess}, \emph{dispatcher}, \emph{hero}, and \emph{false hero}.
+
+Though Propp defines each \emph{dramatis personae} as being distinct (characters can only play one role at a time), it is simple to extend the idea to allow for overlapping roles. For example, a victim could also be a donor, so the set of functions they can perform would be the union of both the victim and donors' permitted function sets. Propp does not explore this possibility in \emph{The Morphology of the Folktale}, however.
+
+\begin{figure}[!t]
+\centerline{\includegraphics[height=0.4in]{propp1.png}}
+\caption{One Propp function following another}\label{fig:propp1}
+\end{figure}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[height=0.6in]{propp2.png}}
+\caption{Multiple simultaneous functions}\label{fig:propp2}
+\end{figure}
+
+In a typical story, one story function will follow another as the tale progresses in a sequential series of cause and effect (figure~\ref{fig:propp1}). However, Propp's formalism also allows for simultaneous story functions to be occuring at once (figure~\ref{fig:propp2}).
+
+% What are the shortcomings of Propp? (i.e. lack of abstractability, etc)
 
 \subsection{Describing Stories with Logic}
 % Laure-Ryan did a bit of this
@@ -126,7 +205,7 @@ describes the direction the research has taken, and how the use of techniques su
 \subsection{Other Types of ``Story Component''}
 
 \section{Implementations of Experimental Narrative}
-\label{sec:narratology}
+\label{sec:implementations}
 
 \subsection{Story Generation}
 % TaleSpin, etc
@@ -155,25 +234,32 @@ describes the direction the research has taken, and how the use of techniques su
 % Riedl, Young, etc
 
 \chapter{Institutions as Story Worlds}
-\label{sec:institutions}
+\label{cha:institutions}
+\section{Describing Stories With Logic}
+\subsection{Modal Logic and Kripke Structures}
+\subsection{Deontic Logic and Norms}
 
-\section{Why Use Institutions?}
+\section{Norms and Institutions}
+\label{sec:norms-and-institutions}
+
+\section{Why Use Institutions for Interactive Narrative?}
+\label{sec:why-use-institutions}
 % Write about character freedom, regimentation vs regulation. Give story
 % examples vs using a planner
 
 \chapter{Tropes as Story Components}
-\label{sec:tropes}
+\label{cha:tropes}
 \section{Tropes: a ``Folksonomy'' of Story Components}
 % Describe TVtropes
 
 \section{Why Use Tropes?}
 % Write about ability to abstract, give story examples vs Propp
 
-\chapter{Describing Tropes as Institutions}
-\label{sec:tropes-as-institutions}
+\chapter{Describing Story Worlds with Tropes and Institutions}
+\label{cha:tropes-and-institutions}
 
 \chapter{Future Work}
-\label{sec:future}
+\label{cha:future}
 
 
 \bibliographystyle{apalike}

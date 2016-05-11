@@ -364,6 +364,32 @@ Though the Punch and Judy simulation described in section \ref{sec:punchjudy} us
 \subsection{Governing Narrative in a Multi-Agent System}
 \subsubsection{Planner-based Systems}
 % Riedl, Young, etc
+\subsubsection{Social Norms}
+Versu~\cite{evans2014versu} is an interactive drama system that uses a multi agent system as characters. The characters' actions are coordinated with \emph{social practices}, which describe types of social situations and is described by the authors as a successor to the Schankian script. These social practices are implemented as reactive joint plans, which agents can choose whether to participate in or not. Rather than directly telling the agents what to do, these social practices merely \emph{suggest} courses of action, leaving each agent to decide for itself what to do based on its individual goals.
+
+The authors decide against using a drama manager to control the agents' actions because they want to take the \emph{strong autonomy} approach to agent governance. This means that they prefer to give each agent some degree of autonomy by allowing it to make the final decision on which course of action to take, rather than blindly following a drama manager. Suggesting actions with social norms achieves this goal. Rather than describing typical story events in terms of social norms, however, in Versu the social norms \emph{are} the story. The gameplay revolves around the avoidance (or purposeful subvertion of) awkward social situations.
+
+Each character has a role, which is governed by a social practice. For example, a \emph{greeting} practice involves characters with the \emph{greeter} and recipient roles. The greeting practice would tell the greeter in which manner they are to greet the recipient, and the recipient how to respond. It is noteworthy that these actions are merely suggested, and not enforced.
+
+\emph{Exclusion logic}~\cite{evans2010introducing}, a form of deontic logic, is used to describe the social practices of the system. Exclusion logic allows the description of tree structures and includes an exclusion operator.
+
+For example, a description of a character called ``Brown'' is shown in listing \ref{lst:exclusive}. It describes the building up of character attributes as a tree structure.
+
+\begin{lstlisting}[label=lst:exclusion,caption=Description of ``Brown'' character.]
+brown.sex!male;
+brown.class!upper;
+brown.in!dining_room;
+brown.relationship.lucy.evaluation.attractive!40;
+brown.relationship.lucy.evaluation.humour!20.
+\end{lstlisting}
+
+Exclusion logic is designed to express the fact that a variable can only have one value. This saves the author from having to remember to change extra facts. For example, if the ``Brown'' character changes location from the dining room to the kitchen, \emph{brown.in!dining_room} is terminated when \emph{brown.in!kitchen} holds.
+
+Versu takes the \emph{constitutive} view of social practice, as opposed to the \emph{regulative} view. This means that rather than restricting an agent's possible actions based on its permissions and obligations, they participate in a certain social practice by taking an action. Their actions are only restricted by what is possible in the story world, and what the agent desires to do. This way, agents can choose whether or not to take part in certain social interactions.
+
+Many of the components we aim to have in our story telling system appear in Versu: the use of social norms to gently encourage story-conforming behaviour rather than demanding it, and the use of formal logic to determine which behaviours are possible. However in Versu the social norms \emph{are} the story, rather than describing the story components that invisibly govern the behaviour of characters. In order for this kind of governance to occur, an institution-based solution is preferable, based on events, agent actions and standard deontic logic. Because character actions are constrained by the structure of a story, a \emph{regulative}  view of social practice is more suited to the expression of story components as social norms.
+
+Much of the advantages of using exclusion logic can be gained by using an institution-based approach. Non-inertial fluents can be used to ensure that variables can only ever have one value. Standard deontic logic is enough to provide the rest of what is needed.
 
 \chapter{Institutions as Story Worlds}
 \label{cha:institutions}
@@ -465,7 +491,7 @@ This example shows the ``sausages'' scene described in section \ref{sec:pjexampl
 Hybrid logics allow worlds, time intervals, to be named. The hybrid logic nominal operator allows specific times to be uniquely referenced, allowing a logic to talk about specific states such as $S_0..S_5$. The nominal proposition is true of one specific time interval such that any two worlds with the same name represent co-extensive intervals of time. Anything true of one is true of the other.
 We also make use of a nominal modal operator so that it is possible to make assertions about these named worlds, ``It is necessary that in state $S_1$ Joey absents himself.'' This technique enables us to associate story functions with specific, named intervals.
 We use hybrid logic to identify nodes using the \emph{nominal} operator, shown as $@$. The nominal operator adds the capability of referring to possible worlds in formulas. In this way, each possible state of a system can be labelled and referenced from other states. As seen in figure \ref{fig:lotrec}, each nominal node must have its own name as a relation leading back to the root node, in order to be linked to and referred from the other nodes.
-We can combine this with the Interval Temporal Logic to make statements such as ``An absentation starts with state $@S_1$ and end with state $@S_5$.'' (formula \ref{eq:absentation}).
+We can combine this with the Interval Temporal Logic to make statements such as ``An absentation starts with state $@S_1$ and ends with state $@S_5$.'' (formula \ref{eq:absentation}).
 Figure \ref{fig:situations} describes the full sausages scene from Punch and Judy using the time intervals shown in figure \ref{fig:durations}.
 \begin{figure}[!t]
   \centering

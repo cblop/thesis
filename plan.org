@@ -1,0 +1,183 @@
+#+PROPERTY: Effort_ALL 1d 2d 3d 4d 5d 6d 7d 8d 9d 10d
+#+COLUMNS: %70ITEM(Task) %Effort %BLOCKER %ORDERED
+
+* Thesis                                                   :taskjuggler_project:
+
+# Now: 13,000 words
+# Target: > 50,000 words
+
+# Deadline is Sept 30th, so there are ~100 days left.
+
+# Schedule:
+# Lit review first draft: Jul 1st
+
+** Literature Review
+:PROPERTIES:
+:ORDERED:  t
+:END:
+*** Narratology
+:PROPERTIES:
+:ORDERED:  t
+:END:
+**** Types of Narrative
+:PROPERTIES:
+:ORDERED:  t
+:END:
+**** Structuralist Formalisms of Narrative
+:PROPERTIES:
+:ORDERED:  t
+:END:
+**** Describing Stories with Logic
+:PROPERTIES:
+:Effort:   2d
+:ORDERED:  t
+:END:
+**** Other Types of "Story Component"
+:PROPERTIES:
+:Effort:   1d
+:ORDERED:  t
+:END:
+*** Implementations of Experimental Narrative
+:PROPERTIES:
+:ORDERED:  t
+:END:
+**** Story Generation
+:PROPERTIES:
+:ORDERED:  t
+:END:
+**** Planner-based systems
+:PROPERTIES:
+:Effort:   2d
+:ORDERED:  t
+:END:
+**** Drama Manager Systems
+:PROPERTIES:
+:ORDERED:  t
+:END:
+**** Other Methods of Character Governance
+:PROPERTIES:
+:Effort:   1d
+:ORDERED:  t
+:END:
+**** Using Emotional Models for Characters
+:PROPERTIES:
+:ORDERED:  t
+:END:
+**** Modelling Narrative with Logic
+:PROPERTIES:
+:Effort:   2d
+:ORDERED:  t
+:END:
+** Tropes as Story Components
+:PROPERTIES:
+:ORDERED:  t
+:BLOCKER:  previous-sibling
+:END:
+*** What Are Tropes?
+:PROPERTIES:
+:Effort:   1d
+:ORDERED:  t
+:END:
+*** Why Use Tropes?
+:PROPERTIES:
+:Effort:   2d
+:ORDERED:  t
+:END:
+** Modal Logics
+:PROPERTIES:
+:ORDERED:  t
+:BLOCKER:  previous-sibling
+:END:
+*** Modal Logic
+:PROPERTIES:
+:Effort:   2d
+:ORDERED:  t
+:END:
+*** Deontic Logic
+:PROPERTIES:
+:Effort:   1d
+:ORDERED:  t
+:END:
+*** Temporal Logics
+:PROPERTIES:
+:Effort:   3d
+:ORDERED:  t
+:END:
+*** Kripke Structures
+:PROPERTIES:
+:Effort:   1d
+:ORDERED:  t
+:END:
+*** Punch and Judy Example
+:PROPERTIES:
+:Effort:   1d
+:ORDERED:  t
+:END:
+** Institutions as Story Worlds
+:PROPERTIES:
+:ORDERED:  t
+:BLOCKER:  previous-sibling
+:END:
+*** Social Norms and Institutions
+:PROPERTIES:
+:Effort:   1d
+:ORDERED:  t
+:END:
+*** Tropes as Institutions
+:PROPERTIES:
+:Effort:   1d
+:ORDERED:  t
+:END:
+*** Character Dialogue Inside Institutions
+:PROPERTIES:
+:Effort:   3d
+:ORDERED:  t
+:END:
+** Creating Non-linear Narratives with Tropes and Institutions
+:PROPERTIES:
+:ORDERED:  t
+:BLOCKER:  previous-sibling
+:END:
+*** TropICAL: A DSL for Tropes
+:PROPERTIES:
+:Effort:   4d
+:ORDERED:  t
+:END:
+*** TopICAL: A DSL for Dialogue
+:PROPERTIES:
+:Effort:   3d
+:ORDERED:  t
+:END:
+*** StoryBuilder: A GUI for Building Interactive Stories
+:PROPERTIES:
+:Effort:   3d
+:ORDERED:  t
+:END:
+** Conclusions and Future Work
+:PROPERTIES:
+:Effort:   4d
+:ORDERED:  t
+:BLOCKER:  previous-sibling
+:task_id: conclusions
+:END:
+** Milestones
+:PROPERTIES:
+:ORDERED:  t
+:END:
+*** Draft 1
+:PROPERTIES:
+:ORDERED:  t
+:Effort: 5d
+:BLOCKER:  conclusions
+:END:
+*** Draft 2
+:PROPERTIES:
+:Effort: 14d
+:ORDERED:  t
+:END:
+*** Final Draft
+:PROPERTIES:
+:Effort: 14d
+:ORDERED:  t
+:END:
+

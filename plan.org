@@ -15,55 +15,60 @@
 :PROPERTIES:
 :ORDERED:  t
 :END:
-*** Narratology
+*** TODO Narratology
 :PROPERTIES:
 :ORDERED:  t
 :END:
-**** Types of Narrative
+**** TODO Structure and Argument
+**** DONE Types of Narrative
+CLOSED: [2016-06-27 Mon 08:43]
 :PROPERTIES:
 :ORDERED:  t
 :END:
-**** Structuralist Formalisms of Narrative
+**** DONE Structuralist Formalisms of Narrative
+CLOSED: [2016-06-27 Mon 08:43]
 :PROPERTIES:
 :ORDERED:  t
 :END:
-**** Describing Stories with Logic
-:PROPERTIES:
-:Effort:   2d
-:ORDERED:  t
-:END:
-**** Other Types of "Story Component"
-:PROPERTIES:
-:Effort:   1d
-:ORDERED:  t
-:END:
-*** Implementations of Experimental Narrative
-:PROPERTIES:
-:ORDERED:  t
-:END:
-**** Story Generation
-:PROPERTIES:
-:ORDERED:  t
-:END:
-**** Planner-based systems
+**** TODO Describing Stories with Logic
 :PROPERTIES:
 :Effort:   2d
 :ORDERED:  t
 :END:
-**** Drama Manager Systems
-:PROPERTIES:
-:ORDERED:  t
-:END:
-**** Other Methods of Character Governance
+**** TODO Other Types of "Story Component"
 :PROPERTIES:
 :Effort:   1d
 :ORDERED:  t
 :END:
-**** Using Emotional Models for Characters
+*** TODO Implementations of Experimental Narrative
 :PROPERTIES:
 :ORDERED:  t
 :END:
-**** Modelling Narrative with Logic
+**** DONE Story Generation
+CLOSED: [2016-06-27 Mon 08:44]
+:PROPERTIES:
+:ORDERED:  t
+:END:
+**** TODO Planner-based systems
+:PROPERTIES:
+:Effort:   2d
+:ORDERED:  t
+:END:
+**** TODO Drama Manager Systems
+:PROPERTIES:
+:ORDERED:  t
+:END:
+**** TODO Other Methods of Character Governance
+:PROPERTIES:
+:Effort:   1d
+:ORDERED:  t
+:END:
+**** DONE Using Emotional Models for Characters
+CLOSED: [2016-06-27 Mon 08:44]
+:PROPERTIES:
+:ORDERED:  t
+:END:
+**** TODO Modelling Narrative with Logic
 :PROPERTIES:
 :Effort:   2d
 :ORDERED:  t

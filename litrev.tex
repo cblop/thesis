@@ -8,7 +8,8 @@ different formalisms that have been created for narrative and which themes and
 motifs recur in stories should better inform the creation of techniques with
 which to generate stories.
 
-Additionally, computers have the potential to introduce a new type of storytelling. Though computer games offer increasingly immersive interactive worlds, the form of narrative they use remains much the same: linear. A player may be able to interact with elements of a game, but the story itself remains unchanged.
+It is also important that we examine current techniques for non-linear and
+interactive narrative generation, as computers have the potential to introduce a new type of storytelling. Though computer games offer increasingly immersive interactive worlds, the form of narrative they use remains much the same: linear. A player may be able to interact with elements of a game, but the story itself remains unchanged.
 Chris Crawford refers to a new possible form of narrative as ``Interactive Storytelling'' \citep{crawford2012chris}. Though researchers and game designers have made great strides towards realising this new artform, little has been produced to capture the public imagination.
 
 % why are you looking at classic narratology?
@@ -108,7 +109,7 @@ In a typical story, one story function will follow another as the tale progresse
 Though flexible, Propp's formalism is limited in its expressiveness. All story functions describe events at the same level of abstraction, describing one event after another. Also, Propp insists that the story functions occur in a prescribed order. Later French structuralists such as \citep{bremond1980logic}, \citep{greimas1983structural} and~\citep{todorov1969grammaire} address the latter problem by generalising Propp's work outside of Russian Folktales, though each represents only incremental improvements on Propp, lacking a means of nesting story functions to create abstractions. \citep{barthes1975introduction} broadly describe hierarchically composing \emph{narrative units} but, lacking implementation details, these can only be used as a template from which to build a new narrative model.
 % What are the shortcomings of Propp? (i.e. lack of abstractability, etc)
 
-\subsection{Describing Stories with Logic}
+% \subsection{Describing Stories with Logic}
 % Laure-Ryan did a bit of this, also include linear logic approaches
 
 \subsection{Other Types of ``Story Component''}
@@ -257,6 +258,30 @@ Though the Punch and Judy simulation described in section \ref{sec:punchjudy} us
 \subsection{Governing Narrative in a Multi-Agent System}
 \subsubsection{Planner-based Systems}
 % Riedl, Young, Carezza, etc
+The most prevalent approach to the generation and management of plot in
+interactive narrative is to use planners. With a planner, an author sets the
+goals for the story (certain situations that they would like to see happen), and
+the planner tells the character agents what to do to make sure these ``story
+goals'' are achieved. When a player that is interacting with the system takes an
+action that compromises the story goals, the planner must re-plan to make sure
+the goals can still be achieved, by restricting the actions of the player or
+intervening in some other manner.
+
+% This needs elaboration
+\citep{young1999notes} argues that planners are a good method for regulating plot, later creating an architecture to integrate a planner with character agents in an interactive game environment \cite{young2004architecture}. Young describes how narrative systems must re-plan when a player makes  narrative-breaking actions, by either restructuring the narrative mid-story (\emph{accommodating} the action) or preventing the action from executing (\emph{intervening} on the action).
+
+% This needs elaboration
+Cavazza et al's \emph{I-Storytelling} system~\cite{cavazza2002character} implements Young's architecture with ideas from Barthes' narrative units, using characters with Hierarchical Task Networks (HTNs) to generate its stories. Each character has a main task, which is divided into subtasks to create a task hierarchy, with each task node having pre- and postconditions. The story emerges from the outcomes of each character's plans, and the narrative structure as a whole is not planned.
+
+% This needs elaboration
+Mimesis~\cite{riedl2003managing}, another implementation of Young's architecture, allows the story author to create plans for the overall narrative in addition to its characters, in order to have more control over narrative structure. Rather than using a narrative model, Mimesis models the player to track their expected level of suspense while interacting with the story. Like the \emph{I-storytelling} system, its plans are hierarchical, using the Longbow hierarchical partial-order causal link planning system~\cite{young1994decomposition}.
+
+A disadvantage of these planner-based systems is that they require the story author to think in a planner-oriented manner. They must consider the goals of both the story and the character, plans to achieve these goals, and re-planning when goals are not met or when situations change. This is a drastic change from the usual story writing methods of authors, where the focus is on structure, plot, themes and characters. Though graphical user interfaces such as Mimesis' Bowman system~\cite{thomas2006author} could be used to assist planner-driven story authoring, a complete shift in creative workflow is still required, making them inaccessible to non-technical writers.
+
+% This needs elaboration
+Carnegie Mellon University's OZ project \cite{mateas1999oz} uses a \emph{drama manager} to structure its narrative, which observes the actions occurring in the storyworld and ``directs'' its characters to conform to shape the story. \emph{Fa\c{c}ade}~\cite{mateas2003faccade} also uses a drama manager to direct the story, with the player interacting with the characters by typing in natural language sentences. In Fa\c{c}ade, the smallest unit of narrative action is called a \emph{story beat}, taken from McKee's book on authorial style for screenwriters \cite{mckee1997substance}. The simulation constantly monitors what the user is doing and how it may lead from the current story beat to another. Story beats have preconditions and effects on the state of the narrative, so it is the drama manager's job to work out when it makes sense to initiate a certain beat. Each beat is specific to the story, however, and not usable between stories. For example, a beat called ``Grace looks at the painting while reminiscing about her honeymoon'' would be specific to \emph{Fa\c{c}ade's} particular story, and would strictly define the lines of dialogue and actions of both character agents. Drama managers tell character agents exactly what to do at each point in the story. Though the agents may still have goals of their own, they are always overridden by the goals of the drama manager.
+From the analysis above, we conclude that using social institutions to govern the actions of character agents allows for more flexibility in the agents' actions. Also, by specifying these institutions as story tropes, we overcome the authorial difficulty of planner-based systems. Script writers do not need to be familiar with planners or hierarchical task networks in order to create interactive fiction with our system.
+
 \subsubsection{Social Norms}
 Versu~\cite{evans2014versu} is an interactive drama system that uses a multi agent system as characters. The characters' actions are coordinated with \emph{social practices}, which describe types of social situations and is described by the authors as a successor to the Schankian script. These social practices are implemented as reactive joint plans, which agents can choose whether to participate in or not. Rather than directly telling the agents what to do, these social practices merely \emph{suggest} courses of action, leaving each agent to decide for itself what to do based on its individual goals.
 
@@ -288,6 +313,7 @@ Many of the components we aim to have in our story telling system appear in Vers
 
 Much of the advantages of using exclusion logic can be gained by using an institution-based approach. Non-inertial fluents can be used to ensure that variables can only ever have one value. Standard deontic logic is enough to provide the rest of what is needed.
 
+% Need at least one more example here
 \subsection{Modelling Narrative with Logic}
 \label{sec:model-logic}
 Although most recent research focuses on the use of planners to manage the drama in a story, there is also much interesting work which makes use of formal logic to model narrative. Though often used for the generation of linear story text, it is increasingly being applied to non-linear narratives as well. Logic-based approaches are generally based on either temporal logic variants or some kind of linear logic.
@@ -322,19 +348,38 @@ that describes a ``murder'' rule and its consequences.
 In this case, four instances of the ``anger'' predicate with the same arguments
 has a significant meaning: a character's emotion is treated as a resource. The
 fact that \emph{anger $C C'$} appears four times means that a character is
-\emph{four times} as angry at another character. Depending on how many time the
+\emph{four times} as angry at another character. Depending on how many times the
 ``anger'' statements appear in the new state, this anger can rise or fall at the
-next step in the story.
+next step in the story. In this case, the emotion is not only treated as a
+pre-condition, but also as a resource. These resources can also be specified
+through the addition of a number to the name of the resource.
 
-\begin{comment}
-  - delta initial state
-  - state is examined, rule r is selected (which applies to a subset of the
-  state), new state is generated
-  - A <lolli> B means that whenever the predicates in A are present, they may be
-  replaced with B
-  - Tensor operator * just conjqins predicates
-  - Uses replacement semantics, so everything in the new state must be on the
-  right side hand of the rule
-\end{comment}
+Ceptre introduces a \emph{stages} feature that allow authors to structure a
+program through the use of independent components. A stage is a unit of
+computation that runs to quiescence, meaning that it terminates once no more
+rules are able to fire. At this point, another stage may commence.
 
-% Versu
+The central motivation behind Ceptre's design is its ability to use ``proofs as
+traces'', or \emph{computation as proof search}~\cite{hodas1991logic}. Ceptre
+uses a \emph{sequent calculus}, where a sequent $\Delta \vdash A$, $\Delta$ is a
+state, and $A$ is a goal formula. If a complete proof tree can be formed with
+that sequent as its root, then the sequent can be said to be \emph{derivable}.
+Thus Ceptre takes a sequent as input and creates a proof as output, declaring
+failure if a proof cannot be created. Ceptre looks at the left side of the
+sequent, using \emph{forward chaining} to choose which rules to try in order to
+reach the goal formula.
+
+A key feature of Ceptre is its representation of resource management in stories.
+Rules are able to either produce or consume resources. This has interesting
+implications for the representation of causal structure in linear logic. For
+example, if two rule applications consume different sets of resources from the
+same state, they are occurring concurrently and independently. However, if one
+rule produces resources that are consumed by another rule, then these rules have
+a causal, dependent relationship.
+
+This modelling of gameplay as proof search is similar to the technique we use in
+section~\ref{}, where we use Interval Temporal Logic and Kripke structures to
+theorem-prove certain narrative states. The difference is that the system we
+describe is more concerned with representing different temporal relations,
+whereas Ceptre's focus is on resource management within a game.
+

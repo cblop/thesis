@@ -1,20 +1,23 @@
 \chapter{Literature Review}
 \label{cha:literature-review}
+
 This research covers a large number of fields of study, therefore an extensive
-literature review covering these fields is needed. This section starts with a
+literature review covering these fields is necessary. This section starts with a
 look at the field of \emph{narratology}, or narrative theory, to gain some
 insights into the themes and components that make up stories. Looking at
 different formalisms that have been created for narrative and which themes and
 motifs recur in stories should better inform the creation of techniques with
 which to generate stories.
 
-It is also important that we examine current techniques for non-linear and
-interactive narrative generation, as computers have the potential to introduce a new type of storytelling. Though computer games offer increasingly immersive interactive worlds, the form of narrative they use remains much the same: linear. A player may be able to interact with elements of a game, but the story itself remains unchanged.
-Chris Crawford refers to a new possible form of narrative as ``Interactive Storytelling'' \citep{crawford2012chris}. Though researchers and game designers have made great strides towards realising this new artform, little has been produced to capture the public imagination.
+We also examine current approaches to interactive narrative generation,
+focussing particularly on the use of planners, drama managers, social norms and
+logical modelling for describing stories. Most of these implementations are
+designed with multi-agent systems in mind, where the story forms a set of rules
+which govern these agents. The start of this part of the literature survey also
+examines non-interactive story generation through means of techniques such as
+generative grammar, in order to provide a historical context for the research
+that follows. 
 
-% why are you looking at classic narratology?
-In order to better inform any implementation of interactive narrative, this
-review begins with an examination of the field of classic narrative theory. Following from this is a look at the emerging research in interactive and generative narrative and their implementations.
 As part of the examination of implementations of interactive narrative, this review especially focuses on agent-based systems. The section concludes with an overview of emotional models that can be used to model distinct characters using agents.
 
 \section{Narratology}
@@ -22,7 +25,10 @@ As part of the examination of implementations of interactive narrative, this rev
 Narratology is a deep field with many sub-fields. This review examines the parts of it that might best inform the modelling of narrative by computers, as well as the construction of interactive narrative.
 
 The first part of the overview of narratology examines research into categorising different types of narrative, both traditional and experimental.
-This draws from classic narratological texts, as well as work done on ``cybertext'' and experimental narrative in the interactive age. This examination of recent research into non-linear narratives better informs how to better construct interactive narratives for games or simulations.
+This draws from classic narratological texts, as well as work done on
+``cybertext'' and experimental narrative in the interactive age. This
+examination of recent research into non-linear narratives is essential for the
+construction of interactive narratives for games or simulations.
 
 Structuralist formalisms of narrative attempt to explain how stories work by dividing them into commonly occuring themes and motifs. This is a natural fit to the modelling of narratives by computer, especially if using an ontology. This overview of narratology starts with structuralism for this reason.
 
@@ -36,7 +42,7 @@ The rise of the Web in the 1990s brought with it great interest in the future of
 % scriptons/discourse textons/fabula (Bal 1997)
 Aarseth makes a distinction between the narrative as written by the author, and the way in which it is traversed by the reader, calling the former \emph{textons} and the latter \emph{scriptons}. In ergodic literature, the \emph{scripton} is produced by the effort that the reader goes through in interpreting the \emph{texton}. In the context of a game, it is as though the game interface is a gateway that allows access to the narrative at different times. Using classical music as a metaphor, the texton can be thought of as the \emph{score}, and the scripton the \emph{performance}.
 
-% Make sure you actually made this assertion
+% TODO Make sure you update the intro with this
 In section \ref{sec:generative-and-interactive-narrative}, we assert that how generative a narrative is and its level of interactivity are two different variables in an experimental narrative. However, Aarseth identifies seven different methods of story traversal: \emph{dynamics, determinability, transiency, perspective, access, linking and user function}.
 
 \paragraph{Dynamics} describe whether or not the content and number of scriptons changes. In a simple, static story with branching choices (such as in a \emph{Choose your own adventure} story), both the number of textons and scriptons are fixed, since all paths have been written out beforehand. A dynamic story would still have a fixed number of textons, but the scriptons would be generated as the user traverses the path of the narrative.
@@ -121,32 +127,119 @@ Lehnert's \emph{plot units} are a more recent narrative formalism \cite{lehnert1
 
 \subsection{Story Generation}
 % TaleSpin, etc
+Inspired by Chomsky's theories of generative grammar \citep{chomsky1968sound}, researchers in generative narrative strive to build their own `universal grammar' for narrative.
 
-\subsubsection{Generative Grammar}
+\begin{figure}[!t]
+  \begin{center}
+  \begin{enumerate}
+    \item $\texttt{Attempt}\rightarrow \texttt{Plan} + \texttt{Application}$\\
+           $\qquad\Rightarrow\texttt{MOTIVATE(Plan, Application)}$
+    \item $\texttt{Application}\rightarrow\texttt{(Preaction)*} + \texttt{Action} + \texttt{Consequence}$\\
+           $\qquad\Rightarrow\texttt{Allow(AND(Preaction,Preaction,...),}$\\
+           $\qquad\{\texttt{CAUSE | INITIATE | ALLOW}\}\texttt{(Action,Consequence)}$
+  \end{enumerate}
+  \end{center}
 
-\subsubsection{Author Modelling}
-% This would also use planners
+  \caption{Example rules from Rumelhart's story grammar}\label{fig:rumelhart}
+\end{figure}
 
-% But this is limited in interactivity, so in order to have characters we can
-% interact with, we must use...
+\citet{rumelhart1975notes} is one early and influential model for the grammatical generation of natural language. Figure \ref{fig:rumelhart} shows two example rewrite rules from this grammar. The `+' symbol denotes items happening in a sequence, the `\textbar' showing possible alternatives. `*' denotes one or more item being generated. Capitalised words (such as ALLOW, MOTIVATE, etc) describe relationships between items. For example, MOTIVATE is a relationship between a character's thought and their reaction to that thought.
+
+This generative grammar approach can be seen in systems such as Pemberton's GESTER \citep{pemberton1989modular}, which generates stories based on a grammar synthesised from old French epic tales. \citet{lang1999declarative} describe a declarative model for narrative, consisting of lists of first-order predicate calculus expressions. These expressions describe events, states, goals and beliefs which combine to form a narrative. More specifically, it combines:
+
+\begin{itemize}
+  \item A \textbf{grammar interpreter} to search for a sequence of grammer rewrites which would produce a convincing narrative.
+  \item A set of \textbf{temporal predicates} to describe the occurence of events over time and enforce temporal constraints on story components.
+  \item A \textbf{world model} which describes the set of actions that characters may perform and fluents that may alter over the course of the narrative.
+  \item A \textbf{natural language output unit}, which takes the sequence of events produced by the story grammar and converts it into readable natural language sentences.
+\end{itemize}
+
+This combination of using a grammar interpreter, world model and natural language output unit is especially common amongst generative grammar approaches.
+
+While generative grammar approaches may be effective for procedurally creating prose, they are less well suited to the creation of \emph{interactive} narratives. Once the grammar rewrite rules are specified, the user is entirely passive, unable to affect the way in which the story is bein generated. For this to happen, the narrative needs to be part of a system that reacts to the actions of the user, such as a computer game.
+
+\begin{figure}[!t]
+\begin{quote}
+  ONCE UPON A TIME GEORGE ANT LIVED NEAR A PATCH OF GROUND. THERE WAS A NEST IN AN ASH TREE. WILMA BIRD LIVED IN THE NEST. THERE WAS SOME WATER IN A RIVER. WILMA KNEW THAT THE WATER WAS IN THE RIVER. GEORGE KNEW THAT THE WATER WAS IN THE RIVER. ONE DAY WILMA WAS VERY THIRSTY. WILMA WANTED TO GET NEAR SOME WATER. WILMA FLEW FROM HER NEST ACROSS THE MEADOW THROUGH A VALLEY TO THE RIVER. WILMA DRANK THE WATER. WILMA WASN'T THIRSTY ANYMORE.
+
+GEORGE WAS VERY THIRSTY. GEORGE WANTED TO GET NEAR SOME WATER. GEORGE WALKED FROM HIS PATCH OF GROUND ACROSS THE MEADOW THROUGH THE VALLEY TO A RIVER. GEORGE FELL INTO THE WATER. GEORGE WANTED TO GET NEAR THE VALLEY. GEORGE COULDN'T GET NEAR THE VALLEY. GEORGE WANTED TO GET NEAR THE MEADOW. GEORGE COULDN'T GET NEAR THE MEADOW. WILMA WANTED TO GET NEAR GEORGE. WILMA GRABBED GEORGE WITH HER CLAW. WILMA TOOK GEORGE FROM THE RIVER THROUGH THE VALLEY TO THE MEADOW. GEORGE WAS DEVOTED TO WILMA. GEORGE OWED EVERYTHING TO WILMA. WILMA LET GO OF GEORGE. GEORGE FELL TO THE MEADOW. THE END.
+\end{quote}
+\caption{Example TALE-SPIN output}\label{fig:tspin}
+\end{figure}
+
+% TODO elaborate on this
+Lebowitz' UNIVERSE system \citep{lebowitz1985story} focuses on the creation of believable characters, using `plot fragments', or short plans, to generate story outlines for soap operas.
+
+James Meehan's TALE-SPIN \citep{meehan1977tale} is an influential early approach to story generation using planning. In TALE-SPIN, the author describes a story domain, its characters and their goals, and a natural language story is produced as output. It works by using a problem-solver to resolve each character's goals over the story domain. Figure \ref{fig:tspin} is an example of TALE-SPIN's output.
+
+TALE-SPIN's strong planning component is evident in the reading of its output. Sentences are terse, with one event leading directly to another in order to achieve some goal. One problem with this character-led approach is that the goals of the author are not necessarily taken into account. If the author intends for a character to die at some point in the story, it seems unnatural for a character to have the goal of dying to fulfill this intention.
+
+ Turner criticises TALE-SPIN's stories as seeming ``pointless and somewhat boring'' \citep{turner1986thematic}, going on to create the MINSTREL system for story generation \citep{turner1993minstrel}. Using the legendary world of King Arthur's court as a story domain, MINSTREL strives to generate stories with an authorial purpose.
+
+MINSTREL attempts to address TALE-SPIN's shortcomings by introducing two types of schema: author-schemas and character-schemas, both of which combine to represent the elements of a story. The author-schemas describe the goals of the author of the system, allowing story creators more control over the structure and content of their narrative. This allows authors to specify a `point' or moral to their story, something that is not possible to achieve with TALE-SPIN. Character-schemas describe character-level goals in a similar manner to those of TALE-SPIN's.
+
+The comparison of TALE-SPIN and MINSTREL highlights a challenge that has dominated story generation for decades: the balance of \emph{character} and \emph{plot}. Especially with approaches based on multi-agent systems, the regulation of character actions to conform to an underlying theme or structure is a challenging problem.
+
+However, modelling characters with agents is a promising approach to take in order to gain a story which is both generative and interactive. In such a system, an author can specify the story world and character models, creating the `big picture', and the agents would be able to fill in the details (such as dialogue, sub-plots, and relationships).
+
+An apt metaphor would be that of animation. In large animation studios such as Disney, the lead animator draws the key frames of a sequence, and a team of other animators works to fill in the gaps in between. This is what the combination of a managed narrative with agents could achieve: the author would be the `lead animator' in such a system, with the agents being the assistants.
+
+So far into this literature review, we have some idea of where a promising approach may lie. However, the implementations until now have still focused mainly on \emph{generation\/}, and little on \emph{interaction\/}. Character models have been mentioned, but these do not react in real time to a user. For that, we need a multi-agent system.
 
 \subsection{Intelligent Agents as Characters}
 % Write an introduction
+Story worlds are usually populated with characters. Interactive story worlds
+such as games contain characters with very basic scripted behaviour. At even the
+highest level of game character simulation, AI techniques are usually used to
+govern basic behaviour such as movements and actions. Governing character
+behaviour to fit within the context of a narrative is a more challenging
+problem. This section examines different approaches to tackling this challenge.
 
-\subsubsection{Planner-based systems}
-\citep{young1999notes} argues that planners are a good method for regulating plot, later creating an architecture to integrate a planner with character agents in an interactive game environment \cite{young2004architecture}. Young describes how narrative systems must re-plan when a player makes  narrative-breaking actions, by either restructuring the narrative mid-story (\emph{accommodating} the action) or preventing the action from executing (\emph{intervening} on the action).
+\subsubsection{Planner-based Systems}
+The most prevalent approach to the generation and management of plot in
+interactive narrative is to use planners. With a planner, an author sets the
+goals for the story (certain situations that they would like to see happen), and
+the planner tells the character agents what to do to make sure these ``story
+goals'' are achieved. When a player that is interacting with the system takes an
+action that compromises the story goals, the planner must re-plan to make sure
+the goals can still be achieved, by restricting the actions of the player or
+intervening in some other manner.
+
+% This needs elaboration
+\citep{young1999notes} argues that planners are a good method for regulating
+plot, later creating the \emph{Mimesis} architecture for integrating a planner with character agents in an interactive game environment \cite{young2004architecture}. Young describes how narrative systems must re-plan when a player makes  narrative-breaking actions, by either restructuring the narrative mid-story (\emph{accommodating} the action) or preventing the action from executing (\emph{intervening} on the action).
+
+The \emph{Mimesis} architecture is designed to integrate into the \emph{Unreal
+  Tournament} game engine, and has five components:
+
+\begin{enumerate}
+\item The \textbf{mimesis controller} (MC), to which all components connect and send
+  messages.
+\item The \textbf{story planner}, which handles plan requests from the game engine.
+\item The \textbf{discourse planner}, which handles the presentation of the game
+  by controlling non-character media such as cameras and music.
+\item The \textbf{execution manager}, which drives the story's action forward.
+  It builds a directed acyclic graph whose nodes represent actions from the plan
+  and edges are temporal constraints that order the actions.
+\item The \textbf{MWorld}, which includes three elements: the game engine,
+  communication-coordinating code, and \emph{action classes}, which specify the
+  behaviors of each action operator in the story and discourse planners.
+\end{enumerate}
+
+% This needs elaboration
 Cavazza et al's \emph{I-Storytelling} system~\cite{cavazza2002character} implements Young's architecture with ideas from Barthes' narrative units, using characters with Hierarchical Task Networks (HTNs) to generate its stories. Each character has a main task, which is divided into subtasks to create a task hierarchy, with each task node having pre- and postconditions. The story emerges from the outcomes of each character's plans, and the narrative structure as a whole is not planned.
+
+% This needs elaboration
 Mimesis~\cite{riedl2003managing}, another implementation of Young's architecture, allows the story author to create plans for the overall narrative in addition to its characters, in order to have more control over narrative structure. Rather than using a narrative model, Mimesis models the player to track their expected level of suspense while interacting with the story. Like the \emph{I-storytelling} system, its plans are hierarchical, using the Longbow hierarchical partial-order causal link planning system~\cite{young1994decomposition}.
 
 A disadvantage of these planner-based systems is that they require the story author to think in a planner-oriented manner. They must consider the goals of both the story and the character, plans to achieve these goals, and re-planning when goals are not met or when situations change. This is a drastic change from the usual story writing methods of authors, where the focus is on structure, plot, themes and characters. Though graphical user interfaces such as Mimesis' Bowman system~\cite{thomas2006author} could be used to assist planner-driven story authoring, a complete shift in creative workflow is still required, making them inaccessible to non-technical writers.
 
-\subsubsection{Drama Manager-based Systems}
-\paragraph{The OZ project}
-Carnegie Mellon University's OZ project \citep{mateas1999oz} is one of the first major research efforts towards creating interactive drama using agents as characters. A dramatic structure is given to the narrative by means of a \emph{drama manager}, which is able to see all of the actions occurring in the storyworld and can change anything in order to create a better experience for the user.
+% This needs elaboration
+\subsubsection{Drama manager-based Systems}
 
-Ideas from the OZ project were later developed into what would become Fa\c{c}ade.
-% Facade, etc
-\paragraph{Fa\c{c}ade}
+Carnegie Mellon University's OZ project \cite{mateas1999oz} uses a \emph{drama manager} to structure its narrative, which observes the actions occurring in the storyworld and ``directs'' its characters to conform to shape the story. 
+
+
 Mateas and Stern's \emph{Fa\c{c}ade} has players interact with the characters of the story through natural language. In this game, the player attends the party of a young couple (Grace and Trip) celebrating their wedding anniversary. As the course of events unfold however, the player learns that all is not as happy as it seems.
 
 The player interacts with the characters by typing in natural language sentences, to which Grace and Trip respond. Though the characters are implemented through agents, the story is controlled using a drama manager. In all, their system consists of using NLP, a novel character authoring language and a novel drama manager to create an interactive narrative.
@@ -185,102 +278,9 @@ Fa\c{c}ade has become popular as a game outside of academia, with playthroughs o
 
 Fa\c{c}ade's popularity seems to reinforce Crawford's assertion (section \ref{sec:media}) that interactive narratives must be social in nature. The gameplay comes entirely from the conversations and interactions between Grace, Trip and the player. Much of the excitement comes from the social consequences of certain conversation paths or actions. By modelling characters as agents, Mateas et al have created a truly interactive experience. However, by also using a drama manager to manage the agents, they have used these agents to tell a story.
 
-How might these agents be made more convincing? Outside of writing rules for their behaviour consisting of character goals and beliefs, how might an author create truly unique and idiosyncratic characters? To address the question, I next examine different types of emotional models in psychology, and how each might be used to model characters as agents.
-
-\subsubsection{Character Modelling}
-
-\subsubsection{Characters with Emotional Models}
-% Intro: not done very much?
-
-\subsubsection{Emotional models}\label{sec:emotional-models}
-% How is this useful for narrative?
-Usually it would seem odd to want to model emotion as part of a computational process. Emotion is such a seemingly irrational set of behaviours that they are easy to dismiss as `human imperfections'. However, as \citet{marsella2014} observe, emotions may have a useful role to play in communication, so long as they are displayed at appropriate times.
-
-For example, anger prepares the human body to fight by increasing the manufacture of adrenaline. Fear similarly triggers the `fight or flight' response, alerting the senses for danger and preparing the body to react.
-
-In order to model human emotions using agents, we must first find a suitable psychological model to use. Marsella et al describe three main types of emotional model:
-
-\begin{enumerate}
- \item \textbf{Discrete} emotional models, which claim that humans have a set of innate, pre-defined emotional states which people may enter and leave.
- \item \textbf{Dimensional} models of emotion, describing the spectrum of emotions as being points somewhere in continuous space. Implementations typically use two or three dimensions for simplicity.
- \item \textbf{Appraisal} theories of emotion take an agent's mental processes into account. Their emotional state is derived from whether or not their goals have been achieved, and what effects current events are having on their circumstances, for example.
-\end{enumerate}
-
-% Give examples of concrete models for each type.
-\subsubsection{`Basic' emotions}
-Ekman first made a case for discrete, biologically-determined emotions, based on evidence from research into facial expressions \citep{ekman1992argument}. He describes emotions as being \emph{basic}, in two senses of the word: \emph{i.} that there are a number of distinct emotions, each with its own different characteristics, and \emph{ii.} that these emotions were developed through evolution for specific functions.
-
-Ekman argues that these evolved emotions share nine characteristics:
-
-\begin{enumerate}
-  \item Distinctive universal signals
-  \item Presence in other primates
-  \item Distinctive physiology
-  \item Distinctive universals in antecedent events
-  \item Coherence among emotional response
-  \item Quick onset
-  \item Brief duration
-  \item Automatic appraisal
-  \item Unbidden occurrence
-\end{enumerate}
-
-These characteristics are shared by all of the `basic' emotions as observed in humans and primates.
-
-Discrete models of emotion suggest that there is a neural basis for emotion. For example, Armony et al describe how the amygdala in the brain is responsible for conditioned fear responses  and create a neural network to model it \citep{armony1997computational}.
-
-Using a discrete model of emotion for agent-based characters would be relatively simple. Each basic emotion could have its own distinct set of behaviours as postconditions, and triggering circumstances as preconditions.
-
-However, a more fluid approach could be useful when modelling emotions with agents. It would be impossible to say that an agent is \emph{angry and approaching furious} using a discrete theory of emotion. Nuanced levels of emotion and even combinations of several emotions add an extra level of texture to a character. Dimensional and appraisal theories of emotion address this challenge.
-
-\subsubsection{Russell's circumplex model of emotion}\label{sec:circumplex}
-\begin{figure}[!t]
-\centerline{\includegraphics[height=3in]{circumplex.png}}
-\caption{Russell's circumplex model of emotion} \label{fig:circumplex}
-\end{figure}
-
-Russell's circumplex model of emotion is a well-known dimensional model \citep{russell1980circumplex}. In this case, the dimensional variables are \emph{valence} (how agreeable or otherwise a situation is to an agent) and \emph{arousal} (how excited an agent is).
-
-Russell's original paper proposes a model similar to that shown in figure \ref{fig:circumplex}, where the $x$ axis is a person's valence level and the $y$ axis is their arousal level. He argues that the full range of human emotions lie as points along these axes. Eight such examples are shown in fig. \ref{fig:circumplex}.
-
-This model is very easy to adapt to human-like agents. \citet{ahn2012nvc} adapt this model by adding a third dimension, dominance, to create conversational agents in a 3D environment. This `dominance' dimension was first proposed in Mehrabian and Russell's original work \citep{mehrabian1974approach}, but later removed due to being perceived as the consequences of the \emph{effects\/} of emotion \citep{russell1980circumplex}, rather than being a component of emotion itself. Like Ahn et al, I found it useful to add the dominance-submission dimension, and so left it in my emotional model. This is the approach I take in creating my Punch and Judy simulation, and so it is described in more detail in section \ref{sec:emotion}.
-
-\subsubsection{Appraisal theory}
-Appraisal theories of emotion lend well to simulation with agents, due to their taking a person's beliefs, desires and intentions into account with respect to external events. Emotions arise when an event occurs and a person internally \emph{appraises} its consequences with respect to their beliefs, desires and intentions. This fits well with the popular BDI architecture for intelligent agents.
-
-Different methods of appraisal may be used in order to produce emotions. Gratch and Marsella use decision theoretic plans \citep{gratch2004domain}, but other approaches could include reactive plans, Markov-decision processes, or detailed cognitive models.
-
-Though the Punch and Judy simulation described in section \ref{sec:punchjudy} uses a dimensional model of emotion, an appraisal-based model would be worth investigating due to its tight coupling with belief desire intention psychological models used in agents. I describe my intention to explore this area further in section \ref{sec:fappraisal}.
-
-
-% But characters in a story need to follow some kind of underlying plot
-% mechanism, so...
-
-\subsection{Governing Narrative in a Multi-Agent System}
-\subsubsection{Planner-based Systems}
-% Riedl, Young, Carezza, etc
-The most prevalent approach to the generation and management of plot in
-interactive narrative is to use planners. With a planner, an author sets the
-goals for the story (certain situations that they would like to see happen), and
-the planner tells the character agents what to do to make sure these ``story
-goals'' are achieved. When a player that is interacting with the system takes an
-action that compromises the story goals, the planner must re-plan to make sure
-the goals can still be achieved, by restricting the actions of the player or
-intervening in some other manner.
-
-% This needs elaboration
-\citep{young1999notes} argues that planners are a good method for regulating plot, later creating an architecture to integrate a planner with character agents in an interactive game environment \cite{young2004architecture}. Young describes how narrative systems must re-plan when a player makes  narrative-breaking actions, by either restructuring the narrative mid-story (\emph{accommodating} the action) or preventing the action from executing (\emph{intervening} on the action).
-
-% This needs elaboration
-Cavazza et al's \emph{I-Storytelling} system~\cite{cavazza2002character} implements Young's architecture with ideas from Barthes' narrative units, using characters with Hierarchical Task Networks (HTNs) to generate its stories. Each character has a main task, which is divided into subtasks to create a task hierarchy, with each task node having pre- and postconditions. The story emerges from the outcomes of each character's plans, and the narrative structure as a whole is not planned.
-
-% This needs elaboration
-Mimesis~\cite{riedl2003managing}, another implementation of Young's architecture, allows the story author to create plans for the overall narrative in addition to its characters, in order to have more control over narrative structure. Rather than using a narrative model, Mimesis models the player to track their expected level of suspense while interacting with the story. Like the \emph{I-storytelling} system, its plans are hierarchical, using the Longbow hierarchical partial-order causal link planning system~\cite{young1994decomposition}.
-
-A disadvantage of these planner-based systems is that they require the story author to think in a planner-oriented manner. They must consider the goals of both the story and the character, plans to achieve these goals, and re-planning when goals are not met or when situations change. This is a drastic change from the usual story writing methods of authors, where the focus is on structure, plot, themes and characters. Though graphical user interfaces such as Mimesis' Bowman system~\cite{thomas2006author} could be used to assist planner-driven story authoring, a complete shift in creative workflow is still required, making them inaccessible to non-technical writers.
-
-% This needs elaboration
-Carnegie Mellon University's OZ project \cite{mateas1999oz} uses a \emph{drama manager} to structure its narrative, which observes the actions occurring in the storyworld and ``directs'' its characters to conform to shape the story. \emph{Fa\c{c}ade}~\cite{mateas2003faccade} also uses a drama manager to direct the story, with the player interacting with the characters by typing in natural language sentences. In Fa\c{c}ade, the smallest unit of narrative action is called a \emph{story beat}, taken from McKee's book on authorial style for screenwriters \cite{mckee1997substance}. The simulation constantly monitors what the user is doing and how it may lead from the current story beat to another. Story beats have preconditions and effects on the state of the narrative, so it is the drama manager's job to work out when it makes sense to initiate a certain beat. Each beat is specific to the story, however, and not usable between stories. For example, a beat called ``Grace looks at the painting while reminiscing about her honeymoon'' would be specific to \emph{Fa\c{c}ade's} particular story, and would strictly define the lines of dialogue and actions of both character agents. Drama managers tell character agents exactly what to do at each point in the story. Though the agents may still have goals of their own, they are always overridden by the goals of the drama manager.
 From the analysis above, we conclude that using social institutions to govern the actions of character agents allows for more flexibility in the agents' actions. Also, by specifying these institutions as story tropes, we overcome the authorial difficulty of planner-based systems. Script writers do not need to be familiar with planners or hierarchical task networks in order to create interactive fiction with our system.
+
+How might these agents be made more convincing? Outside of writing rules for their behaviour consisting of character goals and beliefs, how might an author create truly unique and idiosyncratic characters? To address the question, I next examine different types of emotional models in psychology, and how each might be used to model characters as agents.
 
 \subsubsection{Social Norms}
 Versu~\cite{evans2014versu} is an interactive drama system that uses a multi agent system as characters. The characters' actions are coordinated with \emph{social practices}, which describe types of social situations and is described by the authors as a successor to the Schankian script. These social practices are implemented as reactive joint plans, which agents can choose whether to participate in or not. Rather than directly telling the agents what to do, these social practices merely \emph{suggest} courses of action, leaving each agent to decide for itself what to do based on its individual goals.
@@ -293,17 +293,18 @@ Each character has a role, which is governed by a social practice. For example, 
 
 Exclusion logic aims to address the frame problem. The frame problem is the uncertainty around whether predicates that change over time (fluents) change other predicate values. It aims to address this through use of an exclusion operator (``!''). Listing \ref{lst:exclusion} shows an example of the exclusion operator in use. The example specifies that an agent can have only one gender. The \emph{Praxis} language implementation of the exclusion logic has a type checker which ensures that no character can have multiple genders.
 
-\begin{lstlisting}[float,label=lst:exclusion,caption=nextHopInfo: caption]
-A(agent).sex!G(gender).
-\end{lstlisting}
+% TODO BREAKS SYNTAX HIGHLIGHTING!
+% \begin{lstlisting}[float,label=lst:exclusion,caption=nextHopInfo: caption]
+% A(agent).sex!G(gender).
+% \end{lstlisting}
 
-\begin{lstlisting}[label=lst:exclusion,caption=Description of ``Brown'' character.]
-brown.sex!male;
-brown.class!upper;
-brown.in!dining_room;
-brown.relationship.lucy.evaluation.attractive!40;
-brown.relationship.lucy.evaluation.humour!20.
-\end{lstlisting}
+% \begin{lstlisting}[label=lst:exclusion,caption=Description of ``Brown'' character.]
+% brown.sex!male;
+% brown.class!upper;
+% brown.in!dining_room;
+% brown.relationship.lucy.evaluation.attractive!40;
+% brown.relationship.lucy.evaluation.humour!20.
+% \end{lstlisting}
 
 Exclusion logic's exclusion operator allows an author to express the fact that a variable can only have one value. For example, if `the `Brown'' character changes location from the dining room to the kitchen, \emph{brown.in!dining\_room} is terminated when \emph{brown.in!kitchen} holds.
 
@@ -382,4 +383,70 @@ section~\ref{}, where we use Interval Temporal Logic and Kripke structures to
 theorem-prove certain narrative states. The difference is that the system we
 describe is more concerned with representing different temporal relations,
 whereas Ceptre's focus is on resource management within a game.
+
+
+\subsection{Character Modelling}
+
+\subsubsection{Characters with Emotional Models}
+% Intro: not done very much?
+
+\subsubsection{Emotional models}\label{sec:emotional-models}
+% How is this useful for narrative?
+Usually it would seem odd to want to model emotion as part of a computational process. Emotion is such a seemingly irrational set of behaviours that they are easy to dismiss as `human imperfections'. However, as \citet{marsella2014} observe, emotions may have a useful role to play in communication, so long as they are displayed at appropriate times.
+
+For example, anger prepares the human body to fight by increasing the manufacture of adrenaline. Fear similarly triggers the `fight or flight' response, alerting the senses for danger and preparing the body to react.
+
+In order to model human emotions using agents, we must first find a suitable psychological model to use. Marsella et al describe three main types of emotional model:
+
+\begin{enumerate}
+ \item \textbf{Discrete} emotional models, which claim that humans have a set of innate, pre-defined emotional states which people may enter and leave.
+ \item \textbf{Dimensional} models of emotion, describing the spectrum of emotions as being points somewhere in continuous space. Implementations typically use two or three dimensions for simplicity.
+ \item \textbf{Appraisal} theories of emotion take an agent's mental processes into account. Their emotional state is derived from whether or not their goals have been achieved, and what effects current events are having on their circumstances, for example.
+\end{enumerate}
+
+% Give examples of concrete models for each type.
+\subsubsection{`Basic' emotions}
+Ekman first made a case for discrete, biologically-determined emotions, based on evidence from research into facial expressions \citep{ekman1992argument}. He describes emotions as being \emph{basic}, in two senses of the word: \emph{i.} that there are a number of distinct emotions, each with its own different characteristics, and \emph{ii.} that these emotions were developed through evolution for specific functions.
+
+Ekman argues that these evolved emotions share nine characteristics:
+
+\begin{enumerate}
+  \item Distinctive universal signals
+  \item Presence in other primates
+  \item Distinctive physiology
+  \item Distinctive universals in antecedent events
+  \item Coherence among emotional response
+  \item Quick onset
+  \item Brief duration
+  \item Automatic appraisal
+  \item Unbidden occurrence
+\end{enumerate}
+
+These characteristics are shared by all of the `basic' emotions as observed in humans and primates.
+
+Discrete models of emotion suggest that there is a neural basis for emotion. For example, Armony et al describe how the amygdala in the brain is responsible for conditioned fear responses  and create a neural network to model it \citep{armony1997computational}.
+
+Using a discrete model of emotion for agent-based characters would be relatively simple. Each basic emotion could have its own distinct set of behaviours as postconditions, and triggering circumstances as preconditions.
+
+However, a more fluid approach could be useful when modelling emotions with agents. It would be impossible to say that an agent is \emph{angry and approaching furious} using a discrete theory of emotion. Nuanced levels of emotion and even combinations of several emotions add an extra level of texture to a character. Dimensional and appraisal theories of emotion address this challenge.
+
+\subsubsection{Russell's circumplex model of emotion}\label{sec:circumplex}
+\begin{figure}[!t]
+\centerline{\includegraphics[height=3in]{circumplex.png}}
+\caption{Russell's circumplex model of emotion} \label{fig:circumplex}
+\end{figure}
+
+Russell's circumplex model of emotion is a well-known dimensional model \citep{russell1980circumplex}. In this case, the dimensional variables are \emph{valence} (how agreeable or otherwise a situation is to an agent) and \emph{arousal} (how excited an agent is).
+
+Russell's original paper proposes a model similar to that shown in figure \ref{fig:circumplex}, where the $x$ axis is a person's valence level and the $y$ axis is their arousal level. He argues that the full range of human emotions lie as points along these axes. Eight such examples are shown in fig. \ref{fig:circumplex}.
+
+This model is very easy to adapt to human-like agents. \citet{ahn2012nvc} adapt this model by adding a third dimension, dominance, to create conversational agents in a 3D environment. This `dominance' dimension was first proposed in Mehrabian and Russell's original work \citep{mehrabian1974approach}, but later removed due to being perceived as the consequences of the \emph{effects\/} of emotion \citep{russell1980circumplex}, rather than being a component of emotion itself. Like Ahn et al, I found it useful to add the dominance-submission dimension, and so left it in my emotional model. This is the approach I take in creating my Punch and Judy simulation, and so it is described in more detail in section \ref{sec:emotion}.
+
+\subsubsection{Appraisal theory}
+Appraisal theories of emotion lend well to simulation with agents, due to their taking a person's beliefs, desires and intentions into account with respect to external events. Emotions arise when an event occurs and a person internally \emph{appraises} its consequences with respect to their beliefs, desires and intentions. This fits well with the popular BDI architecture for intelligent agents.
+
+Different methods of appraisal may be used in order to produce emotions. Gratch and Marsella use decision theoretic plans \citep{gratch2004domain}, but other approaches could include reactive plans, Markov-decision processes, or detailed cognitive models.
+
+Though the Punch and Judy simulation described in section \ref{sec:punchjudy} uses a dimensional model of emotion, an appraisal-based model would be worth investigating due to its tight coupling with belief desire intention psychological models used in agents. I describe my intention to explore this area further in section \ref{sec:fappraisal}.
+
 

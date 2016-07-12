@@ -49,7 +49,8 @@ CLOSED: [2016-06-27 Mon 08:44]
 :PROPERTIES:
 :ORDERED:  t
 :END:
-**** TODO Planner-based systems
+**** DONE Planner-based systems
+CLOSED: [2016-07-12 Tue 06:16]
 :PROPERTIES:
 :Effort:   2d
 :ORDERED:  t

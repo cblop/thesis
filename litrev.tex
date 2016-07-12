@@ -1,7 +1,7 @@
 \chapter{Literature Review}
 \label{cha:literature-review}
 
-This research covers a large number of fields of study, therefore an extensive
+This research covers multiple fields of study, therefore an extensive
 literature review covering these fields is necessary. This section starts with a
 look at the field of \emph{narratology}, or narrative theory, to gain some
 insights into the themes and components that make up stories. Looking at
@@ -32,9 +32,84 @@ construction of interactive narratives for games or simulations.
 
 Structuralist formalisms of narrative attempt to explain how stories work by dividing them into commonly occuring themes and motifs. This is a natural fit to the modelling of narratives by computer, especially if using an ontology. This overview of narratology starts with structuralism for this reason.
 
-After the overview of the structuralists follows a section on the use of formal logic for narrative modelling. The section ends with descriptions of other types of story components, taxonomies and ontologies used in the literature.
+After the overview of structuralists' narrative models follows a section on the use of formal logic for narrative modelling. The section ends with descriptions of other types of story components, taxonomies and ontologies used in the literature.
+
+\subsection{Narrative Structure}
+What is the difference between a narrative and a sequence of events? If we
+recount the events that happened to us during the course of a day, would that
+``count'' as a narrative? When is the retelling of events a simple listing of
+facts, and when is it a story?
+
+Narratologists from \citep{bal2009narratology} onwards refer to the
+chronological ordering of events as \emph{fabula} (from the Russian фабула, ``scene''), and the retelling and
+reordering of those events in a narrative as \emph{syuzhet} (сюжет, ``plot'').
+In fact, Russian structuralists Propp~\cite{propp1968morphology} and
+Shklovsky~\cite{shklovsky1991theory} were the first to use these terms in the
+context of narrative, before their rediscovering by modern narrative theorists.
+
+The concepts of \emph{fabula} and \emph{syuzhet} are key to the understanding of
+narrative structure. Thanks to Aristotle's
+\emph{Poetics}~\cite{halliwell1968aristotle}, we understand that a story must
+have a beginning, a middle and and end. These three parts of a story describe
+how the \emph{syuzhet} are organised, which can refer to its \emph{fabula}
+(chronological) events in any order. For example, the beginning of a movie could
+be set at the present day in the life of the protagonist, the middle could be a
+flashback to an earlier time in her life, and the end could return to the events
+following the start of the movie.
+
+Though Aristotle identifies the beginning, middle and end as three key story
+divisions, other theorists divide the \emph{syuzhet} of a story further. Joseph
+Campbell's work \emph{The Hero with a Thousand Faces}~\cite{campbell2008hero}
+describes how almost every story is a variation of the \emph{Hero's Journey}
+(also called the \emph{monomyth}). Like Aristotle's beginning, middle and end,
+the Hero's Journey has three acts: the Departure, the Initiation and the Return.
+Campbell divides these acts further into seventeen distinct stages:
+
+\paragraph{Departure}
+\begin{enumerate}
+  \item The Call to Adventure
+  \item Refusal of the Call
+  \item Supernatural Aid
+  \item Crossing the Threshold
+  \item Belly of the Whale
+
+\paragraph{Initiation}
+  \item The Road of Trials
+  \item The Meeting with the Goddess
+  \item Woman as Temptress
+  \item Atonement with the Father
+  \item Apotheosis
+  \item The Ultimate Boon
+\paragraph{Return}
+  \item Refusal of the Return
+  \item The Magic Flight
+  \item Rescue from Without
+  \item The Crossing of the Return Threshold
+  \item Master of Two Worlds
+  \item Freedom to Live
+\end{enumerate}
+
+In summary, the hero begins the story at home or in some otherwise familiar
+setting, where she is called away on an adventure. After possibly rejecting this
+call, the hero leaves home (crosses the threshold) and sets off for the land of adventure. After facing
+many trials and possibly defeating an enemy, the hero returns home once again.
+Having endured the many trials of the journey, our hero becomes stronger in spirit
+and character.
+
+As a classic example, consider the plot of Tolkien's \emph{The Hobbit}. At the
+start of the tale, Bilbo Baggins is a comfortable but risk-averse hobbit who
+refuses to leave his comfortable surroundings when Gandalf first visits him to
+send him on a quest. Of course, he does eventually leave home to fulfill the
+quest, returning home a changed character.
+
+Campbell argues that the \emph{monomyth} acts as a shared cultural memory of
+sorts, being the universal template for the rite-of-passage tale. He says that
+it is passed down as myth through many different cultures, replicating in much the same way
+as genes (or memes) do and that it can be thought of as a \emph{metamyth}, or the
+spiritual history of humanity.
 
 \subsection{Types of Narrative}
+% Author Kurt Vonnegut
 % Look at Cybertext, etc, and try to explain how best to divide different types
 % of story
 The rise of the Web in the 1990s brought with it great interest in the future of narrative in cyberspace. Aarseth's work, \emph{Cybertext} \citep{aarseth1997cybertext} describes the creation of a new form of narrative, for which he coins the term \emph{ergodic literature} (from the Greek words \emph{ergon} and \emph{hodos}, meaning `work' and `path'). In this new form of narrative, some amount of work or effort is required by the reader in order to traverse the path that the story takes.
@@ -67,7 +142,9 @@ A cyclic process between two or more active agents in which each agent alternate
 
 He argues that for game narratives to be truly interactive, they must be more social. Characters in a story must be able to react with the player as though they were people in real life. In turn, the player should have some degree of freedom in the way in which they interact. Rather than presenting branching story points as choices, a better way to interact would be socially, through talking to agents in the game. This is the approach that Fa\c{c}ade takes \citep{mateas2003faccade}, which Crawford acknowledges as the most successful attempt at interactive storytelling to date. A detailed description of Fa\c{c}ade's implementation appears in section \ref{sec:modelling-agents}.
 
-In order to determine whether Crawford's assertion that narratology research is too far removed from its practical implementations to be of use, we next provide an overview of these implementations and their underlying research. Has narrative theory research informed the creation of computer-generated or interactive narrative at all, or do they all take approaches grounded in computer science and artificial intelligence? If narrative theory has not been used, then we must ask another question: why not?
+In order to determine whether Crawford's assertion that narratology research is
+too far removed from its practical implementations to be of use, provide an
+overview of these implementations and their underlying research in section \ref{sec:implementations}. Has narrative theory research informed the creation of computer-generated or interactive narrative at all, or do they all take approaches grounded in computer science and artificial intelligence? If narrative theory has not been used, then we must ask another question: why not?
 
 
 \subsection{Structuralist Formalisms of Narrative}
@@ -209,28 +286,75 @@ intervening in some other manner.
 \citep{young1999notes} argues that planners are a good method for regulating
 plot, later creating the \emph{Mimesis} architecture for integrating a planner with character agents in an interactive game environment \cite{young2004architecture}. Young describes how narrative systems must re-plan when a player makes  narrative-breaking actions, by either restructuring the narrative mid-story (\emph{accommodating} the action) or preventing the action from executing (\emph{intervening} on the action).
 
-The \emph{Mimesis} architecture is designed to integrate into the \emph{Unreal
-  Tournament} game engine, and has five components:
+Given its influence over subsequent approaches to interactive narrative
+generation, it is worth looking at the Mimesis architecture more closely.
+It is designed to integrate into the \emph{Unreal
+  Tournament} game engine, and has five components: the \emph{mimesis
+  controller}, the \emph{story planner}, the \emph{discourse planner}, the
+\emph{execution manager} and the \emph{MWorld}.
+
+Figure \ref{fig:mimesis} shows how this components work together to form the
+Mimesis architecture. Once an author has created the pre-defined libraries of
+actions needed by the story planner, the following steps are taken to determine
+the course of the story:
 
 \begin{enumerate}
-\item The \textbf{mimesis controller} (MC), to which all components connect and send
-  messages.
-\item The \textbf{story planner}, which handles plan requests from the game engine.
-\item The \textbf{discourse planner}, which handles the presentation of the game
-  by controlling non-character media such as cameras and music.
-\item The \textbf{execution manager}, which drives the story's action forward.
-  It builds a directed acyclic graph whose nodes represent actions from the plan
-  and edges are temporal constraints that order the actions.
-\item The \textbf{MWorld}, which includes three elements: the game engine,
-  communication-coordinating code, and \emph{action classes}, which specify the
-  behaviors of each action operator in the story and discourse planners.
+  \item All the components connect to the Mimesis Controller (MC) via socket
+    connection. It then acts as a message router.
+  \item The game initiates a plan request containing the state of the game
+    world, a list of possible actions, and the goals for the plan.
+  \item The \emph{story planner} responds with a \emph{story world plan}, a data
+    structure that describes the actions (selected from the list) that must occur over time in order to
+    meet the plan request's goals.
+  \item Once the story world plan is created, it is sent to the \emph{discourse
+      planner}, along with a list of actions that can occur in the game engine
+    (such as camera movements, voice-overs and background
+    music). The discourse planner then creates a sequence of these actions that
+    best fit the story world plan.
+  \item The discourse planner then sends the narrative plan to the
+    \emph{execution manager}, which builds a directed acyclic graph (DAG), where
+    the nodes are the actions within the plan and the edges are the temporal
+    constraints between the orderings of the actions. The execution manager
+    removes nodes from the DAG in order, sends the node's actions to the
+    game engine, and updates the graph.
+  \item The \emph{MWorld} is essentially the environment in which the story
+    occurs, consisting of the game engine, coordination code, and class
+    definitions for actions, and discourse planners. It is the MWorld that
+    receives actions from the execution manager to be executed, and executes
+    these actions in the game engine.
 \end{enumerate}
+
+Mimesis uses DPOCL (Decomposed Partial-Order Causal-Link Planner)~\cite{young1994decomposition} plans for
+its story planning. DPOCL plans are composed of \emph{steps} (the plan's
+actions), \emph{ordering constraints}, \emph{decomposition links} describing the
+hierarchical structure of a plan, and \emph{causal links} between pairs of
+steps. It uses \emph{refinement search} \cite{kambhampati1995planning} as its
+plan reasoning process, searching through the space of possible plans represented as a directed
+graph, with each node in the graph being a plan or partial plan. Mimesis
+specifies the initial planning problem for DPOCL using the current and goal
+states of the story.
+
+A key feature of Mimesis is its handling of user actions which potentially
+interfere with the story plan, making its goals unachievable. Its two strategies
+for mediating in such situations are \emph{intervention} and
+\emph{accommodation}. In the intervention strategy, Mimesis simply prevents the
+user's action from having any effect in the game world. With accommodation,
+Mimesis replans the story events, restructuring the plan so that the interfering
+actions are taken into account and worked around.
+
+\begin{figure}[!t]
+\centerline{\includegraphics[height=0.4in]{mimesis.png}}
+\caption{The Mimesis architecture, from \cite{young2004architecture}}\label{fig:mimesis}
+\end{figure}
 
 % This needs elaboration
 Cavazza et al's \emph{I-Storytelling} system~\cite{cavazza2002character} implements Young's architecture with ideas from Barthes' narrative units, using characters with Hierarchical Task Networks (HTNs) to generate its stories. Each character has a main task, which is divided into subtasks to create a task hierarchy, with each task node having pre- and postconditions. The story emerges from the outcomes of each character's plans, and the narrative structure as a whole is not planned.
 
 % This needs elaboration
-Mimesis~\cite{riedl2003managing}, another implementation of Young's architecture, allows the story author to create plans for the overall narrative in addition to its characters, in order to have more control over narrative structure. Rather than using a narrative model, Mimesis models the player to track their expected level of suspense while interacting with the story. Like the \emph{I-storytelling} system, its plans are hierarchical, using the Longbow hierarchical partial-order causal link planning system~\cite{young1994decomposition}.
+\citep{riedl2003managing} describes further development of Young's architecture,
+allowing the story author to create plans for the overall narrative in addition
+to its characters, in order to have more control over narrative structure.
+Rather than using a narrative model, this version of Mimesis models the player to track their expected level of suspense while interacting with the story. Like the \emph{I-storytelling} system, its plans are hierarchical, using the Longbow hierarchical partial-order causal link planning system~\cite{young1994decomposition}.
 
 A disadvantage of these planner-based systems is that they require the story author to think in a planner-oriented manner. They must consider the goals of both the story and the character, plans to achieve these goals, and re-planning when goals are not met or when situations change. This is a drastic change from the usual story writing methods of authors, where the focus is on structure, plot, themes and characters. Though graphical user interfaces such as Mimesis' Bowman system~\cite{thomas2006author} could be used to assist planner-driven story authoring, a complete shift in creative workflow is still required, making them inaccessible to non-technical writers.
 
@@ -238,7 +362,6 @@ A disadvantage of these planner-based systems is that they require the story aut
 \subsubsection{Drama manager-based Systems}
 
 Carnegie Mellon University's OZ project \cite{mateas1999oz} uses a \emph{drama manager} to structure its narrative, which observes the actions occurring in the storyworld and ``directs'' its characters to conform to shape the story. 
-
 
 Mateas and Stern's \emph{Fa\c{c}ade} has players interact with the characters of the story through natural language. In this game, the player attends the party of a young couple (Grace and Trip) celebrating their wedding anniversary. As the course of events unfold however, the player learns that all is not as happy as it seems.
 
@@ -449,4 +572,4 @@ Different methods of appraisal may be used in order to produce emotions. Gratch 
 
 Though the Punch and Judy simulation described in section \ref{sec:punchjudy} uses a dimensional model of emotion, an appraisal-based model would be worth investigating due to its tight coupling with belief desire intention psychological models used in agents. I describe my intention to explore this area further in section \ref{sec:fappraisal}.
 
-
+\subsection{Discussion}

@@ -665,4 +665,128 @@ Different methods of appraisal may be used in order to produce emotions. Gratch 
 Though the Punch and Judy simulation described in section \ref{sec:punchjudy} uses a dimensional model of emotion, an appraisal-based model would be worth investigating due to its tight coupling with belief desire intention psychological models used in agents. I describe my intention to explore this area further in section \ref{sec:fappraisal}.
 
 \subsection{Discussion}
-Through this literature review, we identify the following issues that need to be addressed:
+Through this literature review, we have clearly identified these main issues in
+need of attention:
+
+\subsubsection{Story authors do not want to think in terms of goals}
+The current dominant paradigm in interactive narrative creation is to
+use planners to ``plan'' a narrative, and re-plan when a user interacts in
+an unexpected manner. This does not align well with non-programmer story
+authors, who are likely to be unfamiliar with planning systems. In order to
+create these stories with planners, they would have to think of the story in
+terms of story and character goals.
+\subsubsection{Most narrative systems use outdated, inflexible story models}
+There is an over-reliance on narrative formalisms such as
+Propp~\citep{propp1968morphology} even in recent narrative generation
+systems. Neither narrative nor AI research have produced a formalism for
+narrative components that has endured. This is likely because Propp's formalism
+is ``good enough'', and has worked for most researchers that have used it. There
+is also likely to be a network effect, where Propp has become the formalism that
+most researchers have heard of, and therefore the one that they end up using.
+
+Though there have been attempts to create more expressive formalisms as
+described in section~\ref{sec:formalisms}, none have been expressive enough to
+overcome Propp's ``good enough'' properties. In order for a story model to
+significantly improve upon Propp, it should add features that it and other
+existing formalisms lack. We identify these features as:
+
+\begin{itemize}
+  \item A means of \emph{abstraction}
+  \item Conceptually \emph{simple} enough for non-programmers to grasp
+  \item A library of re-usable \emph{examples} for authors and researchers
+\end{itemize}
+
+\paragraph{A Means of Abstraction}
+Current narrative formalisms lack a means of \emph{abstraction}. Propp,
+for example, describes events in stories that all occur at the same level of
+abstraction. This means that one is limited to describing events that occur one
+after another, or in parallel, but not events that contain sub-events.
+
+For example, suppose we define a ``Quest'' component of a story, which describes a
+sequence of events that occur (such as the hero leaving home and then defeating
+a monster). It is easy to think of other story components that could contain
+this ``Quest'' component, such as ``Hero's Journey'', ``Rescue the World'' or
+``Rite of Passage'' story components. These components could themselves be used
+as part of other components. This gives us a means of creating abstractable,
+reusable story components. Of all the story models described in
+section~\ref{sec:formalisms}, none have any means of abstraction such as this.
+
+The example we just described already hints at the use of story tropes that
+contain other tropes. This is the means of abstraction and re-use that we use in
+our system, described in section~\ref{sec:tropes}.
+
+\paragraph{Conceptually Simple}
+Story authoring tools are user interfaces which are used to write fiction. In
+the computing world, user interfaces are often simplified through the use of an
+\emph{analogy}. For example, a \emph{Desktop Environment} is a graphical user
+interface analogy created by Xerox in the 1970s. Where computer users would
+previously have had to learn and master a complicated command-line interface,
+the desktop environment metaphor presented an interface that resembled something
+that users were already familiar with: the top of a desk, with icons
+representing files spread out over a ``desktop'' surface.
+
+When creating a story model, it is easy to fall into the trap of creating
+something complicated but arbitrary. As with Vonnegut's ``Shapes of Stories''
+metaphor (described in section~\ref{sec:shapes}, sometimes the simplest
+explanations are the easiest to grasp and most enduring. We believe that our
+``trope'' analogy for modelling stories (section~\ref{sec:tropes}) is an
+elegant, expressive and accessible way of describing parts of stories using a formalism.
+
+Most story authors are already familiar with the concept of tropes. When
+questioned about their familiarity with the idea, all the participants at an
+interactive fiction meetup responded that they were familiar with the ``trope''
+concept (sample size 19, see section~\ref{}). This means that tropes are a
+suitable analogy for the creation of a new narrative formalism.
+
+\paragraph{A Library of Re-usable Examples}
+Part of the problem of existing formalisms is that story authors that use them
+need to write their own story components based on a formalism's description.
+Though these formalisms are usually described in papers with one or two
+examples, any story author would have to create their own formal descriptions,
+even for commonly-occuring story components such as quests or \emph{The Hero's
+  Journey}. What is needed is a library of pre-existing formal descriptions of
+story components that authors can easily copy and paste into their stories.
+
+As the concept of \emph{tropes} is one that is already well-known to story
+authors and consumers of media, it is easy to find many examples of them in
+reviews of books, films and computer games. In fact, there is a whole website
+called ``TV Tropes'', which is dedicated entirely to the description of tropes
+that recur throughout different types of media. This website takes the form of a
+wiki, with a very active community who contribute trope descriptions along with
+lists of the media they appear in.
+
+For example, a trope called ``Karma Houdini'' has the following description:
+
+\begin{quote}
+The character has done a number of things that deserve a karmic comeuppance,
+most importantly things that caused harm to the innocent.
+But when the time comes for the hammer to fall, that's not what happens. At
+least, not on him.
+He doesn't get what he deserves. Instead, he gets away scot-free.
+And he might even have reversed the Humiliation Conga that was being planned for him.
+
+This is it. This is all there is to the story. The show is over. The book is finished. The author isn't going to write any more. The Word of God has been spoken. The guy has become a Karma Houdini.
+\end{quote}
+
+The site lists many examples from film and literature, including:
+\begin{itemize}
+  \item \textbf{Treasure Island:} Long John Silver escaped scot free with a chest of treasure, and was never caught. Not bad, for a month's murder and betrayal.
+  \item \textbf{The Talented Mr Ripley:} Villain Protagonist Tom Ripley killed some people to assume a new identity and enrich himself thoroughly. In the sequels, he killed to protect his new life, and sometimes as favors for others. He never faced justice.
+\end{itemize}
+
+The \emph{TV Tropes} website is a Wikipedia of sorts for tropes. Since there are
+already so many examples listed on its website, it reduces the work needed to
+create a library of reusable formal descriptions of tropes. We have created such
+a library, which is described in section~\ref{sec:library}.
+
+These three omissions (means of abstraction, conceptual simplicity and a
+re-usable library of components) from existing narrative systems are addressed
+by our trope-based approach to interactive narrative generation, which is
+described in further sections of this thesis. Section~\ref{sec:tropes} describes
+the trope concept further, with examples. Section~\ref{sec:institutions}
+explains how these tropes are used to govern agents in a multi-agent system. We
+describe TropICAL, our domain-specific language for tropes, in
+section~\ref{sec:tropical}. Section~\ref{sec:library} describes our creation of
+a library of tropes and section~\ref{sec:policy} describe the application of our
+\emph{tropes} concept to legal policies. The thesis concludes with an evaluation
+in section~\ref{sec:evaluation} and conclusions in section~\ref{sec:conclusions}.

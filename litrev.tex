@@ -40,16 +40,15 @@ recount the events that happened to us during the course of a day, would that
 ``count'' as a narrative? When is the retelling of events a simple listing of
 facts, and when is it a story?
 
-Narratologists from \citep{bal2009narratology} onwards refer to the
+Narratologists from \citet{bal2009narratology} onwards refer to the
 chronological ordering of events as \emph{fabula} (from the Russian фабула, ``scene''), and the retelling and
 reordering of those events in a narrative as \emph{syuzhet} (сюжет, ``plot'').
-In fact, Russian structuralists Propp~\cite{propp1968morphology} and
-Shklovsky~\cite{shklovsky1991theory} were the first to use these terms in the
+In fact, Russian structuralists~\citet{propp1968morphology} and~\citet{shklovsky1991theory} were the first to use these terms in the
 context of narrative, before their rediscovering by modern narrative theorists.
 
 The concepts of \emph{fabula} and \emph{syuzhet} are key to the understanding of
 narrative structure. Thanks to Aristotle's
-\emph{Poetics}~\cite{halliwell1968aristotle}, we understand that a story must
+\emph{Poetics}~\citep{halliwell1986aristotle}, we understand that a story must
 have a beginning, a middle and and end. These three parts of a story describe
 how the \emph{syuzhet} are organised, which can refer to its \emph{fabula}
 (chronological) events in any order. For example, the beginning of a movie could
@@ -59,38 +58,38 @@ following the start of the movie.
 
 Though Aristotle identifies the beginning, middle and end as three key story
 divisions, other theorists divide the \emph{syuzhet} of a story further. Joseph
-Campbell's work \emph{The Hero with a Thousand Faces}~\cite{campbell2008hero}
+Campbell's work \emph{The Hero with a Thousand Faces}~\citep{campbell2008hero}
 describes how almost every story is a variation of the \emph{Hero's Journey}
 (also called the \emph{monomyth}). Like Aristotle's beginning, middle and end,
 the Hero's Journey has three acts: the Departure, the Initiation and the Return.
 Campbell divides these acts further into seventeen distinct stages:
 
 \paragraph{Departure}
-\begin{enumerate}
+\begin{myenumerate}
   \item The Call to Adventure
   \item Refusal of the Call
   \item Supernatural Aid
   \item Crossing the Threshold
   \item Belly of the Whale
-\end{enumerate}
+\end{myenumerate}
 \paragraph{Initiation}
-\begin{enumerate}[resume]
+\begin{myenumerate}
   \item The Road of Trials
   \item The Meeting with the Goddess
   \item Woman as Temptress
   \item Atonement with the Father
   \item Apotheosis
   \item The Ultimate Boon
-\end{enumerate}
+\end{myenumerate}
 \paragraph{Return}
-\begin{enumerate}[resume]
+\begin{myenumerate}
   \item Refusal of the Return
   \item The Magic Flight
   \item Rescue from Without
   \item The Crossing of the Return Threshold
   \item Master of Two Worlds
   \item Freedom to Live
-\end{enumerate}
+\end{myenumerate}
 
 In summary, the hero begins the story at home or in some otherwise familiar
 setting, where she is called away on an adventure. After possibly rejecting this
@@ -114,14 +113,14 @@ spiritual history of humanity.
 % Polti 27
 % Look at story shapes paper for inspiration
 Other analysts have described several different types of commonly-seen plot.
-\citep{harris1959basic} makes the case for just three types of plot, having
+\citet{harris1959basic} makes the case for just three types of plot, having
 either a happy ending (where the protagonist is virtuous), an uphappy ending
 (with a selfish protagonist) or being a tragedy (where the protagonist is struck
 by fate).
 
-Christopher Brooker describes seven basic plots, where each may have either a
-happy or unhappy ending \cite{booker2004seven}:
-\begin{itemize}
+\citet{booker2004seven} describes seven basic plots, where each may have either a
+happy or unhappy ending:
+\begin{compactitem}
   \item Overcoming the monster
   \item Rags to riches
   \item The quest
@@ -129,14 +128,14 @@ happy or unhappy ending \cite{booker2004seven}:
   \item Comedy
   \item Tragedy
   \item Rebirth
-\end{itemize}
+\end{compactitem}
 
 Georges Polti famously divides narratives into the \emph{thirty-six dramatic
-  situations}\cite{polty1921thirty}, derived from his analysis of classical
+  situations}~\citep{polti1921thirty}, derived from his analysis of classical
 Greek and both classical and contemporary French texts. Polti's thirty-six types
 of plot are:
 
-\begin{enumerate}
+\begin{compactenum}
   \item Supplication
   \item Deliverance
   \item Crime pursued by vengeance
@@ -173,7 +172,7 @@ of plot are:
   \item Remorse
   \item Recovery of a lost one
   \item Loss of loved ones
-\end{enumerate}
+\end{compactenum}
 
 \begin{figure}[!t]
 \centerline{\includegraphics[height=2in]{vonnegut.png}}
@@ -187,7 +186,16 @@ Fortune-Great Fortune'' (fortune of protagonist) on the Y-axis.
 Figure~\ref{fig:vonnegut} shows two examples of story shapes. In the ``Man in
 Hole'' example, things start out well for the story's protagonist, but then some
 misfortune falls on them. They spend much of the story overcoming challenges
-before finally ending the story with a triumph. In the ``Old Testament'' example,
+before finally ending the story with a triumph. In the ``Old Testament''
+example, the protagonist(s) experience gradually increasing levels of fortune,
+before finally being ``cast down'' to a grave level of misfortune at the end of
+the story.
+
+All of the above categorisations describe stories as a whole, sorting narratives
+into one of several different ``types'' of story. This works well for
+linear narratives within traditional media, but what about experimental and
+non-linear narratives? In the next section, we review the literature relating to
+these less traditional types of stories.
 
 \subsection{Types of Narrative}
 % Author Kurt Vonnegut
@@ -199,15 +207,20 @@ The rise of the Web in the 1990s brought with it great interest in the future of
 Aarseth makes a distinction between the narrative as written by the author, and the way in which it is traversed by the reader, calling the former \emph{textons} and the latter \emph{scriptons}. In ergodic literature, the \emph{scripton} is produced by the effort that the reader goes through in interpreting the \emph{texton}. In the context of a game, it is as though the game interface is a gateway that allows access to the narrative at different times. Using classical music as a metaphor, the texton can be thought of as the \emph{score}, and the scripton the \emph{performance}.
 
 % TODO Make sure you update the intro with this
-In section \ref{sec:generative-and-interactive-narrative}, we assert that how generative a narrative is and its level of interactivity are two different variables in an experimental narrative. However, Aarseth identifies seven different methods of story traversal: \emph{dynamics, determinability, transiency, perspective, access, linking and user function}.
+In section~\ref{sec:generative-and-interactive-narrative}, we assert that how generative a narrative is and its level of interactivity are two different variables in an experimental narrative. However, Aarseth identifies seven different methods of story traversal: \emph{dynamics, determinability, transiency, perspective, access, linking and user function}.
 
-\paragraph{Dynamics} describe whether or not the content and number of scriptons changes. In a simple, static story with branching choices (such as in a \emph{Choose your own adventure} story), both the number of textons and scriptons are fixed, since all paths have been written out beforehand. A dynamic story would still have a fixed number of textons, but the scriptons would be generated as the user traverses the path of the narrative.
-\paragraph{Determinability} is how deterministic the narrative is, whether or not the same interactions will result in the same scripton being produced.
-\paragraph{Transiency} means to what extent scriptons are produced as time flows, or whether user interactions are required to produce them.
-\paragraph{Perspective} is whether or not the user/reader plays a role as a character in the narrative.
-\paragraph{Access:} if a user has access to all scriptons at any point in traversing the narrative, or whether their access is restricted.
-\paragraph{Linking} means whether or not parts of the scripton are linked to other parts, and whether these links are conditional (if they rely on a user having already traversed part of the scripton).
-\paragraph{User functions:} the functions the user uses to traverse the text. This could be interpretive (which is implicit in any traversal of the text), explorative (traversing the scripton according to whim) or configurative (specifying parts of the scripton in advance), for example.
+\textbf{Dynamics} describe whether or not the content and number of scriptons changes. In a simple, static story with branching choices (such as in a \emph{Choose your own adventure} story), both the number of textons and scriptons are fixed, since all paths have been written out beforehand. A dynamic story would still have a fixed number of textons, but the scriptons would be generated as the user traverses the path of the narrative.
+
+\textbf{Determinability} is how deterministic the narrative is, whether or not the same interactions will result in the same scripton being produced.
+
+\textbf{Transiency} means to what extent scriptons are produced as time flows, or whether user interactions are required to produce them.
+
+\textbf{Perspective} is whether or not the user/reader plays a role as a character in the narrative.
+
+\textbf{Access:} if a user has access to all scriptons at any point in traversing the narrative, or whether their access is restricted.
+
+\textbf{Linking} means whether or not parts of the scripton are linked to other parts, and whether these links are conditional (if they rely on a user having already traversed part of the scripton).
+\textbf{User functions:} the functions the user uses to traverse the text. This could be interpretive (which is implicit in any traversal of the text), explorative (traversing the scripton according to whim) or configurative (specifying parts of the scripton in advance), for example.
 
 % Ugh, this is all so arbitrary. Go on to describe Aarseth's PCA of these variables and explain why you don't think it's a good fit.
 
@@ -224,7 +237,7 @@ A cyclic process between two or more active agents in which each agent alternate
 He argues that for game narratives to be truly interactive, they must be more social. Characters in a story must be able to react with the player as though they were people in real life. In turn, the player should have some degree of freedom in the way in which they interact. Rather than presenting branching story points as choices, a better way to interact would be socially, through talking to agents in the game. This is the approach that Fa\c{c}ade takes \citep{mateas2003faccade}, which Crawford acknowledges as the most successful attempt at interactive storytelling to date. A detailed description of Fa\c{c}ade's implementation appears in section \ref{sec:modelling-agents}.
 
 In order to determine whether Crawford's assertion that narratology research is
-too far removed from its practical implementations to be of use, provide an
+too far removed from its practical implementations to be of use, we provide an
 overview of these implementations and their underlying research in section \ref{sec:implementations}. Has narrative theory research informed the creation of computer-generated or interactive narrative at all, or do they all take approaches grounded in computer science and artificial intelligence? If narrative theory has not been used, then we must ask another question: why not?
 
 
@@ -245,12 +258,12 @@ In this formalism, characters have \emph{roles}, such as \emph{hero}, \emph{vill
 
 Propp defines a total of 31 distinct story functions, each of which is given a number and symbol in order to create a succinct way of describing entire stories. Examples of such functions are:
 
-\begin{itemize}
+\begin{compactitem}
   \item One of the members of a family absents himself from home: \emph{absentation}.
   \item An interdiction is addressed to the hero: \emph{interdiction}.
   \item The victim submits to deception and thereby unwittingly helps his enemy: \emph{complicity}.
   \item The villain causes harm or injury to a member of the family: \emph{villainy}.
-\end{itemize}
+\end{compactitem}
 
 Each of these functions can vary to some degree. For example, the \emph{villainy} function can be realised as one of 19 distinct forms of villainous deed, including \emph{the villain abducts a person}, \emph{the villain seizes the daylight}, and \emph{the villain makes a threat of cannibalism}.
 
@@ -289,13 +302,13 @@ Inspired by Chomsky's theories of generative grammar \citep{chomsky1968sound}, r
 
 \begin{figure}[!t]
   \begin{center}
-  \begin{enumerate}
+  \begin{compactenum}
     \item $\texttt{Attempt}\rightarrow \texttt{Plan} + \texttt{Application}$\\
            $\qquad\Rightarrow\texttt{MOTIVATE(Plan, Application)}$
     \item $\texttt{Application}\rightarrow\texttt{(Preaction)*} + \texttt{Action} + \texttt{Consequence}$\\
            $\qquad\Rightarrow\texttt{Allow(AND(Preaction,Preaction,...),}$\\
            $\qquad\{\texttt{CAUSE | INITIATE | ALLOW}\}\texttt{(Action,Consequence)}$
-  \end{enumerate}
+  \end{compactenum}
   \end{center}
 
   \caption{Example rules from Rumelhart's story grammar}\label{fig:rumelhart}
@@ -305,12 +318,12 @@ Inspired by Chomsky's theories of generative grammar \citep{chomsky1968sound}, r
 
 This generative grammar approach can be seen in systems such as Pemberton's GESTER \citep{pemberton1989modular}, which generates stories based on a grammar synthesised from old French epic tales. \citet{lang1999declarative} describe a declarative model for narrative, consisting of lists of first-order predicate calculus expressions. These expressions describe events, states, goals and beliefs which combine to form a narrative. More specifically, it combines:
 
-\begin{itemize}
+\begin{compactitem}
   \item A \textbf{grammar interpreter} to search for a sequence of grammer rewrites which would produce a convincing narrative.
   \item A set of \textbf{temporal predicates} to describe the occurence of events over time and enforce temporal constraints on story components.
   \item A \textbf{world model} which describes the set of actions that characters may perform and fluents that may alter over the course of the narrative.
   \item A \textbf{natural language output unit}, which takes the sequence of events produced by the story grammar and converts it into readable natural language sentences.
-\end{itemize}
+\end{compactitem}
 
 This combination of using a grammar interpreter, world model and natural language output unit is especially common amongst generative grammar approaches.
 
@@ -326,8 +339,6 @@ GEORGE WAS VERY THIRSTY. GEORGE WANTED TO GET NEAR SOME WATER. GEORGE WALKED FRO
 \end{figure}
 
 % TODO elaborate on this
-Lebowitz' UNIVERSE system \citep{lebowitz1985story} focuses on the creation of believable characters, using `plot fragments', or short plans, to generate story outlines for soap operas.
-
 James Meehan's TALE-SPIN \citep{meehan1977tale} is an influential early approach to story generation using planning. In TALE-SPIN, the author describes a story domain, its characters and their goals, and a natural language story is produced as output. It works by using a problem-solver to resolve each character's goals over the story domain. Figure \ref{fig:tspin} is an example of TALE-SPIN's output.
 
 TALE-SPIN's strong planning component is evident in the reading of its output. Sentences are terse, with one event leading directly to another in order to achieve some goal. One problem with this character-led approach is that the goals of the author are not necessarily taken into account. If the author intends for a character to die at some point in the story, it seems unnatural for a character to have the goal of dying to fulfill this intention.
@@ -379,7 +390,7 @@ Mimesis architecture. Once an author has created the pre-defined libraries of
 actions needed by the story planner, the following steps are taken to determine
 the course of the story:
 
-\begin{enumerate}
+\begin{compactenum}
   \item All the components connect to the Mimesis Controller (MC) via socket
     connection. It then acts as a message router.
   \item The game initiates a plan request containing the state of the game
@@ -403,7 +414,7 @@ the course of the story:
     definitions for actions, and discourse planners. It is the MWorld that
     receives actions from the execution manager to be executed, and executes
     these actions in the game engine.
-\end{enumerate}
+\end{compactenum}
 
 Mimesis uses DPOCL (Decomposed Partial-Order Causal-Link Planner)~\cite{young1994decomposition} plans for
 its story planning. DPOCL plans are composed of \emph{steps} (the plan's
@@ -456,17 +467,17 @@ In Fa\c{c}ade, the smallest unit of narrative action is called a \emph{story bea
 
 A beat can have 5 types of goal:
 
-\begin{enumerate}
+\begin{compactenum}
   \item transition-in: characters express their intentions
   \item body: a dramatic question/situation is posed to the player
   \item local/global mix-in: react to the player before end of the beat
   \item wait-with-timeout: wait for the player's reaction
   \item transition-out: final reaction to the player's action in the beat
-\end{enumerate}
+\end{compactenum}
 
 A beat goal is a series of steps for an agent to perform, which can be:
 
-\begin{itemize}
+\begin{compactitem}
   \item staging (where to walk to, face)
   \item dialogue to speak
   \item where and how to gaze
@@ -474,7 +485,7 @@ A beat goal is a series of steps for an agent to perform, which can be:
   \item facial expression to perform
   \item head and face gestures to perform
   \item small arm and head emphasis motions triggered by dialogue (head nods, hand flourishes)
-\end{itemize}
+\end{compactitem}
 
 As an example, there is a behaviour called ``Fix\_Drinks'', which specifies a sequence of agent behaviours where the characters Grace and Trip have an argument while Trip asks the player what they would like to drink. If the player decides not to go along with the beat (in this case, by not choosing a drink), then the beat will be aborted and replaced with another.
 
@@ -596,17 +607,17 @@ whereas Ceptre's focus is on resource management within a game.
 
 \subsubsection{Emotional models}\label{sec:emotional-models}
 % How is this useful for narrative?
-Usually it would seem odd to want to model emotion as part of a computational process. Emotion is such a seemingly irrational set of behaviours that they are easy to dismiss as `human imperfections'. However, as \citet{marsella2014} observe, emotions may have a useful role to play in communication, so long as they are displayed at appropriate times.
+Usually it would seem odd to want to model emotion as part of a computational process. Emotion is such a seemingly irrational set of behaviours that they are easy to dismiss as `human imperfections'. However, as \citet{gratch2004domain} observe, emotions may have a useful role to play in communication, so long as they are displayed at appropriate times.
 
 For example, anger prepares the human body to fight by increasing the manufacture of adrenaline. Fear similarly triggers the `fight or flight' response, alerting the senses for danger and preparing the body to react.
 
 In order to model human emotions using agents, we must first find a suitable psychological model to use. Marsella et al describe three main types of emotional model:
 
-\begin{enumerate}
+\begin{compactenum}
  \item \textbf{Discrete} emotional models, which claim that humans have a set of innate, pre-defined emotional states which people may enter and leave.
  \item \textbf{Dimensional} models of emotion, describing the spectrum of emotions as being points somewhere in continuous space. Implementations typically use two or three dimensions for simplicity.
  \item \textbf{Appraisal} theories of emotion take an agent's mental processes into account. Their emotional state is derived from whether or not their goals have been achieved, and what effects current events are having on their circumstances, for example.
-\end{enumerate}
+\end{compactenum}
 
 % Give examples of concrete models for each type.
 \subsubsection{`Basic' emotions}
@@ -614,7 +625,7 @@ Ekman first made a case for discrete, biologically-determined emotions, based on
 
 Ekman argues that these evolved emotions share nine characteristics:
 
-\begin{enumerate}
+\begin{compactenum}
   \item Distinctive universal signals
   \item Presence in other primates
   \item Distinctive physiology
@@ -624,7 +635,7 @@ Ekman argues that these evolved emotions share nine characteristics:
   \item Brief duration
   \item Automatic appraisal
   \item Unbidden occurrence
-\end{enumerate}
+\end{compactenum}
 
 These characteristics are shared by all of the `basic' emotions as observed in humans and primates.
 
@@ -654,3 +665,4 @@ Different methods of appraisal may be used in order to produce emotions. Gratch 
 Though the Punch and Judy simulation described in section \ref{sec:punchjudy} uses a dimensional model of emotion, an appraisal-based model would be worth investigating due to its tight coupling with belief desire intention psychological models used in agents. I describe my intention to explore this area further in section \ref{sec:fappraisal}.
 
 \subsection{Discussion}
+Through this literature review, we identify the following issues that need to be addressed:

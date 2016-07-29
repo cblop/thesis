@@ -1,6 +1,8 @@
 \documentclass[11pt]{report}
 \usepackage{baththesis}
 \usepackage{graphicx}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage{caption}
 \usepackage{amsmath}
 \usepackage{latexsym}
@@ -8,6 +10,7 @@
 \usepackage{subcaption}
 \usepackage{verbatim}
 \usepackage[inline]{enumitem}
+\usepackage{paralist}
 %\usepackage{amsfonts}
 \usepackage{url}
 \usepackage{natbib}
@@ -19,6 +22,10 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \usepackage[]{todonotes}
+
+\newcounter{myenumi}
+\setcounter{myenumi}{0}
+\newenvironment{myenumerate}{\begin{compactenum} \setcounter{enumi}{\themyenumi}}{ \setcounter{myenumi}{\theenumi}\end{compactenum}}
 
 \def\mnote#1{\todo[color=Goldenrod,size=\scriptsize]{Matt: #1}}
 \def\jnote#1{\todo[color=CornflowerBlue,size=\scriptsize]{Julian: #1}}

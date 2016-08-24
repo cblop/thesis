@@ -6,12 +6,14 @@
 \section{Describing Stories With Logic}
 Section~\ref{sec:model-logic} describes approaches that use formal logic to model interactive, non-linear narratives. Building on the work described in that section, we explore other possible ways with which to construct these kinds of stories.
 
+% Describe why we will build stories with Propp and tropes (as a method of comparison)
+
 \subsection{Modal Logic and Kripke Structures}
 
 \subsubsection{Propp Example: Sausages and Crocodile Scene}\label{sec:pjexample}
 The common elements of Punch and Judy are easily described in terms of Propp's story functions. Here we pick one scene to use as an example: the scene where Punch battles a Crocodile in order to safeguard some sausages.  In this scene, Joey the clown (our narrator) asks Punch to guard the sausages. Once Joey has left the stage, a Crocodile appears and eats the sausages. Punch fights with the Crocodile, but it escapes. Joey then returns to find that his sausages are gone.
 The corresponding story functions are:
-\begin{enumerate}
+\begin{compactenum}
   \item Joey tells Punch to look after the sausages (\emph{interdiction}).
   \item Joey has some reservations, but decides to trust Punch (\emph{complicity}).
   \item Joey gives the sausages to Punch (\emph{provision or receipt of a magical agent}).
@@ -19,7 +21,7 @@ The corresponding story functions are:
   \item A Crocodile enters the stage and eats the sausages (\emph{violation}).
   \item Punch fights with the Crocodile (\emph{struggle}).
   \item Joey returns to find that the sausages are gone (\emph{return}).
-\end{enumerate}
+\end{compactenum}
 
 Some story functions map to Punch and Judy better than others (for example, it is debatable as to whether or not the sausages can be considered a ``magical agent''), but Propp's formalism seems well suited to Punch and Judy for the most part. The advantage of using Propp for the Punch and Judy story domain is that the story function concept maps well to the idea of internal events in institutional models.
 
@@ -54,14 +56,14 @@ The version of ITL used here is that described by Della Monica et al. in their o
 
 The operators defined by Halpern and Shoham are (a bar over an operator denotes its inverse):
 
-\begin{itemize}
+\begin{compactitem}
 \item $\langle L \rangle / \langle \overline{L} \rangle$ (Later): The interval occurs at some point after another interval.
 \item $\langle A \rangle / \langle \overline{A} \rangle$ (After): The interval occurs immediately after another interval.
 \item $\langle O \rangle / \langle \overline{O} \rangle$ (Overlaps): The interval occurs both during and before or after another interval.
 \item $\langle E \rangle / \langle \overline{E} \rangle$ (Ends): The interval ends at exactly the same time as another interval.
 \item $\langle D \rangle / \langle \overline{D} \rangle$ (During): The interval both starts and ends inside the duration of another interval.
 \item $\langle B \rangle / \langle \overline{B} \rangle$ (Begins): The interval begins at exactly the same time as another interval.
-\end{itemize}
+\end{compactitem}
 \begin{table}[!t]
   \centering
   \caption{Operators in the Interval Temporal Logic (adapted from \cite{della2013interval})}
@@ -338,3 +340,6 @@ $\mathcal{C^{\downarrow} (X, E)}:\left\{\mbox{%
 \label{sec:why-use-institutions}
 % Write about character freedom, regimentation vs regulation. Give story
 % examples vs using a planner
+
+\section{Modelling of Coordinated Instutions}
+% Put bridge institution stuff here

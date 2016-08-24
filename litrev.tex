@@ -1,7 +1,8 @@
 \chapter{Literature Review}
 \label{cha:literature-review}
 
-This research covers multiple fields of study, therefore an extensive
+This research covers multiple fields of study such as narratology, interactive
+storytelling, emotional modelling and artificial intelligence, therefore an extensive
 literature review covering these fields is necessary. This section starts with a
 look at the field of \emph{narratology}, or narrative theory, to gain some
 insights into the themes and components that make up stories. Looking at
@@ -30,9 +31,9 @@ This draws from classic narratological texts, as well as work done on
 examination of recent research into non-linear narratives is essential for the
 construction of interactive narratives for games or simulations.
 
-Structuralist formalisms of narrative attempt to explain how stories work by dividing them into commonly occuring themes and motifs. This is a natural fit to the modelling of narratives by computer, especially if using an ontology. This overview of narratology starts with structuralism for this reason.
+Structuralist formalisms of narrative attempt to explain how stories work by dividing them into commonly occuring themes and motifs. This is a natural fit to the modelling of narratives by computer. This overview of narratology starts with structuralism for this reason.
 
-After the overview of structuralists' narrative models follows a section on the use of formal logic for narrative modelling. The section ends with descriptions of other types of story components, taxonomies and ontologies used in the literature.
+After the overview of structuralists' narrative models there follows a section on the use of formal logic for narrative modelling. The section ends with descriptions of other types of story components, taxonomies and ontologies used in the literature.
 
 \subsection{Narrative Structure}
 What is the difference between a narrative and a sequence of events? If we
@@ -44,7 +45,7 @@ Narratologists from \citet{bal2009narratology} onwards refer to the
 chronological ordering of events as \emph{fabula} (from the Russian фабула, ``scene''), and the retelling and
 reordering of those events in a narrative as \emph{syuzhet} (сюжет, ``plot'').
 In fact, Russian structuralists~\citet{propp1968morphology} and~\citet{shklovsky1991theory} were the first to use these terms in the
-context of narrative, before their rediscovering by modern narrative theorists.
+context of narrative, before their rediscovery by modern narrative theorists.
 
 The concepts of \emph{fabula} and \emph{syuzhet} are key to the understanding of
 narrative structure. Thanks to Aristotle's
@@ -60,7 +61,7 @@ Though Aristotle identifies the beginning, middle and end as three key story
 divisions, other theorists divide the \emph{syuzhet} of a story further. Joseph
 Campbell's work \emph{The Hero with a Thousand Faces}~\citep{campbell2008hero}
 describes how almost every story is a variation of the \emph{Hero's Journey}
-(also called the \emph{monomyth}). Like Aristotle's beginning, middle and end,
+(which Cambell also calls the \emph{monomyth}). Like Aristotle's beginning, middle and end,
 the Hero's Journey has three acts: the Departure, the Initiation and the Return.
 Campbell divides these acts further into seventeen distinct stages:
 
@@ -100,7 +101,7 @@ and character.
 
 As a classic example, consider the plot of Tolkien's \emph{The Hobbit}. At the
 start of the tale, Bilbo Baggins is a comfortable but risk-averse hobbit who
-refuses to leave his comfortable surroundings when Gandalf first visits him to
+refuses to leave his comfortable surroundings when Gandalf first visits to
 send him on a quest. Of course, he does eventually leave home to fulfill the
 quest, returning home a changed character.
 
@@ -135,6 +136,7 @@ Georges Polti famously divides narratives into the \emph{thirty-six dramatic
 Greek and both classical and contemporary French texts. Polti's thirty-six types
 of plot are:
 
+\begin{multicols}{2}
 \begin{compactenum}
   \item Supplication
   \item Deliverance
@@ -173,6 +175,7 @@ of plot are:
   \item Recovery of a lost one
   \item Loss of loved ones
 \end{compactenum}
+\end{multicols}
 
 \begin{figure}[!t]
 \centerline{\includegraphics[height=2in]{vonnegut.png}}
@@ -219,7 +222,7 @@ In section~\ref{sec:generative-and-interactive-narrative}, we assert that how ge
 
 \textbf{Access:} if a user has access to all scriptons at any point in traversing the narrative, or whether their access is restricted.
 
-\textbf{Linking} means whether or not parts of the scripton are linked to other parts, and whether these links are conditional (if they rely on a user having already traversed part of the scripton).
+\textbf{Linking:} whether or not parts of the scripton are linked to other parts, and whether these links are conditional (if they rely on a user having already traversed part of the scripton).
 \textbf{User functions:} the functions the user uses to traverse the text. This could be interpretive (which is implicit in any traversal of the text), explorative (traversing the scripton according to whim) or configurative (specifying parts of the scripton in advance), for example.
 
 % Ugh, this is all so arbitrary. Go on to describe Aarseth's PCA of these variables and explain why you don't think it's a good fit.
@@ -238,21 +241,21 @@ He argues that for game narratives to be truly interactive, they must be more so
 
 In order to determine whether Crawford's assertion that narratology research is
 too far removed from its practical implementations to be of use, we provide an
-overview of these implementations and their underlying research in section \ref{sec:implementations}. Has narrative theory research informed the creation of computer-generated or interactive narrative at all, or do they all take approaches grounded in computer science and artificial intelligence? If narrative theory has not been used, then we must ask another question: why not?
+overview of these implementations and their underlying research in section \ref{sec:implementations}. Has narrative theory research informed the creation of computer-generated or interactive narrative at all, or do they all take approaches grounded in computer science and artificial intelligence? If narrative theory has not been used, then we must ask: why not?
 
 
 \subsection{Structuralist Formalisms of Narrative}
 % Propp, etc
 Attempts to organise recurring themes, roles and motifs of narrative go back at least a century. The Aarne-Thompson tale-type index \citep{aarne1987types}, first published in 1910 and later refined by Stith Thompson in 1928 and 1961, is well known amongst folklorists as a classification and analysis method for traditional folktales and myths. Aarne-Thompson's index is a taxonomy of tale themes, arranging tales into categories such as \emph{animal tales} and \emph{jokes and anecdotes}, and then sub-categories (\emph{tales of magic} and \emph{numskull [sic] stories} being two examples). This taxonomy is only two levels deep however, and only serves as a useful way to categorise individual stories or tales. In order to break down and analyse components of tales, we must dig deeper.
 
-In \emph{Structural Anthropology}, Claude L\'{e}vi-Strauss seeks to discover why myths and legends are so similar across cultures and history \citep{levi2008structural}. He concludes that there are global laws that govern the way in which people create stories, therefore these laws can be modelled as a set of rules for describing myths.
+In \emph{Structural Anthropology}, Claude L\'{e}vi-Strauss seeks to discover why myths and legends are so similar across cultures and history \citep{levi1963structural}. He concludes that there are global laws that govern the way in which people create stories, therefore these laws can be modelled as a set of rules for describing myths.
 
 His theory is that myths describe opposing forces which are resolved through mediation. The example he gives in \emph{Structural Anthropology} describes how Native American legends often contain `trickster' characters in the form of ravens or coyotes. As scavenging animals, these tricksters symbolically act as mediators between life and death.
 
-Like much of early narrative theory, there is no rigorous evaluation of L\'{e}vi-Strauss' ideas, leaving them feeling a little too opinionated and arbitrary. While interesting, L\'{e}vi-Strauss' ideas bring us no closer to developing a formal model of narrative structure. For that, we must go even further back in time, and turn to Vladimir Propp.
+Like much of early narrative theory, there is no rigorous evaluation of L\'{e}vi-Strauss' ideas, leaving them seeming opinionated and arbitrary. While interesting, L\'{e}vi-Strauss' ideas bring us no closer to developing a formal model of narrative structure. For that, we must go even further back in time, and turn to Vladimir Propp.
 
 \subsubsection{Propp's Morphology of the Folktale}
-A notable narrative structuralist is Vladimir Propp, creator of \emph{The Morphology of the Folktale}~\cite{propp1968morphology}, a formalism for Russian folktales. Propp's formalism, though originally limited in scope, generalises well, and is still used by researchers to procedurally generate stories~\cite{grasbon2001morphological,gervas2005story,hartmann2005motif}. Drawing from a corpus of one hundred Russian folktales, Propp identifies thirty-one distinct \emph{story functions}, each of which is identified with a number and symbol. These functions are executed by characters following certain roles, each of which has a \emph{sphere of action} consisting of the functions that they are able to perform at any given point of the story. Stories are created by chaining story functions together, with subplots expressed as parallel chains of story functions.
+A notable narrative structuralist is Vladimir Propp, creator of \emph{The Morphology of the Folktale}~\citep{propp1968morphology}, a formalism for Russian folktales. Propp's formalism, though originally limited in scope, generalises well, and is still used by researchers to procedurally generate stories~\citep{grasbon2001morphological,gervas2005story,hartmann2005motif}. Drawing from a corpus of one hundred Russian folktales, Propp identifies thirty-one distinct \emph{story functions}, each of which is identified by a number and symbol. These functions are executed by characters following certain roles, each of which has a \emph{sphere of action} consisting of the functions that they are able to perform at any given point of the story. Stories are created by chaining story functions together, with subplots expressed as parallel chains of story functions.
 
 In this formalism, characters have \emph{roles}, such as \emph{hero}, \emph{villain}, \emph{dispatcher}, \emph{false hero}, and more. Characters performing a certain role are able to perform a subset of \emph{story functions}, which are actions that make the narrative progress. For example, the \emph{dispatcher} might send the \emph{hero} on a quest, or the \emph{victim} may issue an \emph{interdiction} to the \emph{villain}, which is then \emph{violated}.
 
@@ -267,10 +270,6 @@ Propp defines a total of 31 distinct story functions, each of which is given a n
 
 Each of these functions can vary to some degree. For example, the \emph{villainy} function can be realised as one of 19 distinct forms of villainous deed, including \emph{the villain abducts a person}, \emph{the villain seizes the daylight}, and \emph{the villain makes a threat of cannibalism}.
 
-These functions are enacted by characters following certain roles. Each role (or \emph{dramatis personae} in Propp's definition) has a \emph{sphere of action} consisting of the functions that they are able to perform at any point in the story. Propp defines seven roles that have distict spheres of action: \emph{villain}, \emph{donor}, \emph{helper}, \emph{princess}, \emph{dispatcher}, \emph{hero}, and \emph{false hero}.
-
-Though Propp defines each \emph{dramatis personae} as being distinct (characters can only play one role at a time), it is simple to extend the idea to allow for overlapping roles. For example, a victim could also be a donor, so the set of functions they can perform would be the union of both the victim and donors' permitted function sets. Propp does not explore this possibility in \emph{The Morphology of the Folktale}, however.
-
 \begin{figure}[!t]
 \centerline{\includegraphics[height=0.4in]{propp1.png}}
 \caption{One Propp function following another}\label{fig:propp1}
@@ -283,14 +282,22 @@ Though Propp defines each \emph{dramatis personae} as being distinct (characters
 
 In a typical story, one story function will follow another as the tale progresses in a sequential series of cause and effect (figure~\ref{fig:propp1}). However, Propp's formalism also allows for simultaneous story functions to be occuring at once (figure~\ref{fig:propp2}).
 
-Though flexible, Propp's formalism is limited in its expressiveness. All story functions describe events at the same level of abstraction, describing one event after another. Also, Propp insists that the story functions occur in a prescribed order. Later French structuralists such as \citep{bremond1980logic}, \citep{greimas1983structural} and~\citep{todorov1969grammaire} address the latter problem by generalising Propp's work outside of Russian Folktales, though each represents only incremental improvements on Propp, lacking a means of nesting story functions to create abstractions. \citep{barthes1975introduction} broadly describe hierarchically composing \emph{narrative units} but, lacking implementation details, these can only be used as a template from which to build a new narrative model.
+Though flexible, Propp's formalism is limited in its expressiveness. All story functions describe events at the same level of abstraction, describing one event after another. Also, Propp insists that the story functions occur in a prescribed order. Later French structuralists such as \citet{bremond1980logic}, \citet{greimas1983structural} and~\citet{todorov1969grammaire} address the latter problem by generalising Propp's work outside of Russian Folktales, though each represents only incremental improvements on Propp, lacking a means of nesting story functions to create abstractions. \citet{barthes1975introduction} broadly describe hierarchically composing \emph{narrative units} but, lacking implementation details, these can only be used as a template from which to build a new narrative model.
 % What are the shortcomings of Propp? (i.e. lack of abstractability, etc)
 
 % \subsection{Describing Stories with Logic}
 % Laure-Ryan did a bit of this, also include linear logic approaches
 
 \subsection{Other Types of ``Story Component''}
-Lehnert's \emph{plot units} are a more recent narrative formalism \cite{lehnert1981plot}. However, these plot units only describe stories as three types of event: positive, negative and mental. These events occur with respect to a single character in the story, so an author must always author story components with concrete characters in mind, making them difficult to re-use. Similarly to Propp's system, the order of composition must always be in a certain sequence, and plot units cannot refer to other plot units. Again, we are left without a means of creating abstractions for our story components. In the ``TropICAL: a DSL for Tropes'' section, we describe how tropes allow the nesting of components to allow story authors to create their own abstractions, addressing this issue.
+Lehnert's \emph{plot units} are a more recent narrative formalism
+\cite{lehnert1981plot}. However, these plot units only describe stories as three
+types of event: positive, negative and mental. These events occur with respect
+to a single character in the story, so an author must always author story
+components with concrete characters in mind, making them difficult to re-use.
+Similar to Propp's system, the order of composition must always be in a certain
+sequence, and plot units cannot refer to other plot units. Again, we are left
+without a means of creating abstractions for our story components. In the
+``TropICAL: a DSL for Tropes'' section, we address this issue by describing how tropes allow the nesting of components to allow story authors to create their own abstractions.
 
 \section{Implementations of Experimental Narrative}
 \label{sec:implementations}
@@ -314,12 +321,12 @@ Inspired by Chomsky's theories of generative grammar \citep{chomsky1968sound}, r
   \caption{Example rules from Rumelhart's story grammar}\label{fig:rumelhart}
 \end{figure}
 
-\citet{rumelhart1975notes} is one early and influential model for the grammatical generation of natural language. Figure \ref{fig:rumelhart} shows two example rewrite rules from this grammar. The `+' symbol denotes items happening in a sequence, the `\textbar' showing possible alternatives. `*' denotes one or more item being generated. Capitalised words (such as ALLOW, MOTIVATE, etc) describe relationships between items. For example, MOTIVATE is a relationship between a character's thought and their reaction to that thought.
+\citet{rumelhart1975notes} provides one early and influential model for the grammatical generation of natural language. Figure \ref{fig:rumelhart} shows two example rewrite rules from this grammar. The `+' symbol denotes items happening in a sequence, the `\textbar' showing possible alternatives. `*' denotes one or more item being generated. Capitalised words (such as ALLOW, MOTIVATE, etc) describe relationships between items. For example, MOTIVATE is a relationship between a character's thought and their reaction to that thought.
 
-This generative grammar approach can be seen in systems such as Pemberton's GESTER \citep{pemberton1989modular}, which generates stories based on a grammar synthesised from old French epic tales. \citet{lang1999declarative} describe a declarative model for narrative, consisting of lists of first-order predicate calculus expressions. These expressions describe events, states, goals and beliefs which combine to form a narrative. More specifically, it combines:
+Other systems draw inspiration from generative grammar, such as GESTER \citep{pemberton1989modular}, which generates stories based on a grammar synthesised from old French epic tales. \citet{lang1999declarative} describes a declarative model for narrative, consisting of lists of first-order predicate calculus expressions. These expressions describe events, states, goals and beliefs which combine to form a narrative. More specifically, it combines:
 
 \begin{compactitem}
-  \item A \textbf{grammar interpreter} to search for a sequence of grammer rewrites which would produce a convincing narrative.
+  \item A \textbf{grammar interpreter} to search for a sequence of grammar rewrites which would produce a convincing narrative.
   \item A set of \textbf{temporal predicates} to describe the occurence of events over time and enforce temporal constraints on story components.
   \item A \textbf{world model} which describes the set of actions that characters may perform and fluents that may alter over the course of the narrative.
   \item A \textbf{natural language output unit}, which takes the sequence of events produced by the story grammar and converts it into readable natural language sentences.
@@ -327,7 +334,12 @@ This generative grammar approach can be seen in systems such as Pemberton's GEST
 
 This combination of using a grammar interpreter, world model and natural language output unit is especially common amongst generative grammar approaches.
 
-While generative grammar approaches may be effective for procedurally creating prose, they are less well suited to the creation of \emph{interactive} narratives. Once the grammar rewrite rules are specified, the user is entirely passive, unable to affect the way in which the story is bein generated. For this to happen, the narrative needs to be part of a system that reacts to the actions of the user, such as a computer game.
+While generative grammar approaches may be effective for procedurally creating
+prose, they are less well suited to the creation of \emph{interactive}
+narratives. Once the grammar rewrite rules are specified, the user is entirely
+passive, unable to affect the way in which the story is being generated. For
+this to happen, the narrative needs to be part of a system that reacts to the
+actions of the user, such as in a computer game.
 
 \begin{figure}[!t]
 \begin{quote}
@@ -347,16 +359,20 @@ TALE-SPIN's strong planning component is evident in the reading of its output. S
 
 MINSTREL attempts to address TALE-SPIN's shortcomings by introducing two types of schema: author-schemas and character-schemas, both of which combine to represent the elements of a story. The author-schemas describe the goals of the author of the system, allowing story creators more control over the structure and content of their narrative. This allows authors to specify a `point' or moral to their story, something that is not possible to achieve with TALE-SPIN. Character-schemas describe character-level goals in a similar manner to those of TALE-SPIN's.
 
-The comparison of TALE-SPIN and MINSTREL highlights a challenge that has dominated story generation for decades: the balance of \emph{character} and \emph{plot}. Especially with approaches based on multi-agent systems, the regulation of character actions to conform to an underlying theme or structure is a challenging problem.
+The comparison of TALE-SPIN and MINSTREL highlights a challenge that has
+dominated story generation for decades: the balance of \emph{character} and
+\emph{plot} (as~\citet{riedl2010narrative} highlights). Especially with approaches based on multi-agent systems, the regulation of character actions to conform to an underlying theme or structure is a challenging problem.
 
-However, modelling characters with agents is a promising approach to take in order to gain a story which is both generative and interactive. In such a system, an author can specify the story world and character models, creating the `big picture', and the agents would be able to fill in the details (such as dialogue, sub-plots, and relationships).
+However, modelling characters with agents is a promising approach to take in order to achieve a story which is both generative and interactive. In such a system, an author can specify the story world and character models, creating the `big picture', and the agents would be able to fill in the details (such as dialogue, sub-plots, and relationships).
+An apt metaphor would be that of animation. In large animation studios such as
+Disney, the lead animator draws the key frames of a sequence, and a team of
+other animators work to fill in the gaps in
+between\footnote{This process is described at the following website:
+  \url{http://www.justdisney.com/animation/animation.html}, accessed 20160805.}. This is what the combination of a managed narrative with agents could achieve: the author would be the `lead animator' in such a system, with the agents being the assistants.
 
-An apt metaphor would be that of animation. In large animation studios such as Disney, the lead animator draws the key frames of a sequence, and a team of other animators works to fill in the gaps in between. This is what the combination of a managed narrative with agents could achieve: the author would be the `lead animator' in such a system, with the agents being the assistants.
+The implementations until now have focused mainly on \emph{generation\/}, and little on \emph{interaction\/}. Character models have been mentioned, but these do not react in real time to a user. For that, we need a multi-agent system.
 
-So far into this literature review, we have some idea of where a promising approach may lie. However, the implementations until now have still focused mainly on \emph{generation\/}, and little on \emph{interaction\/}. Character models have been mentioned, but these do not react in real time to a user. For that, we need a multi-agent system.
-
-\subsection{Intelligent Agents as Characters}
-% Write an introduction
+\subsection{Characters as Intelligent Agents}
 Story worlds are usually populated with characters. Interactive story worlds
 such as games contain characters with very basic scripted behaviour. At even the
 highest level of game character simulation, AI techniques are usually used to
@@ -375,8 +391,8 @@ the goals can still be achieved, by restricting the actions of the player or
 intervening in some other manner.
 
 % This needs elaboration
-\citep{young1999notes} argues that planners are a good method for regulating
-plot, later creating the \emph{Mimesis} architecture for integrating a planner with character agents in an interactive game environment \cite{young2004architecture}. Young describes how narrative systems must re-plan when a player makes  narrative-breaking actions, by either restructuring the narrative mid-story (\emph{accommodating} the action) or preventing the action from executing (\emph{intervening} on the action).
+\citet{young1999notes} argues that planners are a good method for regulating
+plot, later creating the \emph{Mimesis} architecture for integrating a planner with character agents in an interactive game environment, \citep{young2004architecture}. Young describes how narrative systems must re-plan when a player makes  narrative-breaking actions, by either restructuring the narrative mid-story (\emph{accommodating} the action) or preventing the action from executing (\emph{intervening} on the action).
 
 Given its influence over subsequent approaches to interactive narrative
 generation, it is worth looking at the Mimesis architecture more closely.
@@ -385,7 +401,7 @@ It is designed to integrate into the \emph{Unreal
   controller}, the \emph{story planner}, the \emph{discourse planner}, the
 \emph{execution manager} and the \emph{MWorld}.
 
-Figure \ref{fig:mimesis} shows how this components work together to form the
+Figure \ref{fig:mimesis} shows how these components work together to form the
 Mimesis architecture. Once an author has created the pre-defined libraries of
 actions needed by the story planner, the following steps are taken to determine
 the course of the story:
@@ -416,20 +432,18 @@ the course of the story:
     these actions in the game engine.
 \end{compactenum}
 
-Mimesis uses DPOCL (Decomposed Partial-Order Causal-Link Planner)~\cite{young1994decomposition} plans for
+Mimesis uses DPOCL (Decomposed Partial-Order Causal-Link Planner,~\citep{young1994decomposition}) plans for
 its story planning. DPOCL plans are composed of \emph{steps} (the plan's
 actions), \emph{ordering constraints}, \emph{decomposition links} describing the
 hierarchical structure of a plan, and \emph{causal links} between pairs of
-steps. It uses \emph{refinement search} \cite{kambhampati1995planning} as its
+steps. It uses \emph{refinement search} \citep{kambhampati1995planning} as its
 plan reasoning process, searching through the space of possible plans represented as a directed
 graph, with each node in the graph being a plan or partial plan. Mimesis
 specifies the initial planning problem for DPOCL using the current and goal
 states of the story.
 
-A key feature of Mimesis is its handling of user actions which potentially
-interfere with the story plan, making its goals unachievable. Its two strategies
-for mediating in such situations are \emph{intervention} and
-\emph{accommodation}. In the intervention strategy, Mimesis simply prevents the
+A key feature of Mimesis is its strategies for handling of user actions which potentially
+interfere with the story plan, making its goals unachievable. In the intervention strategy, Mimesis simply prevents the
 user's action from having any effect in the game world. With accommodation,
 Mimesis replans the story events, restructuring the plan so that the interfering
 actions are taken into account and worked around.
@@ -440,15 +454,26 @@ actions are taken into account and worked around.
 \end{figure}
 
 % This needs elaboration
-Cavazza et al's \emph{I-Storytelling} system~\cite{cavazza2002character} implements Young's architecture with ideas from Barthes' narrative units, using characters with Hierarchical Task Networks (HTNs) to generate its stories. Each character has a main task, which is divided into subtasks to create a task hierarchy, with each task node having pre- and postconditions. The story emerges from the outcomes of each character's plans, and the narrative structure as a whole is not planned.
+\citet{cavazza2002character} et al's \emph{I-Storytelling} system implements
+\citet{young2004architecture}'s architecture with ideas from Barthes' narrative
+units~\citep{barthes1975introduction}, using characters with behaviour described
+by Hierarchical Task Networks (HTNs) to generate its stories. Each character has a main task, which is divided into subtasks to create a task hierarchy, with each task node having pre- and post-conditions. The story emerges from the outcomes of each character's plans, and the narrative structure as a whole is not planned.
 
 % This needs elaboration
-\citep{riedl2003managing} describes further development of Young's architecture,
+\citet{riedl2003managing} describes a further development of Young's architecture,
 allowing the story author to create plans for the overall narrative in addition
-to its characters, in order to have more control over narrative structure.
-Rather than using a narrative model, this version of Mimesis models the player to track their expected level of suspense while interacting with the story. Like the \emph{I-storytelling} system, its plans are hierarchical, using the Longbow hierarchical partial-order causal link planning system~\cite{young1994decomposition}.
+to its characters.
+Rather than using a narrative model, this version of Mimesis models the player to track their expected level of suspense while interacting with the story. Like the \emph{I-storytelling} system, its plans are hierarchical, using the Longbow hierarchical partial-order causal link planning system~\citep{young1994decomposition}.
 
-A disadvantage of these planner-based systems is that they require the story author to think in a planner-oriented manner. They must consider the goals of both the story and the character, plans to achieve these goals, and re-planning when goals are not met or when situations change. This is a drastic change from the usual story writing methods of authors, where the focus is on structure, plot, themes and characters. Though graphical user interfaces such as Mimesis' Bowman system~\cite{thomas2006author} could be used to assist planner-driven story authoring, a complete shift in creative workflow is still required, making them inaccessible to non-technical writers.
+A disadvantage of these planner-based systems is that they require the story
+author to think in a planner-oriented manner. They must consider the goals of
+both the story and the character, plans to achieve these goals, and re-planning
+when goals are not met or when situations change. This is a drastic change from
+the usual story writing methods of authors, where the focus is on structure,
+plot, themes and characters. Though graphical user interfaces such as Mimesis'
+Bowman system~\citep{thomas2006author} could be used to assist plan-driven
+story authoring, a complete shift in creative workflow is still required, making
+this approach inaccessible to non-technical writers.
 
 % This needs elaboration
 \subsubsection{Drama manager-based Systems}
@@ -493,41 +518,42 @@ Fa\c{c}ade has become popular as a game outside of academia, with playthroughs o
 
 Fa\c{c}ade's popularity seems to reinforce Crawford's assertion (section \ref{sec:media}) that interactive narratives must be social in nature. The gameplay comes entirely from the conversations and interactions between Grace, Trip and the player. Much of the excitement comes from the social consequences of certain conversation paths or actions. By modelling characters as agents, Mateas et al have created a truly interactive experience. However, by also using a drama manager to manage the agents, they have used these agents to tell a story.
 
-From the analysis above, we conclude that using social institutions to govern the actions of character agents allows for more flexibility in the agents' actions. Also, by specifying these institutions as story tropes, we overcome the authorial difficulty of planner-based systems. Script writers do not need to be familiar with planners or hierarchical task networks in order to create interactive fiction with our system.
-
 How might these agents be made more convincing? Outside of writing rules for their behaviour consisting of character goals and beliefs, how might an author create truly unique and idiosyncratic characters? To address the question, I next examine different types of emotional models in psychology, and how each might be used to model characters as agents.
 
 \subsubsection{Social Norms}
-Versu~\cite{evans2014versu} is an interactive drama system that uses a multi agent system as characters. The characters' actions are coordinated with \emph{social practices}, which describe types of social situations and is described by the authors as a successor to the Schankian script. These social practices are implemented as reactive joint plans, which agents can choose whether to participate in or not. Rather than directly telling the agents what to do, these social practices merely \emph{suggest} courses of action, leaving each agent to decide for itself what to do based on its individual goals.
+Versu~\cite{evans2014versu} is an interactive drama system that uses a multi agent system as characters. The characters' actions are coordinated with \emph{social practices}, which describe types of social situations and is described by the authors as a successor to the Schankian script. These social practices are implemented as reactive joint plans, which agents can choose to participate in or not. Rather than directly telling the agents what to do, these social practices merely \emph{suggest} courses of action, leaving each agent to decide for itself what to do based on its individual goals.
 
 The authors decide against using a drama manager to control the agents' actions because they want to take the \emph{strong autonomy} approach to agent governance. This means that they prefer to give each agent some degree of autonomy by allowing it to make the final decision on which course of action to take, rather than blindly following a drama manager. Suggesting actions with social norms achieves this goal. Rather than describing typical story events in terms of social norms, however, in Versu the social norms \emph{are} the story. The gameplay revolves around the avoidance (or purposeful subvertion of) awkward social situations.
 
 Each character has a role, which is governed by a social practice. For example, a \emph{greeting} practice involves characters with the \emph{greeter} and recipient roles. The greeting practice would tell the greeter in which manner they are to greet the recipient, and the recipient how to respond. It is noteworthy that these actions are merely suggested, and not enforced.
 
-\emph{Exclusion logic}~\cite{evans2010introducing} is used to describe the social practices of the system. Exclusion logic allows the description of tree structures and includes an exclusion operator. For example, a description of a character called ``Brown'' is shown in listing \ref{lst:exclusive}. It describes the building up of character attributes as a tree structure.
+\emph{Exclusion logic}~\cite{evans2010introducing} is used to describe the
+social practices of the system. Exclusion logic manages the frame problem by
+organising related fluents in a tree structure. A single update at the right
+branch can change a set of related facts en masse. For example, a description of a character called ``Brown'' is shown in listing \ref{lst:exclusive}. It describes the building up of character attributes as a tree structure.
 
 Exclusion logic aims to address the frame problem. The frame problem is the uncertainty around whether predicates that change over time (fluents) change other predicate values. It aims to address this through use of an exclusion operator (``!''). Listing \ref{lst:exclusion} shows an example of the exclusion operator in use. The example specifies that an agent can have only one gender. The \emph{Praxis} language implementation of the exclusion logic has a type checker which ensures that no character can have multiple genders.
 
-% TODO BREAKS SYNTAX HIGHLIGHTING!
-% \begin{lstlisting}[float,label=lst:exclusion,caption=nextHopInfo: caption]
-% A(agent).sex!G(gender).
-% \end{lstlisting}
+\begin{lstlisting}[float,label=lst:exclusion,caption=nextHopInfo: caption]
+A(agent).sex!G(gender).
+\end{lstlisting}
 
-% \begin{lstlisting}[label=lst:exclusion,caption=Description of ``Brown'' character.]
-% brown.sex!male;
-% brown.class!upper;
-% brown.in!dining_room;
-% brown.relationship.lucy.evaluation.attractive!40;
-% brown.relationship.lucy.evaluation.humour!20.
-% \end{lstlisting}
+\begin{lstlisting}[label=lst:exclusion,caption=Description of ``Brown'' character.]
+brown.sex!male;
+brown.class!upper;
+brown.in!dining_room;
+brown.relationship.lucy.evaluation.attractive!40;
+brown.relationship.lucy.evaluation.humour!20.
+\end{lstlisting}
 
 Exclusion logic's exclusion operator allows an author to express the fact that a variable can only have one value. For example, if `the `Brown'' character changes location from the dining room to the kitchen, \emph{brown.in!dining\_room} is terminated when \emph{brown.in!kitchen} holds.
 
-Versu takes the \emph{constitutive} view of social practice, as opposed to the \emph{regulative} view. This means that rather than restricting an agent's possible actions based on its permissions and obligations, they participate in a certain social practice by taking an action. Their actions are only restricted by what is possible in the story world, and what the agent desires to do. This way, agents can choose whether or not to take part in certain social interactions.
+Versu takes the \emph{constitutive} view of social practice, as opposed to the
+\emph{regulative} view~\citep{SJP:SJP658}. This means that rather than restricting an agent's possible actions based on its permissions and obligations, they participate in a certain social practice by taking an action. Their actions are only restricted by what is possible in the story world, and what the agent desires to do. This way, agents can choose whether or not to take part in certain social interactions.
 
 Many of the components we aim to have in our story telling system appear in Versu: the use of social norms to gently encourage story-conforming behaviour rather than demanding it, and the use of formal logic to determine which behaviours are possible. However in Versu the social norms \emph{are} the story, rather than describing the story components that invisibly govern the behaviour of characters. In order for this kind of governance to occur, an institution-based solution is preferable, based on events, agent actions and standard deontic logic. Because character actions are constrained by the structure of a story, a \emph{regulative}  view of social practice is more suited to the expression of story components as social norms.
 
-Much of the advantages of using exclusion logic can be gained by using an institution-based approach. Non-inertial fluents can be used to ensure that variables can only ever have one value. Standard deontic logic is enough to provide the rest of what is needed.
+Many of the advantages of using exclusion logic can be gained by using an institution-based approach. Non-inertial fluents can be used to ensure that variables can only ever have one value. Standard deontic logic is enough to provide the rest of what is needed.
 
 % Need at least one more example here
 \subsection{Modelling Narrative with Logic}
@@ -537,7 +563,7 @@ Although most recent research focuses on the use of planners to manage the drama
 Ceptre~\citep{martens2015ceptre} is a language for modelling generative interactive narratives using \emph{linear logic}, a formal logic designed to describe resource usage. 
 
 A Ceptre story begins with an initial state $\Delta_0$. Each state iteration
-$Delta_i$ is examined repeatedly, and a subset $S$ of it is updated with rule
+$\Delta_i$ is examined repeatedly, and a subset $S$ of it is updated with rule
 $r$. The next state, $\Delta_{i+1}$, has the subset $S$ replaced with $S'$, the
 new subset with the consequences of the applied rule $r$.
 
@@ -552,14 +578,12 @@ to remain in $S$ without explicitly stating so.
 Listing \ref{lst:ceptre-murder} shows an example from~\cite{martens2015ceptre}
 that describes a ``murder'' rule and its consequences.
 
-% This listing SERIOUSLY messes up my syntax highlighting!
-
-% \begin{lstlisting}\label{lst:ceptre-murder}
-% do/murder
-%     : anger C C’ * anger C C’ * anger C C’ * anger C C’ *
-%     $at C L * at C’ L * $has C weapon
-%     -o !dead C’.
-% \end{lstlisting}
+\begin{lstlisting}[label=lst:ceptre-murder]
+do/murder
+    : anger C C' * anger C C' * anger C C' * anger C C' *
+    $at C L * at C' L * $has C weapon
+    -o !dead C'.
+\end{lstlisting}
 
 In this case, four instances of the ``anger'' predicate with the same arguments
 has a significant meaning: a character's emotion is treated as a resource. The
@@ -572,7 +596,7 @@ through the addition of a number to the name of the resource.
 
 Ceptre introduces a \emph{stages} feature that allow authors to structure a
 program through the use of independent components. A stage is a unit of
-computation that runs to quiescence, meaning that it terminates once no more
+computation that runs to quiescence, meaning that it terminates when no more
 rules are able to fire. At this point, another stage may commence.
 
 The central motivation behind Ceptre's design is its ability to use ``proofs as
@@ -594,7 +618,7 @@ rule produces resources that are consumed by another rule, then these rules have
 a causal, dependent relationship.
 
 This modelling of gameplay as proof search is similar to the technique we use in
-section~\ref{}, where we use Interval Temporal Logic and Kripke structures to
+section~\ref{sec:thn}, where we use Interval Temporal Logic and Kripke structures to
 theorem-prove certain narrative states. The difference is that the system we
 describe is more concerned with representing different temporal relations,
 whereas Ceptre's focus is on resource management within a game.
@@ -668,6 +692,14 @@ Though the Punch and Judy simulation described in section \ref{sec:punchjudy} us
 Through this literature review, we have clearly identified these main issues in
 need of attention:
 
+\subsubsection{Character agents need some freedom to generate story details}
+In most of the systems described in this literature review, the agents in a
+story world are explicitly told what to do.
+
+% Based on the analysis above, we hypothesise that using social institutions to
+% govern the actions of character agents allows for more flexibility in the
+% agents' actions. By 
+
 \subsubsection{Story authors do not want to think in terms of goals}
 The current dominant paradigm in interactive narrative creation is to
 use planners to ``plan'' a narrative, and re-plan when a user interacts in
@@ -690,11 +722,11 @@ overcome Propp's ``good enough'' properties. In order for a story model to
 significantly improve upon Propp, it should add features that it and other
 existing formalisms lack. We identify these features as:
 
-\begin{itemize}
+\begin{compactitem}
   \item A means of \emph{abstraction}
   \item Conceptually \emph{simple} enough for non-programmers to grasp
   \item A library of re-usable \emph{examples} for authors and researchers
-\end{itemize}
+\end{compactitem}
 
 \paragraph{A Means of Abstraction}
 Current narrative formalisms lack a means of \emph{abstraction}. Propp,
@@ -769,10 +801,10 @@ This is it. This is all there is to the story. The show is over. The book is fin
 \end{quote}
 
 The site lists many examples from film and literature, including:
-\begin{itemize}
+\begin{compactitem}
   \item \textbf{Treasure Island:} Long John Silver escaped scot free with a chest of treasure, and was never caught. Not bad, for a month's murder and betrayal.
   \item \textbf{The Talented Mr Ripley:} Villain Protagonist Tom Ripley killed some people to assume a new identity and enrich himself thoroughly. In the sequels, he killed to protect his new life, and sometimes as favors for others. He never faced justice.
-\end{itemize}
+\end{compactitem}
 
 The \emph{TV Tropes} website is a Wikipedia of sorts for tropes. Since there are
 already so many examples listed on its website, it reduces the work needed to

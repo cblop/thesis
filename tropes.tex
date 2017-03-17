@@ -11,6 +11,17 @@
 % features to describe in the chapter
 \chapter{Tropes as Story Components}
 \label{cha:tropes}
+This chapter describes the foundations of our new formalism for narrative: story
+tropes. Though our use of tropes for the description of stories has many
+advantages, the main advantage that we will focus on throughout this thesis is
+that they provide a means of creating new abstractions from existing tropes. For
+more detail on how tropes allow us to do this, please see section~\ref{sec:abstractable}
+
+Though story tropes may be a familiar concept to many outside of the academic
+community, they do not appear in the literature in either fields Computer Science or
+Narratology at the time of writing. Therefore this chapter contains a thorough
+description of what a story trope is, along with several examples.
+
 As previously described in chapter~\ref{cha:introduction}, tropes are
 patterns that appear throughout various different media. Once one is familiar
 with a trope, it becomes easy to identify its use in any story. Take, for
@@ -37,7 +48,7 @@ tropes very simple. TV Tropes is a wiki for tropes, containing over 27,000
 trope descriptions, along with the media that they appear in. For example, the
 ``The Empire'' trope appears in \emph{Star Wars}, Asimov's \emph{Foundation}
 trilogy, the \emph{Hunger Games} books and films, and the \emph{Final Fantasy}
-series of games, and a great many more.
+series of games, and a great many more stories in media.
 
 
 \begin{figure}[!t]
@@ -63,7 +74,7 @@ example, would be a highly cynical Anti-Hero who is nevertheless morally good.
 Shakespeare's Macbeth is a character who becomes more and more of an evil Anti-Hero, until he is too morally evil
 to still be a Hero and instead becomes a Tragic Villain.
 
-Tropes can be either very specific, referring to individual lines of dialogue.
+Tropes can be very specific, referring to individual lines of dialogue.
 One example is ``We Will Meet Again'':
 
 \begin{quote}
@@ -87,7 +98,7 @@ Tropes describes as:
 ...the writers' trick of dealing with any element of the story that threatens the audience's Willing Suspension of Disbelief, whether a very implausible plot development, or a particularly blatant use of a trope, by calling attention to it and simply moving on.
 \end{quote}
 
-In fact, even if an audience is unaware of the concept of tropes, they are aware
+In fact, even if an audience is unaware of the concept of tropes, they may be aware
 of the recurring patterns and themes that they describe. This enables
 genre-savvy (and especially postmodern) writers to play with the audience's
 expectations. Ways to do this with tropes could include \emph{inversion}
@@ -144,9 +155,12 @@ The story is then visualised as a molecule composed from tropes, linked together
 atoms (shown at the bottom of fig.~\ref{fig:periodic-table}).
 
 This visualisation demonstrates the core idea of our use of tropes as reusable
-story components, but the ``molecule'' metaphor breaks down for a couple of
+story components, but the ``molecule'' metaphor is unsuitable for a couple of
 reasons. Firstly, linking tropes together as atoms in a molecule does not
-communicate the different levels of abstraction at which tropes operate. The
+communicate the different levels of abstraction at which tropes operate.
+Considering that our main purpose for choosing tropes as our method of
+describing narrative components, this means that the ``molecule'' metaphor used
+by the author does not match our intentions. The
 ``Hero's Journey'' trope, for example, would describe the narrative arc as a
 whole, while the ``Comeuppance'' trope would describe just a single scene in the
 story. The metaphor is also not ideal because it presents orthogonal concepts
@@ -174,7 +188,9 @@ Similarly, in the \emph{GhostBusters} example, the ``Five Man Band'' and ``Mad
 Scientist'' tropes appear together in the same ``atom'', which are linked to
 ``Sealed Evil in a Can'' and ``Hilarity Ensues''. Again, it is not clear why
 those particular tropes are arranged together into the same atoms, or why they
-are linked together in this way.
+are linked together in this way. The most likely explanation is that this
+visualisation of the way that tropes link together in a story is not intended as
+a serious way to formalise stories, and is merely a ``fun'' example.
 
 Taking this visualisation as inspiration, we develop our concept of tropes as
 logical, reusable components for the formal description of stories. Importantly,
@@ -191,7 +207,8 @@ section~\ref{litrev-discussion}, we now describe how tropes are suitable for use
 as a narrative formalism that is able to overcome these limitations.
 
 \subsection{A Means of Abstraction}
-Some tropes exist in a hierarchy of tropes, with parent tropes such as the
+\label{sec:abstraction}
+Most tropes exist in a hierarchy of tropes, with parent tropes such as the
 \emph{Quest} containing child tropes such as \emph{Redemption Quest},
 \emph{Sidequest} or a \emph{Quest for Identity}. These child-tropes inherit some
 of the characteristics of their parents, but add subtle or major changes. For

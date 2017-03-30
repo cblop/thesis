@@ -1,0 +1,155 @@
+% HACK: predicted poms remaining: 75
+
+\chapter{TropICAL: A DSL for Story Tropes}
+\label{cha:tropical}
+% DONE introduction: 1
+% DONE motivation: 1
+
+This chapter describes the design and implementation of TropICAL (the TROPe
+Interactive Chronical Action Language), our Domain Specific Language for
+describing story tropes. The purpose of this language is to allow for the
+creation of interactive narratives through the description of tropes in a
+constrained natural language. The tropes created through the language are
+designed to be reusable components that can go into a ``library'', from which
+story authors can choose the tropes best suited to the particular story that they
+are creating.
+
+The motivation for the creation of TropICAL is the lack of any methods of
+creating interactive narrative that are suitable for non-programmers to use. The
+systems described in the literature review in
+chapter~\ref{cha:literature-review}, such as any using the Mimesis
+architecture~\cite{young2004architecture}, a drama manager and planner such as
+in Fa\c{c}ade's system~\cite{mateas2003faccade}, or linear logic as in Ceptre's
+system~\ref{martens2015ceptre}, all require the story author to be familiar with
+planner-based systems or the description of formal logics. The purpose of
+TropICAL is to greatly reduce the barrier to the creation of interactive stories
+by allowing authors to describe the components of their story using constrained
+natural language. In fact, many authors using our system may not even need to
+write their own tropes using TropICAL, and will instead simply select the tropes
+that they need for their story from a pre-created ``library'' of tropes. This
+process is facilitated through the ``StoryBuilder'' user interface described in
+chapter~\ref{cha:storybuilder}
+
+This section describes TropICAL's constrained natural
+language syntax in section~\ref{sec:t-constrained}, the features of the language in section~\ref{sec:t-features}, 
+the formal grammar used to
+describe its syntax in section~\ref{sec:t-grammar}, how ``nested
+tropes'' are created in section~\ref{sec:t-nested}, the intermediate data structure used between parsing and
+code generation steps (section~\ref{sec:t-intermediate}), its compilation
+to InstAL code (section~\ref{sec:t-codegen}), some samples of generated InstAL
+institutions (section ~\ref{sec:t-tropes}), answer set
+generation (section~\ref{sec:t-asp}), and finally its extension for the description of legal policies
+(section~\ref{sec:t-legal}).
+
+
+\section{Controlled Natural Language Syntax}
+\label{sec:t-constrained}
+% DONE intro: 1
+% TODO describe ACE: 2
+% TODO describe Inform 7: 1
+
+TropICAL uses a \emph{Controlled Natural Language} (also referred to as
+\emph{Constrained Natural Language}) syntax, which means that it superficially
+resembles natural language English, but is only a subset.
+
+There are two types of Controlled Natural Language (CNL). The first type is \emph{naturalistic} languages
+such as ASD Simplified Technical English~\cite{asd2007simplified}, designed to
+be used in documentation for technical industries such as aerospace or defense,
+or Ogden Basic English~\cite{ogden1944basic}, a simplified language for teaching
+English as a second language. This type of Controlled Natural Language merely
+describe a subset of the parent language. The other type of CNL is
+\emph{formalistic}, with a formal
+syntax and semantics, which can be mapped to rules in other formal languages
+such as first-order logic. Attempto Controlled English~\cite{fuchs1996attempto}
+is an example of this formal type of CNL, and the one which forms the basis of
+our syntax for TropICAL.
+
+\subsection{Attempto Controlled English}
+
+Attempto Controlled English (ACE) is a controlled natural language that is also
+a formal language, and was created by the University of Zurich in 1995. It is
+still under development, with version 6.7 of the language announced in 2013. ACE
+has been used in a wide variety of fields, such as software specifications
+
+
+\section{Features}
+\label{sec:t-features}
+% TODO intro: 1
+% TODO list features: 1
+% TODO tech used: 1
+% TODO relate features to the requirements: 2
+
+
+\section{EBNF Grammar}
+\label{sec:t-grammar}
+% TODO intro: 1
+% TODO instaparse description: 1
+% TODO simplified grammar from code: 2
+% TODO format grammar: 2
+
+\section{Nested Tropes via Bridge Institution}
+\label{sec:t-nested}
+% TODO why nested tropes: 1
+% TODO explanation of bridge institutions: 2
+
+\section{Intermediate Data Structure}
+\label{sec:t-intermediate}
+% TODO why do we have an intermediate data structure? (possible other uses,
+% different parsers): 1
+% TODO describe the hash map: 2
+
+\section{InstAL Code Generation}
+\label{sec:t-codegen}
+% TODO intro: 1
+% TODO tech discussion: 1
+
+\subsection{Initiation}
+% TODO before / after snippets: 2
+% TODO explanation: 2
+
+\subsection{Termination}
+% TODO before / after snippets: 2
+% TODO explanation: 2
+
+\subsection{Generation}
+% TODO before / after snippets: 2
+% TODO explanation: 2
+
+\subsection{Initial Conditions}
+% TODO before / after snippets: 2
+% TODO explanation: 2
+
+\subsection{Bridge Institution}
+% TODO before / after snippets: 2
+% TODO explanation: 2
+
+\section{Generated Trope Samples}
+\label{sec:t-tropes}
+% TODO intro for heros journey trope: 1
+% TODO run through generated code: 3
+
+% TODO intro for evil empire trope: 1
+% TODO run through generated code: 3
+
+\section{Adding Constraints}
+\label{sec:t-constraints}
+% TODO ASP intro: 1
+% TODO constraints explanation: 2
+% TODO output: 2
+
+\section{Answer Set Generation}
+\label{sec:t-asp}
+% TODO instalquery intro & explanation: 2
+% TODO generate for hero's journey: 4
+% TODO generate for evil empire: 4
+% TODO generate for both: 4
+
+\section{Extending for Legal Policies}
+\label{sec:t-legal}
+% TODO intro: 1
+% TODO explanation from JURIX: 2
+
+\subsection{Example Policies}
+% TODO examples from JURIX: 2
+
+% TODO outro: 1

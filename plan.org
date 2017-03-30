@@ -1,54 +1,72 @@
+* Introduction
+* Literature Review
+* Institutions
 * Tropes
-** TODO TVTropes reference
-** DONE Read through, list what's to be done                              :1:
-   CLOSED: [2017-02-15 Wed 10:29]
-** DONE [NUMBER] trope descriptions (1)
-   CLOSED: [2017-02-15 Wed 10:29]
-** DONE [EXAMPLES FROM JURISIN] (1)
-   CLOSED: [2017-02-15 Wed 10:29]
-** DONE Evil Empire screenshot from TVTropes
-   CLOSED: [2017-02-15 Wed 11:07]
-** DONE Periodic Table of Storytelling figure
-   CLOSED: [2017-02-15 Wed 11:07]
-** DONE Periodic Table of Storytelling molecule figure
-   CLOSED: [2017-02-15 Wed 11:08]
-** DONE Periodic table group descriptions                                 :1:
-   CLOSED: [2017-02-15 Wed 12:08]
-** DONE Describe other tropes which break the molecule metaphor           :1:
-   CLOSED: [2017-02-15 Wed 12:21]
-Need tropes at various levels of abstraction
-** DONE Quote a trope in full from TVTropes                               :1:
-   CLOSED: [2017-02-15 Wed 13:44]
-May have to extend the JURISIN example
-** DONE fun with tropes (subvert, invert, parody, etc)
-   CLOSED: [2017-02-15 Wed 13:44]
-** DONE 1.2: Why use tropes?                                              :4:
-   CLOSED: [2017-02-15 Wed 18:08]
-Make the case for the use of tropes
-# ** TODO 1.3: Using Tropes with Modal Logic :4:
-Describe the same Kripke stuff that you did with Propp and Punch and Judy
-** DONE Remove "like this"
-   CLOSED: [2017-02-15 Wed 18:08]
-Pg. 3
-** DONE InstAL citation is wrong type
-   CLOSED: [2017-02-15 Wed 18:09]
-** TODO 1.5: Punch and Judy as Tropes :4:
-** DONE Inform 7 citation
-   CLOSED: [2017-02-17 Fri 13:18]
-** DONE ACE citation
-   CLOSED: [2017-02-17 Fri 13:18]
-** DONE Remove todonotes
-   CLOSED: [2017-02-17 Fri 13:21]
-** TODO 1.6.2 Making Tropes Abstractable :4:
-This section describes the how (bridge institutions) and why of having "nested" tropes to create abstractions, with examples.
-Explain why this is an entirely new technique.
-** TODO explain that tropes are not covered academically, I am attempting to make tropes academically respectable :1:
-** TODO make it clear at the start that we are choosing these examples as a way to demonstrate tropes ability to create abstractions :1:
-** TODO parental abandonment might need extra characters :1:
-** TODO connect character role (such as Comedic Sociopath) to our emotional model :1:
-** TODO connect our idea of phases with landmarks in plans / knowledge representation literature do also need to demonstrate adequate knowledge of planners :1:
-* InstAL
-** TODO put TropICAL / instal fragments in column in appendix, pull out relevant features to describe in the chapter
-* Authoring Stories with Storybuilder
-** TODO Storybuilder screenshot, forward ref
-
+* TropICAL
+** Language Features
+** EBNF grammar
+** Explanations of trope nesting (bridging)
+** Intermediate hash map
+** InstAL code generation
+*** Initiates
+*** Terminates
+*** Generates
+*** Initially
+*** Bridge
+** Answer Set Generation
+*** Purpose
+*** How it works
+*** InstALQuery
+*** Adding constraints
+*** Examples of generated answer sets
+** Tests
+(Could be the "user stories" from next chapter)
+*** Samples of Generated Code
+*** Samples of Generated Answer Sets
+Explain that these are visualised in next section
+* StoryBuilder
+** Use Cases (user stories)
+Ask Steve about this!
+** Requirements
+Steve again
+** Overview of interface
+** Run through user stories with annotated diagrams of use
+** Return to requirements, explain how they are met
+** Return to tests from previous section, put screenshots of visualisations
+These could be the "user stories" from previous chapter
+* Evaluation
+** Methodology
+Explain the concept of "thematic analysis". Cite use of NVivo
+** Process
+** Questions
+** Transcripts
+(forward ref. to appendix)
+** Themes / codes
+* Conclusions & Future Work
+** Successes
+*** Trope formalism
+*** TropICAL syntax & features
+*** Code generated in InstAL
+*** Legal policy examples
+*** Answer Set Generation
+*** StoryBuilder interface
+*** Story visualisation
+** Potential improvements
+*** Trope formalism
+*** TropICAL syntax & features
+*** Code generated in InstAL
+*** Legal policy examples
+*** Answer Set Generation
+*** StoryBuilder interface
+*** Story visualisation
+** Future work
+*** Hierarchical instutions
+(Thomas King)
+*** Expand the use of tropes for policy description
+*** Role hierarchies
+(ref'd from Tropes section)
+*** "Verifiable" contracts for blockchain - ?
+*** IDE / IDE support
+With syntax completion, checking, etc.
+*** Visual Coding front end
+** Summary

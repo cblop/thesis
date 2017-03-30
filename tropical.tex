@@ -1,4 +1,4 @@
-% HACK: predicted poms remaining: 75
+% HACK: predicted poms remaining: 75 / 78
 
 \chapter{TropICAL: A DSL for Story Tropes}
 \label{cha:tropical}
@@ -52,12 +52,12 @@ TropICAL uses a \emph{Controlled Natural Language} (also referred to as
 \emph{Constrained Natural Language}) syntax, which means that it superficially
 resembles natural language English, but is only a subset.
 
-There are two types of Controlled Natural Language (CNL). The first type is \emph{naturalistic} languages
+There are two types of Controlled Natural Language (CNL). The first type are \emph{naturalistic} languages
 such as ASD Simplified Technical English~\cite{asd2007simplified}, designed to
 be used in documentation for technical industries such as aerospace or defense,
 or Ogden Basic English~\cite{ogden1944basic}, a simplified language for teaching
 English as a second language. This type of Controlled Natural Language merely
-describe a subset of the parent language. The other type of CNL is
+describe a subset of the parent language. The other type of CNL are
 \emph{formalistic}, with a formal
 syntax and semantics, which can be mapped to rules in other formal languages
 such as first-order logic. Attempto Controlled English~\cite{fuchs1996attempto}
@@ -69,8 +69,24 @@ our syntax for TropICAL.
 Attempto Controlled English (ACE) is a controlled natural language that is also
 a formal language, and was created by the University of Zurich in 1995. It is
 still under development, with version 6.7 of the language announced in 2013. ACE
-has been used in a wide variety of fields, such as software specifications
+has been used in a wide variety of fields, such as software specifications,
+ontologies, medical documentation and planning.
 
+ACE's vocabulary has three components:
+
+\begin{compactitem}
+  \item predefined function words
+  \item predefined fixed phrases (\emph{there is}, \emph{it is false that}, ...)
+  \item content words (nouns, proper nouns, verbs, adjectives, adverbs)
+\end{compactitem}
+
+The Attempto Parsing Engine (APE) has a lexicon of content words, and users can
+define their own content words. User-defined content words take precedence over
+the built-in lexicon.
+
+ACE's syntax is expressed as a set of construction rules (admissible ACE
+sentence structures), with syntactically
+correct sentences described as a set of interpretation rules ().
 
 \section{Features}
 \label{sec:t-features}

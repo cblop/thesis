@@ -1,4 +1,4 @@
-% HACK: predicted poms remaining: 75 / 78
+% HACK: predicted poms remaining: 73 / 79
 
 \chapter{TropICAL: A DSL for Story Tropes}
 \label{cha:tropical}
@@ -45,8 +45,8 @@ generation (section~\ref{sec:t-asp}), and finally its extension for the descript
 \section{Controlled Natural Language Syntax}
 \label{sec:t-constrained}
 % DONE intro: 1
-% TODO describe ACE: 2
-% TODO describe Inform 7: 1
+% DONE describe ACE: 2
+% DONE describe Inform 7: 2
 
 TropICAL uses a \emph{Controlled Natural Language} (also referred to as
 \emph{Constrained Natural Language}) syntax, which means that it superficially
@@ -86,7 +86,97 @@ the built-in lexicon.
 
 ACE's syntax is expressed as a set of construction rules (admissible ACE
 sentence structures), with syntactically
-correct sentences described as a set of interpretation rules ().
+correct sentences described as a set of interpretation rules, which contain the
+actual semantics of the sentences.
+
+The simplest ACE sentences follow a \emph{subject + verb + complements +
+  adjuncts} structure:
+
+\begin{lstlisting}
+  A dragon sleeps.
+  The sky is blue.
+  A princess owns a castle.
+  A king gives a sword to a knight.
+\end{lstlisting}
+
+In this structure, every sentence must have a subject and a verb. Sentences that
+do not contain a verb are expressed with the \emph{there is} structure:
+
+\begin{lstlisting}
+  There is a kettle.
+  There are 3 balls.
+\end{lstlisting}
+
+Details can be added to these sentences through the use of adjectives, and the
+sentences can be joined together with the \emph{and} and \emph{then} keywords.
+
+Other ways of modifying the sentences include \emph{negation}, adding
+\emph{quantifiers}, or making the sentences \emph{interrogative} or
+\emph{imperative}. We do not go into further details in this thesis, as we are
+using ACE simply as an inspiration for our syntax, rather than following its
+design entirely. For more details, see the ``ACE in a Nutshell'' page of its
+documentation for an overview of the language~\cite{ace-nutshell}.
+
+\subsection{Inform 7}
+
+Inform is a programming language for the creation of Interactive Fiction (also
+called \emph{text adventure games}). All versions of Inform generate
+\emph{Z-code}, which is interpreted by the \emph{Z-machine} virtual machine for
+interactive fiction.
+
+The syntax of the language has changed multiple times since its creation in
+1993. The version of the language that we are most interested in is Inform 7~\cite{reed2010creating},
+which is its most recent incarnation. Prior to Inform 7, the language used
+traditional programming models such as procedural and object-oriented paradigms.
+With version 7, however, its creator Graham Nelson redesigned its
+syntax completely to allow authors to create their stories using controlled
+natural language, so that the experience of story creation became closer to that
+of writing a book.
+
+The simplest possible game authored with Inform 7 would be:
+
+\begin{lstlisting}
+"Hello World" by "I.F. Author"
+
+The world is a room.
+
+When play begins, say "Hello, world."
+\end{lstlisting}
+
+An extended example, Will Crowther's cave exploration simulation, would be
+described like this:
+
+\begin{lstlisting}
+"Cave Entrance"
+
+The Cobble Crawl is a room. "You are crawling over cobbles in a low passage. There is a dim light at the east end of the passage."
+
+A wicker cage is here. "There is a small wicker cage discarded nearby."
+
+The Debris Room is west of the Crawl. "You are in a debris room filled with stuff washed in from the surface. A low wide passage with cobbles becomes plugged with mud and debris here, but an awkward canyon leads upward and west. A note on the wall says, 'Magic word XYZZY'."
+
+The black rod is here. "A three foot black rod with a rusty star on one end lies nearby."
+
+Above the Debris Room is the Sloping E/W Canyon. West of the Canyon is the Orange River Chamber.
+\end{lstlisting}
+
+Although Inform 7 is not based directly on ACE, we can see many of ACE's
+features in it. For example, it uses the same syntax for simple statements such
+as \emph{X is a Y}. Most statements in the listing above are pairs of sentences,
+with the first in each pair declaring the existence of an object or room, and
+the second being an uninterpreted string that is printed out as the description
+of the defined object.
+
+Before version 7, Inform was already widely used as a language for the creation
+of Interactive Fiction. Given its continued popularity after the switch to
+a controlled natural language syntax, it appears that the new programming
+paradigm has been successful.
+
+The wide adoption of Inform 7 by story authors with no other programming
+experience motivates our decision to create a controlled natural language syntax
+for TropICAL, our own trope-based programming language. The intended audience is
+the same, so an additional benefit would be that story authors who can code with
+Inform 7 would also be able to use TropICAL.
 
 \section{Features}
 \label{sec:t-features}
@@ -95,6 +185,22 @@ correct sentences described as a set of interpretation rules ().
 % TODO tech used: 1
 % TODO relate features to the requirements: 2
 
+The way in which our TropICAL language is used is as follows:
+
+\begin{compactitem}
+  \item It is based around the idea of using \emph{story tropes} as reusable
+    components that can be combined to create stories
+  \item It uses \emph{controlled natural language} to describe these tropes
+  \item The controlled natural language is then parsed and compiled to a data
+    structure that describes the formal features of each trope
+  \item The intermediate data structure is then used to generate InstAL code
+  \item The InstAL code is compiled to AnsProlog, an Answer Set Programming
+    language
+  \item The AnsProlog code is then run through
+    \emph{clingo}~\cite{gebser2011potassco}, an answer set solver, to generate
+    all the possible sequences of events that can occur in the story.
+\end{compactitem}
+
 
 \section{EBNF Grammar}
 \label{sec:t-grammar}
@@ -102,6 +208,116 @@ correct sentences described as a set of interpretation rules ().
 % TODO instaparse description: 1
 % TODO simplified grammar from code: 2
 % TODO format grammar: 2
+
+\begin{lstlisting}
+trope = (tropedef (<whitespace> (situationdef / alias / sequence))+ <'\\n'?>) | ((situationdef / alias / sequence)+ <'\\n'?>)
+
+<tropedef> = label <' is a ' ('trope' / 'policy') ' where:\\n'>
+
+alias =
+    (character <' is also '> character <'\\n'?>) | (object <' is '> object <'\\n'?>)
+
+situation =
+    <'When '> event <':'>
+
+fluent =
+    object <' is '> adjective
+
+adjective = word
+
+object = name
+
+outcome =
+    (<'\\n' whitespace whitespace> (event | obligation | happens) (or? | if?) <'\\n'?>)+
+
+happens =
+    <the?> subtrope <(' happens' / ' policy applies') '.'?>
+
+
+block =
+    <the?> subtrope <' policy does not apply' / ' does not happen'> <'.'?>
+
+
+sequence =
+    ((event | norms | happens | block)  <'\\n'?> (or* | if*)) | ((event | norms | happens | block) (<'\\n' whitespace+ 'Then '> (block / norms / event / obligation / happens) (or* | if*))*)*
+
+situationdef = situation (<'\\n'> <whitespace> norms | <'\\n'> <whitespace whitespace> consequence)+ <'\\n'?>
+
+or =
+    <'\\n' whitespace+ 'Or '> (event | norms)
+
+if =
+    <'\\n' whitespace+ 'If '> (event | norms)
+
+event =
+    (<'The '>? character <' is'>? <' '> (move / task)) / give / sell / tverb / meet / kill / pay
+
+
+give =
+    character <' gives ' ('the ' / 'a ' / 'an ')?> item <' to '>? <'a ' / 'an '>? character
+
+sell =
+    character <' sells ' ('the ' / 'a ' / 'an ')?> item <' to '>? <'a ' / 'an '>? character
+
+tverb =
+    character <' '> verb <(' the ' / ' a ' / ' an ')?> item <' to '>? <'a ' / 'an '>? character
+
+bverb =
+    verb <(' the ' / ' a ' / ' an ')?> item <' to '>? <'a ' / 'an '>? character
+
+cverb =
+    words <' the ' / ' a ' / ' an '> (object / character)
+
+meet =
+    character <' meets '> character
+kill =
+    character <' kills '> character
+pay =
+    <'pay '> character
+
+norms = permission | rempermission | obligation
+
+violation = norms
+
+character = name
+
+subtrope = <'\"'> words <'\"'>
+
+label = <'\"'> words <'\"'>
+
+move = mverb <' '> <'to '?> place
+mverb = 'go' / 'goes' / 'leave' / 'leaves' / ('return' <!' the'>) / 'returns' <!' the'> / 'at' / 'come' / 'comes'
+verb = word
+place = name
+
+<pverb> = verb (<' '> verb)*
+
+rempermission = character <' may not '> (move / pay / bverb / cverb / task) <'\\n'?>
+permission = character <' may '> (move / pay / bverb / cverb / task) <'\\n'?>
+obligation = character <' must '> (move / pay / bverb / cverb / pverb / task) (<' before '> deadline)? (<'\\n' whitespace+ 'Otherwise, '> <'the '?> violation)? <'.'?> <'\\n'?>
+
+deadline = consequence
+
+task = pverb <' '> role-b / verb / (verb <(' the ' / ' a ' / ' an ')> item) / (verb <' '> item)
+role-b = name
+
+pverb = 'kill' / 'kill'<'s'> / 'refund'<'s'> / 'refund'
+
+consequence =
+    [<'The ' / 'the '>] character <' will '>? <' '> (move / bverb / cverb / item)
+    | [<'The ' / 'the '>] item <' '> verb
+
+item = [<'The ' / 'the '>] word
+
+<whitespace> = #'\\s\\s'
+
+<name> = [<'The ' / 'the '>] cwords
+<words> = word (<' '> word)*
+<cwords> = cword (<' '> ['of'<' '>] cword)*
+<cword> = #'[A-Z][0-9a-zA-Z\\-\\_\\']*'
+<the> = <'The ' | 'the '>
+<word> = #'[0-9a-zA-Z\\-\\_\\']*'
+\end{lstlisting}
 
 \section{Nested Tropes via Bridge Institution}
 \label{sec:t-nested}

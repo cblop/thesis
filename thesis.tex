@@ -75,11 +75,18 @@
 % \tableofcontents
 % \clearpage
 
-% \begin{abstract}
-% This report summarises the research carried out as part of the EngD Digital Media programme with the University of Bath and Sysemia Ltd.
+\begin{abstract}
+Authoring an interactive narrative with branching story paths presents many challenges. Either an author must write out every single path through the story by hand, which is difficult and time-consuming, or they must find a way to automatically generate all possible story paths, which can result in a combinatorial explosion and lack of authorial control over the direction of the story. If an author chooses to use intelligent agents to act out the parts of characters in the story, they may lose control even further by giving up important narrative decisions to the plans of the agents.
 
-% The purpose of this report is to explain the academic research conducted during the course and its applicability to the needs of Sysemia Ltd. The main focus is to explore the state of the art in interactive and generative narrative and also to apply it in a real-world exhibition context.
-% \end{abstract}
+Current approaches combine the use of narrative formalisms with story planners
+to ``direct'' the actions of character agents in a story. Shortcomings exist in
+both components of this approach, however: current formalisms such as Propp's
+``Morphology'' or Lehnert's ``Plot Units'' lack any kind of mechanism through which an author may create abstractions for stories, by creating a new story ``component'' as a combination of existing ``components''. The other shortcoming is with the goal-oriented authoring style expected by story planners, where non-programmer story authors are required to author their stories in terms of ``goals'' that the narrative must meet.
+
+The central contribution of this thesis is \emph{TropICAL}, a programming language that uses the \emph{trope} as the fundamental component of narrative design for interactive storytelling. A trope is a recurring theme or motif in narrative, which can be thought of as an abstraction of a certain sequence of events. After a thorough examination of existing formalisms for narrative and systems for interactive narrative generation, we explain that tropes allow for the flexible description and abstraction of story components, a capability that the existing systems lack.
+
+We evaluate its suitability for interactive story construction through a thematic analysis of story authors' completion of story-authoring tasks using the language. The participants complete tasks in which they have to describe stories with different degrees of complexity, finally requiring them to reuse existing tropes in their own trope abstractions. The thematic analysis identifies and examines the themes and patterns that emerge from the story authors' use of the tool.
+\end{abstract}
 
 % ----------------------------------
 
@@ -87,38 +94,28 @@
 
 \chapter{Introduction}
 \label{cha:introduction}
-The central contribution of this thesis is the use of story tropes for the
-generation of structured, interactive narratives for use in games, training
-simulations or other playable experiences. In order to introduce the research
-described in later sections, this introduction will first explain the concepts of story
-tropes and interactive narrative.
 
-\section{Story Tropes}
+Though the field of interactive narrative generation has many active researchers
+and research centres, most of the tools produced from these projects are
+targeted towards other computer science researchers to use. To learn esoteric
+techniques such as how to use goal-based planner systems in order to describe
+branching narratives is a challenge even for professional programmers.
+Similarly, describing stories with declarative, logic-based languages such as
+Prolog or Answer Set Programming languages requires authors to master new and
+very different programming paradigms. If such methods are challenging to
+programmers, they are far beyond the reach of non-programmers such as fiction
+authors.
 
-Story tropes are recurring motifs in the narratives of media, which allow for a more expressive manner of describing stories than existing narrative formalisms. Authors can use them to build new story components and re-use existing tropes to make hierarchical story arcs.
+% Talk about components
+Another challenge in the field is the identification of a suitable formalism for
+narrative. Researchers still use old 
 
-Tropes describe commonly-seen themes and elements of stories. In a sense, they are similar to clich\'es, in that an audience becomes familiar with them through repeated exposure. However, tropes are not clich\'es. Clich\'es are story elements that have been repeated ad nauseum, that are so often used and unoriginal that they evoke tedium from their audience. Tropes may perhaps become clich\'es if they are used to the point of becoming tiresome, though some are so embedded into the collective subconscious that their presence is taken for granted. Joseph Campbell argues that \emph{The Hero's Journey} is a trope that transcends time and culture, representing a shared human blueprint for the rite-of-passage into adulthood~\cite{campbell2008hero}. In this way, stories and tropes could be considered a cultural language for describing common human themes. Clich\'es could not be described as such: they are simply overexploited ideas.
-
-The themes, scenes, characters and structure of a story can be described in terms of tropes. Even individual lines of dialogue can be a trope, such as James Bond's witty put-downs when he defeats an enemy. Tropes describe parts of a story in an abstract way, which means that they can be easily identified in multiple stories.
-
-Examples of tropes are:
-
-\begin{compactitem}
-\item \textbf{The Hero's Journey}: A hero answers a call to adventure, and leaves home to go on a journey. They defeat the villain along the way, returning back home triumphant.
-\item \textbf{The Evil Empire}: The villain is part of an empire, which tries to stop the hero at all costs.
-\item \textbf{The MacGuffin}: There is an object that the hero needs, the search for which is used to drive the plot.
-\item \textbf{Chekhov's Gun}: If a gun appears somewhere in the first act, it must be fired by the end of the third.
-\end{compactitem}
-
-Tropes can describe a story at several layers of abstraction, meaning that tropes can contain other tropes as sub-tropes. For example, \emph{The Hero's Journey} can contain the \emph{Hero}, \emph{Quest}, and \emph{Call to Adventure} sub-tropes. This allows a degree of expressivity unavailable in other narrative models described in the \emph{Related Work} section.
-
-In interactive narrative generation, where a player may take one of many possible paths through a story, parts of the story are often procedurally generated in order to save an author the time and effort of manually writing out all the branches of the narrative. However, this means that the author must give up some control over the structure and content of the story. By describing the intended contents of the story in an abstract manner using tropes, an author is able to give it structure. In our case, the procedural generation occurs through the use of intelligent agents to model story characters. These character agents are guided towards pursuing actions that fit the tropes in the authored narrative, thus gently making sure they meet the expectations of the author while allowing them some degree of freedom with which to pursue their own goals.
+This thesis introduces the concept of \emph{tropes} as formal, composable components
+of stories. Tropes describe identifiable patterns that recur throughout multiple
+stories, which become familiar to audiences through repeated exposure. More
+detailed explanations appear in sections~\ref{sec:tropes-intro} and~\ref{sec:tropes}.
 
 \section{Interactive Narrative}
-Interactive narratives have the potential to transform two major fields: games
-and training simulations. These are the applications for which the use of
-interactive narrative can benefit Sysemia. The main part of the research examines the state of the art in interactive narrative primarily in computer games research, but then adapts techniques from that field for the purpose of interactive exhibitions. By implementing research ideas into `toy' game projects (such as an interactive Punch and Judy show in section \ref{sec:pj}), I then take components from these projects and implement them into practical exhibition-based projects for Sysemia (such as the Every Object Tells a Story project described in section \ref{sec:every}).
-
 Though media such as computer games allow a player to influence events through interaction with its characters and objects, the story of the game itself is usually predetermined. In order to create media in which the narrative is shaped by a person's interactions, one two approaches are usually taken: emergent narratives or branching narratives.
 
 \textbf{Emergent narratives} occur when a story (of sorts) unfolds as a result of a player's interactions with the rules of the game world. Examples of this appear in the games \emph{Minecraft}, \emph{Civilisation}, \emph{Dwarf Fortress} and \emph{The Sims}. In these cases, no author has sat down and written a branching narrative for every eventuality in the game. Instead, the narrative is created by the story world itself in response to a player's actions.
@@ -163,6 +160,27 @@ Both the game-based and education-based projects have a common thread: reasoning
 over temporal data in order to predict future events, or constrain possible
 future actions to conform to a narrative domain. Section \ref{sec:nthsnt}
 describes the direction the research has taken, and how the use of techniques such as hierarchical institutions and the creation of an ontology for narrative might develop these ideas further.
+
+\section{Story Tropes}
+\label{sec:tropes-intro}
+Story tropes are recurring motifs in the narratives of media, which allow for a more expressive manner of describing stories than existing narrative formalisms. Authors can use them to build new story components and re-use existing tropes to make hierarchical story arcs.
+
+Tropes describe commonly-seen themes and elements of stories. In a sense, they are similar to clich\'es, in that an audience becomes familiar with them through repeated exposure. However, tropes are not clich\'es. Clich\'es are story elements that have been repeated ad nauseum, that are so often used and unoriginal that they evoke tedium from their audience. Tropes may perhaps become clich\'es if they are used to the point of becoming tiresome, though some are so embedded into the collective subconscious that their presence is taken for granted. Joseph Campbell argues that \emph{The Hero's Journey} is a trope that transcends time and culture, representing a shared human blueprint for the rite-of-passage into adulthood~\cite{campbell2008hero}. In this way, stories and tropes could be considered a cultural language for describing common human themes. Clich\'es could not be described as such: they are simply overexploited ideas.
+
+The themes, scenes, characters and structure of a story can be described in terms of tropes. Even individual lines of dialogue can be a trope, such as James Bond's witty put-downs when he defeats an enemy. Tropes describe parts of a story in an abstract way, which means that they can be easily identified in multiple stories.
+
+Examples of tropes are:
+
+\begin{compactitem}
+\item \textbf{The Hero's Journey}: A hero answers a call to adventure, and leaves home to go on a journey. They defeat the villain along the way, returning back home triumphant.
+\item \textbf{The Evil Empire}: The villain is part of an empire, which tries to stop the hero at all costs.
+\item \textbf{The MacGuffin}: There is an object that the hero needs, the search for which is used to drive the plot.
+\item \textbf{Chekhov's Gun}: If a gun appears somewhere in the first act, it must be fired by the end of the third.
+\end{compactitem}
+
+Tropes can describe a story at several layers of abstraction, meaning that tropes can contain other tropes as sub-tropes. For example, \emph{The Hero's Journey} can contain the \emph{Hero}, \emph{Quest}, and \emph{Call to Adventure} sub-tropes. This allows a degree of expressivity unavailable in other narrative models described in the \emph{Related Work} section.
+
+In interactive narrative generation, where a player may take one of many possible paths through a story, parts of the story are often procedurally generated in order to save an author the time and effort of manually writing out all the branches of the narrative. However, this means that the author must give up some control over the structure and content of the story. By describing the intended contents of the story in an abstract manner using tropes, an author is able to give it structure. In our case, the procedural generation occurs through the use of intelligent agents to model story characters. These character agents are guided towards pursuing actions that fit the tropes in the authored narrative, thus gently making sure they meet the expectations of the author while allowing them some degree of freedom with which to pursue their own goals.
 
 
 \section{Outline}
@@ -2356,6 +2374,9 @@ high-level overview of the features of the language we have created (named \emph
 The next chapter describes the actual implementation of \emph{TropICAL}, with snippets of code for example tropes and their
 corresponding translations to \emph{InstAL}.
 
+\chapter{Intelligent Agents as Story Characters}
+\label{cha:agents}
+
 % tropical
 
 % HACK: predicted poms remaining: 73 / 79
@@ -2541,9 +2562,80 @@ Inform 7 would also be able to use TropICAL.
 \section{Features}
 \label{sec:t-features}
 % TODO intro: 1
+% TODO use cases: 2
+% TODO requirements: 2
 % TODO list features: 1
 % TODO tech used: 1
 % TODO relate features to the requirements: 2
+
+The TropICAL language is designed to be used by authors of interactive
+narratives, enabling them to easily describe the ``rules'' of a story through
+tropes. It is designed to be used in interactive storytelling systems where
+intelligent software agents are acting out the roles of the characters in the
+story. These agents, though an architecture such as BDI (Belief, Desire,
+Intention), have their own goals and plans for how to achieve those goals.
+TropICAL does not assist in the authoring of these characters and their plans or
+lines of dialogue. Instead, its purpose is to direct the actions of these
+``character'' agents so that their behaviour follows the rules of the author's story.
+
+TropICAL is designed to be used with a system where the character agents have
+already been authored. It guides them by allowing the characters to know what
+they are permitted and obliged to do according to the story. This is achieved by
+giving the characters new percepts so that they may \emph{believe} they are
+allowed to take certain courses of action. For a description of how this is
+implemented in practice, see section~\ref{} of chapter~\ref{cha:agents}.
+
+\subsection{Use Cases}
+
+
+
+\subsubsection{User Stories}
+
+\begin{quote}
+  Alice is an interactive narrative researcher using the JASON intelligent agent
+  framework to create the characters of a story. The story is a classic
+  detective noir story, with a private investigator as the main character and
+  several suspects, one of which is the killer. She has coded their behaviour
+  and dialogue as a set of plans, which each agent will follow according to
+  their beliefs, desires and intentions as they ``act out'' the story.
+
+  Alice sets the simulation running, but sees that althogh the agents are interacting
+  with each other as intended, there is no structure or sense of drama to the
+  story. It merely seems to be one event happening after another.
+
+  She decides to use the TropICAL framework to guide the actions of the
+  character agents. The tropes that she chooses to describe her story are the
+  ``Three Act Structure'', ``Chekov's Gun'', ``Murder Mystery'' and ``Rooftop
+  Chase'' tropes. These tropes are used to not only give the story structure,
+  but also to encourage the characters in it to behave in a way that makes the
+  simulation ``feel'' like a murder-mystery genre novel.
+
+  When using TropICAL, she selects the ``Three Act Structure'' and ``Chekov's
+  Gun'' tropes from a pre-written library of tropes. However, she cannot find
+  tropes that describe what a ``Murder Mystery'' story is, or what should happen
+  in a ``Rooftop Chase'' scene. She creates these by writing her own tropes in TropICAL:
+
+  ``Murder Mystery'' is a trope where:
+    The Detective is a role
+    The Killer is a role
+    The Victim is a role
+    The Killer kills the Victim
+    The Detective investigates the Killer
+    Then the Detective catches the Killer
+      Or the ``Rooftop Chase'' happens
+
+  ``Rooftop Chase'' is a trope where:
+    The Detective is a role
+    The Fugitive is a role
+    The Rooftop is a place
+    The Detective goes to the Rooftop
+    The Fugitive goes to the Rooftop
+    The Detective chases the Fugitive
+    Then the Detective catches the Fugitive
+      Or the Fugitive escapes
+\end{quote}
+
+\subsection{Requirements}
 
 The way in which our TropICAL language is used is as follows:
 
@@ -2570,110 +2662,69 @@ The way in which our TropICAL language is used is as follows:
 % TODO format grammar: 2
 
 \begin{lstlisting}
-trope = (tropedef (<whitespace> (situationdef / alias / sequence))+ <'\\n'?>) | ((situationdef / alias / sequence)+ <'\\n'?>)
-
+text = tropedef defs trope
 <tropedef> = label <' is a ' ('trope' / 'policy') ' where:\\n'>
-
-alias =
-    (character <' is also '> character <'\\n'?>) | (object <' is '> object <'\\n'?>)
-
-situation =
-    <'When '> event <':'>
-
-fluent =
-    object <' is '> adjective
-
-adjective = word
-
-object = name
-
-outcome =
-    (<'\\n' whitespace whitespace> (event | obligation | happens) (or? | if?) <'\\n'?>)+
-
-happens =
-    <the?> subtrope <(' happens' / ' policy applies') '.'?>
-
-
-block =
-    <the?> subtrope <' policy does not apply' / ' does not happen'> <'.'?>
-
-
-sequence =
-    ((event | norms | happens | block)  <'\\n'?> (or* | if*)) | ((event | norms | happens | block) (<'\\n' whitespace+ 'Then '> (block / norms / event / obligation / happens) (or* | if*))*)*
-
-situationdef = situation (<'\\n'> <whitespace> norms | <'\\n'> <whitespace whitespace> consequence)+ <'\\n'?>
-
-or =
-    <'\\n' whitespace+ 'Or '> (event | norms)
-
-if =
-    <'\\n' whitespace+ 'If '> (event | norms)
-
-event =
-    (<'The '>? character <' is'>? <' '> (move / task)) / give / sell / tverb / meet / kill / pay
-
-
-give =
-    character <' gives ' ('the ' / 'a ' / 'an ')?> item <' to '>? <'a ' / 'an '>? character
-
-sell =
-    character <' sells ' ('the ' / 'a ' / 'an ')?> item <' to '>? <'a ' / 'an '>? character
-
-tverb =
-    character <' '> verb <(' the ' / ' a ' / ' an ')?> item <' to '>? <'a ' / 'an '>? character
-
-bverb =
-    verb <(' the ' / ' a ' / ' an ')?> item <' to '>? <'a ' / 'an '>? character
-
-cverb =
-    words <' the ' / ' a ' / ' an '> (object / character)
-
-meet =
-    character <' meets '> character
-kill =
-    character <' kills '> character
-pay =
-    <'pay '> character
-
-norms = permission | rempermission | obligation
-
-violation = norms
-
-character = name
-
-subtrope = <'\"'> words <'\"'>
-
+<defs> = (<whitespace> (chardef | objdef | placedef) <'\\n'?>)+
+chardef = charname <' is a ' ('character' | 'role') '.'?>
+objdef = objname <' is an object' '.'?>
+placedef = placename <' is a place' '.'?>
+<charname> = name
+<objname> = name
+<placename> = name
+trope = (<whitespace> !(chardef | objdef | placedef) #'.*' <'\\n'>?)+
 label = <'\"'> words <'\"'>
-
-move = mverb <' '> <'to '?> place
-mverb = 'go' / 'goes' / 'leave' / 'leaves' / ('return' <!' the'>) / 'returns' <!' the'> / 'at' / 'come' / 'comes'
-verb = word
-place = name
-
-<pverb> = verb (<' '> verb)*
-
-rempermission = character <' may not '> (move / pay / bverb / cverb / task) <'\\n'?>
-permission = character <' may '> (move / pay / bverb / cverb / task) <'\\n'?>
-obligation = character <' must '> (move / pay / bverb / cverb / pverb / task) (<' before '> deadline)? (<'\\n' whitespace+ 'Otherwise, '> <'the '?> violation)? <'.'?> <'\\n'?>
-
-deadline = consequence
-
-task = pverb <' '> role-b / verb / (verb <(' the ' / ' a ' / ' an ')> item) / (verb <' '> item)
-role-b = name
-
-pverb = 'kill' / 'kill'<'s'> / 'refund'<'s'> / 'refund'
-
-consequence =
-    [<'The ' / 'the '>] character <' will '>? <' '> (move / bverb / cverb / item)
-    | [<'The ' / 'the '>] item <' '> verb
-
-item = [<'The ' / 'the '>] word
-
 <whitespace> = #'\\s\\s'
-
 <name> = [<'The ' / 'the '>] cwords
 <words> = word (<' '> word)*
 <cwords> = cword (<' '> ['of'<' '>] cword)*
+<cword> = #'[A-Z][0-9a-zA-Z\\-\\_\\']*'
+<the> = <'The ' | 'the '>
+<word> = #'[0-9a-zA-Z\\-\\_\\']*'
+\end{lstlisting}
+
+\begin{lstlisting}
+trope = (<whitespace> sequence)+ <'\\n'?>
+(str "label = '" label "'")
+fluent = object <' is '> adjective
+adjective = word
+outcome =
+(<'\\n' whitespace whitespace> (event | obligation | happens) (or? | if?) <'\\n'?>)+
+happens =
+<the?> subtrope <(' happens' / ' trope happens' / ' policy applies') '.'?>
+block =
+<the?> subtrope <' policy does not apply' / ' does not happen' / ' trope does not happen'> <'.'?>
+sequence =
+((fluent | event | norms | happens | block) (or* | if*)) | ((fluent | event | norms | happens | block) (<whitespace+ 'Then '> (block / norms / event / fluent / obligation / happens) (or* | if*))*)*
+or =
+<whitespace+ 'Or '> (fluent | event | norms)
+if =
+<whitespace+ 'If '> (fluent | event | norms)
+action = !fverb verb [sp [particle sp] (character | object | place)] (crlf? | [sp particle? (character | object | place)] crlf?)
+event = character sp action
+<particle> = <'a' | 'at' | 'will' | 'of' | 'to'>
+norms = permission | rempermission | obligation
+fluent = (character | object | place) sp fverb sp [particle sp] (character | object | place) crlf?
+fverb = (<'is'> sp 'at') | 'has'
+violation = norms
+(str "character = " (if (seq rs) rs "'nil'"))
+(str "place = " (if (seq ps) ps "'nil'"))
+(str "object = " (if (seq os) os "'nil'"))
+subtrope = <'\'> words <'\"'>"
+label = <'\'> words <'\"'>"
+verb = words
+rempermission = character <' may not '> action crlf?
+permission = character <' may '> action crlf?
+obligation = character <' must '> action (<' before '> deadline)? (<crlf whitespace+ 'Otherwise, '> <'the '?> violation)? <'.'?> crlf?
+deadline = consequence
+role-b = character
+object-b = object
+place-b = place
+<crlf> = <'\\n'>
+consequence = event
+<whitespace> = #'\\s\\s'
+<sp> = <' '>
+<words> = word (sp word)*
+<cwords> = cword (sp ['of' sp] cword)*
 <cword> = #'[A-Z][0-9a-zA-Z\\-\\_\\']*'
 <the> = <'The ' | 'the '>
 <word> = #'[0-9a-zA-Z\\-\\_\\']*'
@@ -2751,6 +2802,8 @@ item = [<'The ' / 'the '>] word
 % HACK: predicted poms remaining: 51
 
 \chapter{StoryBuilder: An Interface for Trope-based Interactive Story Creation}
+% Think of it as an IDE: what kind of support do users want? Helps to visualise the complexity of the stories. Helps authors to construct the stories that they intend to construct
+
 \label{cha:storybuilder}
 
 % TODO intro: 2

@@ -1,7 +1,11 @@
 * Introduction
+** Problem
+** Domain
+** Tropes
 * Literature Review
 * Institutions
 * Tropes
+* Intelligent Agents as Story Characters
 * TropICAL
 ** Language Features
 ** EBNF grammar
@@ -60,7 +64,7 @@ Explain the concept of "thematic analysis". Cite use of NVivo
 *** StoryBuilder interface
 *** Story visualisation
 ** Future work
-*** Hierarchical instutions
+*** Hierarchical institutions
 (Thomas King)
 *** Expand the use of tropes for policy description
 *** Role hierarchies

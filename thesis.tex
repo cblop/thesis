@@ -95,8 +95,50 @@ We evaluate its suitability for interactive story construction through a themati
 \chapter{Introduction}
 \label{cha:introduction}
 
-Interactive storytelling is the method of telling a story which its consumer can
-meaningfully change through interaction.
+In most media, stories are told linearly, where one event follows another
+sequentially until the conclusion is reached. This is the format which most
+printed works follow, due to the limitation of the medium. Though this is a limitation
+that we have come to accept due to the popularity and wide proliferation of
+printed media, it is not a limitation inherent to the act of storytelling. Even
+before written language, when stories were told around the camp fire, the
+audience would have opportunities to interrupt the narrator in order to add
+narrative details of their own. In its transition from the spoken to the printed
+word, the medium of storytelling has lost its interactivity.
+
+Innovative authors such as John Barth, and works such as the ``Choose Your Own Adventure'' and
+``Fighting Fantasy'' series of books have attempted to expand the possibilities
+of the printed word to allow for non-linear and interactive narratives. Working
+within the limitations of the medium, these books offer the reader choices such
+as ``turn to page 50 to drink the water'' or ``turn to page 14 to run away''.
+These decision points create a branching narrative that can be described as a
+tree structure. Though this method for describing branching narrative in a book
+is innovative, it falls prey to the limitations of book size: the choices are
+very often only the \emph{illusion} of choice, where the decision is usually
+between continuing the story and death of the reader's character. If the tree of the narrative were to be
+visualised, it would contain a great many ``dead end'' leaves.
+
+Interactive storytelling is the method of telling a story
+that a ``reader'' can meaningfully change through interaction. The ``Choose Your
+Own Adventure'' example just described is not an example of meaningful change in
+a story, as the only interactions are binary decisions that lead to a limited
+number of paths through the tale. Characters are not able to react or change
+their behaviour based on a sequence of actions the ``reader'' of the story has
+taken, for example. The structure of the story cannot change in real time to the
+actions of the ``reader''. Even with new media such as computer games, crafting
+a dynamically changing story is challenging, and narrative interaction is
+limited to ``multiple endings'', where a single decision point at the end of the
+game allows the player to choose between multiple outcomes.
+
+Interactive storytelling researchers have attempted to challenge the limitations
+of current computer game stories through the use of artificial intelligence
+techniques. Early systems such as Talespin~\citep{meehan1977tale} and
+Minstrel~\citep{turner1993minstrel} focus on story \emph{generation}, where a
+story is created that changes each time the software program is run. Later
+systems would then go on to use intelligent agents to simulate the characters
+in a story, each with goals and plans that mimic their motivations. More recent
+storytelling systems use planners (such as ones based on Young's
+architecture~\citep{young2004architecture}) to direct the actions of these
+character agents to fit the pre-determined path of a story.
 
 Though the field of interactive narrative generation has many active researchers
 and research centres, most of the tools produced from these projects are
@@ -111,12 +153,27 @@ authors.
 
 % Talk about components
 Another challenge in the field is the identification of a suitable formalism for
-narrative. Researchers still use old 
+narrative. Researchers still use structuralist formalisms created almost a
+century ago, such as Propp's ``Morphology of the
+Folktale''~\citep{propp1968morphology}, due to inertia, familiarity, and the fact
+that they are ``good enough'' for most purposes.
 
-This thesis introduces the concept of \emph{tropes} as formal, composable components
+The two contributions of this thesis are the use of a \emph{normative
+  framework} (also known as social institutions) for the governance of intelligent agent
+characters in an interactive narrative, and their definitions as story
+\emph{tropes} using controlled natural language. The normative framework can be
+thought of as the director that governs the behaviours of the actors in the
+story, telling them what they are \emph{permitted} and \emph{obliged} to do as
+part of the story. The tropes can be considered as a screenplay of sorts, an
+easy-to-understand user interface that contains a high-level description of what
+the director has to do. This thesis introduces the concept of \emph{tropes} for
+the first time into the literature, where tropes are formal, composable components
 of stories. Tropes describe identifiable patterns that recur throughout multiple
 stories, which become familiar to audiences through repeated exposure. More
-detailed explanations appear in sections~\ref{sec:tropes-intro} and~\ref{sec:tropes}.
+detailed explanations appear in section~\ref{sec:tropes-intro} and chapter~\ref{cha:tropes}.
+
+The next section of this introduction contains a high-level overview of
+interactive narrative, describing its past and future use in and beyond entertainment.
 
 \section{Interactive Narrative}
 Though media such as computer games allow a player to influence events through interaction with its characters and objects, the story of the game itself is usually predetermined. In order to create media in which the narrative is shaped by a person's interactions, one two approaches are usually taken: emergent narratives or branching narratives.
@@ -134,7 +191,7 @@ Ideally, we could combine the best features of both type of non-linear narrative
 \section{Interactive narrative for games}
 Computer games are a new medium for artistic expression. The element of interactivity, combined with visual art, music and storytelling, allows the creation of ever more fantastic worlds. This combination of previous art forms isn't enough, though. Game creators are now experimenting with ways to make a narrative itself interactive. Imagine playing through a version of Romeo and Juliet where there is a possibility that the characters could escape their fates. Or playing a detective in a game where the story changes depending on how quickly you can piece together clues.
 
-This is the new frontier that we are exploring with this research: the as-yet unconquered domain of \emph{interactive} storytelling.
+This is the new frontier that we are exploring with this research: the as-yet unsolved domain of \emph{interactive} storytelling.
 
 We are defined by the choices we make throughout our lives. These choices form a story that describes our own personal history. If a player can watch somebody's life unfold and witness the choices that they made, and those that were forced upon them, they would have a deep understanding of how they came to be who they are.
 
@@ -143,8 +200,15 @@ This kind of deep understanding is only possible through experiencing a story wh
 For this reason, interactive narrative for games is worth exploring: it would
 enable a player to truly understand other people's lives and situations, and why they became the people they are.
 
-% Put a bit about what you did to explore the potential of interactive narrative
-% for games
+Our initial attempt at creating an interactive narrative ``game'' uses
+intelligent agents with emotional models to act out an interactive Punch and
+Judy puppet show. As the audience boos or cheers at the actions of the puppets,
+encouraging or scolding them, the agents' emotional state is changed, affecting
+their decision-making process. Though this game may not offer much explanation
+as to the irrationally violent actions of ``Punch'', the audience uses the
+system to explore
+their expectations of what a Punch and Judy show should be. This work is
+described in chapter~\ref{sec:emotional-pj}.
 
 \section{Interactive narrative for education}
 Stories are a powerful way for humans to understand and remember facts and events. Making these stories interactive could lead the way to even more effective learning methods.
@@ -157,12 +221,50 @@ A narrative that dynamically reacts to the decisions of the audience could bette
 
 With this in mind, it is worth constructing an interactive narrative system and applying it to both entertainment and learning contexts. Some evaluation still needs to be carried out in order to determine how much more effective (if at all) interactive narrative could be for education, so this is proposed as part of this report.
 
-Preliminary work has been done in collaboration with the Bishop's Palace in Wells to create an exhibition incorporating interactive narrative. Using a combination of Semantic Web data formats and an event calculus-based reasoner, the system will be able to infer future actions for recommendation to visitors. Description of the work done so far is in section \ref{sec:nthsn}.
+Preliminary work has been done in collaboration with the Bishop's Palace in
+Wells to create an exhibition incorporating interactive narrative. Using a
+combination of Semantic Web data formats and an event calculus-based~\citep{kowalski1986logic} reasoner,
+the system infers future actions for recommendation to visitors. Description of
+the work done for this project is in section \ref{sec:bishops-palace}.
 
 Both the game-based and education-based projects have a common thread: reasoning
 over temporal data in order to predict future events, or constrain possible
-future actions to conform to a narrative domain. Section \ref{sec:nthsnt}
-describes the direction the research has taken, and how the use of techniques such as hierarchical institutions and the creation of an ontology for narrative might develop these ideas further.
+future actions to conform to a narrative domain. In order to simplify the
+writing of these constraints when working with multi-agent systems, we move away
+from the event calculus, instead describing our story components using
+\emph{normative systems}.
+
+\section{Normative Systems}
+\label{sec:normative-intro}
+In the field of multi-agent systems, a \emph{normative framework} or
+\emph{social institution} coordinates the actions of the agents using the
+language of deontic logic: permissions and obligations that describe what each
+agent \emph{may} or \emph{must} do at each point in time.
+
+Normative systems are often used to model legal contracts, so that the contracts
+are described in terms of social norms. This way, the contract is described as a
+social institution that each party adheres to. In the case of a contract
+dispute, the party in the wrong is the one that has broken the social contract,
+either by carrying out an unpermitted action, or by not executing an obliged
+action before its deadline. As in a social contract, there is nothing that
+physically stops either party from breaking the norms. The only barrier is the
+prospect of a possible penalty for deviating from the agreed-upon rules.
+
+In our system, we model the narrative as a social institution, which regulates
+the behaviour of the character agents, rather than strictly regimenting their
+actions. This means that each character is technically able to break away from
+the story if they wish, but they would suffer grave consequences for doing so.
+This makes for an interactive storytelling system with a greater degree of
+unpredictability and variety, where an agent that is desperate to carry out a
+plan, or caught in the darkest state of an emotional model, may do something
+rash and spontaneous. This means that the simulated characters have more agency
+to do what they want, even though they are encouraged towards certain actions by
+the bounds of the story.
+
+Describing a story in terms of permissions and obligations does not come
+naturally to most story authors, however. For this reason, we use story tropes
+as a kind of \emph{user interface} through which non-programmer artists and
+authors may compose the social norms that govern the behaviour of the character agents.
 
 \section{Story Tropes}
 \label{sec:tropes-intro}
@@ -185,14 +287,42 @@ Tropes can describe a story at several layers of abstraction, meaning that trope
 
 In interactive narrative generation, where a player may take one of many possible paths through a story, parts of the story are often procedurally generated in order to save an author the time and effort of manually writing out all the branches of the narrative. However, this means that the author must give up some control over the structure and content of the story. By describing the intended contents of the story in an abstract manner using tropes, an author is able to give it structure. In our case, the procedural generation occurs through the use of intelligent agents to model story characters. These character agents are guided towards pursuing actions that fit the tropes in the authored narrative, thus gently making sure they meet the expectations of the author while allowing them some degree of freedom with which to pursue their own goals.
 
+\section{Answer Set Programming for Story Solving}
+\label{sec:trope-interface}
+In section~\ref{sec:tropical}, we describe TropICAL, our programming language
+for describing social institutions in terms of story tropes. Using a controlled
+natural language syntax resembling that of the popular interactive fiction
+programming language Inform 7, it is designed to allow authors with no previous
+experience with programming to describe their story in terms of tropes. An
+author uses this language to combine and sequence their tropes together. When
+the tropes are compiled into the normative language InstAL~\citep{cliffe2007specifying}, they are defined
+strictly in terms of permissions and obligations. InstAL allows the trope
+descriptions to be compiled a second time into AnsProlog, an Answer Set
+Programming (ASP) language, which can then be used with an Answer Set solver
+such as Potassco's Clingo~\citep{gebser2011potassco} to generate all the different
+possible actions of each character at any point in the story, given the
+constraints of the described tropes. This means that even when multiple
+characters are performing multiple events under the direction of multiple
+simultaneous tropes, we will always be able to work out which permissions and
+obligations are currently acting on our intelligent agent characters.
 
 \section{Outline}
 % Outline of sections goes here
 This thesis begins with a review of the literature in Section~\ref{cha:literature-review}. This review covers two main fields of research: narrative research from social science (Section~\ref{sec:narratology}), and interactive narrative research from computer science (Section~\ref{sec:implementations}).
 The ``Institutions as Story Worlds'' chapter (\ref{cha:institutions}) describes the theory and research behind instituitions, and discusses the merit of their use for describing story, comparing their use against other logics and planner-based systems.
+Chapter~\ref{cha:agents} examines the use of intelligent agents for the
+simulation of story characters, and how we may use techniques such as emotional
+modelling to make them more entertaining and believable.
 The ``Tropes as Story Components'' chapter (\ref{cha:tropes}), discusses the use
 of \emph{tropes} as story components, and why they improve upon existing narrative formalisms.
-Chapter~\ref{cha:tropes-and-institutions} describes how to use institutions to define tropes, and how to combine them to describe the story world for an interactive narrative. The section also describes the use of this technique to build a number of different narratives, contrasting the approach with using other techniques such as planners to build interactive narratives.
+Chapter~\ref{cha:tropical} describes our TropICAL programming language, which
+translates controlled natural-language trope descriptions into InstAL
+institution definitions. Chapter~\ref{cha:storybuilder} describes the
+``Storybuilder'' tool designed for the interactive creation and visualisation of
+tropes, allowing the user to combine the tropes to describe the story world for
+an interactive narrative. This chapter also contains a qualitative evaluation of
+the tool through a thematic analysis of eight participants building their own
+stories with the tool.
 The final chapter looks back at the research done, evaluating its potential impact and discussing possible future work. 
 
 % litrev
@@ -1040,6 +1170,7 @@ in section~\ref{sec:evaluation} and conclusions in section~\ref{sec:conclusions}
 Section~\ref{sec:model-logic} describes approaches that use formal logic to model interactive, non-linear narratives. Building on the work described in that section, we explore other possible ways with which to construct these kinds of stories.
 
 % Describe why we will build stories with Propp and tropes (as a method of comparison)
+\subsection{The Event Calculus}
 
 \subsection{Modal Logic and Kripke Structures}
 
@@ -1369,6 +1500,9 @@ $\mathcal{C^{\downarrow} (X, E)}:\left\{\mbox{%
 \end{minipage}}\right.$
 \caption{Fluent termination in the sausage scene} \label{fig:term}
 \end{figure}%\mnote{Added \emph{active(interdiction)} to top of fig. \ref{fig:init}}
+
+\section{The Bishop's Palace Interactive Story Project}
+\label{sec:bishops-palace}
 
 \section{Why Use Institutions for Interactive Narrative?}
 \label{sec:why-use-institutions}
@@ -2381,6 +2515,9 @@ corresponding translations to \emph{InstAL}.
 \label{cha:agents}
 
 % tropical
+
+\section{Punch and Judy with Emotional Agents}
+\label{sec:emotional-pj}
 
 % HACK: predicted poms remaining: 73 / 79
 

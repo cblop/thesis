@@ -32,6 +32,6 @@ M: It's OK, I've got it open in another tab anyway. So after sequencing, you can
 A: Yeah.
 M: Cool. So the last thing I need to tell you about is having subtropes, which is when you embed one trope inside of another, it's like a way of creating abstractions with this language. The way you do that is... so for this, you need two tropes, right? So if you go to "Item Search" in the dropdown. Sometimes it doesn't refresh the text box, which is weird. So click on something that isn't "Item Search" in that dropdown. And then click on "Item Search" again. It's not refreshing the text box, that's weird. Just let me check on my end that it's not being overwritten by something. No, it should be OK. I think you have to refresh the page, sadly. So yeah, go to "Item Search" there. Oh.
 A: It's the other one, isn't it?
-M: You might have managed to overwrite that. Hang on... Yeah, it's been overwritten somehow. Let me just put the one I wanted in... Item search.
+M: You might have managed to overwrite that. Hang on... Yeah, it's been overwritten somehow. Let me just put the one I wanted in... Item search. (Clicks frantically). Right, if you refresh the page again, and then go to "Item Search", I've just changed it. There you go.
 
 

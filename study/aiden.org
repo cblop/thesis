@@ -1,0 +1,37 @@
+* TODO Aiden Baines transcript
+
+M: Hello! Hello Aiden.
+A: Hey
+M: How's it going? Thanks again for agreeing to take part in this study.
+A: Sure. Sounds interesting.
+M: You're actually my first participant. So we'll see... you're kind of a guinea pig, so we'll see how it goes.
+A: OK.
+M: So basically, the point of this study is that I've made a programming language for story tropes. So if you want to create an interactive story for a game with multiple paths through it, you can construct the story using these components which are called "tropes". Actually, before you begin, I've got a document I'd like you to read, it's kind of the consent form. Just read it and say "Yeah, I understand".
+A: Sure.
+M: Do you see that link I just put there?
+A: I got it.
+M: OK, great.
+A: (reads the consent form) Yep, all looks pretty standard.
+M: Excellent. OK. So I've got another document here which is an explanation as to what to do in this study. So the start of it is a brief description of the programming language. I might have said before, it's very kind of limited in scope. There are some limitations with it, you can't describe every kind of story with it. I just want to get a feel for how suitable it is for people authoring these stories when combined with this kind of visualisation tool. So yeah, have a read through that. Actually no, I'll read it out for you.
+So, kind of like a lot of programming languages you have these declarations where you have to declare something like a variable ahead of time. There are three types of things: roles, which are characters, places (which are locations in your story) and objects. So you'd say, at the beginning of your file, stuff like "The Hero is a role", "The Knife is an object", "The Land of Adventure is a place". These are just declaring the entities you'd use in the story. And th en you'd create events by describing them in, almost like plain English. So like: "The Hero goes Home, Then the Hero finds the Sword, Then the Hero goes to the Land of Adventure.". So yeah, the syntax is kind of like what they call "controlled natural language": it looks a bit like natural language statements, but it's actually a kind of restricted syntax. So you can't use just any English statements.
+A: Yeah, I'm familiar with that.
+M: OK, cool, excellent. So yeah, the first letter of any role, object or place name has to be capitalised when you use it as well. So as well as sequencing, you can have branches where you have to indent with two spaces. So you can say: "The Hero goes Home, Or the Hero finds a Sword, Or the Hero dies".
+Actually, what I can do is... if you load up the tool itself, so go to... actually, I'll paste the link. There you go. So, go to that link there and... let's see... so there should be two tabs on the left: "edit" and "arrange" and there's a drop-down box that says "trope name". So if you select "Example 1", under "Trope name"...
+A: Yeah, I'm looking at it now.
+M: Cool. So that's the first example from the document where it says "sequencing". If you click the green button, "refresh", you should be able to see a tree visualisation (or in this case, one thing after another) appear on the right. Can you see that? Before we continue, I need to ask you to do something else. I need to have a screen cast of how you're interacting with this tool. If you go to the top right and click "share screen".
+A: (tries to share screen). Alright, I've got it.
+M: Oh yeah, I can see that. That's great. So yeah, if you go there, you can see a visualisation of that. So if you go back to the other tab with the participant information. Not that one... the second link I send you was a description of the language.
+A: That's what I hid, isn't it?
+M: Ah no, not there. Go back to the Hangouts text window. So I sent you three links, the second one is the one that describes the language.
+A: This one?
+M: Yeah, that's the one. So yeah, being able to see that will help you a bit better. You declare the roles, objects and places, then you can sequence them. So yeah, close this tab and go to the tool. This is the first example in that document, right, where it's just one thing after another, as you can see in the visualisation. Also, if you drag the nodes around in the visualisation, it will change the layout. It's one of those springy graph layouts. Yeah, there you go. So, go back to the document which describes the language.
+A: I've got it open on another screen.
+M: Oh yeah, cool, cool, I understand.
+A: So I can look at them at the same time. Do you want to see it on the screen?
+M: It's OK, I've got it open in another tab anyway. So after sequencing, you can have branches, where you say "One thing happens, or another thing happens", or you can string them so you have multiple options. So if you click on example 2 in that dropdown menu. And then click refresh. It takes a little while... there you go, yeah. So in this case, if you look at the language on the left, it says "The Hero goes Home, Or the Hero finds the Sword, Or the Hero dies", so you have those three alternatives. So, you can chain these things together. If you click on Example 3, and then refresh, you can visualise that, which is like a combination of sequences and branches. It will take a little while, because I'm running this on a really slow server. There you go. So you can see the first event is "The Hero goes home", then one of three possibilities: he finds a sword, or he goes to the land of adventure, or he kills the villain. And then he meets the mentor, then he goes home. So this is like one thing after another, and the branches as well. OK?
+A: Yeah.
+M: Cool. So the last thing I need to tell you about is having subtropes, which is when you embed one trope inside of another, it's like a way of creating abstractions with this language. The way you do that is... so for this, you need two tropes, right? So if you go to "Item Search" in the dropdown. Sometimes it doesn't refresh the text box, which is weird. So click on something that isn't "Item Search" in that dropdown. And then click on "Item Search" again. It's not refreshing the text box, that's weird. Just let me check on my end that it's not being overwritten by something. No, it should be OK. I think you have to refresh the page, sadly. So yeah, go to "Item Search" there. Oh.
+A: It's the other one, isn't it?
+M: You might have managed to overwrite that. Hang on... Yeah, it's been overwritten somehow. Let me just put the one I wanted in... Item search.
+
+

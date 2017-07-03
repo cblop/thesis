@@ -1,5 +1,65 @@
 * TODO Aiden Baines transcript
 
+Start: 16:00
+
+A: So if "Example 1" defined a hero here, and in "Kill then Search"... oh I guess... have they defined Hero there? Hero's a role here, and then in "Kill then Search" the Hero's also a role... will that cause any confusion, because the Hero's being defined twice?
+M: That's a really good question, actually. In an older version of this I had it so that you could have different heros in the different tropes. At the moment they're using the same Hero, just called "Hero". But you can actually choose different names for the different Heros, and you'd have two heroes in the story. But just to simplify this whole thing, I decided "if there's two heroes, just have them as the same person".
+A: Fair enough.
+M: OK yeah, so you've done the first task, which is great. So task 2 is to create your own trope. So if you click on "New", the first thing you have to do is click on the trope name in that box. And try to avoid uh... some special characters. Yeah, that's fine, "New trope" is fine. Uh, so given the following character roles (Hero, Villain and Mentor). Um, so you have to declare those. Yeah, exactly, very good. And then the three places: Home, the Evil Lair and Land of Adventure.
+A: How does it deal with spaces?
+M: It's fine with spaces, yeah. Most of the time. I'll let you know if it isn't. The problem is that, as you probably know with PhDs, is you have to do stuff which looks really simple but under the surface is really complicated. It's really hard for me to actually get some informative error messages up on here, so I'll try my best to work out what's going wrong when it does go wrong. But for now, it's going alright.
+A: OK.
+M: So, I'd like you to construct your own tropes, just using the sequences and branches for now. Actually, no, part of this one is just having sequences, so just one thing after another.
+A: OK, so I could do like: The Villain's in the Evil Lair.
+M: Yeah.
+A: I'm just trying to remember the exact syntax. It's "goes"?
+M: That's fine. It should be fine with any verb.
+A: Oh, OK.
+M: And any form of any verb.
+A: (types "resides")
+M: Yeah, that should be OK. I hope! So, how are you finding this? Is it easy to learn so far?
+A: Yes, especially with the examples, so I can basically just copy everything you've done so far. When you told be that any verb could fit in there, that wasn't immediately apparent to me, so maybe if it said that explicitly?
+M: Sure.
+A: I was looking for like "oh, is 'goes' another keyword?", so to speak.
+M: That's a good idea. I tried this before on some people, and it /wasn't/ OK with every verb, so I wasn't saying it before. But now it is! I changed it a lot. So, that's a good point, I should make that explicit. Have you used any programming languages similar to this before, with like a controlled natural language?
+A: Uh, kind of, when I was working at Microsoft, they made their own in-house one to do testing for "Fable Legends".
+M: Oh wow, cool.
+A: So it was kind of complicated. I wasn't directly involved in it, I only dabbled in it very briefly, but this reminds me of that a little bit.
+M: OK, wow. Very nice.
+A: That was for like, designers trying to test out scenarios without any coding experience. They could say like "The Hero is here" and "This sort of Villain appears" with text, and it'd generate code for them, that was the idea.
+M: Yeah, that sounds very similar to this use case. I've designed this for people who aren't programmers, like story authors, so that they can create these interactive stories. But yeah, keep going, sounds really good.
+A: Uh, doing OK. "The Villain resides in the Evil Lair", uh... Besides... so, we've got people in places. I'm trying to think what else we've got... They can find objects, but I haven't got any objects they can find. Can I implement objects, or am I just supposed to be using this stuff?
+M: Uh, for this task... That's the next task. So this one's just roles and places.
+A: Just roles and places... I'll just put everyone in places then, I guess. So, "Hero arrives in Home". I do have to add the "in", right? That is the keyword?
+M: No, you can delete "in". "in" is not significant at all.
+A: Why is it purple, then?
+M: Uh, because it's using a Python syntax highlighter, I think. I was trying to get some kind of syntax highlighting, and I was too lazy to write my own. So that's why. That is a bit confusing though, yeah. So "Home" has to be capital "H".
+A: Ah. Oh yeah, that is how I defined it, yeah. "Then the Hero goes to the Evil Lair".
+M: OK, save that. It's not going to update that visualisation... This interface is a little bit clunky, so you have to go to "Edit", and then select it. Where is it? You did save it, right?
+A: And it came up with the tick as well.
+M: Uh oh... Let me refresh my one.
+A: And it's saved the title "A new trope"
+M: Ah OK, yeah, it seems to have saved the title as a blank string, and we can't change that. I'll just do some fiddling around here. I wonder why it didn't like that... Ah, it's saving all the titles as blank strings. Why is it doing that? It wasn't doing that before. It might not like the fact that you're... no, it's not that. Hmm... I wonder if it's the case that there's something here that it doesn't like... OK, I'm just editing it so that I know there's not anything that will trip it up.
+A: OK
+M: I'm wondering if when it doesn't compile, then it saves it with a blank name. But that wouldn't make sense. Hmm. Oh! OK, let's see. Ah yeah, so if it doesn't compile (this is a bug I need to fix), it will save it with a blank name. So, the thing that's tripping it up, by the look of it, is that you're missing an "a", which is "The Hero is _a_ role". At the top there.
+A: OK, I've re-input it in, because I've lost it. Are you looking at the old...?
+M: I'll re-input it in for you. So...
+A: I've just got this new one here, if you look at the screen capture. Is that one fine?
+M: Oh, hang on... Don't save it though, because I've just saved one called "New Trope", which is hopefully the same. I'm just going through the blank ones and deleting them now. I wasn't aware of that bug, but I am now, which is good.
+A: Great.
+M: So yeah, if you go to "edit", and "select new trope"...
+A: It's not there. Shall I refresh the page maybe, if it's on yours?
+M: You might have to refresh the page, yeah. And OK, we get a compile error if you try to refresh. So there's still something it doesn't like there. So as I said before, the trouble is with this is that if it doesn't work, then it's really hard to get any useful error messages up here.
+A: I've got "the Evil Lair" was supposed to be capitalised with "T", that's what I've missed off.
+M: Ah, OK. I think it ignores the "the's" though, so it might not be that.
+A: But "the" was part of its name, because I put "the Evil Lair" is a place, right?
+M: I think even then it ignores the "the's". Oh! I think if you... It doesn't seem to like... Yeah it's the "in" in "resides in" it doesn't like, I think. So if you delete the "resides in". Because it seems to be fine with the verbs, but sometimes if you have extra particles after those verbs, it doesn't like them. But yeah, it's OK if you remove the "in".
+A: Still got an error.
+M: Ah. Did you click "save", then "refresh"?
+A: (clicks)
+M: Ah, there you go.
+
+** Preamble
 M: Hello! Hello Aiden.
 A: Hey
 M: How's it going? Thanks again for agreeing to take part in this study.
@@ -32,6 +92,18 @@ M: It's OK, I've got it open in another tab anyway. So after sequencing, you can
 A: Yeah.
 M: Cool. So the last thing I need to tell you about is having subtropes, which is when you embed one trope inside of another, it's like a way of creating abstractions with this language. The way you do that is... so for this, you need two tropes, right? So if you go to "Item Search" in the dropdown. Sometimes it doesn't refresh the text box, which is weird. So click on something that isn't "Item Search" in that dropdown. And then click on "Item Search" again. It's not refreshing the text box, that's weird. Just let me check on my end that it's not being overwritten by something. No, it should be OK. I think you have to refresh the page, sadly. So yeah, go to "Item Search" there. Oh.
 A: It's the other one, isn't it?
-M: You might have managed to overwrite that. Hang on... Yeah, it's been overwritten somehow. Let me just put the one I wanted in... Item search. (Clicks frantically). Right, if you refresh the page again, and then go to "Item Search", I've just changed it. There you go.
+M: You might have managed to overwrite that. Hang on... Yeah, it's been overwritten somehow. Let me just put the one I wanted in... Item search. (Clicks frantically). Right, if you refresh the page again, and then go to "Item Search", I've just changed it. There you go. So, that's a very basic "One thing happens, and then there's two branches". But this Trope can be embedded inside another trope. So if you go to the "Kill then Search" trope at the bottom. Oh, that one's been overwritten as well for some reason. That's weird.
+A: I dare not refresh it.
+M: I'll just replace that with what I want as well, hang on a sec. I wonder why that's getting overwritten, that's a bit weird. Yeah, I have to hunt down that bug and see what's going on. So refresh the page, and go to that...
+A: Yeah, I see it. It's called "Item Search", yeah?
+M: Yeah, exactly. So you just say like "Then the", and then the name of the trope in quote marks, and then "Trope Happens". The first... "The Hero goes away, and then the Hero kills the Villain", so one thing after another (the first two events) and then the forking branches from the previous trope happen after that, so it's like you've embedded one trope inside another.
+A: Yeah.
+M: So, those are the basics of the language. I guess you're looking at the document on the other screen, right?
+A: Yeah.
+M: So I've got some tasks there. I've got seven tasks that I'd like you to do. And they're going to get more and more complicated. So the first one is to edit an existing trope that's somewhere. So just select a trope from that dropdown box and change it. So any one of those examples is fine.
+A: Is this one fine, the "Kill then Search"?
+M: Yeah, sure. So, I'm supposed to ask you lots of open-ended questions now. So, as you're doing this I'll ask you some questions. So just start working away.
+A: Uh, so I could. So presumably "Example 1" is the same as "Item Search", I could call that instead?
+M: Hmm, that's an interesting thought. You could try that. I think you have to click "save trope" first. You do, you have to click "save trope" first.
 
 

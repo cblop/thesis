@@ -77,15 +77,33 @@
 % \tableofcontents
 % \clearpage
 
+
+  The following list includes all conference presentations and papers published by the author which are related to this report.
+
+  \paragraph{Conference Presentations:}
+  \paragraph{[HSWI@ESWC 2014] Artfinder: A Faceted Browser for Cross-Cultural Art Discovery} Matt Thompson, Julian Padget and Steve Battle, Human Semantic Web Interaction Workshop, European Semantic Web Conference, May 2014, Crete, Greece.\label{pub:hswi}
+  \paragraph{[DHIS 2015] Every Object Tells a Story} Matt Thompson, Julian Padget and Steve Battle, Digital Heritage Meets Interactive Storytelling 2015 (conference presentation), April 2015, York UK.\label{pub:dhis}
+  \paragraph{[AISB 2015] An Interactive, Generative Punch and Judy Show Using Institutions, ASP and Emotional Agents} Matt Thompson, Julian Padget and Steve Battle, AISB AI \& Games Symposium, April 2015, Canterbury, UK.\label{pub:aisb}
+  \paragraph{[CMN 2015] Governing Narrative Events with Institutional Norms} Matt Thompson, Julian Padget and Steve Battle, Sixth International Workshop on Computational Models of Narrative, May 2015, Atlanta, USA.\label{pub:cmn}
+  \paragraph{Published Proceedings:}
+  \paragraph{[COIN@IJCAI 2015] An Interactive, Generative Punch and Judy Show Using Institutions, ASP and Emotional Agents} Matt Thompson, Julian Padget and Steve Battle, International Workshop on Coordination, Organisation, Institutions and Norms in Multi-Agent Systems, July 2015, Buenos Aires, Argentina.\label{pub:coin}~\citep{thompson2015interactive}
+  \paragraph{[ICIDS 2015] Telling Non-linear Stories with Interval Temporal Logic} Matt
+  Thompson, Julian Padget and Steve Battle, International Conference on
+  Interactive Digital Storytelling, December 2015, Copenhagen, Denmark.\label{pub:icids}~\citep{thompson2015telling}
+  \paragraph{[JURIX 2016] Describing Legal Policies as Story Tropes in Normative
+    Systems} Matthew Thompson, Julian Padget and Ken Satoh, JURIX 29th
+  International Conference on Legal Knowledge and Information Systems, December
+  2016, Nice, France.\label{pub:jurix}~\citep{thompson2016describing}
+
 \begin{abstract}
 Authoring an interactive narrative with branching story paths presents many
 challenges. Either an author must write out every single path through the story
 by hand, which is difficult and time-consuming, or they must find a way to
 automatically generate all possible story paths, which can result in a
 combinatorial explosion and lack of authorial control over the direction of the
-story.\mnote{Removed: author choosing to use intelligent agents}
+story.
 
-\mnote{Added example}
+
 Current approaches, such as those that make use of Young's \emph{Mimesis} architecture for agent-based
 story planners~\citep{young2004architecture}, combine the use of narrative
 formalisms with a story planner
@@ -98,7 +116,7 @@ is with the goal-oriented authoring style expected by story planners, where
 non-programmer story authors are required to author their stories in terms of
 ``goals'' that the narrative must meet.
 
-\mnote{Re-expressed contributions as norms for stories and tropes}
+
 This thesis offers two main contributions: the use of a normative framework to
 regulate the behaviours of a multi-agent system so that their decisions are
 guided by a narrative description, and the definition of this narrative
@@ -108,7 +126,7 @@ theme or motif in narrative, which abstracts
 certain sequence of events. After a thorough examination of existing formalisms
 for narrative and systems for interactive narrative generation, we show how tropes allow for the flexible description and abstraction of story components, a capability that existing systems lack.
 
-\mnote{Moved mention \& description of TropICAL to here}
+
 These techniques are demonstrated through the development of two tools for
 interactive narrative creation. \emph{TropICAL} (the TROPe-oriented Interactive
 Chronical Action Language) and \emph{StoryBuilder}, an Interactive Development
@@ -207,7 +225,7 @@ part of the story. The tropes can be considered as a screenplay of sorts, a user
 the director has to do. This thesis introduces the concept of \emph{tropes} as a
 story formalism for
 the first time into the interactive narrative literature, where tropes are formal, composable components
-of stories. Tropes describe identifiable patterns that recur throughout multiple
+of stories.~ Tropes describe identifiable patterns that recur throughout multiple
 stories, which become familiar to audiences through repeated exposure. Examples
 include \emph{The Hero's Journey}, where the story's protagonist leaves home to
 go on a quest, where they must overcome many challenges and obstacles before
@@ -220,14 +238,17 @@ specific scenes that must take place (such as the \emph{Deus Ex Machina} or
 \emph{Betrayal} tropes). Describing the story in terms of such tropes gives an
 author the ability to piece together a high-level version of the story
 structure, while still leaving the small details of the story to the plans of
-the character agents.
+the character agents.~
 More detailed explanations appear in section~\ref{sec:tropes-intro} and chapter~\ref{cha:tropes}.
 
 The next section of this introduction contains a high-level overview of
 interactive narrative, describing its past and future use in and beyond entertainment.
 
 \section{Interactive Narrative}
-Though media such as computer games allow a player to influence events through interaction with its characters and objects, the story of the game itself is usually predetermined. In order to create media in which the narrative is shaped by a person's interactions, one two approaches are usually taken: emergent narratives or branching narratives.
+Though media such as computer games allow a player to influence events through
+interaction with its characters and objects, the story of the game itself is
+usually predetermined. In order to create media in which the narrative is shaped
+by a person's interactions, one of two approaches are usually taken: emergent narratives or branching narratives.
 
 \textbf{Emergent narratives} occur when a story (of sorts) unfolds as a result of a player's interactions with the rules of the game world. Examples of this appear in the games \emph{Minecraft}, \emph{Civilisation}, \emph{Dwarf Fortress} and \emph{The Sims}. In these cases, no author has sat down and written a branching narrative for every eventuality in the game. Instead, the narrative is created by the story world itself in response to a player's actions.
 
@@ -275,29 +296,17 @@ system to explore
 their expectations of what a Punch and Judy show should be. This work is
 described in section~\ref{sec:emotional-pj}.
 
-\section{Interactive narrative for education}
-\mnote{Removed first sentence}
+The Punch and Judy show in section~\ref{sec:emotional-pj} also makes use of a
+\emph{social institution} (or \emph{normative framework}) to regulate the
+actions of the agents playing the roles of the puppets. Because the normative
+system only guides the actions of the agents, rather than forcing them to choose
+specific courses of action, their emotional models may affect their decision
+making in such a way that the agents choose to break away from the constraints
+of the behaviour suggested by norms, at times of extreme emotional distress for
+example.
 
-\citet{schank1990tell} argues that stories may be a useful way for humans to
-better remember a series of events, when compared to simply reciting them as a
-list of facts. Mentalists and creative students use storytelling mnemonic
-techniques to help them memorise large lists of difficult-to-remember facts with
-perfect recall. Training simulations make the use of stories taking place in immersive environments to help trainees to master new routines and techniques. These stories always follow a fixed pattern, however, unlike the mnemonic stories that people create to memorise information, which are highly personalised to the practitioner.
-
-Could a narrative that dynamically reacts to the decisions of the audience
-better enable them to remember information when compared with a static,
-unpersonalised narrative? \mnote{Rephrased as a question} Preliminary work has been done in collaboration with the Bishop's Palace in
-Wells to create an exhibition incorporating interactive narrative. Using a
-combination of Semantic Web data formats and an event calculus-based~\citep{kowalski1986logic} reasoner,
-the system infers future actions for recommendation to visitors. Description of
-the work done for this project is in section \ref{sec:bishops-palace}.
-
-Both the game-based and education-based projects have a common thread: reasoning
-over temporal data in order to predict future events, or constrain possible
-future actions to conform to a narrative domain. In order to simplify the
-writing of these constraints when working with multi-agent systems, we move away
-from the event calculus, instead describing our story components using
-\emph{normative systems}.
+\mnote{Removed the ``interactive narrative for education'' section. Will mention
+the Bishop's Palace work in summary at the end}
 
 \section{Normative Systems}
 \label{sec:normative-intro}
@@ -333,16 +342,17 @@ authors may compose the social norms that govern the behaviour of the character 
 
 \section{Story Tropes}
 \label{sec:tropes-intro}
-Story tropes are recurring motifs in the narratives of media, which allow for a more expressive manner of describing stories than existing narrative formalisms. Authors can use them to build new story components and re-use existing tropes to make hierarchical story arcs.
 
-Tropes describe commonly-seen themes and elements of stories. In a sense, they are similar to clich\'es, in that an audience becomes familiar with them through repeated exposure. However, tropes are not clich\'es. Clich\'es are story elements that have been repeated ad nauseum, that are so often used and unoriginal that they evoke tedium from their audience. Tropes may perhaps become clich\'es if they are used to the point of becoming tiresome, though some are so embedded into the collective subconscious that their presence is taken for granted. Joseph Campbell argues that \emph{The Hero's Journey} is a trope that transcends time and culture, representing a shared human blueprint for the rite-of-passage into adulthood~\cite{campbell2008hero}. In this way, stories and tropes could be considered a cultural language for describing common human themes. Clich\'es could not be described as such: they are simply overexploited ideas.
+
+Tropes describe commonly-seen themes and elements of stories. In a sense, they are similar to clich\'es, in that an audience becomes familiar with them through repeated exposure. However, tropes are not clich\'es. Clich\'es are story elements that have been repeated ad nauseum, that are so often used and unoriginal that they evoke tedium from their audience. Tropes may perhaps become clich\'es if they are used to the point of becoming tiresome, though some are so embedded into the collective subconscious, that their presence is taken for granted. Joseph Campbell argues that \emph{The Hero's Journey} is a trope that transcends time and culture, representing a shared human blueprint for the rite-of-passage into adulthood~\cite{campbell2008hero}. In this way, stories and tropes could be considered a cultural language for describing common human themes. Clich\'es could not be described as such: they are simply overexploited ideas.
 
 The themes, scenes, characters and structure of a story can be described in terms of tropes. Even individual lines of dialogue can be a trope, such as James Bond's witty put-downs when he defeats an enemy. Tropes describe parts of a story in an abstract way, which means that they can be easily identified in multiple stories.
 
 Examples of tropes are:
 
 \begin{compactitem}
-\item \textbf{The Hero's Journey}: A hero answers a call to adventure, and leaves home to go on a journey. They defeat the villain along the way, returning back home triumphant.
+\item \textbf{The Hero's Journey}: A hero answers a call to adventure, and
+  leaves home to go on a journey. The hero defeats the villain along the way, returning back home triumphant.
 \item \textbf{The Evil Empire}: The villain is part of an empire, which tries to stop the hero at all costs.
 \item \textbf{The MacGuffin}: There is an object that the hero needs, the search for which is used to drive the plot.
 \item \textbf{Chekhov's Gun}: If a gun appears somewhere in the first act, it must be fired by the end of the third.
@@ -350,45 +360,102 @@ Examples of tropes are:
 
 Tropes can describe a story at several layers of abstraction, meaning that tropes can contain other tropes as sub-tropes. For example, \emph{The Hero's Journey} can contain the \emph{Hero}, \emph{Quest}, and \emph{Call to Adventure} sub-tropes. This allows a degree of expressivity unavailable in other narrative models described in the \emph{Related Work} section.
 
-In interactive narrative generation, where a player may take one of many possible paths through a story, parts of the story are often procedurally generated in order to save an author the time and effort of manually writing out all the branches of the narrative. However, this means that the author must give up some control over the structure and content of the story. By describing the intended contents of the story in an abstract manner using tropes, an author is able to give it structure. In our case, the procedural generation occurs through the use of intelligent agents to model story characters. These character agents are guided towards pursuing actions that fit the tropes in the authored narrative, thus gently making sure they meet the expectations of the author while allowing them some degree of freedom with which to pursue their own goals.
+In interactive narrative generation, where a player may take one of many
+possible paths through a story, parts of the story are often procedurally
+generated in order to save an author the time and effort of manually writing out
+all the branches of the narrative. However, this means that the author must give
+up some control over the structure and content of the story. By describing the
+intended contents of the story in an abstract manner using tropes, an author is
+still able to give it structure. In our case, the procedural generation occurs
+through the use of intelligent agents to model story characters, which interact
+with the player's actions. These character
+agents are guided towards pursuing actions that fit the tropes in the authored
+narrative, thus gently making sure they meet the expectations of the author
+while allowing them some degree of freedom with which to pursue their own goals.
+Additionally, the player's allowed actions are constrained according to the
+defined tropes of the story, so that the narrative emerges as a result of the
+interactions that are taken as a result of the allowed actions, along with the
+way that the character agents respond to these interactions.\mnote{Added bit
+  about player interactions}
 
 \section{Answer Set Programming for Story Solving}
 \label{sec:trope-interface}
 In section~\ref{sec:tropical}, we describe TropICAL, our programming language
-for describing social institutions in terms of story tropes. Using a controlled
+for defining of story tropes. The requirements for this language are:
+
+\begin{compactenum}
+\item Easy to learn for authors who are unfamiliar with programming\label{req1}
+  \item Able to express sequences of events and branching events\label{req2}
+  \item Must have a mechanism for abstraction (embedding sub-tropes within tropes)\label{req3}
+\end{compactenum}
+
+In order to satisfy requirement~\ref{req1}, TropICAL uses a controlled
 natural language syntax resembling that of the popular interactive fiction
-programming language Inform 7, it is designed to allow authors with no previous
+programming language Inform 7, designed to allow authors with no previous
 experience with programming to describe their story in terms of tropes. An
-author uses this language to combine and sequence their tropes together. When
-the tropes are compiled into the normative language InstAL~\citep{cliffe2007specifying}, they are defined
+author uses this language to combine and sequence their tropes together, using
+keywords such as ``X Then Y'' and ``X Or Y'' to specify sequences of events or
+branches (requirement~\ref{req2}). Requirement~\label{req3}, the mechanism for
+creating abstractions, is implemented by referring to other tropes by name (for
+example, \emph{Then the ``Quest'' trope happens}).\mnote{added how requirements
+  are met}
+
+When the tropes are compiled into the normative language InstAL~\citep{cliffe2007specifying}, they are defined
 strictly in terms of permissions and obligations. InstAL allows the trope
 descriptions to be compiled a second time into AnsProlog, an Answer Set
 Programming (ASP) language, which can then be used with an Answer Set solver
 such as Potassco's Clingo~\citep{gebser2011potassco} to generate all the different
 possible actions of each character at any point in the story, given the
-constraints of the described tropes. This means that even when multiple
-characters are performing multiple events under the direction of multiple
-simultaneous tropes, we will always be able to work out which permissions and
-obligations are currently acting on our intelligent agent characters.
+constraints expressed in the described tropes.
 
 \section{Outline}
+
+
 % Outline of sections goes here
-This thesis begins with a review of the literature in Section~\ref{cha:literature-review}. This review covers two main fields of research: narrative research from social science (Section~\ref{sec:narratology}), and interactive narrative research from computer science (Section~\ref{sec:implementations}).
-The ``Institutions as Story Worlds'' chapter (\ref{cha:institutions}) describes the theory and research behind instituitions, and discusses the merit of their use for describing story, comparing their use against other logics and planner-based systems.
-Chapter~\ref{cha:agents} examines the use of intelligent agents for the
-simulation of story characters, and how we may use techniques such as emotional
-modelling to make them more entertaining and believable.
-The ``Tropes as Story Components'' chapter (\ref{cha:tropes}), discusses the use
-of \emph{tropes} as story components, and why they improve upon existing narrative formalisms.
-Chapter~\ref{cha:tropical} describes our TropICAL programming language, which
-translates controlled natural-language trope descriptions into InstAL
-institution definitions. Chapter~\ref{cha:storybuilder} describes the
-``Storybuilder'' tool designed for the interactive creation and visualisation of
-tropes, allowing the user to combine the tropes to describe the story world for
-an interactive narrative. This chapter also contains a qualitative evaluation of
-the tool through a thematic analysis of eight participants building their own
-stories with the tool.
-The final chapter looks back at the research done, evaluating its potential impact and discussing possible future work. 
+The structure of this thesis is as follows:
+
+\begin{compactenum}
+\item A \textbf{Literature Review} (chapter~\ref{cha:literature-review}).
+  Because we are developing a formalism with which to describe narrative
+  components, the literature review first covers narrative research
+  (narratology) from social science (section~\ref{sec:narratology}), before
+  examining existing implementations of interactive narrative and narrative
+  generation systems from computer science (section~\ref{sec:implementations}).
+\item The use of \textbf{Institutions as Story Worlds} is described in
+  chapter~\ref{cha:institutions}, exploring the theory and research behind
+  social institutions. It discusses the merit of their use for describing
+  stories, comparing their use against other logics and planner-based systems
+  from the previous section. This chapter is a development of ``Governing
+  Narrative Events with Institutional Norms'', which is listed as
+  the \textbf{[CMN 2015]} conference paper in the preamble.
+\item Using \textbf{Tropes as Story Components},
+  chapter~\ref{cha:tropes},
+  examines the use of \emph{tropes} as story components, and why they improve
+  upon existing narrative formalisms. This is linked to the work in
+  chapter~\ref{cha:institutions} by describing how tropes can be used as a
+  ``user interface'' through which story authors would be able to simply
+  describe the social institutions that govern story characters' behaviours.
+  Work from this chapter appears in a legal
+  context in~\cite{thompson2016describing}.
+\item In order to provide context for how social institutions are useful for
+  governing character agents, chapter~\ref{cha:agents} explains how
+  \textbf{Intelligent Agents} may be used to simulate characters in a story
+  (chapter~\ref{cha:agents}), describing work done as part of the \textbf{[AISB
+    2015]} paper.
+\item Following on from the requirements derived from
+  chapters~\ref{cha:institutions} to~\ref{cha:agents},
+  chapter~\ref{cha:tropical} describes the design and implementation of our \textbf{TropICAL} programming
+  language for tropes, along with examples of its use to build several stories.
+\item Chapter~\ref{cha:storybuilder} develops the concept behind
+  \emph{TropICAL} further with the implementation of the ``StoryBuilder'' tool,
+  designed for the interactive creation and visualisation of tropes, allowing
+  the user to combine tropes to describe the story world for an interactive
+  narrative. This chapter also contains a qualitative evaluation of the tool
+  through a thematic analysis of eight participants building their own stories
+  with the tool.
+\item The final chapter, \textbf{Conclusions and Future Work}, looks back at the
+  research done, evaluating its potential impact and discussing possible future work.
+\end{compactenum}
 
 % litrev
 
@@ -1255,7 +1322,7 @@ The corresponding story functions are:
 Some story functions map to Punch and Judy better than others (for example, it is debatable as to whether or not the sausages can be considered a ``magical agent''), but Propp's formalism seems well suited to Punch and Judy for the most part. The advantage of using Propp for the Punch and Judy story domain is that the story function concept maps well to the idea of internal events in institutional models.
 
 \subsubsection{Combining Interval Temporal Logic and Modal Logic for Propp}\label{sec:propplogic}
-\mnote{Put in definitions as a footnote, Cyrillic if you want}
+
 Narrative construction can be described using two terms: \emph{fabula} and \emph{syuzhet}. Fabula is the events of the story as they occur in chronological order, but syuzhet refers to those events as they are ordered in the story's telling. Fabula describes one event following another, but syuzhet could describe events occuring out of order, branching sequences and events that occur at the same time.
 
 The challenge faced here is how to find a way of not only describing the syuzhet of one story, but of all possible stories and paths through a story in a narrative world.
@@ -1265,7 +1332,7 @@ Modal logic extends classical propositional and predicate logic with modalities,
 Classic modal logic deals with \emph{alethic modality}, which describes whether a statement is \emph{possible} or \emph{necessary}. This is implemented using unary operators to qualify statements. For example, $\Diamond P$ states that $P$ is possible and $\Box P$ states that $P$ is necessary.
 Naturally, we can use modalities beyond just possibility and necessity. In order to describe the syuzhet of a story, we need to be able to make statements such as ``The Crocodile eats the sausages at the beginning of the scene'', and ``Punch kills the baby while before his wife returns''. For this, we turn to \emph{temporal logic}.
 
-\mnote{Why use modal logic for possible worlds?}
+
 
 \paragraph{Temporal Logics}
 Arthur Prior is the first to employ modal logic as a way of describing sequences of time in his 1957 work \emph{Time and Modality} \cite{prior2003time}. Here he uses just two modal operators, $P$ and $F$, representing \emph{some time in the past} and \emph{some time in the future} respectively.
@@ -1469,7 +1536,7 @@ Violation events occur when an agent has failed to fulfil an obligation before t
 
 \subsubsection{Event Generation and Consequences}
 An \textbf{event generation} function, $\mathcal{G}$, describes how events
-($\mathcal{E}$, usually external, but can also be internal) %\mnote{Added $\mathcal{E}$ explanation here}
+($\mathcal{E}$, usually external, but can also be internal) %
 can generate other (usually institutional) events, conditional upon the current institutional state ($\cal X$). This is the counts-as relation.  For example, if an agent leaves the stage while the \emph{interdiction} event holds, they trigger the \emph{leavestage} event. This combination generates the \emph{absentation} institutional event (rule~\ref{eq:absentation}). Further examples appear in figure~\ref{fig:gen}.
 
 Event generation functions follow a $\langle \mathtt{preconditions} \rangle \rightarrow \{\mathtt{postconditions}\}$ format. The preconditions consist of a set of fluents that hold at that time, along with an event to have occurred. The postconditions are the events that are generated. The generation functions are used to generate internal, institutional events from external events.
@@ -1564,7 +1631,7 @@ $\mathcal{C^{\downarrow} (X, E)}:\left\{\mbox{%
 \end{align}
 \end{minipage}}\right.$
 \caption{Fluent termination in the sausage scene} \label{fig:term}
-\end{figure}%\mnote{Added \emph{active(interdiction)} to top of fig. \ref{fig:init}}
+\end{figure}%
 
 \section{The Bishop's Palace Interactive Story Project}
 \label{sec:bishops-palace}
@@ -2804,7 +2871,7 @@ implemented in practice, see section~\ref{} of chapter~\ref{cha:agents}.
   and dialogue as a set of plans, which each agent will follow according to
   their beliefs, desires and intentions as they ``act out'' the story.
 
-  Alice sets the simulation running, but sees that althogh the agents are interacting
+  Alice sets the simulation running, but sees that although the agents are interacting
   with each other as intended, there is no structure or sense of drama to the
   story. It merely seems to be one event happening after another.
 
@@ -2839,6 +2906,80 @@ implemented in practice, see section~\ref{} of chapter~\ref{cha:agents}.
     Then the Detective catches the Fugitive
       Or the Fugitive escapes
 \end{quote}
+
+From Alice's story, we can derive the following requirements:
+
+\begin{compactitem}
+\item She needs a system for describing stories that can be used with a
+  multi-agent system framework such as JASON
+\item The system needs to direct the behaviour of the agents so that their
+  actions fit within the description of a story
+\item She needs to be able to write and re-use story components that fit the
+  theme of her story (in this case, ``film noir'').
+\item These story components must be able to express both sequences of events
+  and diverging (``branching'') events
+\item She wants to be able to select existing story components from a library or database
+\item She also wants the ability to create her own story components and save
+  them to the database
+\end{compactitem}
+
+\begin{quote}
+  Bob is a traditional story author interested in writing interactive narratives
+  with branching plot lines. He has written a few stories in the style of the
+  ``Choose Your Own Adventure'' books, using the traditional method of using paper and
+  pen to write down the stories. He implements the story branches by labelling
+  each scene with a name such as ``The Hero Sets Off on a Journey'', or ``The
+  Villain Deceives a Victim'', and referring to them by name whenever a
+  branching point occurs. For example, when the Hero of a story is tasked with a
+  quest to complete, the decision could be to go to the ``Leave Home and Go on a
+  Journey'' scene, or the ``Stay at Home and Avoid Adventure'' scene, which
+  would be the names of scenes leading either to further choices, or the end of
+  the story.
+  While he is writing the story, he finds it difficult to keep a mental model of
+  the whole plot, with all its branches, in his head. As he creates new choices
+  and branching points in the story, he finds himself having to pin up notes on
+  a board, and connect them with string.
+  Frustrated, he searches for software to help him with the process of authoring
+  non-linear stories, eventually finding a piece of software called ``Twine''.
+  Twine's user inteface uses the analogy of notes on a pinboard connected with
+  string, the exact process he is used to. He quickly inputs the story he is
+  working on into Twine, and it produces an HTML website with hyperlinks to
+  pages representing the scenes of his story.
+  Next, Bob want to get more ambitious by abstracting away different parts of
+  his story and re-using them in different places. He wants his story to be
+  heavily quest-driven, with the player being given many different quests and
+  missions over the course of the game. He decides that all of these quests
+  follow a common pattern:
+
+  The Hero is at Home
+  Then the Hero meets the Dispatcher
+  Then the Hero receives a Quest
+  Then the Hero completes the Quest
+    Or the Hero ignores the Quest
+
+  In this case, the actual content of the ``Quest'' would change for each
+  individual quest, but the way the player receives and embarks on the Quest
+  remains the same. Bob wants to write this combination of nodes and branches
+  once, and then re-use it as a single node labelled ``Quest''. Unfortunately,
+  he finds no way to do this using Twine, and he is forced to copy and paste the
+  existing nodes every time he wants to put a Quest into his story.
+\end{quote}
+
+Bob shares some requirements with Alice:
+
+\begin{compactitem}
+  \item He wants to be able to create story components with sequences of events
+    and branching events
+  \item He wants to be able to save and re-use the components (to a database,
+    for example)
+  \item 
+\end{compactitem}
+
+However, Bob also has some different requirements from Alice:
+
+\begin{compactitem}
+\end{compactitem}
+
 
 \subsection{Requirements}
 

@@ -78,22 +78,6 @@
 % \clearpage
 
 
-  The following list includes all conference presentations and papers published by the author which are related to this report.
-
-  \paragraph{Conference Presentations:}
-  \paragraph{[HSWI@ESWC 2014] Artfinder: A Faceted Browser for Cross-Cultural Art Discovery} Matt Thompson, Julian Padget and Steve Battle, Human Semantic Web Interaction Workshop, European Semantic Web Conference, May 2014, Crete, Greece.\label{pub:hswi}
-  \paragraph{[DHIS 2015] Every Object Tells a Story} Matt Thompson, Julian Padget and Steve Battle, Digital Heritage Meets Interactive Storytelling 2015 (conference presentation), April 2015, York UK.\label{pub:dhis}
-  \paragraph{[AISB 2015] An Interactive, Generative Punch and Judy Show Using Institutions, ASP and Emotional Agents} Matt Thompson, Julian Padget and Steve Battle, AISB AI \& Games Symposium, April 2015, Canterbury, UK.\label{pub:aisb}
-  \paragraph{[CMN 2015] Governing Narrative Events with Institutional Norms} Matt Thompson, Julian Padget and Steve Battle, Sixth International Workshop on Computational Models of Narrative, May 2015, Atlanta, USA.\label{pub:cmn}
-  \paragraph{Published Proceedings:}
-  \paragraph{[COIN@IJCAI 2015] An Interactive, Generative Punch and Judy Show Using Institutions, ASP and Emotional Agents} Matt Thompson, Julian Padget and Steve Battle, International Workshop on Coordination, Organisation, Institutions and Norms in Multi-Agent Systems, July 2015, Buenos Aires, Argentina.\label{pub:coin}~\citep{thompson2015interactive}
-  \paragraph{[ICIDS 2015] Telling Non-linear Stories with Interval Temporal Logic} Matt
-  Thompson, Julian Padget and Steve Battle, International Conference on
-  Interactive Digital Storytelling, December 2015, Copenhagen, Denmark.\label{pub:icids}~\citep{thompson2015telling}
-  \paragraph{[JURIX 2016] Describing Legal Policies as Story Tropes in Normative
-    Systems} Matthew Thompson, Julian Padget and Ken Satoh, JURIX 29th
-  International Conference on Legal Knowledge and Information Systems, December
-  2016, Nice, France.\label{pub:jurix}~\citep{thompson2016describing}
 
 \begin{abstract}
 Authoring an interactive narrative with branching story paths presents many
@@ -103,19 +87,25 @@ automatically generate all possible story paths, which can result in a
 combinatorial explosion and lack of authorial control over the direction of the
 story.
 
-
 Current approaches, such as those that make use of Young's \emph{Mimesis} architecture for agent-based
-story planners~\citep{young2004architecture}, combine the use of narrative
+story planners, or drama manager-based systems such as Mateas and Stern's \emph{Fa\c{c}ade}, combine the use of narrative
 formalisms with a story planner
 to ``direct'' the actions of character agents in a story. Shortcomings exist in
 both components of this approach, however: current formalisms such as Propp's
-``Morphology'' or Lehnert's ``Plot Units'' lack any kind of mechanism through
-which an author may create abstractions for stories, by creating a new story
-``component'' as a combination of existing ``components''. The other shortcoming
-is with the goal-oriented authoring style expected by story planners, where
-non-programmer story authors are required to author their stories in terms of
-``goals'' that the narrative must meet.
+``Morphology'' or Lehnert's ``Plot Units'', though they are flexible and
+expressive enough to describe almost any type of story, offer ways to piece
+together a story out of parts, but lack the means to define new story parts or
+organisations of story parts with which an author may create abstractions for stories. This would be achieved, for example, by creating a new story
+``component'' as a combination of existing ``components''. The story planner
+requires the author adopt a goal-oriented style which is unfamiliar and
+relatively awkward for writers without experience of programming.
 
+Rather than using a formalism to describe the components of a story, the
+approach suggested in this thesis is to describe the parts of the story
+\emph{informally}, using a controlled natural language syntax. Once the parts of
+the story are described in this way, they are formalised by translation into
+InstAL, a language for social institutions, then AnsProlog, an Answer Set
+Programming language.
 
 This thesis offers two main contributions: the use of a normative framework to
 regulate the behaviours of a multi-agent system so that their decisions are
@@ -427,7 +417,7 @@ The structure of this thesis is as follows:
   stories, comparing their use against other logics and planner-based systems
   from the previous section. This chapter is a development of ``Governing
   Narrative Events with Institutional Norms'', which is listed as
-  the \textbf{[CMN 2015]} conference paper in the preamble.
+  the \textbf{[CMN 2015]} conference paper in the list of papers in section~\ref{sec:papers}.
 \item Using \textbf{Tropes as Story Components},
   chapter~\ref{cha:tropes},
   examines the use of \emph{tropes} as story components, and why they improve
@@ -458,6 +448,26 @@ The structure of this thesis is as follows:
 \end{compactenum}
 
 % litrev
+
+\section{Published Works}
+\label{sec:papers}
+
+  The following list includes all conference presentations and papers published by the author which are related to this report.
+
+  \paragraph{Conference Presentations:}
+  \paragraph{[HSWI@ESWC 2014] Artfinder: A Faceted Browser for Cross-Cultural Art Discovery} Matt Thompson, Julian Padget and Steve Battle, Human Semantic Web Interaction Workshop, European Semantic Web Conference, May 2014, Crete, Greece.\label{pub:hswi}
+  \paragraph{[DHIS 2015] Every Object Tells a Story} Matt Thompson, Julian Padget and Steve Battle, Digital Heritage Meets Interactive Storytelling 2015 (conference presentation), April 2015, York UK.\label{pub:dhis}
+  \paragraph{[AISB 2015] An Interactive, Generative Punch and Judy Show Using Institutions, ASP and Emotional Agents} Matt Thompson, Julian Padget and Steve Battle, AISB AI \& Games Symposium, April 2015, Canterbury, UK.\label{pub:aisb}
+  \paragraph{[CMN 2015] Governing Narrative Events with Institutional Norms} Matt Thompson, Julian Padget and Steve Battle, Sixth International Workshop on Computational Models of Narrative, May 2015, Atlanta, USA.\label{pub:cmn}
+  \paragraph{Published Proceedings:}
+  \paragraph{[COIN@IJCAI 2015] An Interactive, Generative Punch and Judy Show Using Institutions, ASP and Emotional Agents} Matt Thompson, Julian Padget and Steve Battle, International Workshop on Coordination, Organisation, Institutions and Norms in Multi-Agent Systems, July 2015, Buenos Aires, Argentina.\label{pub:coin}~\citep{thompson2015interactive}
+  \paragraph{[ICIDS 2015] Telling Non-linear Stories with Interval Temporal Logic} Matt
+  Thompson, Julian Padget and Steve Battle, International Conference on
+  Interactive Digital Storytelling, December 2015, Copenhagen, Denmark.\label{pub:icids}~\citep{thompson2015telling}
+  \paragraph{[JURIX 2016] Describing Legal Policies as Story Tropes in Normative
+    Systems} Matthew Thompson, Julian Padget and Ken Satoh, JURIX 29th
+  International Conference on Legal Knowledge and Information Systems, December
+  2016, Nice, France.\label{pub:jurix}~\citep{thompson2016describing}
 
 
 % HACK est. poms remaining: 
@@ -2945,7 +2955,7 @@ From Alice's story, we can derive the following requirements:
   string, the exact process he is used to. He quickly inputs the story he is
   working on into Twine, and it produces an HTML website with hyperlinks to
   pages representing the scenes of his story.
-  Next, Bob want to get more ambitious by abstracting away different parts of
+  Next, Bob wants to get more ambitious by abstracting away different parts of
   his story and re-using them in different places. He wants his story to be
   heavily quest-driven, with the player being given many different quests and
   missions over the course of the game. He decides that all of these quests

@@ -5,6 +5,7 @@
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{caption}
+\usepackage{paralist}
 \usepackage{amsmath}
 \usepackage{latexsym}
 \usepackage{multirow}
@@ -71,12 +72,11 @@
 \begin{document}
 
 % ----------------------------------
-% \maketitle
+\maketitle
 
-% \clearpage
-% \tableofcontents
-% \clearpage
-
+\clearpage
+\tableofcontents
+\clearpage
 
 
 \begin{abstract}
@@ -100,36 +100,60 @@ organisations of story parts with which an author may create abstractions for st
 requires the author adopt a goal-oriented style which is unfamiliar and
 relatively awkward for writers without experience of programming.
 
-Rather than using a formalism to describe the components of a story, the
+Rather than having authors learn a specific formalism to describe the components of a story, the
 approach suggested in this thesis is to describe the parts of the story
-\emph{informally}, using a controlled natural language syntax. Once the parts of
+using a controlled natural language syntax. To the author, this should seem as
+though they are describing the trope informally. Once the parts of
 the story are described in this way, they are formalised by translation into
 InstAL, a language for social institutions, then AnsProlog, an Answer Set
 Programming language.
 
-This thesis offers two main contributions: the use of a normative framework to
+We propose the use of
+\emph{story tropes} as a
+formalism with which authors describe composable, abstractable story components of their stories, and
+the use of a normative framework to
 regulate the behaviours of a multi-agent system so that their decisions are
-guided by a narrative description, and the definition of this narrative
-description in terms of \emph{story tropes}, which act as a formalism for the
-expression of composable, abstractable story components. A trope is a recurring
+guided by the narrative described in the tropes. A trope is a recurring
 theme or motif in narrative, which abstracts
-certain sequence of events. After a thorough examination of existing formalisms
-for narrative and systems for interactive narrative generation, we show how tropes allow for the flexible description and abstraction of story components, a capability that existing systems lack.
+certain sequence of events. Existing narrative formalisms have two major
+shortcomings: they do not allow authors to create abstractions (or usually even to change
+the formalism in any way), and they require that authors memorise the specific
+rules and components that make up the formalism.
+We show how tropes allow for the flexible description and abstraction of story
+components, a capability that existing systems lack. Additionally, most authors
+are already familiar with the concept of tropes, as
+we show through a questionnaire of interactive fiction authors. This means that
+they need not learn a new formalism in order to create their stories.
 
+The second contribution of this thesis is the translation of these tropes into
+\emph{social institutions}, describing the permissions and obligations of the
+characters at each point in the story. This means that narratives resulting from
+the tropes be enacted (validated) through their embedding inside a computational
+framework. We use this method to resolve the shortcomings of using drama
+managers and planners to direct the actions of character agents. Instead of the
+agents being strictly \emph{regimented} and told what to do, their behaviour is
+\emph{regulated} through social norms. This gives them some level of autonomy,
+so that they may break away from the narrative in special circumstances, such as
+when the characters enter extreme states of emotion.
 
-These techniques are demonstrated through the development of two tools for
+To address the shortcomings of existing narrative formalisms and the use of
+planners and drama managers to direct character agents, we have developed two
+tools that build on the formalisation of tropes to assist in the talk of
 interactive narrative creation. \emph{TropICAL} (the TROPe-oriented Interactive
 Chronical Action Language) and \emph{StoryBuilder}, an Interactive Development
 Environment (IDE) and visualisation tool to aid in the writing and combining of
-tropes in \emph{TropICAL}. \emph{TropICAL} has a controlled natural language
-syntax, and compiles to the \emph{InstAL} language for describing institutions
-(sets of norms which regulate the behaviour of agents), which itself compiles to
-AnsProlog, an Answer Set Programming (ASP) language. Once compiled to AnsProlog
-code, the system is able to use an Anwser Set solver to generate all the
-different possible paths through the story for any given set of trope, and to
-ensure that a combination of events in a story are valid for any set of tropes.
+tropes in \emph{TropICAL}. \emph{TropICAL} is a language for the description of
+tropes. It has a controlled natural language
+syntax, and compiles to a representation that provides the means for bounded
+model checking against the author's desired properties for the story.
 
-We evaluate the suitability of these tools for interactive story construction through a thematic analysis of story authors' completion of story-authoring tasks using the language. The participants complete tasks in which they have to describe stories with different degrees of complexity, finally requiring them to reuse existing tropes in their own trope abstractions. The thematic analysis identifies and examines the themes and patterns that emerge from the story authors' use of the tool.
+We evaluate the suitability of these tools for interactive story construction
+through a thematic analysis of story authors' completion of story-authoring
+tasks using the language. The participants complete tasks in which they have to
+describe stories with different degrees of complexity, finally requiring them to
+reuse existing tropes in their own trope abstractions. The thematic analysis
+identifies and examines the themes and patterns that emerge from the story
+authors' use of the tool.\mnote{Will rewrite once analysis is complete}
 \end{abstract}
 
 % ----------------------------------
@@ -201,7 +225,8 @@ by authors with no previous programming experience remains a challenge.
 % Talk about components
 Another challenge in the field is the identification of a suitable formalism for
 narrative. Researchers still use structuralist formalisms created almost a
-century ago, such as Propp's ``Morphology of the
+century ago, such as Aarne-Thompson's ``Tale-Type
+Index''~\citep{aarne1987types}, or Propp's ``Morphology of the
 Folktale''~\citep{propp1968morphology}, due to inertia, familiarity, and the fact
 that they are ``good enough'' for most purposes.
 
@@ -251,7 +276,7 @@ the loosest possible sense --- they probably have no shape or structure, no recu
 
 Ideally, we could combine the best features of both types of non-linear
 narrative: the labour-saving generative element of emergent narratives and the
-structural control of the branching narratives, showing control of the narrative
+structural control of the branching narratives, sharing control of the narrative
 between author and actor.
 
 \section{Interactive narrative for games}
@@ -261,7 +286,7 @@ creation of ever more fantastic worlds. Game creators are now experimenting with
 ways to make a narrative itself interactive. Imagine playing through a version
 of Romeo and Juliet where there is a possibility that the characters could
 escape their fates. Or playing a detective in a game where the story changes
-depending on how quickly you can piece together clues. This is the new frontier that we are exploring with this research: the as-yet uncharted domain of \emph{interactive} storytelling.
+depending on how quickly you can piece together clues. This is the new frontier that we are exploring with this research: the domain of \emph{interactive} storytelling.
 
 We are defined by the choices we make throughout our lives. These choices form a
 story that describes our own personal history. If a player can watch somebody's
@@ -273,8 +298,7 @@ perhaps computer games, enable this to some extent. But the story is still
 experienced passively by the consumer in these media. A truly interactive
 narrative would go deeper, as though you had truly lived as another person,
 forced to make the same decisions in the same situations. This has the potential
-to enable a whole new level of narrative immersion.\mnote{Toned this down a
-  little bit}
+to enable a whole new level of narrative immersion.
 
 Our initial attempt at creating an interactive narrative ``game'' uses
 intelligent agents with emotional models to act out an interactive Punch and
@@ -294,9 +318,6 @@ specific courses of action, their emotional models may affect their decision
 making in such a way that the agents choose to break away from the constraints
 of the behaviour suggested by norms, at times of extreme emotional distress for
 example.
-
-\mnote{Removed the ``interactive narrative for education'' section. Will mention
-the Bishop's Palace work in summary at the end}
 
 \section{Normative Systems}
 \label{sec:normative-intro}
@@ -365,8 +386,7 @@ while allowing them some degree of freedom with which to pursue their own goals.
 Additionally, the player's allowed actions are constrained according to the
 defined tropes of the story, so that the narrative emerges as a result of the
 interactions that are taken as a result of the allowed actions, along with the
-way that the character agents respond to these interactions.\mnote{Added bit
-  about player interactions}
+way that the character agents respond to these interactions.
 
 \section{Answer Set Programming for Story Solving}
 \label{sec:trope-interface}
@@ -387,8 +407,7 @@ author uses this language to combine and sequence their tropes together, using
 keywords such as ``X Then Y'' and ``X Or Y'' to specify sequences of events or
 branches (requirement~\ref{req2}). Requirement~\label{req3}, the mechanism for
 creating abstractions, is implemented by referring to other tropes by name (for
-example, \emph{Then the ``Quest'' trope happens}).\mnote{added how requirements
-  are met}
+example, \emph{Then the ``Quest'' trope happens}).
 
 When the tropes are compiled into the normative language InstAL~\citep{cliffe2007specifying}, they are defined
 strictly in terms of permissions and obligations. InstAL allows the trope
@@ -404,47 +423,64 @@ constraints expressed in the described tropes.
 % Outline of sections goes here
 The structure of this thesis is as follows:
 
-\begin{compactenum}
-\item A \textbf{Literature Review} (chapter~\ref{cha:literature-review}).
-  Because we are developing a formalism with which to describe narrative
-  components, the literature review first covers narrative research
+\begin{compactenum}[{Chapter} 1:]
+\newcounter{theenum}
+\setcounter{theenum}{1}
+\item A \textbf{Literature Review}.
+  We approach the literature survey from two perspectives: those of \emph{narratology},
+  and \emph{interactive narrative}.
+  In order to evaluate the current state of narrative formalisms, the literature review first covers narrative research
   (narratology) from social science (section~\ref{sec:narratology}), before
   examining existing implementations of interactive narrative and narrative
-  generation systems from computer science (section~\ref{sec:implementations}).
+  generation systems from computer science
+  (section~\ref{sec:implementations}).\mnote{Changed wording}
 \item The use of \textbf{Institutions as Story Worlds} is described in
-  chapter~\ref{cha:institutions}, exploring the theory and research behind
+  this chapter, exploring the theory and research behind
   social institutions. It discusses the merit of their use for describing
   stories, comparing their use against other logics and planner-based systems
-  from the previous section. This chapter is a development of ``Governing
-  Narrative Events with Institutional Norms'', which is listed as
-  the \textbf{[CMN 2015]} conference paper in the list of papers in section~\ref{sec:papers}.
-\item Using \textbf{Tropes as Story Components},
-  chapter~\ref{cha:tropes},
-  examines the use of \emph{tropes} as story components, and why they improve
-  upon existing narrative formalisms. This is linked to the work in
-  chapter~\ref{cha:institutions} by describing how tropes can be used as a
-  ``user interface'' through which story authors would be able to simply
+  from the previous section. This chapter is a development of \emph{Governing
+    Narrative Events with Institutional Norms}, which is listed as
+  the \textbf{[CMN 2015]} conference paper in the list of papers below (section~\ref{sec:papers}).
+\item Using \textbf{Tropes as Story Components}
+  examines the use of \emph{tropes} as story components, analysing the process
+  of turning an informal trope description into something more formal that can improve
+  upon existing narrative formalisms.\mnote{reworded}This is linked to the work in
+  chapter~\ref{cha:institutions} by showing how tropes can be used as a
+  ``user interface'' through which story authors would be able to
   describe the social institutions that govern story characters' behaviours.
+  Just as a computer user interface exposes the useful parts of a piece of
+  software, hiding complexity that is irrelevant to the user, our tropes allow
+  authors to create their story components in controlled natural language,
+  without having to worry about the complex code that results from the
+  translation process.\mnote{Explained the UI metaphor}
   Work from this chapter appears in a legal
-  context in~\cite{thompson2016describing}.
-\item In order to provide context for how social institutions are useful for
-  governing character agents, chapter~\ref{cha:agents} explains how
-  \textbf{Intelligent Agents} may be used to simulate characters in a story
-  (chapter~\ref{cha:agents}), describing work done as part of the \textbf{[AISB
-    2015]} paper.
-\item Following on from the requirements derived from
-  chapters~\ref{cha:institutions} to~\ref{cha:agents},
-  chapter~\ref{cha:tropical} describes the design and implementation of our \textbf{TropICAL} programming
-  language for tropes, along with examples of its use to build several stories.
-\item Chapter~\ref{cha:storybuilder} develops the concept behind
-  \emph{TropICAL} further with the implementation of the ``StoryBuilder'' tool,
+  context in \textbf{[JURIX2016]}.
+\item Our specification of tropes as social institutions allows the character
+  agents some degree of autonomy, with the possibility of them breaking away
+  from the narrative in extreme circumstances.
+  This chapter,
+  \textbf{Intelligent Agents}, gives an example where the character
+  agents are given emotional models that allow them to violate the social norms
+  of the story in times of high emotional distress, describing work done as part of the \textbf{[AISB
+    2015]} paper.\mnote{Added justification to fit the narrative of using social
+  norms to allow autonomy}
+\item We use the requirements that emerge from Chapters~\ref{cha:institutions}
+  to~\ref{cha:agents} to inform the design and implementation of our \textbf{TropICAL} programming
+  language for tropes. The chapter concludes with examples of its use to build several stories.
+\item
+  Keeping a mental model of the branches of a story is simple when only one
+  trope is involved, but can be difficult when several tropes are active during a story.
+  Branching narratives can be difficult to check once they start becoming at all
+  complex. Tool support is needed to help visualise the changes in a
+  story.\mnote{Added motivation} For
+  this reason, this chapter describes the implementation of the \textbf{StoryBuilder} tool,
   designed for the interactive creation and visualisation of tropes, allowing
   the user to combine tropes to describe the story world for an interactive
-  narrative. This chapter also contains a qualitative evaluation of the tool
+  narrative. We have carried out a qualitative evaluation of the tool
   through a thematic analysis of eight participants building their own stories
   with the tool.
-\item The final chapter, \textbf{Conclusions and Future Work}, looks back at the
-  research done, evaluating its potential impact and discussing possible future work.
+\item The final chapter, \textbf{Conclusions and Future Work}, reviews the
+  research done, evaluating its potential impact and discusses possible future work.
 \end{compactenum}
 
 % litrev
@@ -2986,9 +3022,6 @@ Bob shares some requirements with Alice:
 \end{compactitem}
 
 However, Bob also has some different requirements from Alice:
-
-\begin{compactitem}
-\end{compactitem}
 
 
 \subsection{Requirements}

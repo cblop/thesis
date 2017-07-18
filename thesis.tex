@@ -424,8 +424,7 @@ constraints expressed in the described tropes.
 The structure of this thesis is as follows:
 
 \begin{compactenum}[{Chapter} 1:]
-\newcounter{theenum}
-\setcounter{theenum}{1}
+\setcounter{enumi}{1}
 \item A \textbf{Literature Review}.
   We approach the literature survey from two perspectives: those of \emph{narratology},
   and \emph{interactive narrative}.
@@ -2904,10 +2903,7 @@ allowed to take certain courses of action. For a description of how this is
 implemented in practice, see section~\ref{} of chapter~\ref{cha:agents}.
 
 \subsection{Use Cases}
-
-
-
-\subsubsection{User Stories}
+\label{sec:use-cases}
 
 \begin{quote}
   Alice is an interactive narrative researcher using the JASON intelligent agent
@@ -3018,13 +3014,76 @@ Bob shares some requirements with Alice:
     and branching events
   \item He wants to be able to save and re-use the components (to a database,
     for example)
-  \item 
+  \item He also wants the ability to create his own story components to add to
+    the database
 \end{compactitem}
 
 However, Bob also has some different requirements from Alice:
 
+\begin{compactitem}
+  \item He needs to embed tropes inside other tropes (as ``sub-tropes'')
+  \item He needs to be able to visualise all of the story branches that result
+    when one or more tropes are combined together
+\end{compactitem}
+
+% Charlie needs to give agents autonomy to break away from the prescribed narrative
+\begin{quote}
+  Charlie is an experienced Interactive Narrative author that wants to
+  automatically generate many of the small narrative details. By using
+  intelligent agents to simulate the characters in the story, she hopes that
+  their intelligence and autonomy will result in some surprising narrative arcs.
+
+  First, she authors the character agents using the JASON library for
+  intelligent agents. To do this, she must give them a library of plans to
+  execute in order to carry out certain goals. At any moment in the story, each agent has a set of
+  \emph{beliefs} about its environment, plans that they \emph{desire} to carry
+  out, and plans that they \emph{intend} to execute.
+
+  She sets the simulation running, but finds that the characters actions do not
+  follow the structure of a story. She starts out by directing their actions using a planner-based system, but
+  finds that the resulting stories don't make use of the agents' intelligence.
+  The planner is simply telling the agents what to do, based on its goals. She
+  thinks that this is fine most of the time, but nonetheless desires to
+  occasionally see some unexpected (but plausible) actions from the characters.
+  For example, if a character is close to finishing a plan to achieve a goal,
+  she wants them to  choose to override what they are told to do by the director
+  planner, and accept some penalty that comes with the violation of the story.
+
+  She attempts to write this functionality into the agents' decision-making
+  process, but this turns out to be too time-consuming, and she soon gives up.
+  If only there were a better way.
+\end{quote}
+
+Charlie's only unique requirement is:
+
+\begin{compactitem}
+  \item A way to describe the story such that the agents are told what to do
+    next, but are able to break when necessary.
+\end{compactitem}
 
 \subsection{Requirements}
+
+Based on the use cases above (section~\ref{sec:use-cases}), we can create the
+following requirements:
+
+\begin{compactenum}[R1.]
+  \item\label{req:agents} The software must be able to integrate into a
+    multi-agent framework such as JASON
+  \item\label{req:direct} The system must direct the behaviour of agents to fit
+    a story description
+  \item\label{req:components} The user should be able to write and re-use
+    existing story components (from a library)
+  \item\label{req:sequences} The components must be able to express sequences of events
+  \item\label{req:branches} The components must be able to express branching
+    (diverging) events
+  \item\label{req:subtropes} The user should have the ability to nest existing
+    components inside new components
+  \item\label{req:vis} The user should be able to visualise the branches of the
+    story that result in the addition or modification of components to the story.
+  \item\label{req:norm} The story must tell the character agents what to do, but
+    they should be free to break away from it in extreme circumstances, to add a
+    degree of unpredictability
+\end{compactenum}
 
 The way in which our TropICAL language is used is as follows:
 

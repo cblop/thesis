@@ -4215,7 +4215,8 @@ another. The other traces stop short of the final event, so that trace one has
 zero events, trace two has only the first event, and trace three has the first
 two events of the trope.
 
-\begin{lstlisting}[label={lst:evil-trace}]
+\begin{lstlisting}[label={lst:evil-trace}, caption={Example trace for the ``Evil
+Empire'' trope}]
 Answer Set 4:
 
 Time Step 1:
@@ -4269,14 +4270,252 @@ occurred(escape(hero),evilEmpire)
   Home is a place
   The Evil Lair is a place
 
-  Then the Hero goes to the Evil Lair
+  The Hero goes to the Evil Lair
   Then the Hero kills the Villain
     Or the Villain escapes
   Then the Hero goes Home
 \end{lstlisting}
 
+The answer set solver produces six traces for this trope.
+
+\begin{lstlisting}[label={lst:hero-trace},caption={Example trace for the
+``Hero's Journey'' trope}]
+Answer Set 4:
+
+Time Step 1:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(phase(herosJourney,phaseA),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(kill(hero,villain)),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(escape(villain)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+occurred(go(hero,evilLair),herosJourney)
+
+
+Time Step 2:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(phase(herosJourney,phaseB),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(go(hero,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+occurred(kill(hero,villain),herosJourney)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+
+
+Time Step 3:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+occurred(go(hero,home),herosJourney)
+\end{lstlisting}
 
 \subsection{The Hero's Journey \emph{and} The Evil Empire}
+
+Combining the two tropes together produces 124 answer sets. Again, the reason
+that the solver produces so many answer sets is that it includes stories that
+are less than the full length of every event from both tropes combined (which is
+six events in this case). This is desirable when we are combining tropes, as
+sometimes we need to incorporate events from a trope without needing it to run
+its full course. In this example, if the Hero's Journey has come to an end, then
+that would seem like a more suitable place to finish the story, rather than
+waiting for all of the events in the Evil Empire trope to occur.
+
+An example of a trace that runs the full six event length of both tropes put
+together is shown in listing~\ref{lst:hero-evil-trace}.
+
+\begin{lstlisting}[label={lst:hero-evil-trace},caption={Example trace for both the ``Evil Empire'' and
+``Hero's Journey'' tropes combined together}]
+Answer Set 70:
+
+Time Step 1:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(phase(herosJourney,phaseA),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(kill(hero,villain)),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(escape(villain)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(phase(evilEmpire,active),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(chase(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+occurred(go(hero,evilLair),herosJourney)
+occurred(null,evilEmpire)
+
+
+Time Step 2:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(phase(herosJourney,phaseA),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(kill(hero,villain)),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(escape(villain)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(phase(evilEmpire,phaseA),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(capture(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(null,herosJourney)
+occurred(intEvilEmpire(hero,empire),evilEmpire)
+occurred(chase(hero,empire),evilEmpire)
+
+
+Time Step 3:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(phase(herosJourney,phaseB),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(go(hero,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(phase(evilEmpire,phaseA),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(capture(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(kill(hero,villain),herosJourney)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+occurred(null,evilEmpire)
+
+
+Time Step 4:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(phase(evilEmpire,phaseA),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(capture(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+occurred(go(hero,home),herosJourney)
+occurred(null,evilEmpire)
+
+
+Time Step 5:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(phase(evilEmpire,phaseB),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(escape(hero)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(null,herosJourney)
+occurred(intEvilEmpire(hero,empire),evilEmpire)
+occurred(capture(hero,empire),evilEmpire)
+
+
+Time Step 6:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(escape(hero),herosJourney)
+occurred(viol(escape(hero)),herosJourney)
+occurred(intEvilEmpire(hero,empire),evilEmpire)
+occurred(escape(hero),evilEmpire)
+\end{lstlisting}
+
 
 \section{Extending for Legal Policies}
 \label{sec:t-legal}

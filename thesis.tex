@@ -1,10 +1,13 @@
 \documentclass[11pt]{report}
 \usepackage{baththesis}
 \usepackage{graphicx}
-\usepackage[british]{babel}
+\usepackage{syntax}
+% \usepackage[british]{babel}
 \usepackage[T2A]{fontenc}
+% \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{caption}
+\usepackage{textcomp}
 \usepackage{paralist}
 \usepackage{amsmath}
 \usepackage{latexsym}
@@ -47,6 +50,7 @@
    xleftmargin=0.5em,
    aboveskip=0.5em,
    belowskip=0.5em,
+   upquote=true,
 %  belowcaptionskip=5em,
    numbers=left,
    backgroundcolor=\color{light-gray},
@@ -79,82 +83,138 @@
 \clearpage
 
 
+% problem
+% approach
+% results
+% conclusion
+
 \begin{abstract}
-Authoring an interactive narrative with branching story paths presents many
-challenges. Either an author must write out every single path through the story
-by hand, which is difficult and time-consuming, or they must find a way to
-automatically generate all possible story paths, which can result in a
-combinatorial explosion and lack of authorial control over the direction of the
-story.
+  Though much research has gone into tackling the problem of creating
+  interactive narratives, no software has yet emerged that can be used by
+  story authors to create these new types of narratives without having to learn
+  a programming language or narrative formalism. Two problems stand in the way of such software being created: researchers are
+  still using inflexible and outdated formalisms to describe their story
+  components, and most interactive narrative systems are tied to the paradigm of
+  goals and planning.
 
-Current approaches, such as those that make use of Young's \emph{Mimesis} architecture for agent-based
-story planners, or drama manager-based systems such as Mateas and Stern's \emph{Fa\c{c}ade}, combine the use of narrative
-formalisms with a story planner
-to ``direct'' the actions of character agents in a story. Shortcomings exist in
-both components of this approach, however: current formalisms such as Propp's
-``Morphology'' or Lehnert's ``Plot Units'', though they are flexible and
-expressive enough to describe almost any type of story, offer ways to piece
-together a story out of parts, but lack the means to define new story parts or
-organisations of story parts with which an author may create abstractions for stories. This would be achieved, for example, by creating a new story
-``component'' as a combination of existing ``components''. The story planner
-requires the author adopt a goal-oriented style which is unfamiliar and
-relatively awkward for writers without experience of programming.
+  Widely-used formalisms in interactive narrative research, such as Propp's
+  ``Morphology of the Folktale'' and Lehnert's
+  ``Plot Units'' allow users to compose stories out of
+  pre-defined components, but do not allow them to define their own story
+  components, or to create abstractions by embedding components inside of other
+  components. Current tools for interactive narrative
+  authoring, such as those that use Young's \emph{Mimesis} architecture or
+  \emph{Fa\c{c}ade's} drama manager approach, direct intelligent agents playing
+  the roles of characters through use of planners. These systems tell the character
+  agents exactly what actions to take, leaving them with no autonomy to produce
+  interesting narrative outcomes.
 
-Rather than having authors learn a specific formalism to describe the components of a story, the
-approach suggested in this thesis is to describe the parts of the story
-using a controlled natural language syntax. To the author, this should seem as
-though they are describing the trope informally. Once the parts of
-the story are described in this way, they are formalised by translation into
-InstAL, a language for social institutions, then AnsProlog, an Answer Set
-Programming language.
+  This thesis proposes two contributions that tackles these two problems. The
+  first is the use of \emph{Story Tropes} to informally describe story
+  components. We introduce \emph{TropICAL}, a controlled natural language system
+  for the creation of tropes which
+  allows non-programmer story authors to describe their story components informally. Crucially, this
+  language allows for the creation of new story components and abstractions
+  that allow existing components to be embedded inside of new ones.
 
-We propose the use of
-\emph{story tropes} as a
-formalism with which authors describe composable, abstractable story components of their stories, and
-the use of a normative framework to
-regulate the behaviours of a multi-agent system so that their decisions are
-guided by the narrative described in the tropes. A trope is a recurring
-theme or motif in narrative, which abstracts
-certain sequence of events. Existing narrative formalisms have two major
-shortcomings: they do not allow authors to create abstractions (or usually even to change
-the formalism in any way), and they require that authors memorise the specific
-rules and components that make up the formalism.
-We show how tropes allow for the flexible description and abstraction of story
-components, a capability that existing systems lack. Additionally, most authors
-are already familiar with the concept of tropes, as
-we show through a questionnaire of interactive fiction authors. This means that
-they need not learn a new formalism in order to create their stories.
+  The second contribution replaces the paradigm of goals and planners for story
+  direction with \emph{social institutions} that regulate,
+  rather than regiment, the behaviour of character agents. Our language
+  compiles to the input language for an Answer Set solver, which represents the
+  story components in terms of a formal \emph{normative framework}, and hence allows for
+  the automated verification of story paths. Due to the fact that
+  story-following actions are conveyed to the agents in terms of
+  \emph{permissions} and \emph{obligations}, the agents are able to break away
+  from the story in extreme circumstances, such as when experiencing extreme
+  stress due to an emotional model. This gives the character agents more
+  autonomy than they would have with a drama manager or story planner
+  ``director'', allowing for some unpredictable outcomes.
 
-The second contribution of this thesis is the translation of these tropes into
-\emph{social institutions}, describing the permissions and obligations of the
-characters at each point in the story. This means that narratives resulting from
-the tropes be enacted (validated) through their embedding inside a computational
-framework. We use this method to resolve the shortcomings of using drama
-managers and planners to direct the actions of character agents. Instead of the
-agents being strictly \emph{regimented} and told what to do, their behaviour is
-\emph{regulated} through social norms. This gives them some level of autonomy,
-so that they may break away from the narrative in special circumstances, such as
-when the characters enter extreme states of emotion.
+  We evaluate the suitability of these tools for interactive story construction through a
+  thematic analysis of story authors’ completion of story-authoring tasks using the language.
+  The participants complete tasks in which they have to describe stories with different degrees
+  of complexity, finally requiring them to reuse existing tropes in their own trope abstractions.
+  The thematic analysis identifies and examines the themes and patterns that emerge from the
+  story authors’ use of the tool.\mnote{To be updated when the analysis is complete}
 
-To address the shortcomings of existing narrative formalisms and the use of
-planners and drama managers to direct character agents, we have developed two
-tools that build on the formalisation of tropes to assist in the talk of
-interactive narrative creation. \emph{TropICAL} (the TROPe-oriented Interactive
-Chronical Action Language) and \emph{StoryBuilder}, an Interactive Development
-Environment (IDE) and visualisation tool to aid in the writing and combining of
-tropes in \emph{TropICAL}. \emph{TropICAL} is a language for the description of
-tropes. It has a controlled natural language
-syntax, and compiles to a representation that provides the means for bounded
-model checking against the author's desired properties for the story.
-
-We evaluate the suitability of these tools for interactive story construction
-through a thematic analysis of story authors' completion of story-authoring
-tasks using the language. The participants complete tasks in which they have to
-describe stories with different degrees of complexity, finally requiring them to
-reuse existing tropes in their own trope abstractions. The thematic analysis
-identifies and examines the themes and patterns that emerge from the story
-authors' use of the tool.\mnote{Will rewrite once analysis is complete}
 \end{abstract}
+
+% \begin{abstract}
+% Authoring an interactive narrative with branching story paths presents many
+% challenges. Either an author must write out every single path through the story
+% by hand, which is difficult and time-consuming, or they must find a way to
+% automatically generate all possible story paths, which can result in a
+% combinatorial explosion and lack of authorial control over the direction of the
+% story.
+
+% Current approaches, such as those that make use of Young's \emph{Mimesis} architecture for agent-based
+% story planners, or drama manager-based systems such as Mateas and Stern's \emph{Fa\c{c}ade}, combine the use of narrative
+% formalisms with a story planner
+% to ``direct'' the actions of character agents in a story. Shortcomings exist in
+% both components of this approach, however: current formalisms such as Propp's
+% ``Morphology'' or Lehnert's ``Plot Units'', though they are flexible and
+% expressive enough to describe almost any type of story, offer ways to piece
+% together a story out of parts, but lack the means to define new story parts or
+% organisations of story parts with which an author may create abstractions for stories. This would be achieved, for example, by creating a new story
+% ``component'' as a combination of existing ``components''. The story planner
+% requires the author adopt a goal-oriented style which is unfamiliar and
+% relatively awkward for writers without experience of programming.
+
+% Rather than having authors learn a specific formalism to describe the components of a story, the
+% approach suggested in this thesis is to describe the parts of the story
+% using a controlled natural language syntax. To the author, this should seem as
+% though they are describing the trope informally. Once the parts of
+% the story are described in this way, they are formalised by translation into
+% InstAL, a language for social institutions, then AnsProlog, an Answer Set
+% Programming language.
+
+% We propose the use of
+% \emph{story tropes} as a
+% formalism with which authors describe composable, abstractable story components of their stories, and
+% the use of a normative framework to
+% regulate the behaviours of a multi-agent system so that their decisions are
+% guided by the narrative described in the tropes. A trope is a recurring
+% theme or motif in narrative, which abstracts
+% certain sequence of events. Existing narrative formalisms have two major
+% shortcomings: they do not allow authors to create abstractions (or usually even to change
+% the formalism in any way), and they require that authors memorise the specific
+% rules and components that make up the formalism.
+% We show how tropes allow for the flexible description and abstraction of story
+% components, a capability that existing systems lack. Additionally, most authors
+% are already familiar with the concept of tropes, as
+% we show through a questionnaire of interactive fiction authors. This means that
+% they need not learn a new formalism in order to create their stories.
+
+% The second contribution of this thesis is the translation of these tropes into
+% \emph{social institutions}, describing the permissions and obligations of the
+% characters at each point in the story. This means that narratives resulting from
+% the tropes be enacted (validated) through their embedding inside a computational
+% framework. We use this method to resolve the shortcomings of using drama
+% managers and planners to direct the actions of character agents. Instead of the
+% agents being strictly \emph{regimented} and told what to do, their behaviour is
+% \emph{regulated} through social norms. This gives them some level of autonomy,
+% so that they may break away from the narrative in special circumstances, such as
+% when the characters enter extreme states of emotion.
+
+% To address the shortcomings of existing narrative formalisms and the use of
+% planners and drama managers to direct character agents, we have developed two
+% tools that build on the formalisation of tropes to assist in the talk of
+% interactive narrative creation. \emph{TropICAL} (the TROPe-oriented Interactive
+% Chronical Action Language) and \emph{StoryBuilder}, an Interactive Development
+% Environment (IDE) and visualisation tool to aid in the writing and combining of
+% tropes in \emph{TropICAL}. \emph{TropICAL} is a language for the description of
+% tropes. It has a controlled natural language
+% syntax, and compiles to a representation that provides the means for bounded
+% model checking against the author's desired properties for the story.
+
+% We evaluate the suitability of these tools for interactive story construction
+% through a thematic analysis of story authors' completion of story-authoring
+% tasks using the language. The participants complete tasks in which they have to
+% describe stories with different degrees of complexity, finally requiring them to
+% reuse existing tropes in their own trope abstractions. The thematic analysis
+% identifies and examines the themes and patterns that emerge from the story
+% authors' use of the tool.\mnote{Will rewrite once analysis is complete}
+% \end{abstract}
 
 % ----------------------------------
 
@@ -230,9 +290,9 @@ Index''~\citep{aarne1987types}, or Propp's ``Morphology of the
 Folktale''~\citep{propp1968morphology}, due to inertia, familiarity, and the fact
 that they are ``good enough'' for most purposes.
 
-The two contributions of this thesis are the use of a \emph{normative
-  framework} (also known as social institutions) for the governance of intelligent agent
-characters in an interactive narrative, and their definitions as story
+The two contributions of this thesis are the use of a \emph{social institutions}
+(also known as normative frameworks) for the governance of intelligent agent
+characters in an interactive narrative, and the definitions of these institutions as story
 \emph{tropes} using controlled natural language. The normative framework can be
 thought of as the director that governs the behaviours of the actors in the
 story, telling them what they are \emph{permitted} and \emph{obliged} to do as
@@ -240,7 +300,7 @@ part of the story. The tropes can be considered as a screenplay of sorts, a user
 the director has to do. This thesis introduces the concept of \emph{tropes} as a
 story formalism for
 the first time into the interactive narrative literature, where tropes are formal, composable components
-of stories.~ Tropes describe identifiable patterns that recur throughout multiple
+of stories. Tropes describe identifiable patterns that recur throughout multiple
 stories, which become familiar to audiences through repeated exposure. Examples
 include \emph{The Hero's Journey}, where the story's protagonist leaves home to
 go on a quest, where they must overcome many challenges and obstacles before
@@ -253,7 +313,22 @@ specific scenes that must take place (such as the \emph{Deus Ex Machina} or
 \emph{Betrayal} tropes). Describing the story in terms of such tropes gives an
 author the ability to piece together a high-level version of the story
 structure, while still leaving the small details of the story to the plans of
-the character agents.~
+the character agents.
+Additionally, tropes can be composed in different ways. As with formalisms such
+as~\citet{propp1968morphology} and~\citet{lehnert1981plot}, tropes can be
+composed one after another to tell a sequential series of scenes. However, the
+real flexibility of tropes comes with their ability to be composed
+\emph{hierarchically}, describing the structure of a narrative as well as its
+phases. This is due to the fact that tropes can describe different levels of
+abstraction. A top-level trope would be the \emph{Three Act Structure} mentioned
+above, which can three main ``acts'' that consist of sequences of tropes.
+However, different paths through the narrative could lead to different chains of
+tropes within the three-act structure.
+Another example of composing tropes hierarchically could be Vonnegut's ``Man in
+Hole'' story shape~\citep{vonnegut2009palm}, where events get worse for the hero
+until the very end of the story. At the start of this top-level trope, progressively
+``worse'' tropes could be strung together, followed by progressively ``better''
+tropes.
 More detailed explanations appear in section~\ref{sec:tropes-intro} and chapter~\ref{cha:tropes}.
 
 The next section of this introduction contains a high-level overview of
@@ -355,7 +430,7 @@ authors may compose the social norms that govern the behaviour of the character 
 \label{sec:tropes-intro}
 
 
-Tropes describe commonly-seen themes and elements of stories. In a sense, they are similar to clich\'es, in that an audience becomes familiar with them through repeated exposure. However, tropes are not clich\'es. Clich\'es are story elements that have been repeated ad nauseum, that are so often used and unoriginal that they evoke tedium from their audience. Tropes may perhaps become clich\'es if they are used to the point of becoming tiresome, though some are so embedded into the collective subconscious, that their presence is taken for granted. Joseph Campbell argues that \emph{The Hero's Journey} is a trope that transcends time and culture, representing a shared human blueprint for the rite-of-passage into adulthood~\cite{campbell2008hero}. In this way, stories and tropes could be considered a cultural language for describing common human themes. Clich\'es could not be described as such: they are simply overexploited ideas.
+Tropes describe commonly-seen themes and elements of stories. In a sense, they are similar to clich\'es, in that an audience becomes familiar with them through repeated exposure. However, tropes are not clich\'es. Clich\'es are story elements that have been repeated ad nauseum, that are so often used and unoriginal that they evoke tedium from their audience. Tropes may perhaps become clich\'es if they are used to the point of becoming tiresome, though some are so embedded into the collective subconscious, that their presence is taken for granted. Joseph Campbell argues that \emph{The Hero's Journey} is a trope that transcends time and culture, representing a shared human blueprint for the rite-of-passage into adulthood~\citep{campbell2008hero}. In this way, stories and tropes could be considered a cultural language for describing common human themes. Clich\'es could not be described as such: they are simply overexploited ideas.
 
 The themes, scenes, characters and structure of a story can be described in terms of tropes. Even individual lines of dialogue can be a trope, such as James Bond's witty put-downs when he defeats an enemy. Tropes describe parts of a story in an abstract way, which means that they can be easily identified in multiple stories.
 
@@ -432,7 +507,7 @@ The structure of this thesis is as follows:
   (narratology) from social science (section~\ref{sec:narratology}), before
   examining existing implementations of interactive narrative and narrative
   generation systems from computer science
-  (section~\ref{sec:implementations}).\mnote{Changed wording}
+  (section~\ref{sec:implementations}).
 \item The use of \textbf{Institutions as Story Worlds} is described in
   this chapter, exploring the theory and research behind
   social institutions. It discusses the merit of their use for describing
@@ -443,7 +518,7 @@ The structure of this thesis is as follows:
 \item Using \textbf{Tropes as Story Components}
   examines the use of \emph{tropes} as story components, analysing the process
   of turning an informal trope description into something more formal that can improve
-  upon existing narrative formalisms.\mnote{reworded}This is linked to the work in
+  upon existing narrative formalisms. This is linked to the work in
   chapter~\ref{cha:institutions} by showing how tropes can be used as a
   ``user interface'' through which story authors would be able to
   describe the social institutions that govern story characters' behaviours.
@@ -451,7 +526,7 @@ The structure of this thesis is as follows:
   software, hiding complexity that is irrelevant to the user, our tropes allow
   authors to create their story components in controlled natural language,
   without having to worry about the complex code that results from the
-  translation process.\mnote{Explained the UI metaphor}
+  translation process.
   Work from this chapter appears in a legal
   context in \textbf{[JURIX2016]}.
 \item Our specification of tropes as social institutions allows the character
@@ -461,8 +536,7 @@ The structure of this thesis is as follows:
   \textbf{Intelligent Agents}, gives an example where the character
   agents are given emotional models that allow them to violate the social norms
   of the story in times of high emotional distress, describing work done as part of the \textbf{[AISB
-    2015]} paper.\mnote{Added justification to fit the narrative of using social
-  norms to allow autonomy}
+    2015]} paper.
 \item We use the requirements that emerge from Chapters~\ref{cha:institutions}
   to~\ref{cha:agents} to inform the design and implementation of our \textbf{TropICAL} programming
   language for tropes. The chapter concludes with examples of its use to build several stories.
@@ -471,7 +545,7 @@ The structure of this thesis is as follows:
   trope is involved, but can be difficult when several tropes are active during a story.
   Branching narratives can be difficult to check once they start becoming at all
   complex. Tool support is needed to help visualise the changes in a
-  story.\mnote{Added motivation} For
+  story. For
   this reason, this chapter describes the implementation of the \textbf{StoryBuilder} tool,
   designed for the interactive creation and visualisation of tropes, allowing
   the user to combine tropes to describe the story world for an interactive
@@ -1556,6 +1630,7 @@ Anybody who has seen a Punch and Judy show knows that at some point Joey tells P
 The first argument is the external event that must be triggered according to the obligation, the second argument is the institutional deadline event, and the third argument is the violation event which is triggered if the obligation is not fulfilled before the deadline. 
 
 \subsubsection{Events}
+\label{sec:inst-events}
 % actually 3 kinds, including violation events
 Cliffe's model specifies three types of \textbf{event}: \emph{external events} (or `observed events', $\mathcal{E}_{obs}$), \emph{institutional events} ($\mathcal{E}_{instevent}$) and \emph{violation events} ($\mathcal{E}_{viol}$). Examples of each are given in Figure~\ref{fig:events}.
 \emph{External events} are observed to happen in the agents' environment, which can \emph{generate} \emph{institutional events} which occur only within the institional model, leading to the \emph{initiation} or \emph{termination} of (domain) fluents, permissions, obligations or institutional powers.
@@ -2697,11 +2772,110 @@ corresponding translations to \emph{InstAL}.
 \label{sec:emotional-pj}
 
 % HACK: predicted poms remaining: 73 / 79
+\section{VAD emotional model} \label{sec:emotion}
+\begin{figure}[!t]
+% {\includegraphics[height=5in]{VAD.png}}
+\begin{minipage}{0.6\textwidth}
+\includegraphics[width=\textwidth]{VAD.png}
+\end{minipage}\hfill%
+\begin{minipage}{0.35\textwidth}\raggedright
+The VAD model illustrates how valence, arousal and dominance values map to identifiable emotions. Valence, arousal and dominance can each have a value of low, medium or high. This allows the agents to have a total of 27 distinct emotional states.
+The valence and arousal levels of each agent are affected by the actions of other agents. For example, a character being chased around the stage by Punch will see their valence level drop while their arousal increases. According to Russell's circumplex model of emotion~\cite{russell1980circumplex}, this would result in them becoming \emph{afraid\/} (if their dominance level is low).
+\medskip
+
+An agent's emotional state affects its ability to fulfil its institutional obligations. An agent that is \emph{furious\/} might have no problem carrying out an obligation that requires them to kill another agent. If that same agent is \emph{happy\/} or \emph{depressed}, however, they might not have the appropriate motivation to perform such a violent action.
+% \rule{\textwidth}{2cm}
+\end{minipage}
+\caption{VAD emotional values (figure adapted from Ahn et al.)~\cite{ahn2012nvc}} \label{fig:vad}
+\end{figure}
+In order to make the agents acting out the Punch and Judy show more believable, we apply an emotional model to affect their actions and decisions. For this, we use the valence-arousal (circumplex) model first described by Russell~\cite{russell1980circumplex}.  To give each character its own distinct personality, we extend this model with an extra dimension: dominance, as used by Ahn et al.~\cite{ahn2012nvc} in their model for conversational virtual humans. This dominance level is affected by the reactions of the audience to the agents' actions. For example, Judy may become more dominant as her suggestions to hit Punch with a stick are cheered on by the audience, emboldening her into acting out her impulses.  A detailed description appears in the text in Figure~\ref{fig:vad}.
+
+%% Figure~\ref{fig:vad} shows how valence, arousal and dominance values map to identifiable emotions. Valence, arousal and dominance can each have a value of low, medium or high. This allows the agents to have a total of 27 distinct emotional states.
+%% The valence and arousal levels of each agent are affected by the actions of other agents. For example, a character being chased around the stage by Punch will see their valence level drop while their arousal increases. According to Russell's circumplex model of emotion~\cite{russell1980circumplex}, this would result in them becoming \emph{afraid\/} (if their dominance level is low).
+
+%% An agent's emotional state affects its ability to fulfil its institutional obligations. An agent that is \emph{furious\/} might have no problem carrying out an obligation that requires them to kill another agent. If that same agent is \emph{happy\/} or \emph{depressed}, however, they might not have the appropriate motivation to perform such a violent action.
+
+It is important to note that the emotional model is part of the agent belief state, and not held in the institution. We want to explore how the characters of the story might be able to choose actions based on their emotional state. While the institution could theoretically calculate the emotional state for each agent in turn and dictate this to them along with the norms of the narrative, it makes sense to decouple this feature from the narrative institution in order to separate the characters from the events of the story. %\jnote{review this paragraph}
+
+Agents' emotional states change according to their interactions with the audience. This is unrelated to what is happening in the narrative, and so this underscores the decision not to include any emotional modelling in the institution. Also, we want the agents to have some degree of freedom within the narrative world. They should be allowed to determine their emotions themselves, so that in extreme emotional states they can perform `irrational' or `extreme' actions that may not necessarily fit into the narrative.
+
+\subsection{VAD emotions in Jason}
+Emotions are implemented as beliefs inside an agent. An agent believes it has a certain level of valence, arousal and dominance, and it works out its emotional state based on a combination of these three factors. When the audience cheers or boos them, this changes the belief holding the relevant emotional variable, and their emotional state as a whole is recalculated.
+
+Valence, arousal and dominance values can take values of -1 (low), 0 (medium) or 1 (high). Listing~\ref{lst:emotions} shows the emotional belief rules for an agent with medium dominance (a dominance level of 0). Note that an agent maintains beliefs about both its current emotion label (such as sleepy or happy) and the separate valence, arousal and dominance values at the same time.  Similar sets of rules handle the belief emotion for the other dominance levels.  %We address the matter of how external stimuli affect dominance in section~\ref{sec:norms as percepts}.\jnote{still needs doing}
+
+Every time an emotional variable (valence, arousal, or dominance) changes, an agent's emotion is changed according to the rules in listing~\ref{lst:emotions}. While an agent's valence, arousal and dominance belief values affect the way it makes decisions internally, the results of combinations of these values (sleepy, happy, etc) are broadcast as external actions. The reason for this is that an agent's emotional state may affect the way in which the character is animated: changing the speed at which they move or turning their smile into a frown, for example. For this reason, whenever an emotional change takes place, the new emotion is published as an external action of the agent so that observing entities may perceive it. The Bath sensor framework described in section~\ref{sec:arch} provides the means for this evidence of the agent's internal state change to be received by the animation system and reflected accordingly in the display.
+
+\begin{lstlisting}[float=!t,caption={Emotional rules for a character with medium dominance},label=lst:emotions,escapechar=\%,basicstyle=\scriptsize\ttfamily]
+emotion(sleepy) :- valence(0) & arousal(-1) & dominance(0).
+emotion(neutral) :- valence(0) & arousal(0) & dominance(0).
+emotion(surprised) :- valence(0) & arousal(1) & dominance(0).
+emotion(anxious) :- valence(-1) & arousal(-1) & dominance(0).
+emotion(unhappy) :- valence(-1) & arousal(0) & dominance(0).
+emotion(embarrassed) :- valence(-1) & arousal(1) & dominance(0).
+emotion(glad) :- valence(1) & arousal(-1) & dominance(0).
+emotion(happy) :- valence(1) & arousal(0) & dominance(0).
+emotion(delighted) :- valence(1) & arousal(1) & dominance(0).
+\end{lstlisting}
+
+\begin{lstlisting}[float=!t,caption={AgentSpeak rules for changing an agent's emotional values from audience responses},label=lst:response,basicstyle=\scriptsize\ttfamily]
++!changeMood
+  <- ?emotion(Z);
+     emotion(Z).
++response(_, boo) : asking
+  <- -+valence(-1);
+     -+dominance(-1);
+     !changeMood.
++response(_, cheer) : asking
+  <- -+valence(1);
+     -+dominance(1);
+     !changeMood.
+\end{lstlisting}
+
+Listing~\ref{lst:response} shows the AgentSpeak rules describing how an agent's
+valence and dominance levels are changed by the audience cheering or booing
+their actions. These AgentSpeak plans describe what the agent should do in
+response to a goal addition (denoted by a $\texttt{+!}$ at the start of the plan
+name) or a belief addition (prefixed by a simple $\texttt{+}$). In the case of
+Listing~\ref{lst:response}, the $\texttt{+!changeMood}$ plan updates the agent's
+emotional state based on its valence-arousal-dominance values and broadcasts the
+result as an external action. The $\texttt{+response}$ plans raise or lower an agent's valence and dominance levels depending on whether the agent perceives a ``boo'' or ``cheer'' response from the audience.
+
+An agent announces what they intend to do, then waits three seconds. During this time, they have the belief that they are `asking' the audience, and listen for a response. A boo reduces an agent's valence and dominance, while a cheer raises them. For each response, the \texttt{changeMood} goal is triggered, which looks up and broadcasts the agent's emotional state to the other agents and environment.
+
+\section{Agent decision making} \label{sec:decisions}
+The agents choose which goals to pursue according to three factors: their permitted actions, their obliged actions and their emotional state. Though obliged actions are given priority, and while agents' decisions are generally constrained by their permitted actions, an agent's emotional state has the final say in its decisions. In this way, an agent will follow the social norms of the narrative, but only according to their own mood.
+
+\paragraph{Agent goals and plans}
+% \subsection{Agent goals and plans}
+The agents are implemented using a belief-desire-intention (BDI) psychological model using the Jason platform ~\cite{bordini2007programming}. An agent's knowledge about the state of their world and themselves are stored as \emph{beliefs}, with new information coming in from the environment getting added to their belief base as \emph{percepts}, which are ephemeral and only last for one reasoning cycle of an agent.
+
+Agents are created with goals and plan libraries. Any goal that an agent is set on carrying out at any point is an \emph{intention}, whereas a goal that an agent has but is not yet pursuing is a \emph{desire}. Plan libraries describe the steps agents need to take in order to achieve goals, as well as how to react to changes in agents' environments.
+
+\paragraph{Norms as percepts}\label{sec:norms as percepts}
+% \subsection{Norms as percepts}\label{sec:norms as percepts}
+When an event occurs, it is added to the event timeline, which is used to query the ASP (Answer Set Programming) solver to obtain the set of norms that hold after the new event has occurred. The new permissions and obligations are then added to each agent as \emph{percepts}. Each time this happens, the set of permitted and obliged actions that an agent sees is changed to be only those that apply at that instant in time, with the previous norms being discarded.
+
+Agents choose between permitted and obliged actions based on their emotional state at the point of decision making. Obliged actions are given a higher priority over permitted ones for most of the emotional states that an agent can be in, though not always. If an agent is in a sulky mood, for example, they may decide to ignore what they are obliged to do by the narrative, even though they know there will be consequences.
+
+For example, in the scene where Joey gives the sausages to Punch, Punch may see that he has permission to eat the sausages, drop them, fight the crocodile, run away (leave the stage) or shout for help at the crocodile or audience. His obligation for the scene, in accordance with the Punch and Judy narrative world, is to either eat the sausages himself, or let the crocodile have them. This ends Propp's \emph{interdiction\/} story function with a \emph{violation\/} function. Note that his obligation in this case is not to guard the sausages as asked to by Joey. While Joey's entrusting of the sausages is certainly an obligation in itself, Punch's main obligations are to the narrative. Lesser obligations towards characters in the story can be implemented as having a lower prority than those of the story itself.
+
+Similarly, at times of extreme emotion, an agent may decide to disregard their set of permitted actions entirely, instead acting out their innermost desires. For example, an angry Punch might decide to just attack Joey instead of agreeing to look after the sausages, or he might just decide to give up and leave if he is depressed. The key point is that the norms act as the will of the \emph{narrative}, guiding the story forward, rather than a strict set of rules that the agents must follow at all costs.
+
+\emph{Violation events\/} add percepts to the agents telling them that they are in violation of the narrative norms. Once an agent receives such a percept, an emotional variable is changed. Typically, their dominance will decrease. The reasoning behind this is that if agents are unwilling to participate in the story, they should have less influence in its course of events.
+
+\section{Architecture}\label{sec:arch}
+
+\paragraph{Multi-Agent System} \label{sec:inst}
+% \subsection{Multi-Agent System} \label{sec:inst}
+We use the JASON framework for belief-desire-intention (BDI) agents~\cite{bordini2007programming}, programming our agents in the AgentSpeak language.
+The VAD emotional model is represented inside each agent as a set of beliefs. Each agent has beliefs for its \emph{valence}, \emph{arousal} and \emph{dominance} levels, each of which can take the value of low, medium or high, as discussed in section~\ref{sec:emotion}. This combination of VAD values creates one of the 27 emotional states shown in figure~\ref{fig:vad}, affecting whether or not an agent breaks from its permitted or obliged behaviour.
+
 
 \chapter{TropICAL: A DSL for Story Tropes}
 \label{cha:tropical}
-% DONE introduction: 1
-% DONE motivation: 1
+% TODO: describe pipeline
+% parse -> data structure -> InstAL -> AnsProlog
 
 This chapter describes the design and implementation of TropICAL (the TROPe
 Interactive Chronical Action Language), our Domain Specific Language for
@@ -3101,15 +3275,341 @@ The way in which our TropICAL language is used is as follows:
     all the possible sequences of events that can occur in the story.
 \end{compactitem}
 
+\section{Entity Declarations}
+\label{sec:dec-code}
+Before an author can use any characters, objects or places in their tropes, they
+must first declare them at the top of the trope file. For example, to declare
+that the \emph{Hero} and \emph{Evil Villain} are character roles, one would write:
+
+\begin{lstlisting}[label={lst:dec-roles}, caption={Role declarations}]
+The Hero is a role
+Evil Villain is a role
+\end{lstlisting}
+
+In TropICAL, the ``The'' at the beginning of role, object or place names is
+completely optional. If the name of an entity begins with ``The'', the parser
+omits it from the name. Also, entity names can consist of multiple words, as is
+the case for the \emph{Evil Villain} character. However, each word in a name must
+always start with a capital letter.
+
+Similarly, to declare that our trope contains \emph{Sword} and \emph{Magic Potion} objects,
+the author would write:
+
+\begin{lstlisting}[label={lst:dec-objs}, caption={Object declarations}]
+The Sword is an object
+The Magic Potion is an object
+\end{lstlisting}
+
+Finally, \emph{Home} and \emph{The Land of Adventure} locations in the
+trope are declared in the same way:
+
+\begin{lstlisting}[label={lst:dec-places}, caption={Place declarations}]
+Home is a place
+The Land of Adventure is a place
+\end{lstlisting}
+
+Once the author has declared the entities of their trope at the top of the trope
+definition, they are able to use them inside the events of the trope itself.
+
+\subsection{Entity Instances}
+In cases where multiple characters fulfil the same role (a story could have two
+hero characters, for example), or there are multiple objects or locations of the
+same type, these separate entity instances can be passed to the compiler in
+separate files. An example with multiple Heroes, Swords and Evil Lairs would be:
+
+\begin{lstlisting}[label={lst:dec-instances}, caption={Entity instances}]
+Harry Potter is a Hero
+Luke Skywalker is a Hero
+Excalibur is a Sword
+Oathbreaker is a Sword
+The Volcano is an Evil Lair
+The Secret Cave is an Evil Lair
+The Underground Bunker is an Evil Lair
+\end{lstlisting}
+
+If these instances are not input into the compiler, then each entity has just
+one instance with the same name as its type (a hero called ``Hero'', a sword
+called ``Sword'', an evil lair called ``Evil Lair'', for example).
+
+\section{Sequences of Events}
+\label{sec:seq-code}
+TropICAL is an event-based language: it describes events that happen as part of
+a story, where the events involve actions taken by roles (the agents in a
+multi-agent system) interacting with other roles as well as objects and places.
+The simplest possible statement in the language, given the declarations above,
+would be to write:
+
+\begin{lstlisting}[label={lst:seq1}, caption={An event}]
+The Hero goes to the Land of Adventure
+\end{lstlisting}
+
+This specifies that the first event that occurs in the trope is that the \emph{Hero}
+character goes to a place called \emph{The Land of Adventure}.
+
+Typically, tropes tend to consist
+of a sequence of several events, so this trope could be extended further:
+
+\begin{lstlisting}[label={lst:seq2}, caption={Two consecutive events}]
+The Hero goes to the Land of Adventure
+Then the Hero finds the Sword
+\end{lstlisting}
+
+This series of events can be visualised graphically (using a prefix notation for
+the verbs and objects) thus:
+
+\vspace{7mm}
+\centerline{\includegraphics[width=0.7\textwidth]{seq1.png}}
+\vspace{7mm}
+
+The \emph{Then} keyword denotes that the event is the next stage in a sequence
+of events. However, this keyword is syntactical sugar, and can be omitted with the same effect:
+
+\begin{lstlisting}[label={lst:seq3}, caption={``The'' instead of ``Then''}]
+The Hero goes to the Land of Adventure
+The Hero finds the Sword
+\end{lstlisting}
+
+Events can be strung together in a sequence that is as long as the author needs:
+
+\begin{lstlisting}[label={lst:seq4}, caption={A sequence of events}]
+The Hero goes to the Land of Adventure
+Then the Hero finds the Sword
+Then the Hero meets the Villain
+Then the Hero kills the Villain
+Then the Hero returns Home
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{seq2.png}}
+\vspace{7mm}
+
+The author can use any verb they wish to describe an event. The verbs are
+stemmed using \emph{WordNet}~\ref{miller1995wordnet} so that, for example,
+\emph{goes} becomes \emph{go} and \emph{wanted} becomes \emph{want} when the
+tropes are compiled.
+
+\section{Branching Events}
+\label{sec:branch-code}
+A trope author may want to describe alternative possibilities in their story,
+where either the player or a character in the story may decide from one of
+multiple actions to take. This is implemented using the \emph{Or} keyword in
+TropICAL, along with a single indentation level of two spaces:
+
+\begin{lstlisting}[label={lst:branch1}, caption={Two branches}]
+The Hero goes to the Land of Adventure
+  Or Hero finds the Sword
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=0.5\textwidth]{branch1.png}}
+\vspace{7mm}
+
+The above code describes two alternative events: either the Hero can go to the
+Land of Adventure, or the Hero can find the Sword.
+Multiple events can be chained together on the same level of indentation to create
+multiple possible alternatives:
+
+\begin{lstlisting}[label={lst:branch2}, caption={Five branches}]
+The Hero goes to the Land of Adventure
+  Or the Hero finds the Sword
+  Or the Hero meets the Villain
+  Or the Hero kills the Villain
+  Or the Hero returns Home
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=0.5\textwidth]{branch2.png}}
+\vspace{7mm}
+
+In the above example, the trope begins with five different possible alternative
+events, representing five paths through the story.
+These branching events can be combined with the event sequences described
+previously to create more complex tropes:
+
+\begin{lstlisting}[label={lst:branch3}, caption={A combination of branches and sequences}]
+The Hero goes Home
+Then the Hero finds a Sword
+  Or the Hero goes to the Land of Adventure
+  Or the Hero kills the Villain
+Then the Hero meets the Mentor
+  Or the Hero goes to the Realm of Mystery
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{branch3.png}}
+\vspace{7mm}\mnote{How can we improve this graph layout?}
+
+In the previous example, only one event occurs in each branching story path
+before merging back into the main course of the story. In order to extend each
+story path further, one must indent an extra level:
+
+\begin{lstlisting}[label={lst:branch4}, caption={Extending branches}]
+The Hero goes Home
+Then the Hero finds a Sword
+  Or the Hero goes to the Land of Adventure
+    Then the Hero finds a Treasure
+    Then the Hero drowns
+  Or the Hero kills the Villain
+    Then the Hero runs Home
+      Or the Hero cries
+Then the Hero meets the Mentor
+  Or the Hero goes to the Realm of Mystery
+    Then the Hero meets the Wizard
+    Then the Wizard casts a Spell
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{branch4.png}}
+\vspace{7mm}
+
+It should be noted that all branches will merge back into the ``main'' story
+path (the bottom level of indentation) once they have completed. To prevent this
+from happening, and terminate the story, the author may write \emph{``Then the
+  Story ends''}. In this example, the story will always end unless the Hero goes
+to the Way Out or escapes the Dark Room:
+
+\begin{lstlisting}[label={lst:branch5}, caption={Terminating branches}]
+The Hero goes to the House
+Then the Hero meets the Villain
+Then the Hero kills the Villain
+  Or the Villain kills the Hero
+    Then the Story ends
+Then the Hero goes to the Way Out
+  Or the Hero goes to the Dark Pit
+    Then the Crocodile eats the Hero
+    Then the Story ends
+  Or the Hero goes to the Dark Room
+    Then the Hero escapes
+      Or the Grue eats the Hero
+        Then the Story ends
+Then the Hero finds the Treasure
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{branch5.png}}
+\vspace{7mm}
+
+Using this technique, branches can be extended indefinitely through increasing
+levels of indentation.
+Deeply indented code is often undesirable, however, and is usually a symptom
+that the code needs to be subdivided into modules. We can achieve this by
+embedding subtropes inside of other tropes.
+
+\section{Subtropes}
+\label{sec:subtrope-code}
+\emph{Subtropes} are simply previously-written tropes that are embedded inside a
+new trope. Take this simple trope example:
+
+\begin{lstlisting}[showstringspaces=false, label={lst:subtrope1}, caption={Subtrope
+te be embedded}]
+"Item Search" is a trope where:
+   The Macguffin is an object
+   The Hero is a role
+   Home is a place
+
+   The Hero chases the Macguffin
+   Then the Hero finds the Macguffin
+     Or the Hero goes Home
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=0.7\textwidth]{subtrope1.png}}
+\vspace{7mm}
+
+To embed this trope inside another trope, we refer to it by name by writing
+\emph{Then the ``Item Search'' trope happens}. It is important to put the name
+of the trope inside quotation marks. An example of putting this trope at the end
+of another trope is shown in the following example:
+
+\begin{lstlisting}[showstringspaces=false, label={lst:subtrope2}, caption={Trope containing a subtrope}]
+"Kill then Search" is a trope where:
+  Away is a place
+  The Hero is a role
+  The Villain is a role
+
+  The Hero goes Away
+  Then the Hero kills the Villain
+  Then the "Item Search" trope happens
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{subtrope2.png}}
+\vspace{7mm}
+
+The ``Item Search'' subtrope is thus embedded inside the ``Kill then Search''
+trope, with all of the events and branches of ``Item Search'' being appended to
+the end of ``Kill then Search''. Rather than only being embedded at the end of a
+trope however, subtropes can appear at any point in a trope, or even at several
+points in a trope. Take this example that uses the ``Item Search'' trope inside
+nested branches of its story:
+
+\begin{lstlisting}[showstringspaces=false, label={lst:subtrope3}, caption={Subtrope in multiple places}]
+"Futile Search" is a trope where:
+  The Hero is a role
+  The Villain is a role
+  The Mentor is a role
+  Away is a place
+  Home is a place
+  The Land of Adventure is a place
+  The Realm of Mystery is a place
+
+  The Hero goes Away
+  Then the Hero meets the Villain
+    Or the Hero meets the Mentor
+      Then the "Item Search" trope happens
+  Then the Hero kills the Villain
+  Then the "Item Search" trope happens
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{subtrope3.png}}
+\vspace{7mm}
+
+An author can create complex branching narrative by combining these tropes together. To see
+visualisations of the story paths of multiple tropes combined, see
+section~\ref{sec:story-vis} of chapter~\ref{cha:storybuilder}.
 
 \section{EBNF Grammar}
 \label{sec:t-grammar}
 % TODO intro: 1
+This section describes the grammar of our TropICAL language formally using
+\emph{Extended Backus-Naur Form} notation.
+
+
+
+
 % TODO instaparse description: 1
+We used the Clojure programming language~\citep{clojure} with the Instaparse
+parser generator library~\cite{instaparse} to create the language parser for
+TropICAL. The method of parser creation with Instaparse is to describe the
+parser using a syntax that resembles \emph{Extended Backus-Naur Form} (EBNF)
+grammar, combined with regular expressions. According to the author, its
+features are:
+
+\begin{compactitem}
+\item Turns standard EBNF or ABNF notation for context-free grammars into an executable parser that takes a string as an input and produces a parse tree for that string.
+\item No Grammar Left Behind: Works for any context-free grammar, including left-recursive, right-recursive, and ambiguous grammars.
+\item Extends the power of context-free grammars with PEG-like syntax for lookahead and negative lookahead.
+\item Supports both of Clojure's most popular tree formats (hiccup and enlive) as output targets.
+\item Detailed reporting of parse errors.
+\item Optionally produces lazy sequence of all parses (especially useful for diagnosing and debugging ambiguous grammars).
+\item "Total parsing" mode where leftover string is embedded in the parse tree.
+\item Optional combinator library for building grammars programmatically.
+\item Performant.
+\end{compactitem}
+
+Due to using this method of parser creation, our parser has two stages: first it
+parses the entity declarations (roles, objects and places) at the top of the
+trope description, then takes the parsed declarations and inserts them as
+keywords in the grammar for the rest of the language, creating a new parser
+specifically for those entity declarations. For example, if the author writes
+``The Hero is a role'', ``The Castle is a place'' and ``The Sword is an
+object'', then the \emph{role} 
+
 % TODO simplified grammar from code: 2
 % TODO format grammar: 2
 
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false]
 text = tropedef defs trope
 <tropedef> = label <' is a ' ('trope' / 'policy') ' where:\\n'>
 <defs> = (<whitespace> (chardef | objdef | placedef) <'\\n'?>)+
@@ -3128,9 +3628,9 @@ label = <'\"'> words <'\"'>
 <cword> = #'[A-Z][0-9a-zA-Z\\-\\_\\']*'
 <the> = <'The ' | 'the '>
 <word> = #'[0-9a-zA-Z\\-\\_\\']*'
-\end{lstlisting}
+\end{lstlisting}\mnote{I've taken this from the code verbatim. We need to meet and discuss how to simplify this.}
 
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false]
 trope = (<whitespace> sequence)+ <'\\n'?>
 (str "label = '" label "'")
 fluent = object <' is '> adjective
@@ -3176,57 +3676,462 @@ consequence = event
 <cword> = #'[A-Z][0-9a-zA-Z\\-\\_\\']*'
 <the> = <'The ' | 'the '>
 <word> = #'[0-9a-zA-Z\\-\\_\\']*'
+\end{lstlisting}\mnote{See above}
+
+\section{Parsing Examples}
+\label{sec:parse-tree}
+
+% TODO describe intermediate data structure, hash-map structure
+% TODO explain parse tree diagrams, hash-map notation (look up best way to do hmaps in latex)
+
+This section shows visualisations of the parse tree that results from the trope
+code examples listed in sections~\ref{sec:dec-code} to~\ref{sec:subtrope-code}.
+
+This is the parse tree output of the sequence of events in listing~\ref{lst:seq3}:
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{seq2-tree.png}}
+\vspace{7mm}
+
+\begin{lstlisting}[showstringspaces=false]
+{:label "Sequence 2", :events [{:role "Hero", :verb "go", :place "Land of Adventure"} {:role "Hero", :verb "find", :object "Sword"} {:verb "meet", :role-b "Villain", :role-a "Hero"} {:role "Hero", :verb "return", :place "Home"}], :roles ("The Hero" "The Villain"), :objects ("The Sword"), :locations ("Home" "The Land of Adventure")}
 \end{lstlisting}
 
-\section{Nested Tropes via Bridge Institution}
-\label{sec:t-nested}
-% TODO why nested tropes: 1
-% TODO explanation of bridge institutions: 2
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{branch2-tree.png}}
+\vspace{7mm}
 
-\section{Intermediate Data Structure}
-\label{sec:t-intermediate}
-% TODO why do we have an intermediate data structure? (possible other uses,
-% different parsers): 1
-% TODO describe the hash map: 2
+\begin{lstlisting}[showstringspaces=false]
+{:label "Branch 2", :events [{:or [{:role "Hero", :verb "go", :place "Land of Adventure"} {:role "Hero", :verb "find", :object "Sword"} {:verb "kill", :role-b "Villain", :role-a "Hero"} {:role "Hero", :verb "return", :place "Home"}]}], :roles ("The Hero" "The Villain"), :objects ("The Sword"), :locations ("Home" "The Land of Adventure")}
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{branch3-tree.png}}
+\vspace{7mm}
+
+\begin{lstlisting}[showstringspaces=false]
+{:label "Branch 3", :events [{:role "Hero", :verb "go", :place "Home"} {:or [{:role "Hero", :verb "find", :object "Sword"} {:role "Hero", :verb "go", :place "Land of Adventure"} {:verb "kill", :role-b "Villain", :role-a "Hero"}]} {:or [{:verb "meet", :role-b "Mentor", :role-a "Hero"} {:role "Hero", :verb "go", :place "Realm of Mystery"}]}], :roles ("The Hero" "The Villain" "The Mentor"), :objects ("The Sword"), :locations ("Home" "The Land of Adventure" "The Realm of Mystery")}
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{item-search-tree.png}}
+\vspace{7mm}
+
+\begin{lstlisting}[showstringspaces=false]
+{:label "Item Search", :events [{:role "Hero", :verb "chase", :object "Macguffin"} {:or [{:role "Hero", :verb "find", :object "Macguffin"} {:role "Hero", :verb "go", :place "Home"}]}], :roles ("The Hero"), :objects ("The Macguffin"), :locations ("Home")}
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{kill-then-search-tree.png}}
+\vspace{7mm}
+
+\begin{lstlisting}[showstringspaces=false]
+{:label "Kill then Search", :events [{:role "Hero", :verb "go", :place "Away"} {:verb "kill", :role-b "Villain", :role-a "Hero"} {:subtrope "Item Search"}], :roles ("The Hero" "The Villain"), :objects (), :locations ("Away")}
+\end{lstlisting}
 
 \section{InstAL Code Generation}
 \label{sec:t-codegen}
 % TODO intro: 1
 % TODO tech discussion: 1
+Once the tropes written in TropICAL have been parsed and converted into an
+intermediate hash map, this data structure is then used to generate InstAL code.
+This section first describes how specific language features translate to
+InstAL, then goes on to list the InstAL output of full trope translation.
 
-\subsection{Initiation}
+As described in section~\ref{sec:inst-events}, InstAL features three types of
+events: \emph{external}, \emph{institutional} and \emph{violation}. We begin by
+examining the translation of trope events to institutional events.
+
+\subsection{Initial Conditions}
 % TODO before / after snippets: 2
 % TODO explanation: 2
+% TODO explain how the domain works in InstAL
+The \emph{initially} clause in InstAL specifies the fluents that initially hold
+when the institution is effected. Role, object and place declarations are
+translated into fluent declarations as part of this clause. For example, for a
+trope with the following declarations:
 
-\subsection{Termination}
-% TODO before / after snippets: 2
-% TODO explanation: 2
+\begin{lstlisting}
+The Hero is a role
+The Sword is an object
+The Land of Adventure is a place
+\end{lstlisting}
+
+And the following entity instances:
+
+\begin{lstlisting}
+Luke Skywalker is a Hero
+The Lightsaber is a Sword
+The Death Star is a Land of Adventure
+\end{lstlisting}
+
+The following InstAL code is produced, with type and fluent declarations
+automatically appearing at the top of the file:
+
+\begin{lstlisting}
+type Agent;
+type Role;
+type Place;
+type PlaceName;
+type Object;
+type ObjectName;
+
+fluent role(Agent, Role);
+fluent place(PlaceName, Place);
+fluent object(ObjectName, Object);
+
+initially:
+  role(lukeSkywalker, hero),
+  object(lightSaber, sword),
+  place(deathStar, landOfAdventure);
+\end{lstlisting}
+
+The \emph{initially} clause also specifies the permitted and obliged events that
+occur at the start of the trope. Say our trope contains a series of events (as in
+listing~\ref{lst:seq4}):
+
+\begin{lstlisting}
+The Hero goes to the Land of Adventure
+Then the Hero finds the Sword
+Then the Hero meets the Villain
+Then the Hero kills the Villain
+Then the Hero returns Home
+\end{lstlisting}
+
+In this case, the first event of the trope (\emph{The Hero goes to the Land of
+  Adventure}) must be permitted to happen at the very beginning of the
+institution, inside the \emph{initially} clause. In combination with the above
+entity declarations, this results in the following code being generated
+(omitting the type and fluent declarations this time):
+
+\begin{lstlisting}
+initially:
+  perm(go(X, Y)) if role(X, hero), place(Y, landOfAdventure),
+  role(lukeSkywalker, hero),
+  object(lightSaber, sword),
+  place(deathStar, landOfAdventure);
+\end{lstlisting}
+
+This means that the Luke Skywalker character is able to go to the Death Star at the beginning
+of the institution, as is specified in the trope.
 
 \subsection{Generation}
 % TODO before / after snippets: 2
 % TODO explanation: 2
 
-\subsection{Initial Conditions}
+Tropes usually consist of multiple events, so it is not enough to have one event
+permitted at the start of a trope. Once this first event has occurred, the next
+event in the sequence must have permission to happen.
+
+The institution watches for events to happen as \emph{external} events in the
+environment, and then has these events generate \emph{institutional} events that
+occur within the institution and create permissions or obligations for further
+external events to occur. Returning to listing~\ref{lst:seq4} above, the
+external events that happen are:
+
+\begin{compactitem}
+  \item The Hero finds the Sword
+  \item The Hero meets the Villain
+  \item The Hero kills the Villain
+  \item The Hero returns Home
+\end{compactitem}
+
+These are translated into \emph{generates} statements in InstAL so that they
+generate the required institutional events:
+
+\begin{lstlisting}
+find(R, T) generates
+    intSequence3(R, S, T, U, V) if
+        role(R, hero),
+        object(T, sword);
+kill(R, S) generates
+    intSequence3(R, S, T, U, V) if
+        role(S, villain),
+        role(R, hero);
+meet(R, S) generates
+    intSequence3(R, S, T, U, V) if
+        role(S, villain),
+        role(R, hero);
+go(R, V) generates
+    intSequence3(R, S, T, U, V) if
+        role(R, hero),
+        place(V, landOfAdventure);
+return(R, U) generates
+    intSequence3(R, S, T, U, V) if
+        role(R, hero),
+        place(U, home);
+\end{lstlisting}
+
+Each institution only has one institutional event that is triggered by the
+external events, which is named after the trope itself (in this case, the event
+is named \emph{intSequence3} after the trope name ``Sequence 3''). The
+permissions and obligations that this institutional event initiates depend on
+the \emph{phase} of the trope that is currently active (see
+section~\ref{sec:event-phases}) below.
+
+\subsection{Initiation}
 % TODO before / after snippets: 2
 % TODO explanation: 2
+
+External events generate an internal event for the institution, which permits
+the next event or events in a sequence to occur. To ensure that the events of
+the trope are permitted or obliged to occur one after another, we use a
+mechanism called \emph{event phases}.
+
+\subsubsection{Event Phases}
+\label{sec:event-phases}
+An \emph{event phase} is a fluent that holds the state of the current
+institution. At the beginning of the trope, its state is simply \emph{active}.
+This is represented in the institution through the fluent \emph{phase(tropeName,
+active)}.
+Once the first event has occurred, the trope enters \emph{phase A}, which means
+that the fluent \emph{phase(tropeName, phaseA)} then holds, and the
+\emph{phase(tropeName, active} fluent is terminated (this is described in
+section~\ref{sec:termination}). This initiation and termination process then
+repeats through all phases of the trope, through phases B, C and D if they
+exist, until the final event occurs and the last phase is terminated.
+
+In the case of our example sequence of events from listing~\ref{lst:seq4}, there
+are five phases in total:
+
+\begin{compactitem}
+  \item The Hero goes to the Land of Adventure (active)
+  \item The Hero finds the Sword (phase A)
+  \item The Hero meets the Villain (phase B)
+  \item The Hero kills the Villain (phase C)
+  \item The Hero returns Home (phase D)
+\end{compactitem}
+
+The events and phases of this trope are initiated in InstAL through the
+following generated code:
+
+\begin{lstlisting}[label={lst:initiates}, caption={Institutional event
+initiation code for listing~\ref{lst:seq4}}]
+intSequence3(R, S, T, U, V) initiates
+    phase(sequence3, phaseA),
+    perm(find(R, T)) if
+        phase(sequence3, active),
+        role(R, hero),
+        object(T, sword);
+intSequence3(R, S, T, U, V) initiates
+    phase(sequence3, phaseB),
+    perm(meet(R, S)) if
+        phase(sequence3, phaseA),
+        role(S, villain),
+        role(R, hero);
+intSequence3(R, S, T, U, V) initiates
+    phase(sequence3, phaseC),
+    perm(kill(R, S)) if
+        phase(sequence3, phaseB),
+        role(S, villain),
+        role(R, hero);
+intSequence3(R, S, T, U, V) initiates
+    phase(sequence3, phaseD),
+    perm(return(R, U)) if
+        phase(sequence3, phaseC),
+        role(R, hero),
+        place(U, home);
+\end{lstlisting}
+
+
+\subsection{Termination}
+\label{sec:termination}
+% TODO before / after snippets: 2
+% TODO explanation: 2
+
+The generated code that terminates the phases and permissions corresponding to
+those initiated in listing~\ref{lst:initiates} is shown in
+listing~\ref{lst:terminates} below. Once an external event occurs, its
+permission to occur again is terminated along with the phase in which it occurred:
+
+\begin{lstlisting}[label={lst:terminates}, caption={Institutional event
+termination code for listing~\ref{lst:seq4}}]
+intSequence3(R, S, T, U, V) terminates
+    phase(sequence3, active),
+    perm(go(R, V)) if
+        phase(sequence3, active),
+        role(R, hero),
+        place(V, landOfAdventure);
+intSequence3(R, S, T, U, V) terminates
+    phase(sequence3, phaseA),
+    perm(find(R, T)) if
+        phase(sequence3, phaseA),
+        role(R, hero),
+        object(T, sword);
+intSequence3(R, S, T, U, V) terminates
+    phase(sequence3, phaseB),
+    perm(meet(R, S)) if
+        phase(sequence3, phaseB),
+        role(S, villain),
+        role(R, hero);
+intSequence3(R, S, T, U, V) terminates
+    phase(sequence3, phaseC),
+    perm(kill(R, S)) if
+        phase(sequence3, phaseC),
+        role(S, villain),
+        role(R, hero);
+intSequence3(R, S, T, U, V) terminates
+    phase(sequence3, phaseD),
+    perm(return(R, U)) if
+        phase(sequence3, phaseD),
+        role(R, hero),
+        place(U, home);
+\end{lstlisting}
+
+\subsection{Branches}
+% TODO before / after snippets: 2
+% TODO explanation: 2
+
+To represent branching events in InstAL, multiple events are permitted to occur
+during one phase. Take as an example the combination of event sequences and
+branches shown in listing~\ref{lst:branch3}:
+
+\begin{lstlisting}
+The Hero goes Home
+Then the Hero finds a Sword
+  Or the Hero goes to the Land of Adventure
+  Or the Hero kills the Villain
+Then the Hero meets the Mentor
+  Or the Hero goes to the Realm of Mystery
+\end{lstlisting}
+
+When compiled with the following entity instances:
+
+\begin{lstlisting}
+Harry Potter is a Hero
+Voldemort is a Villain
+Dumbledore is a Mentor
+The Gryffindor Sword is a Sword
+Hogwarts is a Land of Adventure
+The Chamber of Secrets is a Realm of Mystery
+\end{lstlisting}
+
+The full institution appears in Section~\ref{appendix:branch3} of Appendix~\ref{appendix:instal}.
+
+The branching events are implemented in the \emph{initiates} and
+\emph{terminates} clauses. In listing~\ref{lst:branch-init} below, we see that three possible events are given
+permission to occur as part of Phase A: \emph{The Hero finds a Sword}, \emph{The
+  Hero goes to the Land of Adventure}, and \emph{The Hero kills the Villain}. In
+Phase B, two events corresponding to the possible branches are given permission
+to occur: \emph{The Hero meets the Mentor} and \emph{The Hero goes to the Realm
+  of Mystery}:
+
+\begin{lstlisting}[label={lst:branch-init}, caption={Initiation events for the
+branching trope in listing~\ref{lst:branch3}}]
+intBranch3(R, S, T, U, V, W, X) initiates
+    phase(branch3, phaseA),
+    perm(find(R, U)),
+    perm(go(R, X)),
+    perm(kill(R, S)) if
+        phase(branch3, active),
+        object(U, sword),
+        role(R, hero),
+        place(X, landOfAdventure),
+        role(S, villain);
+intBranch3(R, S, T, U, V, W, X) initiates
+    phase(branch3, phaseB),
+    perm(meet(R, T)),
+    perm(go(R, V)) if
+        phase(branch3, phaseA),
+        place(V, realmOfMystery),
+        role(R, hero),
+        role(T, mentor);
+\end{lstlisting}
+
+This means that during Phase A, there are three possible narrative branches,
+which get closed off when any one of them occurs through the corresponding
+termination event in the institution.
+
+\subsection{Obligations}
+% TODO before / after snippets: 2
+% TODO explanation: 2
+
+In our tropes, obligations have optional deadline events and consequences. At
+the time of implementation, both of these were mandatory in InstAL, and so it
+was necessary to add ``dummy'' events for both if they were not specified in TropICAL.
+
 
 \subsection{Bridge Institution}
 % TODO before / after snippets: 2
+% TODO explanation of bridge institutions: 2
 % TODO explanation: 2
 
-\section{Generated Trope Samples}
-\label{sec:t-tropes}
-% TODO intro for heros journey trope: 1
-% TODO run through generated code: 3
+In section~\ref{sec:subtrope-code}, we describe how \emph{subtropes} are
+implemented in InstAL through the embedding of existing tropes inside of new
+ones. This is translated into InstAL code through the use of a \emph{Bridge
+  Institution}, a separate institution which is used to link two other
+institutions together. The concept of a bridge institution is developed
+by~\citet{bath45254} as a means of conflict resolution in interacting
+institutions.\mnote{More detail needed here}
+The two institutions linked are referred to as the
+\emph{source} and \emph{sink} institutions, where an event that occurs in the
+source institution has the power to generate an event inside of the sink institution.
 
-% TODO intro for evil empire trope: 1
-% TODO run through generated code: 3
+The \emph{Item Search} and \emph{Kill then Search} tropes
+described in listings~\ref{lst:subtrope1} and~\ref{lst:subtrope2} can be
+described as the \emph{sink} and \emph{source} of a bridge institution,
+respectively. In this case, the first event of the sink institution (the
+\emph{Item Search} trope) is given permission to occur when the final event of
+the source institution (the \emph{Kill then Search} trope) happens.
 
-\section{Adding Constraints}
-\label{sec:t-constraints}
-% TODO ASP intro: 1
-% TODO constraints explanation: 2
-% TODO output: 2
+\begin{lstlisting}[caption={Bridge institution for the \emph{Item Search} and
+\emph{Kill then Search} tropes}, label={lst:bridge-inst},escapechar=|]
+bridge killThenSearchItemSearch;
+
+source killThenSearch;
+sink itemSearch;
+
+cross fluent ipow(killThenSearch, perm(chase(Agent, ObjectName)), itemSearch);|\label{line:cross1}|
+cross fluent ipow(killThenSearch, phase(Trope, Phase), itemSearch);|\label{line:phase1}|
+
+intStartItemSearch xinitiates phase(itemSearch, active);|\label{line:phase2}|
+intStartItemSearch xinitiates perm(chase(R, S)) if|\label{line:crossperm1}|
+        role(R, hero),
+        object(S, macguffin);|\label{line:crossperm2}|
+
+initially ipow(killThenSearch,  perm(chase(R, S)), itemSearch),
+    ipow(killThenSearch, phase(itemSearch, active), itemSearch);
+\end{lstlisting}
+
+Listing~\ref{lst:bridge-inst} shows the bridge institution that links the
+\emph{Item Search} and \emph{Kill then Search} institutions together. It starts
+by defining \emph{killThenSearch} as the source institution, and
+\emph{itemSearch} as the sink. Then a cross fluent for the first event in the
+subtrope (which is \emph{itemSearch}, the sink institution) is declared in
+line~\ref{line:cross1}. This line only states that this is a fluent that is to
+be initiated in the sink institution, from the source institution.
+
+Lines~\ref{line:crossperm1} to~\ref{line:crossperm2} describe the actual
+sequence of events that lead to the \emph{The Hero chases the MacGuffin} event
+being triggered inside the sink institution: when the institutional event
+\emph{intStartItemSearch} occurs inside the source institution, it gives the
+Hero permission to chase the MacGuffin in the sink institution. The same
+mechanism is used on lines~\ref{line:phase1} and~\ref{line:phase2} to declare
+and initiate the first phase (the \emph{active} phase) of the sink (\emph{Item
+  Search}) institution from the source (\emph{Kill then Search}) institution.
+The phase is initiated from the same institutional event inside the source
+institution: the \emph{intStartItemSearch} event.
+
+\begin{lstlisting}[label={lst:bridge-source}, caption={The generation event for
+the final action in the \emph{Kill then Search} source institution}]
+kill(R, S) generates
+    intStartItemSearch if
+        role(S, villain),
+        role(R, hero),
+        phase(killNSearch, phaseA);
+\end{lstlisting}
+
+Listing~\ref{lst:bridge-source} shows the generation event corresponding to the
+final action that occurs in the \emph{Kill then Search} trope: \emph{The Hero
+  kills the Villain}. The line after this event in the trope embeds the
+\emph{Item Search} subtrope within this trope: \emph{Then the ``Item Search''
+  trope happens}. For this reason, the \emph{intStartItemSearch} institutional
+event is initiated, which further initiates the permission for the first event
+in the \emph{Item Search} institution to happen through the bridge institution
+in listing~\ref{lst:bridge-inst}.
+
+Full listings for the generated InstAL code for these tropes, along with several
+other examples, appear in Appendix~\ref{appendix:instal}.
 
 \section{Answer Set Generation}
 \label{sec:t-asp}
@@ -3234,6 +4139,383 @@ consequence = event
 % TODO generate for hero's journey: 4
 % TODO generate for evil empire: 4
 % TODO generate for both: 4
+
+Once the code has been translated from TropICAL into InstAL, it can be compiled
+further into AnsProlog, an Answer Set Programming (ASP) language, using a
+process described by~\citet{cliffe2007specifying}. We use the
+Potassco project's Clingo~\cite{gebser2011potassco} solver to formally verify
+that certain sequences of events conform to the tropes that form our
+institutions. This solver can also be used to generate all of the possible
+sequences of events that fit a story described using one or more tropes, by
+generating all of the \emph{answer sets} that correspond to a set of institutions.
+
+\section{Adding Constraints}
+\label{sec:t-constraints}
+% TODO ASP intro: 1
+% TODO constraints explanation: 2
+% TODO output: 2
+When our answer sets (traces) are generated by the answer set solver, we want to
+see sequences of events that can happen as part of a story with a set
+of given tropes. However, the answer set solver may include some uninteresting
+events as part of the grounding process, such as \emph{null} events, the dummy
+events we used to replace unspecified deadlines and consequences for
+obligations, and events that otherwise violate the rules in each institution.
+
+Listing~\ref{lst:constraints} shows the AnsProlog rules used to constrain the
+answer sets produced by the solver, so that they only consist of events that are
+relevant to our stories. Line~\ref{line:viol} specifies that events are only
+valid if they are not violation or null events. Line~\ref{line:inst} filters
+out any event that has a \emph{null} institution. Line~\ref{line:valids} ignores
+any answer sets where a valid event occurs after a sequence of non-valid events.
+Lines~\ref{line:dead} and~\ref{line:dead2} ignore our dummy deadline events for
+obligations where no deadline is specified. Finally, lines~\ref{line:null}
+and~\ref{line:null2} remove any \emph{null} events at all from the answer sets.
+
+\begin{lstlisting}[label={lst:constraints}, caption={Constraint rules to remove
+invalid and irrelevant events}, escapechar=|]
+validEvent(I, In) :- instant(I), inst(In), event(E), occurred(E, In, I), not occurred(viol(_), In, I), E != null.|\label{line:viol}|
+validEvent(I) :- validEvent(I, In), inst(In).|\label{line:inst}|
+:- validEvent(I2), not validEvent(I), I < I2, instant(I), instant(I2).|\label{line:valids}|
+:- instant(I), not validEvent(I), occurred(viol(_), In, I).|\label{line:instant}|
+deadEvent :- observed(noDeadline(X), I, T).|\label{line:dead}|
+:- deadEvent.|\label{line:dead2}|
+nullInst :- occurred(X, null, T).|\label{line:null}|
+:- nullInst.|\label{line:null2}|
+\end{lstlisting}
+
+The next section lists example answer set (trace) outputs of the solver with two
+tropes, both separately and combined.
+
+\section{Example Answer Sets (Traces)}
+
+
+
+\subsection{Evil Empire}
+Our first example trope is a simple sequence of events called the ``Evil Empire'':
+
+\begin{lstlisting}[label={lst:evil-empire}, caption={The ``Evil Empire'' trope}]
+``Evil Empire'' is a trope where:
+  The Empire is a role
+  The Hero is a role
+
+  The Empire chases the Hero
+  Then the Empire captures the Hero
+  Then the Hero escapes
+\end{lstlisting}
+
+This trope, once compiled to InstAL, then AnsProlog, and run through Clingo,
+produces four answer sets. The compiled institution is listed in
+Appendix~\ref{appendix:evil-empire}, and all of the resulting traces appear in
+Appendix~\ref{appendix:evil-empire-traces}. The listed traces are solved by
+looking up to three events into the trope, as that is its maximum length.
+
+Listing~\ref{lst:evil-trace} shows one of the four traces from the solver
+output. This trace contains each event of the trope, happening one after
+another. The other traces stop short of the final event, so that trace one has
+zero events, trace two has only the first event, and trace three has the first
+two events of the trope.
+
+\begin{lstlisting}[label={lst:evil-trace}, caption={Example trace for the ``Evil
+Empire'' trope}]
+Answer Set 4:
+
+Time Step 1:
+
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(phase(evilEmpire,phaseA),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(capture(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(intEvilEmpire(hero,empire),evilEmpire)
+occurred(chase(hero,empire),evilEmpire)
+
+
+Time Step 2:
+
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(phase(evilEmpire,phaseB),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(escape(hero)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(intEvilEmpire(hero,empire),evilEmpire)
+occurred(capture(hero,empire),evilEmpire)
+
+
+Time Step 3:
+
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(intEvilEmpire(hero,empire),evilEmpire)
+occurred(escape(hero),evilEmpire)
+
+
+\end{lstlisting}
+
+\subsection{The Hero's Journey}
+
+\begin{lstlisting}
+``The Hero's Journey'' is a trope where:
+  The Hero is a role
+  The Villain is a role
+  Home is a place
+  The Evil Lair is a place
+
+  The Hero goes to the Evil Lair
+  Then the Hero kills the Villain
+    Or the Villain escapes
+  Then the Hero goes Home
+\end{lstlisting}
+
+The answer set solver produces six traces for this trope.
+
+\begin{lstlisting}[label={lst:hero-trace},caption={Example trace for the
+``Hero's Journey'' trope}]
+Answer Set 4:
+
+Time Step 1:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(phase(herosJourney,phaseA),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(kill(hero,villain)),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(escape(villain)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+occurred(go(hero,evilLair),herosJourney)
+
+
+Time Step 2:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(phase(herosJourney,phaseB),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(go(hero,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+occurred(kill(hero,villain),herosJourney)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+
+
+Time Step 3:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+occurred(go(hero,home),herosJourney)
+\end{lstlisting}
+
+\subsection{The Hero's Journey \emph{and} The Evil Empire}
+
+Combining the two tropes together produces 124 answer sets. Again, the reason
+that the solver produces so many answer sets is that it includes stories that
+are less than the full length of every event from both tropes combined (which is
+six events in this case). This is desirable when we are combining tropes, as
+sometimes we need to incorporate events from a trope without needing it to run
+its full course. In this example, if the Hero's Journey has come to an end, then
+that would seem like a more suitable place to finish the story, rather than
+waiting for all of the events in the Evil Empire trope to occur.
+
+An example of a trace that runs the full six event length of both tropes put
+together is shown in listing~\ref{lst:hero-evil-trace}.
+
+\begin{lstlisting}[label={lst:hero-evil-trace},caption={Example trace for both the ``Evil Empire'' and
+``Hero's Journey'' tropes combined together}]
+Answer Set 70:
+
+Time Step 1:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(phase(herosJourney,phaseA),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(kill(hero,villain)),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(escape(villain)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(phase(evilEmpire,active),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(chase(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+occurred(go(hero,evilLair),herosJourney)
+occurred(null,evilEmpire)
+
+
+Time Step 2:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(phase(herosJourney,phaseA),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(kill(hero,villain)),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(escape(villain)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(phase(evilEmpire,phaseA),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(capture(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(null,herosJourney)
+occurred(intEvilEmpire(hero,empire),evilEmpire)
+occurred(chase(hero,empire),evilEmpire)
+
+
+Time Step 3:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(phase(herosJourney,phaseB),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(go(hero,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(phase(evilEmpire,phaseA),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(capture(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(kill(hero,villain),herosJourney)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+occurred(null,evilEmpire)
+
+
+Time Step 4:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(phase(evilEmpire,phaseA),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(capture(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
+occurred(go(hero,home),herosJourney)
+occurred(null,evilEmpire)
+
+
+Time Step 5:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(phase(evilEmpire,phaseB),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(escape(hero)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(null,herosJourney)
+occurred(intEvilEmpire(hero,empire),evilEmpire)
+occurred(capture(hero,empire),evilEmpire)
+
+
+Time Step 6:
+
+holdsat(role(villain,villain),herosJourney)
+holdsat(role(hero,hero),herosJourney)
+holdsat(role(empire,empire),herosJourney)
+holdsat(place(home,home),herosJourney)
+holdsat(place(evilLair,evilLair),herosJourney)
+holdsat(pow(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(perm(null),herosJourney)
+holdsat(perm(intHerosJourney(hero,villain,evilLair,home)),herosJourney)
+holdsat(live(herosJourney),herosJourney)
+holdsat(role(villain,villain),evilEmpire)
+holdsat(role(hero,hero),evilEmpire)
+holdsat(role(empire,empire),evilEmpire)
+holdsat(place(home,home),evilEmpire)
+holdsat(place(evilLair,evilLair),evilEmpire)
+holdsat(pow(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(perm(null),evilEmpire)
+holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
+holdsat(live(evilEmpire),evilEmpire)
+occurred(escape(hero),herosJourney)
+occurred(viol(escape(hero)),herosJourney)
+occurred(intEvilEmpire(hero,empire),evilEmpire)
+occurred(escape(hero),evilEmpire)
+\end{lstlisting}
+
 
 \section{Extending for Legal Policies}
 \label{sec:t-legal}
@@ -3289,6 +4571,7 @@ consequence = event
 % TODO explain how requirements have been met: 4
 
 \section{Example Stories}
+\label{sec:story-vis}
 % Return to tests from previous section (though these could be the ``user
 % stories'''), and put screenshots of visualisations
 
@@ -3393,6 +4676,137 @@ consequence = event
 % TODO explain: 3
 
 % TODO outro 2
+
+\appendix
+\chapter{Generated InstAL Code}
+\label{appendix:instal}
+
+\section{Branching Trope Example}
+\label{appendix:branch3}
+\begin{lstlisting}
+institution branch3;
+% TYPES ----------
+type Identity;
+type Agent;
+type Role;
+type Trope;
+type Phase;
+type Place;
+type PlaceName;
+type Object;
+type ObjectName;
+
+% FLUENTS ----------
+fluent role(Agent, Role);
+fluent phase(Trope, Phase);
+fluent place(PlaceName, Place);
+fluent object(ObjectName, Object);
+
+
+% EXTERNAL EVENTS: Branch 3 ----------
+exogenous event kill(Agent, Agent);
+exogenous event go(Agent, PlaceName);
+exogenous event find(Agent, ObjectName);
+exogenous event meet(Agent, Agent);
+exogenous event noDeadline;
+
+% VIOLATION EVENTS: Branch 3 ----------
+violation event noViolation;
+
+% INST EVENTS: Branch 3 ----------
+inst event intKill(Agent, Agent);
+inst event intFind(Agent, ObjectName);
+inst event intGo(Agent, PlaceName);
+inst event intMeet(Agent, Agent);
+inst event intBranch3(Agent, Agent, Agent, ObjectName, PlaceName, PlaceName, PlaceName);
+inst event intNoDeadline;
+
+% INITIATES: Branch 3 ----------
+intBranch3(R, S, T, U, V, W, X) initiates
+    phase(branch3, phaseA),
+    perm(find(R, U)),
+    perm(go(R, X)),
+    perm(kill(R, S)) if
+        phase(branch3, active),
+        object(U, sword),
+        role(R, hero),
+        place(X, landOfAdventure),
+        role(S, villain);
+intBranch3(R, S, T, U, V, W, X) initiates
+    phase(branch3, phaseB),
+    perm(meet(R, T)),
+    perm(go(R, V)) if
+        phase(branch3, phaseA),
+        place(V, realmOfMystery),
+        role(R, hero),
+        role(T, mentor);
+% TERMINATES: Branch 3 ----------
+intBranch3(R, S, T, U, V, W, X) terminates
+    phase(branch3, active),
+    perm(go(R, W)) if
+        phase(branch3, active),
+        role(R, hero),
+        place(W, home);
+intBranch3(R, S, T, U, V, W, X) terminates
+    phase(branch3, phaseA),
+    perm(find(R, U)),
+    perm(go(R, X)),
+    perm(kill(R, S)) if
+        phase(branch3, phaseA),
+        object(U, sword),
+        role(R, hero),
+        place(X, landOfAdventure),
+        role(S, villain);
+intBranch3(R, S, T, U, V, W, X) terminates
+    phase(branch3, phaseB),
+    perm(meet(R, T)),
+    perm(go(R, V)) if
+        phase(branch3, phaseB),
+        place(V, realmOfMystery),
+        role(R, hero),
+        role(T, mentor);
+
+
+% GENERATES: Branch 3 ----------
+find(R, U) generates
+    intBranch3(R, S, T, U, V, W, X) if
+        role(R, hero),
+        object(U, sword);
+go(R, V) generates
+    intBranch3(R, S, T, U, V, W, X) if
+        role(R, hero),
+        place(V, realmOfMystery);
+meet(R, T) generates
+    intBranch3(R, S, T, U, V, W, X) if
+        role(T, mentor),
+        role(R, hero);
+go(R, W) generates
+    intBranch3(R, S, T, U, V, W, X) if
+        role(R, hero),
+        place(W, home);
+go(R, X) generates
+    intBranch3(R, S, T, U, V, W, X) if
+        role(R, hero),
+        place(X, landOfAdventure);
+kill(R, S) generates
+    intBranch3(R, S, T, U, V, W, X) if
+        role(S, villain),
+        role(R, hero);
+
+% INITIALLY: -----------
+initially
+    pow(intBranch3(R, S, T, U, V, W, X)) if role(R, hero), role(S, villain), role(T, mentor), object(U, sword), place(V, realmOfMystery), place(W, home), place(X, landOfAdventure),
+    perm(intBranch3(R, S, T, U, V, W, X)) if role(R, hero), role(S, villain), role(T, mentor), object(U, sword), place(V, realmOfMystery), place(W, home), place(X, landOfAdventure),
+    perm(go(R, W)) if role(R, hero), place(W, home),
+    phase(branch3, active),
+    role(hero, hero),
+    role(villain, villain),
+    role(mentor, mentor),
+    place(home, home),
+    place(landOfAdventure, landOfAdventure),
+    place(realmOfMystery, realmOfMystery),
+    object(sword, sword);
+\end{lstlisting}\mnote{Move this to the appendix}
 
 
 \bibliographystyle{apalike}

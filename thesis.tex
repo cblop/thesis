@@ -2879,7 +2879,7 @@ The VAD emotional model is represented inside each agent as a set of beliefs. Ea
 
 This chapter describes the design and implementation of TropICAL (the TROPe
 Interactive Chronical Action Language), our Domain Specific Language for
-describing story tropes. The purpose of this language is to allow for the
+story tropes. The purpose of this language is to allow for the
 creation of interactive narratives through the description of tropes in a
 constrained natural language. The tropes created through the language are
 designed to be reusable components that can go into a ``library'', from which
@@ -2890,13 +2890,13 @@ The motivation for the creation of TropICAL is the lack of any methods of
 creating interactive narrative that are suitable for non-programmers to use. The
 systems described in the literature review in
 chapter~\ref{cha:literature-review}, such as any using the Mimesis
-architecture~\cite{young2004architecture}, a drama manager and planner such as
-in Fa\c{c}ade's system~\cite{mateas2003faccade}, or linear logic as in Ceptre's
-system~\ref{martens2015ceptre}, all require the story author to be familiar with
+architecture~\citep{young2004architecture}, a drama manager and planner such as
+in Fa\c{c}ade's system~\citep{mateas2003faccade}, or linear logic as in Ceptre's
+system~\citep{martens2015ceptre}, all require the story author to be familiar with
 planner-based systems or the description of formal logics. The purpose of
 TropICAL is to greatly reduce the barrier to the creation of interactive stories
 by allowing authors to describe the components of their story using constrained
-natural language. In fact, many authors using our system may not even need to
+natural language. In fact, many authors using our system should not even need to
 write their own tropes using TropICAL, and will instead simply select the tropes
 that they need for their story from a pre-created ``library'' of tropes. This
 process is facilitated through the ``StoryBuilder'' user interface described in
@@ -2906,7 +2906,7 @@ This section describes TropICAL's constrained natural
 language syntax in section~\ref{sec:t-constrained}, the features of the language in section~\ref{sec:t-features}, 
 the formal grammar used to
 describe its syntax in section~\ref{sec:t-grammar}, how ``nested
-tropes'' are created in section~\ref{sec:t-nested}, the intermediate data structure used between parsing and
+tropes'' are created in section~\ref{sec:subtrope-code}, the intermediate data structure used between parsing and
 code generation steps (section~\ref{sec:t-intermediate}), its compilation
 to InstAL code (section~\ref{sec:t-codegen}), some samples of generated InstAL
 institutions (section ~\ref{sec:t-tropes}), answer set
@@ -2922,17 +2922,17 @@ generation (section~\ref{sec:t-asp}), and finally its extension for the descript
 
 TropICAL uses a \emph{Controlled Natural Language} (also referred to as
 \emph{Constrained Natural Language}) syntax, which means that it superficially
-resembles natural language English, but is only a subset.
+resembles natural English, but is only a subset of the full language.
 
 There are two types of Controlled Natural Language (CNL). The first type are \emph{naturalistic} languages
-such as ASD Simplified Technical English~\cite{asd2007simplified}, designed to
+such as ASD Simplified Technical English~\citep{asd2007simplified}, designed to
 be used in documentation for technical industries such as aerospace or defense,
-or Ogden Basic English~\cite{ogden1944basic}, a simplified language for teaching
+or Ogden Basic English~\citep{ogden1944basic}, a simplified language for teaching
 English as a second language. This type of Controlled Natural Language merely
 describe a subset of the parent language. The other type of CNL are
 \emph{formalistic}, with a formal
 syntax and semantics, which can be mapped to rules in other formal languages
-such as first-order logic. Attempto Controlled English~\cite{fuchs1996attempto}
+such as first-order logic. Attempto Controlled English~\citep{fuchs1996attempto}
 is an example of this formal type of CNL, and the one which forms the basis of
 our syntax for TropICAL.
 
@@ -2987,7 +2987,7 @@ Other ways of modifying the sentences include \emph{negation}, adding
 \emph{imperative}. We do not go into further details in this thesis, as we are
 using ACE simply as an inspiration for our syntax, rather than following its
 design entirely. For more details, see the ``ACE in a Nutshell'' page of its
-documentation for an overview of the language~\cite{ace-nutshell}.
+documentation for an overview of the language~\citep{ace-nutshell}.
 
 \subsection{Inform 7}
 
@@ -2997,7 +2997,7 @@ called \emph{text adventure games}). All versions of Inform generate
 interactive fiction.
 
 The syntax of the language has changed multiple times since its creation in
-1993. The version of the language that we are most interested in is Inform 7~\cite{reed2010creating},
+1993. The version of the language that we are most interested in is Inform 7~\citep{reed2010creating},
 which is its most recent incarnation. Prior to Inform 7, the language used
 traditional programming models such as procedural and object-oriented paradigms.
 With version 7, however, its creator Graham Nelson redesigned its
@@ -3007,7 +3007,7 @@ of writing a book.
 
 The simplest possible game authored with Inform 7 would be:
 
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false]
 "Hello World" by "I.F. Author"
 
 The world is a room.
@@ -3018,7 +3018,7 @@ When play begins, say "Hello, world."
 An extended example, Will Crowther's cave exploration simulation, would be
 described like this:
 
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false]
 "Cave Entrance"
 
 The Cobble Crawl is a room. "You are crawling over cobbles in a low passage. There is a dim light at the east end of the passage."
@@ -3067,17 +3067,29 @@ story. These agents, though an architecture such as BDI (Belief, Desire,
 Intention), have their own goals and plans for how to achieve those goals.
 TropICAL does not assist in the authoring of these characters and their plans or
 lines of dialogue. Instead, its purpose is to direct the actions of these
-``character'' agents so that their behaviour follows the rules of the author's story.
-
-TropICAL is designed to be used with a system where the character agents have
+``character'' agents so that their behaviour follows the rules of the author's
+story. TropICAL is designed to be used with a system where the character agents have
 already been authored. It guides them by allowing the characters to know what
 they are permitted and obliged to do according to the story. This is achieved by
 giving the characters new percepts so that they may \emph{believe} they are
 allowed to take certain courses of action. For a description of how this is
-implemented in practice, see section~\ref{} of chapter~\ref{cha:agents}.
+implemented in practice, see section~\ref{sec:emotional-pj} of chapter~\ref{cha:agents}.
 
 \subsection{Use Cases}
 \label{sec:use-cases}
+
+In order to design a set of tools that is suited to interactive story authors,
+our intended end users, we derive our set of requirements from specific use
+cases. These use cases come from the user stories of three users: Alice, Bob and
+Charlie. In each case, we tell the user's story, highlighting their different
+levels of technical experience, along with
+their various needs for and ways of using tools for
+interactive story creation.
+
+\subsubsection{Alice}
+
+Our first user story focuses on \emph{Alice}, a user with some programming knowledge and
+specialist expertise in the field of intelligent agents:
 
 \begin{quote}
   Alice is an interactive narrative researcher using the JASON intelligent agent
@@ -3103,6 +3115,7 @@ implemented in practice, see section~\ref{} of chapter~\ref{cha:agents}.
   tropes that describe what a ``Murder Mystery'' story is, or what should happen
   in a ``Rooftop Chase'' scene. She creates these by writing her own tropes in TropICAL:
 
+  \begin{lstlisting}[showstringspaces=false]
   ``Murder Mystery'' is a trope where:
     The Detective is a role
     The Killer is a role
@@ -3121,6 +3134,7 @@ implemented in practice, see section~\ref{} of chapter~\ref{cha:agents}.
     The Detective chases the Fugitive
     Then the Detective catches the Fugitive
       Or the Fugitive escapes
+\end{lstlisting}
 \end{quote}
 
 From Alice's story, we can derive the following requirements:
@@ -3139,6 +3153,10 @@ From Alice's story, we can derive the following requirements:
   them to the database
 \end{compactitem}
 
+\subsubsection{Bob}
+
+Our second hypothetical user, \emph{Bob}, has no technical expertise at all:
+
 \begin{quote}
   Bob is a traditional story author interested in writing interactive narratives
   with branching plot lines. He has written a few stories in the style of the
@@ -3151,13 +3169,14 @@ From Alice's story, we can derive the following requirements:
   Journey'' scene, or the ``Stay at Home and Avoid Adventure'' scene, which
   would be the names of scenes leading either to further choices, or the end of
   the story.
+
   While he is writing the story, he finds it difficult to keep a mental model of
   the whole plot, with all its branches, in his head. As he creates new choices
   and branching points in the story, he finds himself having to pin up notes on
   a board, and connect them with string.
   Frustrated, he searches for software to help him with the process of authoring
   non-linear stories, eventually finding a piece of software called ``Twine''.
-  Twine's user inteface uses the analogy of notes on a pinboard connected with
+  Twine's user interface uses the analogy of notes on a pinboard connected with
   string, the exact process he is used to. He quickly inputs the story he is
   working on into Twine, and it produces an HTML website with hyperlinks to
   pages representing the scenes of his story.
@@ -3167,11 +3186,13 @@ From Alice's story, we can derive the following requirements:
   missions over the course of the game. He decides that all of these quests
   follow a common pattern:
 
+  \begin{lstlisting}[showstringspaces=false]
   The Hero is at Home
   Then the Hero meets the Dispatcher
   Then the Hero receives a Quest
   Then the Hero completes the Quest
     Or the Hero ignores the Quest
+\end{lstlisting}
 
   In this case, the actual content of the ``Quest'' would change for each
   individual quest, but the way the player receives and embarks on the Quest
@@ -3199,6 +3220,11 @@ However, Bob also has some different requirements from Alice:
   \item He needs to be able to visualise all of the story branches that result
     when one or more tropes are combined together
 \end{compactitem}
+
+\subsubsection{Charlie}
+
+Our final user, \emph{Charlie}, has technical expertise, and is also familiar with
+existing research techniques for interactive narrative generation:
 
 % Charlie needs to give agents autonomy to break away from the prescribed narrative
 \begin{quote}
@@ -3236,6 +3262,7 @@ Charlie's only unique requirement is:
 \end{compactitem}
 
 \subsection{Requirements}
+\label{sec:requirements}
 
 Based on the use cases above (section~\ref{sec:use-cases}), we can create the
 following requirements:
@@ -3259,24 +3286,50 @@ following requirements:
     degree of unpredictability
 \end{compactenum}
 
-The way in which our TropICAL language is used is as follows:
+The next section describes the design of the TropICAL language, relating each
+design decision back to these requirements derived from the use cases.
+
+\section{Language Design and Features}
+\label{sec:language-design}
+In this section, we describe the main features of the TropICAL programming
+language:
 
 \begin{compactitem}
-  \item It is based around the idea of using \emph{story tropes} as reusable
-    components that can be combined to create stories
-  \item It uses \emph{controlled natural language} to describe these tropes
-  \item The controlled natural language is then parsed and compiled to a data
-    structure that describes the formal features of each trope
-  \item The intermediate data structure is then used to generate InstAL code
-  \item The InstAL code is compiled to AnsProlog, an Answer Set Programming
-    language
-  \item The AnsProlog code is then run through
-    \emph{clingo}~\cite{gebser2011potassco}, an answer set solver, to generate
-    all the possible sequences of events that can occur in the story.
+  \item Entity Declarations
+  \item Sequences of Events
+  \item Obligations
+  \item Branching Events
+  \item Subtropes
 \end{compactitem}
 
-\section{Entity Declarations}
+Each part of this section contains code samples to demonstrate the use and
+implementation of each language feature. Many of these samples are only extracts from
+full trope definitions in TropICAL, however. More extensive examples of trope
+definitions can be found in Appendix~\ref{appendix:tropes}.
+
+This section begins by showing how the entities (roles, objects and places) of a
+trope are defined by the author (Section~\ref{sec:dec-code}), then follows this with a description of how
+these entities' actions are composed together to form sequences of events (Section~\ref{sec:seq-code}).
+Normally, these events give the character entities \emph{permission} to perform
+certain actions, so section~\label{sec:obl-code} shows how an author may
+describe events that \emph{must} happen in the story through obliging characters
+to carry out specific actions.
+In cases where multiple story paths may be taken, TropICAL allows for the
+description of alternative narrative branches, the syntax for which is described
+in section~\ref{sec:branch-code}. Finally, the means for creating trope
+abstractions by embedding existing tropes into new ones is demonstrated in
+section~\ref{sec:subtrope-code}.
+
+\subsection{Entity Declarations}
 \label{sec:dec-code}
+A trope may contain three types of entities that take part in a trope:
+
+\begin{compactitem}
+  \item Roles (characters acted out by the agents)
+  \item Objects (items that are used or manipulated by the characters)
+  \item Places (locations that the characters visit)
+\end{compactitem}
+
 Before an author can use any characters, objects or places in their tropes, they
 must first declare them at the top of the trope file. For example, to declare
 that the \emph{Hero} and \emph{Evil Villain} are character roles, one would write:
@@ -3311,7 +3364,7 @@ The Land of Adventure is a place
 Once the author has declared the entities of their trope at the top of the trope
 definition, they are able to use them inside the events of the trope itself.
 
-\subsection{Entity Instances}
+\subsubsection{Entity Instances}
 In cases where multiple characters fulfil the same role (a story could have two
 hero characters, for example), or there are multiple objects or locations of the
 same type, these separate entity instances can be passed to the compiler in
@@ -3331,7 +3384,7 @@ If these instances are not input into the compiler, then each entity has just
 one instance with the same name as its type (a hero called ``Hero'', a sword
 called ``Sword'', an evil lair called ``Evil Lair'', for example).
 
-\section{Sequences of Events}
+\subsection{Sequences of Events}
 \label{sec:seq-code}
 TropICAL is an event-based language: it describes events that happen as part of
 a story, where the events involve actions taken by roles (the agents in a
@@ -3388,7 +3441,14 @@ stemmed using \emph{WordNet}~\ref{miller1995wordnet} so that, for example,
 \emph{goes} becomes \emph{go} and \emph{wanted} becomes \emph{want} when the
 tropes are compiled.
 
-\section{Branching Events}
+\subsection{Obligations}
+\label{sec:obl-code}
+
+\subsubsection{Deadline Events}
+
+\subsubsection{Violation Events and Consequences}
+
+\subsection{Branching Events}
 \label{sec:branch-code}
 A trope author may want to describe alternative possibilities in their story,
 where either the player or a character in the story may decide from one of
@@ -3495,7 +3555,7 @@ Deeply indented code is often undesirable, however, and is usually a symptom
 that the code needs to be subdivided into modules. We can achieve this by
 embedding subtropes inside of other tropes.
 
-\section{Subtropes}
+\subsection{Subtropes}
 \label{sec:subtrope-code}
 \emph{Subtropes} are simply previously-written tropes that are embedded inside a
 new trope. Take this simple trope example:
@@ -3569,7 +3629,26 @@ An author can create complex branching narrative by combining these tropes toget
 visualisations of the story paths of multiple tropes combined, see
 section~\ref{sec:story-vis} of chapter~\ref{cha:storybuilder}.
 
-\section{EBNF Grammar}
+\section{Compilation Process}
+\label{sec:compilation}
+
+The way in which our TropICAL language is used is as follows:
+
+\begin{compactitem}
+  \item It is based around the idea of using \emph{story tropes} as reusable
+    components that can be combined to create stories
+  \item It uses \emph{controlled natural language} to describe these tropes
+  \item The controlled natural language is then parsed and compiled to a data
+    structure that describes the formal features of each trope
+  \item The intermediate data structure is then used to generate InstAL code
+  \item The InstAL code is compiled to AnsProlog, an Answer Set Programming
+    language
+  \item The AnsProlog code is then run through
+    \emph{clingo}~\cite{gebser2011potassco}, an answer set solver, to generate
+    all the possible sequences of events that can occur in the story.
+\end{compactitem}
+
+\subsection{EBNF Grammar}
 \label{sec:t-grammar}
 % TODO intro: 1
 This section describes the grammar of our TropICAL language formally using
@@ -4516,15 +4595,77 @@ occurred(intEvilEmpire(hero,empire),evilEmpire)
 occurred(escape(hero),evilEmpire)
 \end{lstlisting}
 
-
 \section{Extending for Legal Policies}
 \label{sec:t-legal}
 % TODO intro: 1
 % TODO explanation from JURIX: 2
+Though TropICAL is designed to describe non-linear stories in systems with
+intelligent agents such as
+interactive computer games, with minor changes it can also be adjusted to
+describe legal contracts. Where a story describes the constraints on character
+behaviour that any character can in theory break away from, a legal contract
+performs a similar role by describing the expected behaviour of its parties and
+the consequences for breaking those expectations.
 
-\subsection{Example Policies}
-% TODO examples from JURIX: 2
+In the case of contract law, though each individual contract between plaintiff and
+defendant would be different, common patterns exist between contracts. For
+example, contracts typically have a fixed duration and penalty for premature
+termination. There are usually clauses in a contract that describe the
+conditions for termination in the case of one of the parties performing certain
+unpermitted actions. These are what we refer to as a ``policy'' throughout this section: an abstract description of
+a commonly-occurring legal pattern that is analogous to a trope in a story.
 
+In order to divide legal contracts into reusable components, the concept of tropes can easily be applied to capture fragments of the law. Some
+examples are:
+
+\begin{itemize}
+\item \textbf{The Warranty}: A \emph{seller} sells an item to a \emph{buyer}. If
+  the item is defective, then the \emph{buyer} has the right to return it within
+  a certain period of time.
+\item \textbf{The Lease}: A \emph{lessor} leases an item or property to a
+  \emph{lessee}. The lessee is obliged to pay rental fees on time, and to keep the item
+  or property in good condition. The lessor is obliged to perform maintenance
+  and necessary repairs on the item or property.
+\item \textbf{The Deposit}: A sum of money is given from one party to another
+  with the understanding that it is to be returned upon expiration of a contract. 
+\end{itemize}
+
+As with tropes that contain sub-tropes, policies can have sub-policies. For
+example, a ``sales contract'' policy could contain a ``warranty'' policy as a
+sub-policy. This can be thought of as adding a clause to a contract. Similarly,
+a ``lease'' policy could be a sub-policy of a ``tenancy agreement'' policy,
+which keeps the spirit of the lease policy but adds the requirement for the
+lessee to not make excessive noise, for example. These policies describe the
+actions that both parties are permitted and obliged to carry out, in a sequence of events.
+
+As an example of describing a legal policy in the manner of a story trope,
+consider the subleasing of an object or property from a lessor to a lessee. In
+such an arrangement, the following dispute could occur:
+
+\begin{itemize}
+  \item The \emph{lessor} leases property to the \emph{lessor}.
+  \item The \emph{lessee} then subleases the property to a \emph{third party}.
+  \item The \emph{lessor} cancels the lease contract, stating that the
+    subleasing is a violation of the contract.
+\end{itemize}
+
+These policies can be expressed in terms of social norms:
+
+\begin{itemize}
+\item \textbf{The Warranty}: The seller sells an item to a buyer. Then,
+  if the item is defective, the buyer \emph{may} return it.
+\item \textbf{The Lease}: A lessor leases an item to a lessee. The lessee
+  \emph{must} pay the rent \emph{before} the due date, \emph{otherwise} the
+  lessor \emph{may} cancel the lease.
+  \item \textbf{The Deposit}: The lessee gives a sum of money to the lessor.
+    When the lease ends, if the leased item is in good condition, then the
+    lessor \emph{must} return the deposit to the lessee.
+\end{itemize}
+
+Once legal policies are expressed in this way, they can be translated into
+TropICAL code:
+
+\begin{figure}[!t]
 \begin{lstlisting}[belowskip=-0.5em]
 ``Lease'' is a policy where:
     The Lessor is a role
@@ -4570,6 +4711,57 @@ occurred(escape(hero),evilEmpire)
       Otherwise, the Lessee may cancel the Lease
 \end{lstlisting}
 \caption{Example policies in TropICAL\label{lst:policies}}
+\end{figure}
+
+The use of TropICAL to describe legal policies would be useful for lawyers that
+want to validate or generate arguments from any given set of policies. This would be invaluable as a tool
+to aid lawyers in argument creation, for example.
+Suppose a defense lawyer is trying to argue that her client
+is not guilty. The system could generate traces (sequences of events) of a
+given length, whose outcome does not result on the violation of any contract
+or law. The lawyer would then be able to choose from amongst a list of
+generated arguments to make their case. 
+
+Adapting this idea to our \emph{sublease} example described above,
+we can generate sequences of events where a lessee has
+subleased a property, and find out whether or not their actions have been in
+violation of a policy. We achieve this through the specification of constraints.
+For example, a prosecution lawyer wishing to find all sequences of events where
+both sublease event and violation events have occurred would specify this ASP
+constraint.
+
+\begin{lstlisting}
+violEvent :- occurred(viol(X), I, T).
+:- not violEvent.
+subleaseEvent :- occurred(sublease(X, Y, Z), I, T), holdsat(role(X, lessee), I, T).
+:- not subleaseEvent.
+\end{lstlisting}
+
+This constraint specifies that we want to generate all possible sequences where
+the lessee has subleased something, and where a violation has occurred. Headless
+rules in ASP (where the leftmost part of the rule is simply ``:-'') state what we
+do \emph{not} want in generated answer sets, so in this example both headless
+statements are double negatives.
+
+The solver outputs several answer sets, containing event sequences (traces) of a
+specified length. We can then parse these answer sets into a human-readable
+``executive summary'' that can be used by lawyers. An example of such a summary
+would be:
+
+\begin{lstlisting}
+Possibility 0:
+
+The following occurred:
+  Alice Leases Bob House
+Then:
+  Bob Subleases Charlotte House
+  VIOLATION: Bob Subleases Charlotte House
+\end{lstlisting}
+
+Each summary lists a number of ``possibilities'', with each possibility
+corresponding to an answer set produced by the solver, listing events and violations that occur
+in a trace. To find an argument, a lawyer can simply read through the generated
+possibilities to find one that suits her needs.
 
 % TODO outro: 1
 
@@ -4724,6 +4916,9 @@ occurred(escape(hero),evilEmpire)
 % TODO outro 2
 
 \appendix
+\chapter{Full TropICAL Examples}
+\label{appendix:tropes}
+
 \chapter{Generated InstAL Code}
 \label{appendix:instal}
 

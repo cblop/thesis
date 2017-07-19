@@ -4525,6 +4525,52 @@ occurred(escape(hero),evilEmpire)
 \subsection{Example Policies}
 % TODO examples from JURIX: 2
 
+\begin{lstlisting}[belowskip=-0.5em]
+``Lease'' is a policy where:
+    The Lessor is a role
+    The Lessor is a role
+    The Thing is an object
+    The Lessor leases the Thing to the Lessee
+    Then the ``Maintenance of Confidence'' policy applies
+\end{lstlisting}
+ % \caption{The ``Lease'' policy in TropICAL\label{lst:lease}}
+% \medskip
+% \begin{lstlisting}[float=t!,caption={The ``Evil Empire'' trope in TropICAL},label=lst:evil]
+\begin{lstlisting}[belowskip=-0.5em]
+``Sublease'' is a policy where:
+    The Lessor is a role
+    The Third Party is a role
+    The Thing is an object
+    The Lessor may sublease the Thing to a Third Party 
+\end{lstlisting}%
+% \caption{The ``Sublease'' policy in TropICAL\label{lst:sublease}}
+% \medskip
+% \begin{lstlisting}[float=t!,caption={The ``Quest'' trope in TropICAL},label=lst:quest]
+\begin{lstlisting}[belowskip=-0.5em]
+``Sublease Permission'' is a policy where:
+    The Lessee is a role
+    The Lessor is a role
+    The Thing is an object
+    The Lessee may ask permission to sublease the Thing
+    If the Lessor gives permission to the Lessee:
+      The ``Sublease'' policy applies
+\end{lstlisting}
+% \caption{The ``Sublease Permission'' policy in TropICAL\label{lst:sublease-permission}}
+% \medskip
+\begin{lstlisting}[belowskip=-0.5em]
+``Maintenance of Confidence'' is a policy where:
+    The Lessee is a role
+    The Lessor is a role
+    The Due Date is an object
+    The Lease is an object
+    The Thing is an object
+    The Lessee must pay the Lessor before the Due Date arrives
+      Otherwise, the Lessor may cancel the Lease
+    The Lessor must maintain the Thing
+      Otherwise, the Lessee may cancel the Lease
+\end{lstlisting}
+\caption{Example policies in TropICAL\label{lst:policies}}
+
 % TODO outro: 1
 
 % storybuilder

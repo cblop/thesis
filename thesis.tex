@@ -16,7 +16,7 @@
 \usepackage{subcaption}
 \usepackage{verbatim}
 \usepackage{hyperref}
-\usepackage[inline]{enumitem}
+% \usepackage[inline]{enumitem}
 \usepackage{paralist}
 %\usepackage{amsfonts}
 \usepackage{url}
@@ -32,7 +32,7 @@
 
 \newcounter{myenumi}
 \setcounter{myenumi}{0}
-\newenvironment{myenumerate}{\begin{compactenum} \setcounter{enumi}{\themyenumi}}{ \setcounter{myenumi}{\theenumi}\end{compactenum}}
+\newenvironment{myenumerate}{\begin{enumerate} \setcounter{enumi}{\themyenumi}}{ \setcounter{myenumi}{\theenumi}\end{enumerate}}
 
 \def\mnote#1{\todo[color=Goldenrod,size=\scriptsize]{Matt: #1}}
 \def\minote#1{\todo[inline,color=Goldenrod,size=\scriptsize]{Matt: #1}}
@@ -436,13 +436,13 @@ The themes, scenes, characters and structure of a story can be described in term
 
 Examples of tropes are:
 
-\begin{compactitem}
+\begin{itemize}
 \item \textbf{The Hero's Journey}: A hero answers a call to adventure, and
   leaves home to go on a journey. The hero defeats the villain along the way, returning back home triumphant.
 \item \textbf{The Evil Empire}: The villain is part of an empire, which tries to stop the hero at all costs.
 \item \textbf{The MacGuffin}: There is an object that the hero needs, the search for which is used to drive the plot.
 \item \textbf{Chekhov's Gun}: If a gun appears somewhere in the first act, it must be fired by the end of the third.
-\end{compactitem}
+\end{itemize}
 
 Tropes can describe a story at several layers of abstraction, meaning that tropes can contain other tropes as sub-tropes. For example, \emph{The Hero's Journey} can contain the \emph{Hero}, \emph{Quest}, and \emph{Call to Adventure} sub-tropes. This allows a degree of expressivity unavailable in other narrative models described in the \emph{Related Work} section.
 
@@ -468,11 +468,11 @@ way that the character agents respond to these interactions.
 In section~\ref{sec:tropical}, we describe TropICAL, our programming language
 for defining of story tropes. The requirements for this language are:
 
-\begin{compactenum}
+\begin{enumerate}
 \item Easy to learn for authors who are unfamiliar with programming\label{req1}
   \item Able to express sequences of events and branching events\label{req2}
   \item Must have a mechanism for abstraction (embedding sub-tropes within tropes)\label{req3}
-\end{compactenum}
+\end{enumerate}
 
 In order to satisfy requirement~\ref{req1}, TropICAL uses a controlled
 natural language syntax resembling that of the popular interactive fiction
@@ -498,7 +498,7 @@ constraints expressed in the described tropes.
 % Outline of sections goes here
 The structure of this thesis is as follows:
 
-\begin{compactenum}[{Chapter} 1:]
+\begin{enumerate}[{Chapter} 1:]
 \setcounter{enumi}{1}
 \item A \textbf{Literature Review}.
   We approach the literature survey from two perspectives: those of \emph{narratology},
@@ -554,7 +554,7 @@ The structure of this thesis is as follows:
   with the tool.
 \item The final chapter, \textbf{Conclusions and Future Work}, reviews the
   research done, evaluating its potential impact and discusses possible future work.
-\end{compactenum}
+\end{enumerate}
 
 % litrev
 
@@ -708,7 +708,7 @@ by fate).
 
 \citet{booker2004seven} describes seven basic plots, where each may have either a
 happy or unhappy ending:
-\begin{compactitem}
+\begin{itemize}
   \item Overcoming the monster
   \item Rags to riches
   \item The quest
@@ -716,7 +716,7 @@ happy or unhappy ending:
   \item Comedy
   \item Tragedy
   \item Rebirth
-\end{compactitem}
+\end{itemize}
 
 Georges Polti famously divides narratives into the \emph{thirty-six dramatic
   situations}~\citep{polti1921thirty}, derived from his analysis of classical
@@ -724,7 +724,7 @@ Greek and both classical and contemporary French texts. Polti's thirty-six types
 of plot are:
 
 \begin{multicols}{2}
-\begin{compactenum}
+\begin{enumerate}
   \item Supplication
   \item Deliverance
   \item Crime pursued by vengeance
@@ -761,7 +761,7 @@ of plot are:
   \item Remorse
   \item Recovery of a lost one
   \item Loss of loved ones
-\end{compactenum}
+\end{enumerate}
 \end{multicols}
 
 \begin{figure}[!t]
@@ -848,12 +848,12 @@ In this formalism, characters have \emph{roles}, such as \emph{hero}, \emph{vill
 
 Propp defines a total of 31 distinct story functions, each of which is given a number and symbol in order to create a succinct way of describing entire stories. Examples of such functions are:
 
-\begin{compactitem}
+\begin{itemize}
   \item One of the members of a family absents himself from home: \emph{absentation}.
   \item An interdiction is addressed to the hero: \emph{interdiction}.
   \item The victim submits to deception and thereby unwittingly helps his enemy: \emph{complicity}.
   \item The villain causes harm or injury to a member of the family: \emph{villainy}.
-\end{compactitem}
+\end{itemize}
 
 Each of these functions can vary to some degree. For example, the \emph{villainy} function can be realised as one of 19 distinct forms of villainous deed, including \emph{the villain abducts a person}, \emph{the villain seizes the daylight}, and \emph{the villain makes a threat of cannibalism}.
 
@@ -896,13 +896,13 @@ Inspired by Chomsky's theories of generative grammar \citep{chomsky1968sound}, r
 
 \begin{figure}[!t]
   \begin{center}
-  \begin{compactenum}
+  \begin{enumerate}
     \item $\texttt{Attempt}\rightarrow \texttt{Plan} + \texttt{Application}$\\
            $\qquad\Rightarrow\texttt{MOTIVATE(Plan, Application)}$
     \item $\texttt{Application}\rightarrow\texttt{(Preaction)*} + \texttt{Action} + \texttt{Consequence}$\\
            $\qquad\Rightarrow\texttt{Allow(AND(Preaction,Preaction,...),}$\\
            $\qquad\{\texttt{CAUSE | INITIATE | ALLOW}\}\texttt{(Action,Consequence)}$
-  \end{compactenum}
+  \end{enumerate}
   \end{center}
 
   \caption{Example rules from Rumelhart's story grammar}\label{fig:rumelhart}
@@ -912,12 +912,12 @@ Inspired by Chomsky's theories of generative grammar \citep{chomsky1968sound}, r
 
 Other systems draw inspiration from generative grammar, such as GESTER \citep{pemberton1989modular}, which generates stories based on a grammar synthesised from old French epic tales. \citet{lang1999declarative} describes a declarative model for narrative, consisting of lists of first-order predicate calculus expressions. These expressions describe events, states, goals and beliefs which combine to form a narrative. More specifically, it combines:
 
-\begin{compactitem}
+\begin{itemize}
   \item A \textbf{grammar interpreter} to search for a sequence of grammar rewrites which would produce a convincing narrative.
   \item A set of \textbf{temporal predicates} to describe the occurence of events over time and enforce temporal constraints on story components.
   \item A \textbf{world model} which describes the set of actions that characters may perform and fluents that may alter over the course of the narrative.
   \item A \textbf{natural language output unit}, which takes the sequence of events produced by the story grammar and converts it into readable natural language sentences.
-\end{compactitem}
+\end{itemize}
 
 This combination of using a grammar interpreter, world model and natural language output unit is especially common amongst generative grammar approaches.
 
@@ -993,7 +993,7 @@ Mimesis architecture. Once an author has created the pre-defined libraries of
 actions needed by the story planner, the following steps are taken to determine
 the course of the story:
 
-\begin{compactenum}
+\begin{enumerate}
   \item All the components connect to the Mimesis Controller (MC) via socket
     connection. It then acts as a message router.
   \item The game initiates a plan request containing the state of the game
@@ -1017,7 +1017,7 @@ the course of the story:
     definitions for actions, and discourse planners. It is the MWorld that
     receives actions from the execution manager to be executed, and executes
     these actions in the game engine.
-\end{compactenum}
+\end{enumerate}
 
 Mimesis uses DPOCL (Decomposed Partial-Order Causal-Link Planner,~\citep{young1994decomposition}) plans for
 its story planning. DPOCL plans are composed of \emph{steps} (the plan's
@@ -1079,17 +1079,17 @@ In Fa\c{c}ade, the smallest unit of narrative action is called a \emph{story bea
 
 A beat can have 5 types of goal:
 
-\begin{compactenum}
+\begin{enumerate}
   \item transition-in: characters express their intentions
   \item body: a dramatic question/situation is posed to the player
   \item local/global mix-in: react to the player before end of the beat
   \item wait-with-timeout: wait for the player's reaction
   \item transition-out: final reaction to the player's action in the beat
-\end{compactenum}
+\end{enumerate}
 
 A beat goal is a series of steps for an agent to perform, which can be:
 
-\begin{compactitem}
+\begin{itemize}
   \item staging (where to walk to, face)
   \item dialogue to speak
   \item where and how to gaze
@@ -1097,7 +1097,7 @@ A beat goal is a series of steps for an agent to perform, which can be:
   \item facial expression to perform
   \item head and face gestures to perform
   \item small arm and head emphasis motions triggered by dialogue (head nods, hand flourishes)
-\end{compactitem}
+\end{itemize}
 
 As an example, there is a behaviour called ``Fix\_Drinks'', which specifies a sequence of agent behaviours where the characters Grace and Trip have an argument while Trip asks the player what they would like to drink. If the player decides not to go along with the beat (in this case, by not choosing a drink), then the beat will be aborted and replaced with another.
 
@@ -1224,11 +1224,11 @@ For example, anger prepares the human body to fight by increasing the manufactur
 
 In order to model human emotions using agents, we must first find a suitable psychological model to use. Marsella et al describe three main types of emotional model:
 
-\begin{compactenum}
+\begin{enumerate}
  \item \textbf{Discrete} emotional models, which claim that humans have a set of innate, pre-defined emotional states which people may enter and leave.
  \item \textbf{Dimensional} models of emotion, describing the spectrum of emotions as being points somewhere in continuous space. Implementations typically use two or three dimensions for simplicity.
  \item \textbf{Appraisal} theories of emotion take an agent's mental processes into account. Their emotional state is derived from whether or not their goals have been achieved, and what effects current events are having on their circumstances, for example.
-\end{compactenum}
+\end{enumerate}
 
 % Give examples of concrete models for each type.
 \subsubsection{`Basic' emotions}
@@ -1236,7 +1236,7 @@ Ekman first made a case for discrete, biologically-determined emotions, based on
 
 Ekman argues that these evolved emotions share nine characteristics:
 
-\begin{compactenum}
+\begin{enumerate}
   \item Distinctive universal signals
   \item Presence in other primates
   \item Distinctive physiology
@@ -1246,7 +1246,7 @@ Ekman argues that these evolved emotions share nine characteristics:
   \item Brief duration
   \item Automatic appraisal
   \item Unbidden occurrence
-\end{compactenum}
+\end{enumerate}
 
 These characteristics are shared by all of the `basic' emotions as observed in humans and primates.
 
@@ -1309,11 +1309,11 @@ overcome Propp's ``good enough'' properties. In order for a story model to
 significantly improve upon Propp, it should add features that it and other
 existing formalisms lack. We identify these features as:
 
-\begin{compactitem}
+\begin{itemize}
   \item A means of \emph{abstraction}
   \item Conceptually \emph{simple} enough for non-programmers to grasp
   \item A library of re-usable \emph{examples} for authors and researchers
-\end{compactitem}
+\end{itemize}
 
 \paragraph{A Means of Abstraction}
 Current narrative formalisms lack a means of \emph{abstraction}. Propp,
@@ -1388,10 +1388,10 @@ This is it. This is all there is to the story. The show is over. The book is fin
 \end{quote}
 
 The site lists many examples from film and literature, including:
-\begin{compactitem}
+\begin{itemize}
   \item \textbf{Treasure Island:} Long John Silver escaped scot free with a chest of treasure, and was never caught. Not bad, for a month's murder and betrayal.
   \item \textbf{The Talented Mr Ripley:} Villain Protagonist Tom Ripley killed some people to assume a new identity and enrich himself thoroughly. In the sequels, he killed to protect his new life, and sometimes as favors for others. He never faced justice.
-\end{compactitem}
+\end{itemize}
 
 The \emph{TV Tropes} website is a Wikipedia of sorts for tropes. Since there are
 already so many examples listed on its website, it reduces the work needed to
@@ -1428,7 +1428,7 @@ Section~\ref{sec:model-logic} describes approaches that use formal logic to mode
 \subsubsection{Propp Example: Sausages and Crocodile Scene}\label{sec:pjexample}
 The common elements of Punch and Judy are easily described in terms of Propp's story functions. Here we pick one scene to use as an example: the scene where Punch battles a Crocodile in order to safeguard some sausages.  In this scene, Joey the clown (our narrator) asks Punch to guard the sausages. Once Joey has left the stage, a Crocodile appears and eats the sausages. Punch fights with the Crocodile, but it escapes. Joey then returns to find that his sausages are gone.
 The corresponding story functions are:
-\begin{compactenum}
+\begin{enumerate}
   \item Joey tells Punch to look after the sausages (\emph{interdiction}).
   \item Joey has some reservations, but decides to trust Punch (\emph{complicity}).
   \item Joey gives the sausages to Punch (\emph{provision or receipt of a magical agent}).
@@ -1436,7 +1436,7 @@ The corresponding story functions are:
   \item A Crocodile enters the stage and eats the sausages (\emph{violation}).
   \item Punch fights with the Crocodile (\emph{struggle}).
   \item Joey returns to find that the sausages are gone (\emph{return}).
-\end{compactenum}
+\end{enumerate}
 
 Some story functions map to Punch and Judy better than others (for example, it is debatable as to whether or not the sausages can be considered a ``magical agent''), but Propp's formalism seems well suited to Punch and Judy for the most part. The advantage of using Propp for the Punch and Judy story domain is that the story function concept maps well to the idea of internal events in institutional models.
 
@@ -1471,14 +1471,14 @@ The version of ITL used here is that described by Della Monica et al. in their o
 
 The operators defined by Halpern and Shoham are (a bar over an operator denotes its inverse):
 
-\begin{compactitem}
+\begin{itemize}
 \item $\langle L \rangle / \langle \overline{L} \rangle$ (Later): The interval occurs at some point after another interval.
 \item $\langle A \rangle / \langle \overline{A} \rangle$ (After): The interval occurs immediately after another interval.
 \item $\langle O \rangle / \langle \overline{O} \rangle$ (Overlaps): The interval occurs both during and before or after another interval.
 \item $\langle E \rangle / \langle \overline{E} \rangle$ (Ends): The interval ends at exactly the same time as another interval.
 \item $\langle D \rangle / \langle \overline{D} \rangle$ (During): The interval both starts and ends inside the duration of another interval.
 \item $\langle B \rangle / \langle \overline{B} \rangle$ (Begins): The interval begins at exactly the same time as another interval.
-\end{compactitem}
+\end{itemize}
 \begin{table}[!t]
   \centering
   \caption{Operators in the Interval Temporal Logic (adapted from \cite{della2013interval})}
@@ -1880,12 +1880,12 @@ Take, for example, the well-known ``The Butler Did It'' trope from murder
 mystery stories, where the butler of the house is revealed to be the murderer at
 the end of the story. TV Trope describes ways that an author could ``play'' with this trope:
 
-\begin{compactitem}
+\begin{itemize}
   \item \textbf{Subvert} it: The butler is the prime suspect at the beginning, and is later found innocent.
   \item \textbf{Invert} it: The butler is the victim. Or the butler solved the crime. Or every suspect except the butler was part of the crime.
   \item \textbf{Parody} it: Butlers could learn their trade at butler college where they are taught cleaning, cooking, and murdering.
   \item \textbf{Deconstruct} it: The butler is a revolutionary serial killer, who purposely takes jobs as butlers to murder his rich masters. All the unfortunate implications of class warfare that this suggests are brought up and discussed.
-\end{compactitem}
+\end{itemize}
 
 Many other examples of using tropes in this way can be found on the ``Playing
 with a Trope'' page of the TV Tropes website~\cite{playing-tropes}.
@@ -1999,7 +1999,7 @@ such as the ``Hero's Journey''. Another example of this would be the
 story in terms of rising and falling levels of drama. This could be split into
 five (or perhaps more) sub-tropes:
 
-\begin{compactitem}
+\begin{itemize}
   \item \textbf{Exposition}: The setting of the scene, providing any background
     information that is relevant to the story.
   \item \textbf{Rising Action}: A series of event drive the story forward, each
@@ -2011,20 +2011,20 @@ five (or perhaps more) sub-tropes:
     the story shows how the characters are affected.
   \item \textbf{Denouement}: This is the final resolution, where all the ``loose
     ends'' of the story are tied up.
-\end{compactitem}
+\end{itemize}
 
 This means that if we already have trope definitions for the ``Exposition'',
 ``Rising Action'', ``Climax'', ``Falling Action'' and ``Denouement'' parts of a
 story, and want to create a ``Three Act Structure'' trope, we can simply express
 it in the following way:
 
-\begin{compactitem}
+\begin{itemize}
   \item The ``Exposition'' trope happens
   \item Then the ``Rising Action'' trope happens
   \item Then the ``Climax'' trope happens
   \item Then the ``Falling Action'' trope happens
   \item Then the ``Denouement'' trope happens
-\end{compactitem}
+\end{itemize}
 
 Returning to the concept of ``story structure'' described in
 section~\ref{sec:structure}, we can use the ``subtropes'' we just identified to
@@ -2032,14 +2032,14 @@ describe other ``story shapes'' as defined by Vonnegut. For example, the ``man
 in hole'' story shape could be simple described as a rearrangement of the
 three-act structure:
 
-\begin{compactitem}
+\begin{itemize}
   \item The ``Exposition'' trope happens
   \item Then the ``Falling Action'' trope happens
   \item Then the ``Zenith'' trope happens
   \item Then the ``Rising Action'' trope happens
   \item Then the ``Climax'' trope happens
   \item Then the ``Denouement'' trope happens
-\end{compactitem}
+\end{itemize}
 
 Note that we added an additional trope, the ``Zenith'' trope to describe the
 lowest point in the story. Otherwise, the rest of the story ``shape'' is easily
@@ -2066,45 +2066,45 @@ new kind of formalism for narrative components.
 There were 18 responses to the questionnaire. The questions and responses were as follows:
 
 \textbf{What's your interest in Interactive Fiction?}
-\begin{compactitem}
+\begin{itemize}
   \item I'm an author: 5 (27.8\%)
   \item I'm a game developer: 10 (55.6\%)
   \item I write interactive fiction: 5 (27.8\%)
   \item It's my hobby: 6 (33.3\%)
   \item It's my job: 5 (27.8\%)
   \item Other: 2 (11.1\%)
-\end{compactitem}
+\end{itemize}
 \textbf{What tools do you use to create Interactive Fiction?}
-\begin{compactitem}
+\begin{itemize}
   \item Inform: 3 (16.7\%)
   \item Twinery: 7 (38.9\%)
   \item Unity or other IDE: 8 (44.4\%)
   \item Pure code: 4 (22.4\%)
   \item I don't create interactive fiction or games with narrative: 3 (16.7\%)
   \item Other: 6 (33.3\%)
-\end{compactitem}
+\end{itemize}
 \textbf{What kind of narratives are you interested in making?}
-\begin{compactitem}
+\begin{itemize}
   \item Linear: 2 (11.1\%)
   \item Non-linear: 11 (61.1\%)
   \item I'm not an author: 1 (5.6\%)
   \item Other: 4 (22.2\%)
-\end{compactitem}
+\end{itemize}
 \textbf{Are you familiar with the idea of ``tropes''?}
-\begin{compactitem}
+\begin{itemize}
   \item Yes, and I have visited the ``TV Tropes'' website: 15 (83.3\%)
   \item Yes, but I hadn't heard of ``TV Tropes'': 3 (16.7\%)
   \item No: 0 (0\%)
-\end{compactitem}
+\end{itemize}
 \textbf{How useful do you think tropes are for authoring interactive stories?
   (on a scale of 1 - 5)}
-\begin{compactitem}
+\begin{itemize}
   \item \textbf{1} (not useful): 0 (0\%)
   \item \textbf{2}: 2 (11.8\%)
   \item \textbf{3}: 9 (52.9\%)
   \item \textbf{4}: 2 (11.8\%)
   \item \textbf{5} (extremely useful): 4 (23.5\%)
-\end{compactitem}
+\end{itemize}
 
 The fact that all of the interactive fiction authors and games developers were
 already familiar with the concept of tropes demonstrates that they are
@@ -2160,22 +2160,22 @@ Institutional models use concepts from deontic logic to provide obligations and 
 
 In order to describe story tropes in terms of social norms, we break them down into three components:
 
-\begin{compactenum}
+\begin{enumerate}
 \item characters, which instantiate roles
 \item objects, which instantiate types
 \item places, which instantiate locations
-\end{compactenum}
+\end{enumerate}
 
 Characters' actions are described in terms of permissions and obligations. For example, a character in a certain role \emph{may} go to the cinema, or a character \emph{must} buy a ticket before the movie begins, otherwise they will not see it. Note that an obligation (which says that a character \emph{must} do something) can have a deadline (``before the movie begins'') and a consequence (``they will not see the movie''). These are both optional in our system.
 
 Returning to the tropes described in the introduction, we can express them in terms of social norms:
 
-\begin{compactitem}
+\begin{itemize}
   \item \textbf{The Hero's Journey}: The hero \emph{must} leave home when they receive the call to adventure. Then the hero \emph{may} kill the villain. Once this is done, the hero \emph{may} return home.
   \item \textbf{The Evil Empire}: The villain has an empire, and \emph{may} kill the hero.
   \item \textbf{MacGuffin}: The hero \emph{must} search for an object. However, the hero \emph{may} find it.
   \item \textbf{Chekhov's Gun}: If a weapon appears in the beginning, it \emph{must} be used before the end of the story.
-\end{compactitem}
+\end{itemize}
 
 Describing tropes in terms of permissions and obligations is enough for us to be able to specify them as social norms, but also we need to be able to determine which norms hold at any point of a story. For this, we use an \emph{Answer Set Programming} (ASP) approach to describe our tropes in order to use an answer-set solver. We do this with the aid of \emph{InstAL}~\citep{cliffe2007specifying}, the Institution Action Language, a language for describing social institutions, which compiles to AnsProlog. This allows us to use trope models and an ASP solver to determine which norms hold after agent or player actions have occurred in the story world.
 
@@ -2312,7 +2312,7 @@ have described with our formalism.
 On the TV Tropes page for Punch and Judy, it lists the following tropes (quoted
 directly from the site):
 
-\begin{compactitem}
+\begin{itemize}
   \item \textbf{Amusing Injuries}: People are often beaten up.
   \item \textbf{Audience Participation}: The children are expected to reply to Mr. Punch's Catch Phrase, "That's the way to do it" with a shout of "Oh no, it isn't!"
   \item \textbf{Black Comedy}: So black that many modern versions are often heavily censored compared to more historical stagings.
@@ -2332,7 +2332,7 @@ directly from the site):
   \item \textbf{Unsympathetic Comedy Protagonist}: Mr. Punch
   \item \textbf{Values Dissonance} Possibly the best example of this as Punch's domestic abuse of Judy is completely played for laughs.
   \item \textbf{Villain Protagonist}: Mr. Punch
-\end{compactitem}
+\end{itemize}
 
 Some of these tropes are useful in our construction of the story as a whole in
 terms of tropes, while others are not. For example, the \emph{Commedia
@@ -2344,7 +2344,7 @@ story as an illustrative example. To help with this translation,
 TV Tropes even has a page on Vladimir Propp which maps his story functions
 directly into tropes~\cite{propp-tropes}:
 
-\begin{compactenum}
+\begin{enumerate}
   \item Joey tells Punch to look after the sausages (\emph{Rule Number One}).
   \item Joey has some reservations, but decides to trust Punch (\emph{Deal with
       the Devil}).
@@ -2354,21 +2354,21 @@ directly into tropes~\cite{propp-tropes}:
       It, You Idiot!}).
   \item Punch fights with the Crocodile (\emph{Earn Your Happy Ending}).
   \item Joey returns to find that the sausages are gone (\emph{Where It All Began}).
-\end{compactenum}
+\end{enumerate}
 
 Here are the tropes mentioned above, described in more detail:
 
 \textbf{Rule Number One} (interdiction)
 TV Tropes actually describes two separate versions of this trope:
 
-\begin{compactitem}
+\begin{itemize}
   \item a situation where a character makes rules to govern a dangerous or
     uncomfortable situation (one such example being ``The first rule of Fight
     Club...'', which is in itself a trope of its own).
   \item when a Mentor Archetype conveys advice or admonishments to another
     character, such as ``Don't use the dangerous forbidden technique!'' or
     ``Always believe in yourself!''.
-\end{compactitem}
+\end{itemize}
 
 In the case of our scene, the interdiction seems to be the second type listed
 here.
@@ -2436,7 +2436,7 @@ that more closely match Propp's definitions of \emph{absentation} and \emph{retu
 From our deeper analysis of TV Tropes' mappings of Propp story functions to
 tropes, a number of issues have arisen:
 
-\begin{compactitem}
+\begin{itemize}
   \item Our use of Propp's story functions may be a little too ``flexible''.
     This means that the mappings of the functions we have used add an extra
     layer of interpretation to the translation, taking us away from the original
@@ -2444,7 +2444,7 @@ tropes, a number of issues have arisen:
   \item Tropes, by their very nature, are a little ambiguous and open to
     interpretation. The same trope could even be expressed in multiple different
     ways, such as the ``Rule Number One'' trope.
-\end{compactitem}
+\end{itemize}
 
 In place of TV Trope's suggested ``struggle'' trope, \emph{Earn Your Happy
   Ending}, a more suitable trope to use would be the \emph{Chase Fight}:
@@ -2484,12 +2484,12 @@ The character roles that appear in trope descriptions in TV Tropes differ
 greatly from the \emph{Dramatis Personae} defined in Propp's morphology. For
 each of the four tropes, we identify the following roles:
 
-\begin{compactitem}
+\begin{itemize}
 \item \textbf{Don't Touch It, You Idiot}: the \emph{owner} (Joey) and the \emph{idiot} (Punch)
 \item \textbf{Put on a Bus}: the \emph{absentee} (Joey)
 \item \textbf{Chase Fight}: the \emph{chaser} (Crocodile) and the \emph{pursued} (Punch)
 \item \textbf{The Bus Came Back}: the \emph{returnee} (Joey)
-\end{compactitem}
+\end{itemize}
 
 Clearly, this means that each character must adopt multiple roles throughout the
 course of a narrative. In this scene alone, Joey the Clown plays the roles of
@@ -2513,14 +2513,14 @@ the translation of the \emph{Don't Touch It, You Idiot} into a formal institutio
 
 First, we define the sequence of events that form the trope:
 
-\begin{compactitem}
+\begin{itemize}
 \item The \emph{owner} has an \emph{object}
 \item Then the \emph{owner} tells the \emph{idiot} to protect the \emph{item}
 \item Then the \emph{owner} goes away
 \item Then the \emph{idiot} breaks the \emph{item}
 \item Then the \emph{owner} returns
 \item Then the \emph{owner} fights the \emph{idiot}
-\end{compactitem}
+\end{itemize}
 
 This is the simplest possible interpretation of the trope. It is possible for
 other interpretations to exist: for example, rather than the \emph{owner} returning and
@@ -2557,14 +2557,14 @@ the forbidden action.
 In fact, the \emph{Don't Touch It, You Idiot} trope can be divided into several
 phases, or steps:
 
-\begin{compactitem}
+\begin{itemize}
 \item The \emph{owner} has an \emph{object}
 \item Then the \emph{owner} tells the \emph{idiot} to protect the \emph{item}
 \item Then the \emph{owner} goes away
 \item Then the \emph{idiot} breaks the \emph{item}
 \item Then the \emph{owner} returns
 \item Then the \emph{owner} fights the \emph{idiot}
-\end{compactitem}
+\end{itemize}
 
 This is the simplest possible interpretation of the trope. It is possible for
 other interpretations to exist: for example, rather than the \emph{owner} returning and
@@ -2649,7 +2649,7 @@ We propose \tropical\ (the TROPe Interactive Chronical Language) as a DSL for de
 
 The features of our trope description language are designed to be able to express the events, permissions and obligations of social institutions while addressing the shortcomings of planner and drama manager-based approaches:
 
-\begin{compactenum}[R1.]
+\begin{enumerate}[R1.]
 \item\label{perms} A way to express what certain characters are \textbf{permitted} to do at a given time.\footnote{An alternative approach would be to specify prohibitions, such that anything not prohibited is permitted, whereas we currently specify permissions, such that anything not permitted is prohibited.  This latter convention is the default semantics of InstAL, it is however straightforward from a technical point of view to adopt the alternative, as demonstrated in \cite{DBLP:conf/atal/KingLVDJPR15}.}
 \item\label{obls} A way to express \textbf{obligations} on characters, with \emph{deadlines} and \emph{penalties} if the obligations are not fulfilled.
 \item\label{state} A way to describe the state of a character or object at a
@@ -2658,7 +2658,7 @@ The features of our trope description language are designed to be able to expres
 \item\label{conds} A way to express \textbf{conditionals}, so that some events may occur only if others have.
 \item\label{branches} A way to have \textbf{branches} in a trope, so that only one of two events may occur.
 \item\label{embed} A way to \textbf{embed} sub-tropes inside of parent tropes.
-\end{compactenum}
+\end{enumerate}
 Requirements~R\ref{perms} to~R\ref{seqs} allow \tropical\ to describe the permissions, obligations and sequences of events that occur in social institutions, while R\ref{conds} and~R\ref{branches} add the ability to specify alternative paths through a story, as planner-based systems are able to do when combined with formalisms such as Propp's. Finally, requirement~R\ref{embed} enables us to nest tropes to go beyond the capabilities of structuralist formalisms of narrative, addressing the limitations described in the ``Related Work'' section of this paper. The TropICAL language satisfies these technical requirements, while being easy to learn for non-programmers, especially those familiar with the Inform 7 language (as is supported by the evaluation). It supports the expression of the above features in the following ways: 
 
 % Replace with ``hostage situation''?
@@ -2946,11 +2946,11 @@ ontologies, medical documentation and planning.
 
 ACE's vocabulary has three components:
 
-\begin{compactitem}
+\begin{itemize}
   \item predefined function words
   \item predefined fixed phrases (\emph{there is}, \emph{it is false that}, ...)
   \item content words (nouns, proper nouns, verbs, adjectives, adverbs)
-\end{compactitem}
+\end{itemize}
 
 The Attempto Parsing Engine (APE) has a lexicon of content words, and users can
 define their own content words. User-defined content words take precedence over
@@ -3139,7 +3139,7 @@ specialist expertise in the field of intelligent agents:
 
 From Alice's story, we can derive the following requirements:
 
-\begin{compactitem}
+\begin{itemize}
 \item She needs a system for describing stories that can be used with a
   multi-agent system framework such as JASON
 \item The system needs to direct the behaviour of the agents so that their
@@ -3151,7 +3151,7 @@ From Alice's story, we can derive the following requirements:
 \item She wants to be able to select existing story components from a library or database
 \item She also wants the ability to create her own story components and save
   them to the database
-\end{compactitem}
+\end{itemize}
 
 \subsubsection{Bob}
 
@@ -3204,22 +3204,22 @@ Our second hypothetical user, \emph{Bob}, has no technical expertise at all:
 
 Bob shares some requirements with Alice:
 
-\begin{compactitem}
+\begin{itemize}
   \item He wants to be able to create story components with sequences of events
     and branching events
   \item He wants to be able to save and re-use the components (to a database,
     for example)
   \item He also wants the ability to create his own story components to add to
     the database
-\end{compactitem}
+\end{itemize}
 
 However, Bob also has some different requirements from Alice:
 
-\begin{compactitem}
+\begin{itemize}
   \item He needs to embed tropes inside other tropes (as ``sub-tropes'')
   \item He needs to be able to visualise all of the story branches that result
     when one or more tropes are combined together
-\end{compactitem}
+\end{itemize}
 
 \subsubsection{Charlie}
 
@@ -3256,10 +3256,10 @@ existing research techniques for interactive narrative generation:
 
 Charlie's only unique requirement is:
 
-\begin{compactitem}
+\begin{itemize}
   \item A way to describe the story such that the agents are told what to do
     next, but are able to break when necessary.
-\end{compactitem}
+\end{itemize}
 
 \subsection{Requirements}
 \label{sec:requirements}
@@ -3267,7 +3267,7 @@ Charlie's only unique requirement is:
 Based on the use cases above (section~\ref{sec:use-cases}), we can create the
 following requirements:
 
-\begin{compactenum}[R1.]
+\begin{enumerate}[R1.]
   \item\label{req:agents} The software must be able to integrate into a
     multi-agent framework such as JASON
   \item\label{req:direct} The system must direct the behaviour of agents to fit
@@ -3284,7 +3284,7 @@ following requirements:
   \item\label{req:norm} The story must tell the character agents what to do, but
     they should be free to break away from it in extreme circumstances, to add a
     degree of unpredictability
-\end{compactenum}
+\end{enumerate}
 
 The next section describes the design of the TropICAL language, relating each
 design decision back to these requirements derived from the use cases.
@@ -3294,13 +3294,13 @@ design decision back to these requirements derived from the use cases.
 In this section, we describe the main features of the TropICAL programming
 language:
 
-\begin{compactitem}
+\begin{itemize}
   \item Entity Declarations
   \item Sequences of Events
   \item Obligations
   \item Branching Events
   \item Subtropes
-\end{compactitem}
+\end{itemize}
 
 Each part of this section contains code samples to demonstrate the use and
 implementation of each language feature. Many of these samples are only extracts from
@@ -3324,11 +3324,11 @@ section~\ref{sec:subtrope-code}.
 \label{sec:dec-code}
 A trope may contain three types of entities that take part in a trope:
 
-\begin{compactitem}
+\begin{itemize}
   \item Roles (characters acted out by the agents)
   \item Objects (items that are used or manipulated by the characters)
   \item Places (locations that the characters visit)
-\end{compactitem}
+\end{itemize}
 
 Before an author can use any characters, objects or places in their tropes, they
 must first declare them at the top of the trope file. For example, to declare
@@ -3634,7 +3634,7 @@ section~\ref{sec:story-vis} of chapter~\ref{cha:storybuilder}.
 
 The way in which our TropICAL language is used is as follows:
 
-\begin{compactitem}
+\begin{itemize}
   \item It is based around the idea of using \emph{story tropes} as reusable
     components that can be combined to create stories
   \item It uses \emph{controlled natural language} to describe these tropes
@@ -3646,7 +3646,7 @@ The way in which our TropICAL language is used is as follows:
   \item The AnsProlog code is then run through
     \emph{clingo}~\cite{gebser2011potassco}, an answer set solver, to generate
     all the possible sequences of events that can occur in the story.
-\end{compactitem}
+\end{itemize}
 
 \subsection{EBNF Grammar}
 \label{sec:t-grammar}
@@ -3665,7 +3665,7 @@ parser using a syntax that resembles \emph{Extended Backus-Naur Form} (EBNF)
 grammar, combined with regular expressions. According to the author, its
 features are:
 
-\begin{compactitem}
+\begin{itemize}
 \item Turns standard EBNF or ABNF notation for context-free grammars into an executable parser that takes a string as an input and produces a parse tree for that string.
 \item No Grammar Left Behind: Works for any context-free grammar, including left-recursive, right-recursive, and ambiguous grammars.
 \item Extends the power of context-free grammars with PEG-like syntax for lookahead and negative lookahead.
@@ -3675,7 +3675,7 @@ features are:
 \item "Total parsing" mode where leftover string is embedded in the parse tree.
 \item Optional combinator library for building grammars programmatically.
 \item Performant.
-\end{compactitem}
+\end{itemize}
 
 Due to using this method of parser creation, our parser has two stages: first it
 parses the entity declarations (roles, objects and places) at the top of the
@@ -3908,12 +3908,12 @@ occur within the institution and create permissions or obligations for further
 external events to occur. Returning to listing~\ref{lst:seq4} above, the
 external events that happen are:
 
-\begin{compactitem}
+\begin{itemize}
   \item The Hero finds the Sword
   \item The Hero meets the Villain
   \item The Hero kills the Villain
   \item The Hero returns Home
-\end{compactitem}
+\end{itemize}
 
 These are translated into \emph{generates} statements in InstAL so that they
 generate the required institutional events:
@@ -3973,13 +3973,13 @@ exist, until the final event occurs and the last phase is terminated.
 In the case of our example sequence of events from listing~\ref{lst:seq4}, there
 are five phases in total:
 
-\begin{compactitem}
+\begin{itemize}
   \item The Hero goes to the Land of Adventure (active)
   \item The Hero finds the Sword (phase A)
   \item The Hero meets the Villain (phase B)
   \item The Hero kills the Villain (phase C)
   \item The Hero returns Home (phase D)
-\end{compactitem}
+\end{itemize}
 
 The events and phases of this trope are initiated in InstAL through the
 following generated code:

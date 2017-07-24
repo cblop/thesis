@@ -2872,7 +2872,7 @@ We use the JASON framework for belief-desire-intention (BDI) agents~\cite{bordin
 The VAD emotional model is represented inside each agent as a set of beliefs. Each agent has beliefs for its \emph{valence}, \emph{arousal} and \emph{dominance} levels, each of which can take the value of low, medium or high, as discussed in section~\ref{sec:emotion}. This combination of VAD values creates one of the 27 emotional states shown in figure~\ref{fig:vad}, affecting whether or not an agent breaks from its permitted or obliged behaviour.
 
 
-\chapter{TropICAL: A DSL for Story Tropes}
+\chapter{TropICAL: A Language for Story Tropes}
 \label{cha:tropical}
 % TODO: describe pipeline
 % parse -> data structure -> InstAL -> AnsProlog
@@ -2889,7 +2889,7 @@ are creating.
 The motivation for the creation of TropICAL is the lack of any methods of
 creating interactive narrative that are suitable for non-programmers to use. The
 systems described in the literature review in
-chapter~\ref{cha:literature-review}, such as any using the Mimesis
+chapter~\ref{cha:literature-review}, such as those using the Mimesis
 architecture~\citep{young2004architecture}, a drama manager and planner such as
 in Fa\c{c}ade's system~\citep{mateas2003faccade}, or linear logic as in Ceptre's
 system~\citep{martens2015ceptre}, all require the story author to be familiar with
@@ -2902,16 +2902,34 @@ that they need for their story from a pre-created ``library'' of tropes. This
 process is facilitated through the ``StoryBuilder'' user interface described in
 chapter~\ref{cha:storybuilder}
 
-This section describes TropICAL's constrained natural
-language syntax in section~\ref{sec:t-constrained}, the features of the language in section~\ref{sec:t-features}, 
-the formal grammar used to
-describe its syntax in section~\ref{sec:t-grammar}, how ``nested
-tropes'' are created in section~\ref{sec:subtrope-code}, the intermediate data structure used between parsing and
-code generation steps (section~\ref{sec:t-intermediate}), its compilation
-to InstAL code (section~\ref{sec:t-codegen}), some samples of generated InstAL
-institutions (section ~\ref{sec:t-tropes}), answer set
+The way in which our TropICAL language is used is as follows:
+
+\begin{itemize}
+  \item It is based around the idea of using \emph{story tropes} as reusable
+    components that can be combined to create stories
+  \item It uses \emph{controlled natural language} to describe these tropes
+  \item The controlled natural language is then parsed and compiled to a data
+    structure that describes the formal features of each trope
+  \item The intermediate data structure is then used to generate InstAL code
+  \item The InstAL code is compiled to AnsProlog, an Answer Set Programming
+    language
+  \item The AnsProlog code is then run through
+    \emph{clingo}~\citep{gebser2011potassco}, an answer set solver, to generate
+    all the possible sequences of events that can occur in the story.
+\end{itemize}
+
+This chapter begins by describing TropICAL's constrained natural
+language syntax in section~\ref{sec:t-constrained}.
+Section~\ref{sec:t-requirements} explores the use cases for our language, deriving
+a set of requirements from them. Based upon these requirements, the features and
+design of the language are described in section~\ref{sec:language-design}.
+The translation of TropICAL to InstAL code is demonstrated in Section~\ref{sec:t-codegen}, with samples of generated InstAL
+institutions, Answer Set
 generation (section~\ref{sec:t-asp}), and finally its extension for the description of legal policies
-(section~\ref{sec:t-legal}).
+(section~\ref{sec:t-legal}). The chapter concludes with a summary in
+Section~\ref{sec:tropical-summary}, describing how some requirements from
+Section~\ref{sec:requirements} were met, while others are addressed through the
+\emph{StoryBuilder} tool described in Chapter~\ref{cha:storybuilder}.
 
 
 \section{Controlled Natural Language Syntax}
@@ -2921,7 +2939,7 @@ generation (section~\ref{sec:t-asp}), and finally its extension for the descript
 % DONE describe Inform 7: 2
 
 TropICAL uses a \emph{Controlled Natural Language} (also referred to as
-\emph{Constrained Natural Language}) syntax, which means that it superficially
+\emph{Constrained Natural Language}) syntax, meaning that it superficially
 resembles natural English, but is only a subset of the full language.
 
 There are two types of Controlled Natural Language (CNL). The first type are \emph{naturalistic} languages
@@ -2990,6 +3008,8 @@ design entirely. For more details, see the ``ACE in a Nutshell'' page of its
 documentation for an overview of the language~\citep{ace-nutshell}.
 
 \subsection{Inform 7}
+In addition to ACE, the other main inspiration for TropICAL's syntax is the
+\emph{Inform 7} language.
 
 Inform is a programming language for the creation of Interactive Fiction (also
 called \emph{text adventure games}). All versions of Inform generate
@@ -3015,6 +3035,10 @@ The world is a room.
 When play begins, say "Hello, world."
 \end{lstlisting}
 
+The above code simply describes the name of the game (``Hello World''), declares
+that there is one room in the game, and sets the game to say ``Hello World'' to
+the player when the game starts.
+
 An extended example, Will Crowther's cave exploration simulation, would be
 described like this:
 
@@ -3032,6 +3056,17 @@ The black rod is here. "A three foot black rod with a rusty star on one end lies
 Above the Debris Room is the Sloping E/W Canyon. West of the Canyon is the Orange River Chamber.
 \end{lstlisting}
 
+The ``Cave Entrance'' example above is just one scene from the game. The code
+begins with a declaration of the ``Cobble Crawl'' room, followed by the
+description that appears when the player enters it. The next line declares that
+a wicker cage is in the room, which is an object that the player can interact
+with. The sentence after the declaration is the description of the item that
+appears when the player looks around the room (``There is a small wicker cage
+discarded nearby.'').
+The ``Debris Room'' follows the same format described above, with a ``black
+rod'' item inside the room. The final line of code simply describes how the
+rooms are arranged in the game, using words like ``above'' and ``west of''.
+
 Although Inform 7 is not based directly on ACE, we can see many of ACE's
 features in it. For example, it uses the same syntax for simple statements such
 as \emph{X is a Y}. Most statements in the listing above are pairs of sentences,
@@ -3042,7 +3077,7 @@ of the defined object.
 Before version 7, Inform was already widely used as a language for the creation
 of Interactive Fiction. Given its continued popularity after the switch to
 a controlled natural language syntax, it appears that the new programming
-paradigm has been successful.
+paradigm is successful.
 
 The wide adoption of Inform 7 by story authors with no other programming
 experience motivates our decision to create a controlled natural language syntax
@@ -3050,8 +3085,8 @@ for TropICAL, our own trope-based programming language. The intended audience is
 the same, so an additional benefit would be that story authors who can code with
 Inform 7 would also be able to use TropICAL.
 
-\section{Features}
-\label{sec:t-features}
+\section{Requirements}
+\label{sec:t-requirements}
 % TODO intro: 1
 % TODO use cases: 2
 % TODO requirements: 2
@@ -3063,7 +3098,7 @@ The TropICAL language is designed to be used by authors of interactive
 narratives, enabling them to easily describe the ``rules'' of a story through
 tropes. It is designed to be used in interactive storytelling systems where
 intelligent software agents are acting out the roles of the characters in the
-story. These agents, though an architecture such as BDI (Belief, Desire,
+story. These agents, through an architecture such as BDI (Belief, Desire,
 Intention), have their own goals and plans for how to achieve those goals.
 TropICAL does not assist in the authoring of these characters and their plans or
 lines of dialogue. Instead, its purpose is to direct the actions of these
@@ -3258,10 +3293,10 @@ Charlie's only unique requirement is:
 
 \begin{itemize}
   \item A way to describe the story such that the agents are told what to do
-    next, but are able to break when necessary.
+    next, but are able to break away from these commands when necessary.
 \end{itemize}
 
-\subsection{Requirements}
+\subsection{Requirement Specification}
 \label{sec:requirements}
 
 Based on the use cases above (section~\ref{sec:use-cases}), we can create the
@@ -3295,11 +3330,11 @@ In this section, we describe the main features of the TropICAL programming
 language:
 
 \begin{itemize}
-  \item Entity Declarations
-  \item Sequences of Events
-  \item Obligations
-  \item Branching Events
-  \item Subtropes
+  \item Entity Declarations (Section~\ref{sec:dec-code})
+  \item Sequences of Events (Section~\ref{sec:seq-code})
+  \item Obligations (Section~\ref{sec:obl-code})
+  \item Branching Events (Section~\ref{sec:branch-code})
+  \item Subtropes (Section~\ref{sec:subtrope-code})
 \end{itemize}
 
 Each part of this section contains code samples to demonstrate the use and
@@ -3311,7 +3346,7 @@ This section begins by showing how the entities (roles, objects and places) of a
 trope are defined by the author (Section~\ref{sec:dec-code}), then follows this with a description of how
 these entities' actions are composed together to form sequences of events (Section~\ref{sec:seq-code}).
 Normally, these events give the character entities \emph{permission} to perform
-certain actions, so section~\label{sec:obl-code} shows how an author may
+certain actions, so section~\ref{sec:obl-code} shows how an author may
 describe events that \emph{must} happen in the story through obliging characters
 to carry out specific actions.
 In cases where multiple story paths may be taken, TropICAL allows for the
@@ -3340,7 +3375,7 @@ Evil Villain is a role
 \end{lstlisting}
 
 In TropICAL, the ``The'' at the beginning of role, object or place names is
-completely optional. If the name of an entity begins with ``The'', the parser
+optional. If the name of an entity begins with ``The'', the parser
 omits it from the name. Also, entity names can consist of multiple words, as is
 the case for the \emph{Evil Villain} character. However, each word in a name must
 always start with a capital letter.
@@ -3397,10 +3432,17 @@ The Hero goes to the Land of Adventure
 \end{lstlisting}
 
 This specifies that the first event that occurs in the trope is that the \emph{Hero}
-character goes to a place called \emph{The Land of Adventure}.
+character goes to a place called \emph{The Land of Adventure}. Due to the fact
+that this statement is compiled to a norm, it states only what is possible in
+the story, giving \emph{permission} for events to happen, not mandating that
+they occur. We do this to fulfil requirement~\ref{req:norm}, so that we guide
+the actions of character agents to fit our story, rather than regimenting their behaviour. It is
+possible to tell the agents what to do in a stronger fashion using
+\emph{obligations}, which we describe in section~\ref{sec:obl-code}.
 
 Typically, tropes tend to consist
-of a sequence of several events, so this trope could be extended further:
+of a sequence of several events, as is stated in requirement~\ref{req:sequences}. So we can
+extend this trope further to meet this requirement:
 
 \begin{lstlisting}[label={lst:seq2}, caption={Two consecutive events}]
 The Hero goes to the Land of Adventure
@@ -3410,9 +3452,13 @@ Then the Hero finds the Sword
 This series of events can be visualised graphically (using a prefix notation for
 the verbs and objects) thus:
 
+\begin{figure}[h]
+\caption{Two consecutive events}
+\label{fig:seq1}
 \vspace{7mm}
 \centerline{\includegraphics[width=0.7\textwidth]{seq1.png}}
 \vspace{7mm}
+\end{figure}
 
 The \emph{Then} keyword denotes that the event is the next stage in a sequence
 of events. However, this keyword is syntactical sugar, and can be omitted with the same effect:
@@ -3437,20 +3483,53 @@ Then the Hero returns Home
 \vspace{7mm}
 
 The author can use any verb they wish to describe an event. The verbs are
-stemmed using \emph{WordNet}~\ref{miller1995wordnet} so that, for example,
+stemmed using \emph{WordNet}~\citep{miller1995wordnet} so that, for example,
 \emph{goes} becomes \emph{go} and \emph{wanted} becomes \emph{want} when the
 tropes are compiled.
 
 \subsection{Obligations}
 \label{sec:obl-code}
+All of the code examples until this point express events that \emph{may} occur
+in the story. When compiled to InstAL, and expressed in terms of norms, they
+describe the \emph{permitted} behaviour of the agents in a story. This way, the
+character agents are aware of the actions available to them that follow the path
+of the author's narrative. However, there are other actions that an author may
+want to strongly encourage an agent to take, so that they can direct their
+actions with more control (as per requirement~\ref{req:direct}). The syntax for this type of action
+is expressed with the \emph{must} keyword, and is shown in
+listing~\ref{lst:obl1}. In this case, the first action (\emph{The Hero goes
+  Home}) is expressed as a permission, but the second action (\emph{Then the
+  Hero must go to the Land of Adventure}) is an obligation.
 
-\subsubsection{Deadline Events}
+\begin{lstlisting}[label={lst:obl1}, caption={An obliged event within a trope}]
+The Hero goes Home
+Then the Hero must go to the Land of Adventure
+\end{lstlisting}
 
-\subsubsection{Violation Events and Consequences}
+\subsubsection{Deadline Events and Consequences}
+Obligations may have optional deadline events and consequences. The consequence
+event is triggered if the obligation has not been fulfilled before the deadline
+event has occurred. Listing~\ref{lst:obl2} shows an example trope where the Hero
+is obliged to go to the Land of Adventure before the Villain character kills the
+Mentor character. If the Villain kills the Mentor and the Hero has not yet gone
+to the Land of Adventure, then a possibility opens up for the Villain to kill
+the Hero in the story.
+
+\begin{lstlisting}[label={lst:obl2}, caption={An obliged event with a deadline
+and a consequence}]
+The Hero must go to the Land of Adventure before the Villain kills the Mentor
+  Otherwise, the Villain kills the Hero
+\end{lstlisting}
+
+This mechanism could be used as a method of creating branches in the story. If the
+specified event happens before the deadline event, the path of the trope goes
+one way. If it doesn't, the story follows the path of the consequence event.
+Section~\ref{sec:instal-obl} explains in detail how obligations, deadlines and
+consequences are compiled to InstAL code.
 
 \subsection{Branching Events}
 \label{sec:branch-code}
-A trope author may want to describe alternative possibilities in their story,
+As requirement~\ref{req:branches} states, a trope author may want to describe alternative possibilities in their story,
 where either the player or a character in the story may decide from one of
 multiple actions to take. This is implemented using the \emph{Or} keyword in
 TropICAL, along with a single indentation level of two spaces:
@@ -3557,7 +3636,9 @@ embedding subtropes inside of other tropes.
 
 \subsection{Subtropes}
 \label{sec:subtrope-code}
-\emph{Subtropes} are simply previously-written tropes that are embedded inside a
+Requirement~\ref{req:subtropes} states that we need a mechanism for the
+nesting of tropes, so that we may create new abstractions by combining old
+tropes into new ones. We do this through \emph{Subtropes}, which are simply previously-written tropes that are embedded inside a
 new trope. Take this simple trope example:
 
 \begin{lstlisting}[showstringspaces=false, label={lst:subtrope1}, caption={Subtrope
@@ -3623,190 +3704,19 @@ nested branches of its story:
 
 \vspace{7mm}
 \centerline{\includegraphics[width=\textwidth]{subtrope3.png}}
-\vspace{7mm}
+\vspace{7mm}\mnote{This is a good demonstration of why a graph won't work as a
+  visualisation: we don't want \emph{kill_hero_villain} to happen after the
+  second time the \emph{Item Search} trope happens, just the first time. Will
+  redo as a tree visualisation instead.}
 
 An author can create complex branching narrative by combining these tropes together. To see
 visualisations of the story paths of multiple tropes combined, see
 section~\ref{sec:story-vis} of chapter~\ref{cha:storybuilder}.
 
-\section{Compilation Process}
-\label{sec:compilation}
-
-The way in which our TropICAL language is used is as follows:
-
-\begin{itemize}
-  \item It is based around the idea of using \emph{story tropes} as reusable
-    components that can be combined to create stories
-  \item It uses \emph{controlled natural language} to describe these tropes
-  \item The controlled natural language is then parsed and compiled to a data
-    structure that describes the formal features of each trope
-  \item The intermediate data structure is then used to generate InstAL code
-  \item The InstAL code is compiled to AnsProlog, an Answer Set Programming
-    language
-  \item The AnsProlog code is then run through
-    \emph{clingo}~\cite{gebser2011potassco}, an answer set solver, to generate
-    all the possible sequences of events that can occur in the story.
-\end{itemize}
-
-\subsection{EBNF Grammar}
-\label{sec:t-grammar}
-% TODO intro: 1
-This section describes the grammar of our TropICAL language formally using
-\emph{Extended Backus-Naur Form} notation.
-
-
-
-
-% TODO instaparse description: 1
-We used the Clojure programming language~\citep{clojure} with the Instaparse
-parser generator library~\cite{instaparse} to create the language parser for
-TropICAL. The method of parser creation with Instaparse is to describe the
-parser using a syntax that resembles \emph{Extended Backus-Naur Form} (EBNF)
-grammar, combined with regular expressions. According to the author, its
-features are:
-
-\begin{itemize}
-\item Turns standard EBNF or ABNF notation for context-free grammars into an executable parser that takes a string as an input and produces a parse tree for that string.
-\item No Grammar Left Behind: Works for any context-free grammar, including left-recursive, right-recursive, and ambiguous grammars.
-\item Extends the power of context-free grammars with PEG-like syntax for lookahead and negative lookahead.
-\item Supports both of Clojure's most popular tree formats (hiccup and enlive) as output targets.
-\item Detailed reporting of parse errors.
-\item Optionally produces lazy sequence of all parses (especially useful for diagnosing and debugging ambiguous grammars).
-\item "Total parsing" mode where leftover string is embedded in the parse tree.
-\item Optional combinator library for building grammars programmatically.
-\item Performant.
-\end{itemize}
-
-Due to using this method of parser creation, our parser has two stages: first it
-parses the entity declarations (roles, objects and places) at the top of the
-trope description, then takes the parsed declarations and inserts them as
-keywords in the grammar for the rest of the language, creating a new parser
-specifically for those entity declarations. For example, if the author writes
-``The Hero is a role'', ``The Castle is a place'' and ``The Sword is an
-object'', then the \emph{role} 
-
-% TODO simplified grammar from code: 2
-% TODO format grammar: 2
-
-\begin{lstlisting}[showstringspaces=false]
-text = tropedef defs trope
-<tropedef> = label <' is a ' ('trope' / 'policy') ' where:\\n'>
-<defs> = (<whitespace> (chardef | objdef | placedef) <'\\n'?>)+
-chardef = charname <' is a ' ('character' | 'role') '.'?>
-objdef = objname <' is an object' '.'?>
-placedef = placename <' is a place' '.'?>
-<charname> = name
-<objname> = name
-<placename> = name
-trope = (<whitespace> !(chardef | objdef | placedef) #'.*' <'\\n'>?)+
-label = <'\"'> words <'\"'>
-<whitespace> = #'\\s\\s'
-<name> = [<'The ' / 'the '>] cwords
-<words> = word (<' '> word)*
-<cwords> = cword (<' '> ['of'<' '>] cword)*
-<cword> = #'[A-Z][0-9a-zA-Z\\-\\_\\']*'
-<the> = <'The ' | 'the '>
-<word> = #'[0-9a-zA-Z\\-\\_\\']*'
-\end{lstlisting}\mnote{I've taken this from the code verbatim. We need to meet and discuss how to simplify this.}
-
-\begin{lstlisting}[showstringspaces=false]
-trope = (<whitespace> sequence)+ <'\\n'?>
-(str "label = '" label "'")
-fluent = object <' is '> adjective
-adjective = word
-outcome =
-(<'\\n' whitespace whitespace> (event | obligation | happens) (or? | if?) <'\\n'?>)+
-happens =
-<the?> subtrope <(' happens' / ' trope happens' / ' policy applies') '.'?>
-block =
-<the?> subtrope <' policy does not apply' / ' does not happen' / ' trope does not happen'> <'.'?>
-sequence =
-((fluent | event | norms | happens | block) (or* | if*)) | ((fluent | event | norms | happens | block) (<whitespace+ 'Then '> (block / norms / event / fluent / obligation / happens) (or* | if*))*)*
-or =
-<whitespace+ 'Or '> (fluent | event | norms)
-if =
-<whitespace+ 'If '> (fluent | event | norms)
-action = !fverb verb [sp [particle sp] (character | object | place)] (crlf? | [sp particle? (character | object | place)] crlf?)
-event = character sp action
-<particle> = <'a' | 'at' | 'will' | 'of' | 'to'>
-norms = permission | rempermission | obligation
-fluent = (character | object | place) sp fverb sp [particle sp] (character | object | place) crlf?
-fverb = (<'is'> sp 'at') | 'has'
-violation = norms
-(str "character = " (if (seq rs) rs "'nil'"))
-(str "place = " (if (seq ps) ps "'nil'"))
-(str "object = " (if (seq os) os "'nil'"))
-subtrope = <'\'> words <'\"'>"
-label = <'\'> words <'\"'>"
-verb = words
-rempermission = character <' may not '> action crlf?
-permission = character <' may '> action crlf?
-obligation = character <' must '> action (<' before '> deadline)? (<crlf whitespace+ 'Otherwise, '> <'the '?> violation)? <'.'?> crlf?
-deadline = consequence
-role-b = character
-object-b = object
-place-b = place
-<crlf> = <'\\n'>
-consequence = event
-<whitespace> = #'\\s\\s'
-<sp> = <' '>
-<words> = word (sp word)*
-<cwords> = cword (sp ['of' sp] cword)*
-<cword> = #'[A-Z][0-9a-zA-Z\\-\\_\\']*'
-<the> = <'The ' | 'the '>
-<word> = #'[0-9a-zA-Z\\-\\_\\']*'
-\end{lstlisting}\mnote{See above}
-
-\section{Parsing Examples}
-\label{sec:parse-tree}
-
-% TODO describe intermediate data structure, hash-map structure
-% TODO explain parse tree diagrams, hash-map notation (look up best way to do hmaps in latex)
-
-This section shows visualisations of the parse tree that results from the trope
-code examples listed in sections~\ref{sec:dec-code} to~\ref{sec:subtrope-code}.
-
-This is the parse tree output of the sequence of events in listing~\ref{lst:seq3}:
-
-\vspace{7mm}
-\centerline{\includegraphics[width=\textwidth]{seq2-tree.png}}
-\vspace{7mm}
-
-\begin{lstlisting}[showstringspaces=false]
-{:label "Sequence 2", :events [{:role "Hero", :verb "go", :place "Land of Adventure"} {:role "Hero", :verb "find", :object "Sword"} {:verb "meet", :role-b "Villain", :role-a "Hero"} {:role "Hero", :verb "return", :place "Home"}], :roles ("The Hero" "The Villain"), :objects ("The Sword"), :locations ("Home" "The Land of Adventure")}
-\end{lstlisting}
-
-\vspace{7mm}
-\centerline{\includegraphics[width=\textwidth]{branch2-tree.png}}
-\vspace{7mm}
-
-\begin{lstlisting}[showstringspaces=false]
-{:label "Branch 2", :events [{:or [{:role "Hero", :verb "go", :place "Land of Adventure"} {:role "Hero", :verb "find", :object "Sword"} {:verb "kill", :role-b "Villain", :role-a "Hero"} {:role "Hero", :verb "return", :place "Home"}]}], :roles ("The Hero" "The Villain"), :objects ("The Sword"), :locations ("Home" "The Land of Adventure")}
-\end{lstlisting}
-
-\vspace{7mm}
-\centerline{\includegraphics[width=\textwidth]{branch3-tree.png}}
-\vspace{7mm}
-
-\begin{lstlisting}[showstringspaces=false]
-{:label "Branch 3", :events [{:role "Hero", :verb "go", :place "Home"} {:or [{:role "Hero", :verb "find", :object "Sword"} {:role "Hero", :verb "go", :place "Land of Adventure"} {:verb "kill", :role-b "Villain", :role-a "Hero"}]} {:or [{:verb "meet", :role-b "Mentor", :role-a "Hero"} {:role "Hero", :verb "go", :place "Realm of Mystery"}]}], :roles ("The Hero" "The Villain" "The Mentor"), :objects ("The Sword"), :locations ("Home" "The Land of Adventure" "The Realm of Mystery")}
-\end{lstlisting}
-
-\vspace{7mm}
-\centerline{\includegraphics[width=\textwidth]{item-search-tree.png}}
-\vspace{7mm}
-
-\begin{lstlisting}[showstringspaces=false]
-{:label "Item Search", :events [{:role "Hero", :verb "chase", :object "Macguffin"} {:or [{:role "Hero", :verb "find", :object "Macguffin"} {:role "Hero", :verb "go", :place "Home"}]}], :roles ("The Hero"), :objects ("The Macguffin"), :locations ("Home")}
-\end{lstlisting}
-
-\vspace{7mm}
-\centerline{\includegraphics[width=\textwidth]{kill-then-search-tree.png}}
-\vspace{7mm}
-
-\begin{lstlisting}[showstringspaces=false]
-{:label "Kill then Search", :events [{:role "Hero", :verb "go", :place "Away"} {:verb "kill", :role-b "Villain", :role-a "Hero"} {:subtrope "Item Search"}], :roles ("The Hero" "The Villain"), :objects (), :locations ("Away")}
-\end{lstlisting}
+For technical details of the parser implementation, including the EBNF grammar
+of the TropICAL language, refer to Appendix~\ref{appendix:t-grammar}.
+Appendix~\ref{appendix:parse-tree} shows visualisations of the parse tree output for some
+of the code examples described in this section.
 
 \section{InstAL Code Generation}
 \label{sec:t-codegen}
@@ -3814,8 +3724,8 @@ This is the parse tree output of the sequence of events in listing~\ref{lst:seq3
 % TODO tech discussion: 1
 Once the tropes written in TropICAL have been parsed and converted into an
 intermediate hash map, this data structure is then used to generate InstAL code.
-This section first describes how specific language features translate to
-InstAL, then goes on to list the InstAL output of full trope translation.
+This section describes how specific language features translate to
+InstAL, with fully translated examples of InstAL code appearing in Appendix~\ref{appendix:instal}.
 
 As described in section~\ref{sec:inst-events}, InstAL features three types of
 events: \emph{external}, \emph{institutional} and \emph{violation}. We begin by
@@ -4122,13 +4032,128 @@ which get closed off when any one of them occurs through the corresponding
 termination event in the institution.
 
 \subsection{Obligations}
+\label{sec:instal-obl}
 % TODO before / after snippets: 2
 % TODO explanation: 2
 
+\subsubsection{Obligations Without Deadlines or Consequences}
 In our tropes, obligations have optional deadline events and consequences. At
 the time of implementation, both of these were mandatory in InstAL, and so it
 was necessary to add ``dummy'' events for both if they were not specified in TropICAL.
+Returning to listing~\ref{lst:obl1} of section~\label{sec:obl-code}, which
+specifies an obligation without a deadline or a consequence:
 
+\begin{lstlisting}
+The Hero goes Home
+Then the Hero must go to the Land of Adventure
+\end{lstlisting}
+
+Line~\ref{line:obl1-oblev} of listing~\ref{lst:obl1-init} shows the
+initiation rule for an obligation event with no deadline or consequence, and
+listing~\ref{lst:obl1-fluent} shows the fluent declaration for the obligation
+fluent. The \emph{intNoDeadline} and \emph{noViolation} events are dummy events
+that never occur either inside or outside of the institution. There are there
+only because InstAL always requires deadline and consequence events in
+obligation fluents.
+The first parameter of the obligation fluent specifies an institutional event
+that must occur before the deadline. In this case, the event is
+\emph{intGo(hero, landOfAdventure)}. Listing~\ref{lst:obl1-gen} shows how the
+\emph{go(hero, landOfAdventure)} external event generates the \emph{intGo(hero,
+  landOfAdventure} institutional event. Due to the fact that it is this external
+event that triggers the obliged institutional event, it is given permission
+to occur on line~\ref{line:obl1-oblev} of listing~\ref{lst:obl1-init}, along with
+the obliged institutional event itself.
+
+\begin{lstlisting}[label={lst:obl1-fluent}, caption={Fluent declaration for the
+obligation event in listing~\ref{lst:obl1}}]
+obligation fluent obl(intGo(Agent, PlaceName), intNoDeadline, noViolation);
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:obl1-init}, caption={Initiation rule for the
+second (obligation) event of the trope in listing~\ref{lst:obl1}}, escapechar=|]
+intObligation1(R, S, T) initiates
+    phase(obligation1, phaseA),
+    obl(intGo(R,T), intNoDeadline, noViolation), perm(go(R, T)), perm(intGo(R,T)), pow(intGo(R,T)) if|\label{line:obl1-oblev}|
+        phase(obligation1, active),
+        role(R, hero),
+        place(T, landOfAdventure);
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:obl1-gen}, caption={Generation rule for the
+obligation event}]
+go(R, S) generates
+    intGo(R,S) if
+        role(R, hero),
+        place(S, landOfAdventure);
+\end{lstlisting}
+
+The full InstAL institution that this generates appears in listing~\ref{lst:obl1-instal} of appendix~\ref{appendix:instal}.
+
+\subsubsection{Obligations with Deadlines and Consequences}
+The trope shown in listing~\ref{lst:obl2-trope} describes a situation where an
+obligation with both a deadline and a consequence occurs.
+
+\begin{lstlisting}[showstringspaces=false,label={lst:obl2-trope}, caption={Example of a trope
+containing an obligation with both a deadline and a consequence}]
+The Hero must go to the Land of Adventure before the Villain kills the Mentor
+  Otherwise, the Villain may kill the Hero
+\end{lstlisting}
+
+Listing~\ref{lst:obl2-fluent} shows the fluent declaration of the obligation
+event in listing~\ref{lst:obl2-trope}. The deadline event \emph{intKill(villain,
+  mentor)} is an institutional event, and so is generated by the
+\emph{kill(villain, mentor)} external event on
+lines~\ref{line:obl2-deadline1} to~\ref{line:obl2-deadline2} of
+listing~\ref{lst:obl2-gen}. Listing~\ref{lst:obl2-init} shows the obligation
+fluent itself. As this obligation is the first event to occur in this trope,
+it appears in the \emph{initially} clause of the InstAL code, rather than as an
+initiation event.
+
+If the violation event contained within this obligation were to occur, it would
+enable the story to begin another course of events. In this case, it initiates
+the permission of the villain to kill the hero. This is shown in the code of listing~\ref{lst:obl2-trope}.
+
+\begin{lstlisting}[label={lst:obl2-fluent}, caption={Fluent declaration for an
+obligation fluent with both deadline and consequence events}]
+obligation fluent obl(intGo(Agent, PlaceName), intKill(Agent, Agent), violHeroGoLandOfAdventure);
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:obl2-init}, caption={An obligation fluent with
+both a deadline and a consequence, translated from the trope in listing~\ref{lst:obl2-trope}}]
+obl(intGo(R,U), intKill(S,T), violHeroGoLandOfAdventure), perm(go(R, U)), perm(intGo(R,U)), pow(intGo(R,U)) if role(R, hero), place(U, landOfAdventure);
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:obl2-viol}, caption={Permissions generated by the
+violation event of the trope in listing~\ref{lst:obl2-trope}}]
+violHeroGoLandOfAdventure initiates
+    perm(kill(R, S)) if
+        role(R, villain),
+        role(S, hero);
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:obl2-gen}, caption={Generation events for the
+trope in listing~\ref{lst:obl2-trope}}, escapechar=|]
+go(R, U) generates
+    intGo(R,U) if
+        role(R, hero),
+        place(U, landOfAdventure);
+kill(S, T) generates|\label{line:obl2-deadline1}|
+    intKill(S,T) if
+        role(S, villain),
+        role(T, mentor);|\label{line:obl2-deadline2}|
+\end{lstlisting}
+
+The full InstAL code listing for this institution appears in
+listing~\ref{lst:obl2-instal} of appendix~\ref{appendix:instal}.
+
+Obligations work best when both a deadline and consequence are specified.
+Without any consequence for its violation, an agent has no real obligation to
+carry out an action, and it serves the same role as a permission. For this
+reason, it would be worth considering either making both deadline and
+consequence events mandatory, or implementing some kind of default deadline and
+consequence. A default deadline could be the next event in a sequence, for
+example, and a default consequence could be the loss of health of a character,
+or emotional deterioration in cases where an emotional model is used.
 
 \subsection{Bridge Institution}
 % TODO before / after snippets: 2
@@ -4141,8 +4166,8 @@ ones. This is translated into InstAL code through the use of a \emph{Bridge
   Institution}, a separate institution which is used to link two other
 institutions together. The concept of a bridge institution is developed
 by~\citet{bath45254} as a means of conflict resolution in interacting
-institutions.\mnote{More detail needed here}
-The two institutions linked are referred to as the
+institutions, and involves the creation of an intermediary institution to
+coordinate events between two other institutions. The two institutions linked are referred to as the
 \emph{source} and \emph{sink} institutions, where an event that occurs in the
 source institution has the power to generate an event inside of the sink institution.
 
@@ -4222,7 +4247,7 @@ other examples, appear in Appendix~\ref{appendix:instal}.
 Once the code has been translated from TropICAL into InstAL, it can be compiled
 further into AnsProlog, an Answer Set Programming (ASP) language, using a
 process described by~\citet{cliffe2007specifying}. We use the
-Potassco project's Clingo~\cite{gebser2011potassco} solver to formally verify
+Potassco project's Clingo~\citep{gebser2011potassco} solver to formally verify
 that certain sequences of events conform to the tropes that form our
 institutions. This solver can also be used to generate all of the possible
 sequences of events that fit a story described using one or more tropes, by
@@ -4250,8 +4275,7 @@ Lines~\ref{line:dead} and~\ref{line:dead2} ignore our dummy deadline events for
 obligations where no deadline is specified. Finally, lines~\ref{line:null}
 and~\ref{line:null2} remove any \emph{null} events at all from the answer sets.
 
-\begin{lstlisting}[label={lst:constraints}, caption={Constraint rules to remove
-invalid and irrelevant events}, escapechar=|]
+\begin{lstlisting}[label={lst:constraints}, caption={Constraint rules to remove invalid and irrelevant events}, escapechar=|]
 validEvent(I, In) :- instant(I), inst(In), event(E), occurred(E, In, I), not occurred(viol(_), In, I), E != null.|\label{line:viol}|
 validEvent(I) :- validEvent(I, In), inst(In).|\label{line:inst}|
 :- validEvent(I2), not validEvent(I), I < I2, instant(I), instant(I2).|\label{line:valids}|
@@ -4266,8 +4290,17 @@ The next section lists example answer set (trace) outputs of the solver with two
 tropes, both separately and combined.
 
 \section{Example Answer Sets (Traces)}
-
-
+Answer Sets (also called ``traces'') are produced by the answer set solver when
+given the institutions compiled as ASP code, along with a set of constraints.
+The traces generated represent all of the \emph{possible} sequences of events
+that may occur, given the described institutions. It is worth noting that by
+default this also includes any event that violate any of the institutions, as
+these violations are not prevented by the institutions. Instead, \emph{violation
+events} are generated which carry consequences with them. By using a constraint
+such as the one listed in~\ref{lst:constraints}, we can tell the answer set
+solver to only generate sequences events that do not contain these violation
+events. This is what we have done in this section. For visualisations of these
+answer sets, refer to the diagrams in section~\ref{sec:story-vis}.
 
 \subsection{Evil Empire}
 Our first example trope is a simple sequence of events called the ``Evil Empire'':
@@ -4336,13 +4369,22 @@ holdsat(perm(intEvilEmpire(hero,empire)),evilEmpire)
 holdsat(live(evilEmpire),evilEmpire)
 occurred(intEvilEmpire(hero,empire),evilEmpire)
 occurred(escape(hero),evilEmpire)
-
-
 \end{lstlisting}
+
+The events that appear at the start of the listing (starting with the
+\emph{holdsat} predicate) describe the \emph{fluents} that hold for a certain
+institution at that particular time step in the answer set. After these
+statements, the events that have \emph{occurred} in that institution appear.
+These events can be both institutional or external events, which can be
+distinguished due to the institutional event names beginning with ``int'' (such
+as \emph{intEvilEmpire}, for example). External events usually trigger
+institutional events with the institution name, which is why the \emph{chase},
+\emph{capture} and \emph{escape} events all trigger the \emph{intEvilEmpire}
+institutional event in listing~\ref{lst:evil-trace}.
 
 \subsection{The Hero's Journey}
 
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false]
 ``The Hero's Journey'' is a trope where:
   The Hero is a role
   The Villain is a role
@@ -4355,7 +4397,13 @@ occurred(escape(hero),evilEmpire)
   Then the Hero goes Home
 \end{lstlisting}
 
-The answer set solver produces six traces for this trope.
+The answer set solver produces six traces for this trope. The branching
+alternatives (the Hero can either kill the Villain or the Villain can escape at
+one point in the trope) add an extra three answer sets to the output. If this
+trope were just three events long, without the branching alternatives, then only
+three answer sets would be produced (corresponding with stories of one, two
+and three events long). The fourth answer set produced is shown in
+listing~\ref{lst:hero-trace} as an example.
 
 \begin{lstlisting}[label={lst:hero-trace},caption={Example trace for the
 ``Hero's Journey'' trope}]
@@ -4408,15 +4456,20 @@ occurred(intHerosJourney(hero,villain,evilLair,home),herosJourney)
 occurred(go(hero,home),herosJourney)
 \end{lstlisting}
 
+So far, the \emph{Evil Empire} and \emph{Hero's Journey} tropes produce
+unremarkable results. Due to their simple natures, they only produce a small
+number of answer sets when run through a solver. The results are more
+interesting when both tropes are input into the solver, however.
+
 \subsection{The Hero's Journey \emph{and} The Evil Empire}
 
-Combining the two tropes together produces 124 answer sets. Again, the reason
+Using both institutions as inputs into the solver, combining the two tropes together, produces 124 answer sets. Again, the reason
 that the solver produces so many answer sets is that it includes stories that
 are less than the full length of every event from both tropes combined (which is
 six events in this case). This is desirable when we are combining tropes, as
 sometimes we need to incorporate events from a trope without needing it to run
 its full course. In this example, if the Hero's Journey has come to an end, then
-that would seem like a more suitable place to finish the story, rather than
+that would seem like a more suitable place to finish a story, rather than
 waiting for all of the events in the Evil Empire trope to occur.
 
 An example of a trace that runs the full six event length of both tropes put
@@ -4593,12 +4646,14 @@ occurred(escape(hero),herosJourney)
 occurred(viol(escape(hero)),herosJourney)
 occurred(intEvilEmpire(hero,empire),evilEmpire)
 occurred(escape(hero),evilEmpire)
-\end{lstlisting}
+\end{lstlisting}\mnote{Move to appendix?}
+
+These trace outputs do not assist the reader in visualising the possible
+sequences of events that they represent. For this reason, we suggest that the
+reader refer to the visualisations produced by the StoryBuilder tool in section~\ref{sec:story-vis}.
 
 \section{Extending for Legal Policies}
 \label{sec:t-legal}
-% TODO intro: 1
-% TODO explanation from JURIX: 2
 Though TropICAL is designed to describe non-linear stories in systems with
 intelligent agents such as
 interactive computer games, with minor changes it can also be adjusted to
@@ -4649,45 +4704,23 @@ such an arrangement, the following dispute could occur:
     subleasing is a violation of the contract.
 \end{itemize}
 
-These policies can be expressed in terms of social norms:
-
-\begin{itemize}
-\item \textbf{The Warranty}: The seller sells an item to a buyer. Then,
-  if the item is defective, the buyer \emph{may} return it.
-\item \textbf{The Lease}: A lessor leases an item to a lessee. The lessee
-  \emph{must} pay the rent \emph{before} the due date, \emph{otherwise} the
-  lessor \emph{may} cancel the lease.
-  \item \textbf{The Deposit}: The lessee gives a sum of money to the lessor.
-    When the lease ends, if the leased item is in good condition, then the
-    lessor \emph{must} return the deposit to the lessee.
-\end{itemize}
-
-Once legal policies are expressed in this way, they can be translated into
+These policies can be expressed in terms of social norms, and translated into
 TropICAL code:
 
-\begin{figure}[!t]
-\begin{lstlisting}[belowskip=-0.5em]
+\begin{lstlisting}[label={list:policies},caption={Example policies in TropICAL}]
 ``Lease'' is a policy where:
     The Lessor is a role
     The Lessor is a role
     The Thing is an object
     The Lessor leases the Thing to the Lessee
     Then the ``Maintenance of Confidence'' policy applies
-\end{lstlisting}
- % \caption{The ``Lease'' policy in TropICAL\label{lst:lease}}
-% \medskip
-% \begin{lstlisting}[float=t!,caption={The ``Evil Empire'' trope in TropICAL},label=lst:evil]
-\begin{lstlisting}[belowskip=-0.5em]
+
 ``Sublease'' is a policy where:
     The Lessor is a role
     The Third Party is a role
     The Thing is an object
     The Lessor may sublease the Thing to a Third Party 
-\end{lstlisting}%
-% \caption{The ``Sublease'' policy in TropICAL\label{lst:sublease}}
-% \medskip
-% \begin{lstlisting}[float=t!,caption={The ``Quest'' trope in TropICAL},label=lst:quest]
-\begin{lstlisting}[belowskip=-0.5em]
+
 ``Sublease Permission'' is a policy where:
     The Lessee is a role
     The Lessor is a role
@@ -4695,10 +4728,7 @@ TropICAL code:
     The Lessee may ask permission to sublease the Thing
     If the Lessor gives permission to the Lessee:
       The ``Sublease'' policy applies
-\end{lstlisting}
-% \caption{The ``Sublease Permission'' policy in TropICAL\label{lst:sublease-permission}}
-% \medskip
-\begin{lstlisting}[belowskip=-0.5em]
+
 ``Maintenance of Confidence'' is a policy where:
     The Lessee is a role
     The Lessor is a role
@@ -4710,11 +4740,9 @@ TropICAL code:
     The Lessor must maintain the Thing
       Otherwise, the Lessee may cancel the Lease
 \end{lstlisting}
-\caption{Example policies in TropICAL\label{lst:policies}}
-\end{figure}
 
 The use of TropICAL to describe legal policies would be useful for lawyers that
-want to validate or generate arguments from any given set of policies. This would be invaluable as a tool
+want to validate or generate arguments from any given set of policies. This would be valuable as a tool
 to aid lawyers in argument creation, for example.
 Suppose a defense lawyer is trying to argue that her client
 is not guilty. The system could generate traces (sequences of events) of a
@@ -4762,6 +4790,67 @@ Each summary lists a number of ``possibilities'', with each possibility
 corresponding to an answer set produced by the solver, listing events and violations that occur
 in a trace. To find an argument, a lawyer can simply read through the generated
 possibilities to find one that suits her needs.
+
+\section{Summary}
+\label{sec:tropical-summary}
+Returning to the requirements listed in section~\ref{sec:requirements} (listed
+again here for the reader's convenience), we can now examine our language
+specification to see if the requirements are met:
+
+\begin{enumerate}[R1.]
+  \item The software must be able to integrate into a
+    multi-agent framework such as JASON
+  \item The system must direct the behaviour of agents to fit
+    a story description
+  \item The user should be able to write and re-use
+    existing story components (from a library)
+  \item The components must be able to express sequences of events
+  \item The components must be able to express branching
+    (diverging) events
+  \item The user should have the ability to nest existing
+    components inside new components
+  \item The user should be able to visualise the branches of the
+    story that result in the addition or modification of components to the story.
+  \item The story must tell the character agents what to do, but
+    they should be free to break away from it in extreme circumstances, to add a
+    degree of unpredictability
+\end{enumerate}
+
+Chapter~\ref{cha:agents} describes how our system integrates with the JASON
+multi-agent framework. The output of an answer set solver such as Clingo can be
+used to add beliefs to an agent's mental model to let it know what actions it is
+permitted and obliged to carry out as part of a story. This fulfills requirement~\ref{req:agents}.
+
+The use of permissions and obligations to describe story actions to agents in
+either a weakly (permissions) or strongly (obligations) enforced way gives the
+author two ways to direct agent behaviour. At times when the author wants agents
+to conform tightly with a trope description, they can give the agent an
+obligation with a strict consequence for non-compliance. This matches the needs
+of requirement~\ref{req:direct}. Requirement~\ref{req:norm} states that authors
+need a way to add some flexibility into a story, so that character agents are
+given some freedom to break away from the story if needed. This is achieved
+through the use of permissions to regulate agent actions.
+
+Section~\ref{sec:seq-code} shows how sequences of events can be described in
+TropICAL, fulfilling requirement~\ref{req:sequences}.
+Section~\ref{sec:branch-code} does the same for branching story structures,
+meeting requirement~\ref{req:branches}. A means of abstraction is
+an important feature of our language, as stated in
+requirement~\ref{req:subtropes}. Section~\ref{sec:subtrope-code} describes the
+use of subtropes to meet the need for users to create their own abstractions.
+
+As a text-based programming language, TropICAL addresses the requirements
+mentioned above (numbers \ref{req:agents}, \ref{req:direct},
+\ref{req:sequences}, \ref{req:branches}, \ref{req:subtropes} and
+\ref{req:norm}). However, there are two requirements that cannot be fulfilled
+through a text-based programming paradigm alone: selecting pre-existing story
+components from a library (requirement~\ref{req:components}), and visualising
+the branches of the story as it is modified (requirement~\ref{req:vis}). These
+requirements are best addressed through an Interactive Development Environment
+(IDE) with which we can add graphical features for the browsing, selection and
+visualisation of tropes. The next chapter (Chapter~\ref{cha:storybuilder})
+introduces \emph{StoryBuilder}, a browser-based tool that adds these features to
+our TropICAL language.
 
 % TODO outro: 1
 
@@ -4849,6 +4938,11 @@ possibilities to find one that suits her needs.
 % TODO intro: 1
 % TODO list themes: 4
 
+\section{Discussion}
+\subsection{Comparison with a Propp-based Formalism Approach}
+
+\subsection{Comparison with a Planner-Based Drama Manager Approach}
+
 % conclusion
 
 % HACK predicted poms remaining: 56
@@ -4921,6 +5015,203 @@ possibilities to find one that suits her needs.
 
 \chapter{Generated InstAL Code}
 \label{appendix:instal}
+
+\section{Obligation Examples}
+\label{appendix:obls}
+\begin{lstlisting}[label={lst:obl1-instal},caption={An obligation event with no
+deadline or consequence events}]
+institution obligation1;
+% TYPES ----------
+type Identity;
+type Agent;
+type Role;
+type Trope;
+type Phase;
+type Place;
+type PlaceName;
+type Object;
+type ObjectName;
+
+% FLUENTS ----------
+fluent role(Agent, Role);
+fluent phase(Trope, Phase);
+fluent place(PlaceName, Place);
+fluent object(ObjectName, Object);
+
+
+% EXTERNAL EVENTS: Obligation 1 ----------
+exogenous event go(Agent, PlaceName);
+exogenous event noDeadline;
+
+% VIOLATION EVENTS: Obligation 1 ----------
+violation event violHeroGoLandOfAdventure;
+violation event noViolation;
+
+% INST EVENTS: Obligation 1 ----------
+
+inst event intGo(Agent, PlaceName);
+inst event intObligation1(Agent, PlaceName, PlaceName);
+inst event intNoDeadline;
+
+% OBLIGATION FLUENTS: Obligation 1 ----------
+obligation fluent obl(intGo(Agent, PlaceName), intNoDeadline, noViolation);
+
+% INITIATES: Obligation 1 ----------
+intObligation1(R, S, T) initiates
+    phase(obligation1, phaseA),
+    obl(intGo(R,T), intNoDeadline, noViolation), perm(go(R, T)), perm(intGo(R,T)), pow(intGo(R,T)) if
+        phase(obligation1, active),
+        role(R, hero),
+        place(T, landOfAdventure);
+% TERMINATES: Obligation 1 ----------
+intObligation1(R, S, T) terminates
+    phase(obligation1, active),
+    perm(go(R, S)) if
+        phase(obligation1, active),
+        role(R, hero),
+        place(S, home);
+intObligation1(R, S, T) terminates
+    phase(obligation1, phaseA),
+    obl(intGo(R,T), intNoDeadline, noViolation), perm(go(R, T)), perm(intGo(R,T)), pow(intGo(R,T)) if
+        phase(obligation1, phaseA),
+        role(R, hero),
+        place(T, landOfAdventure);
+
+
+% GENERATES: Obligation 1 ----------
+go(R, S) generates
+    intObligation1(R, S, T) if
+        role(R, hero),
+        place(S, home);
+go(R, T) generates
+    intObligation1(R, S, T) if
+        role(R, hero),
+        place(T, landOfAdventure);
+go(R, S) generates
+    intGo(R,S) if
+        role(R, hero),
+        place(S, landOfAdventure);
+
+% INITIALLY: -----------
+initially
+    pow(intObligation1(R, S, T)) if role(R, hero), place(S, home), place(T, landOfAdventure);
+initially
+    perm(intObligation1(R, S, T)) if role(R, hero), place(S, home), place(T, landOfAdventure);
+initially
+    perm(go(R, S)) if role(R, hero), place(S, home);
+initially
+    phase(obligation1, active),
+    role(hero, hero),
+    place(landOfAdventure, landOfAdventure),
+    place(home, home);
+\end{lstlisting}
+
+\begin{lstlisting}[label={lst:obl2-instal}, caption={An institution with an
+obligation event containing a deadline and a consequence}]
+institution obligation2;
+% TYPES ----------
+type Identity;
+type Agent;
+type Role;
+type Trope;
+type Phase;
+type Place;
+type PlaceName;
+type Object;
+type ObjectName;
+
+% FLUENTS ----------
+fluent role(Agent, Role);
+fluent phase(Trope, Phase);
+fluent place(PlaceName, Place);
+fluent object(ObjectName, Object);
+
+
+% EXTERNAL EVENTS: Obligation 2 ----------
+exogenous event kill(Agent, Agent);
+exogenous event go(Agent, PlaceName);
+exogenous event noDeadline;
+
+% VIOLATION EVENTS: Obligation 2 ----------
+violation event violHeroGoLandOfAdventure;
+violation event noViolation;
+
+% INST EVENTS: Obligation 2 ----------
+inst event intKill(Agent, Agent);
+inst event intGo(Agent, PlaceName);
+inst event intObligation2(Agent, Agent, Agent, PlaceName);
+inst event intNoDeadline;
+
+% OBLIGATION FLUENTS: Obligation 2 ----------
+obligation fluent obl(intGo(Agent, PlaceName), intKill(Agent, Agent), violHeroGoLandOfAdventure);
+
+% INITIATES: Obligation 2 ----------
+violHeroGoLandOfAdventure initiates
+    perm(kill(R, S)) if
+        role(R, villain),
+        role(S, hero);
+% TERMINATES: Obligation 2 ----------
+intObligation2(R, S, T, U) terminates
+    phase(obligation2, active),
+    obl(intGo(R,U), intKill(S,T), violHeroGoLandOfAdventure), perm(go(R, U)), perm(intGo(R,U)), pow(intGo(R,U)) if
+        phase(obligation2, active),
+        role(R, hero),
+        place(U, landOfAdventure),
+        role(T, mentor),
+        role(S, villain),
+        role(R, hero),
+        role(S, villain);
+intKill(S, T) terminates
+    obl(intGo(R,U), intKill(S,T), violHeroGoLandOfAdventure), perm(go(R, U)), perm(intGo(R,U)), pow(intGo(R,U)) if
+        role(R, hero),
+        place(U, landOfAdventure),
+        role(T, mentor),
+        role(S, villain),
+        role(R, hero),
+        role(S, villain);
+
+
+% GENERATES: Obligation 2 ----------
+kill(S, T) generates
+    intObligation2(R, S, T, U) if
+        role(R, hero),
+        role(S, villain);
+go(R, U) generates
+    intObligation2(R, S, T, U) if
+        role(R, hero),
+        place(U, landOfAdventure);
+kill(R, S) generates
+    intObligation2(R, S, T, U) if
+        role(T, mentor),
+        role(S, villain);
+go(R, U) generates
+    intGo(R,U) if
+        role(R, hero),
+        place(U, landOfAdventure);
+kill(S, T) generates
+    intKill(S,T) if
+        role(R, hero),
+        role(S, villain);
+kill(R, S) generates
+    intKill(R,S) if
+        role(T, mentor),
+        role(S, villain);
+
+% INITIALLY: -----------
+initially
+    pow(intObligation2(R, S, T, U)) if role(R, hero), role(S, villain), role(T, mentor), place(U, landOfAdventure);
+initially
+    perm(intObligation2(R, S, T, U)) if role(R, hero), role(S, villain), role(T, mentor), place(U, landOfAdventure);
+initially
+    obl(intGo(R,U), intKill(S,T), violHeroGoLandOfAdventure), perm(go(R, U)), perm(intGo(R,U)), pow(intGo(R,U)) if role(R, hero), place(U, landOfAdventure);
+initially
+    pow(intKill(S, T)),
+    phase(obligation2, active),
+    role(hero, hero),
+    role(villain, villain),
+    role(mentor, mentor),
+    place(landOfAdventure, landOfAdventure);
+\end{lstlisting}
 
 \section{Branching Trope Example}
 \label{appendix:branch3}
@@ -5049,6 +5340,176 @@ initially
     object(sword, sword);
 \end{lstlisting}\mnote{Move this to the appendix}
 
+\section{Parser Implementation}
+\label{appendix:t-grammar}
+% TODO intro: 1
+This section of the appendix describes the technical implementation of the TropICAL parser.
+
+% TODO instaparse description: 1
+We use the Clojure programming language~\citep{clojure} with the Instaparse
+parser generator library~\cite{instaparse} to create the language parser for
+TropICAL. The method of parser creation with Instaparse is to describe the
+parser using a syntax that resembles \emph{Extended Backus-Naur Form} (EBNF)
+grammar, combined with regular expressions. According to the author, its
+features are:
+
+\begin{itemize}
+\item Turns standard EBNF or ABNF notation for context-free grammars into an executable parser that takes a string as an input and produces a parse tree for that string.
+\item No Grammar Left Behind: Works for any context-free grammar, including left-recursive, right-recursive, and ambiguous grammars.
+\item Extends the power of context-free grammars with PEG-like syntax for lookahead and negative lookahead.
+\item Supports both of Clojure's most popular tree formats (hiccup and enlive) as output targets.
+\item Detailed reporting of parse errors.
+\item Optionally produces lazy sequence of all parses (especially useful for diagnosing and debugging ambiguous grammars).
+\item "Total parsing" mode where leftover string is embedded in the parse tree.
+\item Optional combinator library for building grammars programmatically.
+\item Performant.
+\end{itemize}
+
+Due to using this method of parser creation, our parser has two stages: first it
+parses the entity declarations (roles, objects and places) at the top of the
+trope description, then takes the parsed declarations and inserts them as
+keywords in the grammar for the rest of the language, creating a new parser
+specifically for those entity declarations. For example, if the author writes
+``The Hero is a role'', ``The Castle is a place'' and ``The Sword is an
+object'', then the \emph{role} 
+
+% TODO simplified grammar from code: 2
+% TODO format grammar: 2
+
+The Extended Backus-Naur Form (EBNF) of the grammar is shown in
+listings~\ref{lst:ebnf1} and~\ref{lst:ebnf2}. Listing~\ref{lst:ebnf1} describes
+the syntax for the entity declarations at the top of each trope definition file,
+as described in section~\ref{sec:dec-code}. Listing~\ref{lst:ebnf2} shows the
+grammar for the rest of the trope definition files.
+
+\begin{lstlisting}[showstringspaces=false,label={lst:ebnf1},caption={EBNF
+grammar for the entity declarations in TropICAL}]
+text = tropedef defs trope
+<tropedef> = label <' is a ' ('trope' / 'policy') ' where:\\n'>
+<defs> = (<whitespace> (chardef | objdef | placedef) <'\\n'?>)+
+chardef = charname <' is a ' ('character' | 'role') '.'?>
+objdef = objname <' is an object' '.'?>
+placedef = placename <' is a place' '.'?>
+<charname> = name
+<objname> = name
+<placename> = name
+trope = (<whitespace> !(chardef | objdef | placedef) #'.*' <'\\n'>?)+
+label = <'\"'> words <'\"'>
+<whitespace> = #'\\s\\s'
+<name> = [<'The ' / 'the '>] cwords
+<words> = word (<' '> word)*
+<cwords> = cword (<' '> ['of'<' '>] cword)*
+<cword> = #'[A-Z][0-9a-zA-Z\\-\\_\\']*'
+<the> = <'The ' | 'the '>
+<word> = #'[0-9a-zA-Z\\-\\_\\']*'
+\end{lstlisting}\mnote{I've taken this from the code verbatim. We need to meet and discuss how to simplify this.}
+
+\begin{lstlisting}[showstringspaces=false,label={lst:ebnf2},caption={EBNF
+grammar for the main trope definitions in TropICAL}]
+trope = (<whitespace> sequence)+ <'\\n'?>
+(str "label = '" label "'")
+fluent = object <' is '> adjective
+adjective = word
+outcome =
+(<'\\n' whitespace whitespace> (event | obligation | happens) (or? | if?) <'\\n'?>)+
+happens =
+<the?> subtrope <(' happens' / ' trope happens' / ' policy applies') '.'?>
+block =
+<the?> subtrope <' policy does not apply' / ' does not happen' / ' trope does not happen'> <'.'?>
+sequence =
+((fluent | event | norms | happens | block) (or* | if*)) | ((fluent | event | norms | happens | block) (<whitespace+ 'Then '> (block / norms / event / fluent / obligation / happens) (or* | if*))*)*
+or =
+<whitespace+ 'Or '> (fluent | event | norms)
+if =
+<whitespace+ 'If '> (fluent | event | norms)
+action = !fverb verb [sp [particle sp] (character | object | place)] (crlf? | [sp particle? (character | object | place)] crlf?)
+event = character sp action
+<particle> = <'a' | 'at' | 'will' | 'of' | 'to'>
+norms = permission | rempermission | obligation
+fluent = (character | object | place) sp fverb sp [particle sp] (character | object | place) crlf?
+fverb = (<'is'> sp 'at') | 'has'
+violation = norms
+(str "character = " (if (seq rs) rs "'nil'"))
+(str "place = " (if (seq ps) ps "'nil'"))
+(str "object = " (if (seq os) os "'nil'"))
+subtrope = <'\'> words <'\"'>"
+label = <'\'> words <'\"'>"
+verb = words
+rempermission = character <' may not '> action crlf?
+permission = character <' may '> action crlf?
+obligation = character <' must '> action (<' before '> deadline)? (<crlf whitespace+ 'Otherwise, '> <'the '?> violation)? <'.'?> crlf?
+deadline = consequence
+role-b = character
+object-b = object
+place-b = place
+<crlf> = <'\\n'>
+consequence = event
+<whitespace> = #'\\s\\s'
+<sp> = <' '>
+<words> = word (sp word)*
+<cwords> = cword (sp ['of' sp] cword)*
+<cword> = #'[A-Z][0-9a-zA-Z\\-\\_\\']*'
+<the> = <'The ' | 'the '>
+<word> = #'[0-9a-zA-Z\\-\\_\\']*'
+\end{lstlisting}\mnote{See above. Also, would it be best to move this to the appendix?}
+
+
+\section{Parse Tree Examples}
+\label{appendix:parse-tree}
+
+% TODO describe intermediate data structure, hash-map structure
+% TODO explain parse tree diagrams, hash-map notation (look up best way to do hmaps in latex)
+
+This section of the appendix shows visualisations of the parse tree that results from the trope
+code examples listed in sections~\ref{sec:dec-code} to~\ref{sec:subtrope-code}.
+
+This is the parse tree output of the sequence of events in listing~\ref{lst:seq3}:
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{seq2-tree.png}}
+\vspace{7mm}
+
+\begin{lstlisting}[showstringspaces=false]
+{:label "Sequence 2", :events [{:role "Hero", :verb "go", :place "Land of Adventure"} {:role "Hero", :verb "find", :object "Sword"} {:verb "meet", :role-b "Villain", :role-a "Hero"} {:role "Hero", :verb "return", :place "Home"}], :roles ("The Hero" "The Villain"), :objects ("The Sword"), :locations ("Home" "The Land of Adventure")}
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{branch2-tree.png}}
+\vspace{7mm}
+
+\begin{lstlisting}[showstringspaces=false]
+{:label "Branch 2", :events [{:or [{:role "Hero", :verb "go", :place "Land of Adventure"} {:role "Hero", :verb "find", :object "Sword"} {:verb "kill", :role-b "Villain", :role-a "Hero"} {:role "Hero", :verb "return", :place "Home"}]}], :roles ("The Hero" "The Villain"), :objects ("The Sword"), :locations ("Home" "The Land of Adventure")}
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{branch3-tree.png}}
+\vspace{7mm}
+
+\begin{lstlisting}[showstringspaces=false]
+{:label "Branch 3", :events [{:role "Hero", :verb "go", :place "Home"} {:or [{:role "Hero", :verb "find", :object "Sword"} {:role "Hero", :verb "go", :place "Land of Adventure"} {:verb "kill", :role-b "Villain", :role-a "Hero"}]} {:or [{:verb "meet", :role-b "Mentor", :role-a "Hero"} {:role "Hero", :verb "go", :place "Realm of Mystery"}]}], :roles ("The Hero" "The Villain" "The Mentor"), :objects ("The Sword"), :locations ("Home" "The Land of Adventure" "The Realm of Mystery")}
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{item-search-tree.png}}
+\vspace{7mm}
+
+\begin{lstlisting}[showstringspaces=false]
+{:label "Item Search", :events [{:role "Hero", :verb "chase", :object "Macguffin"} {:or [{:role "Hero", :verb "find", :object "Macguffin"} {:role "Hero", :verb "go", :place "Home"}]}], :roles ("The Hero"), :objects ("The Macguffin"), :locations ("Home")}
+\end{lstlisting}
+
+\vspace{7mm}
+\centerline{\includegraphics[width=\textwidth]{kill-then-search-tree.png}}
+\vspace{7mm}
+
+\begin{lstlisting}[showstringspaces=false]
+{:label "Kill then Search", :events [{:role "Hero", :verb "go", :place "Away"} {:verb "kill", :role-b "Villain", :role-a "Hero"} {:subtrope "Item Search"}], :roles ("The Hero" "The Villain"), :objects (), :locations ("Away")}
+\end{lstlisting}
+
+\section{``Evil Empire'' Trope Example}
+\label{appendix:evil-empire}
+
+\subsection{Traces}
+\label{appendix:evil-empire-traces}
 
 \bibliographystyle{apalike}
 \bibliography{thesis}

@@ -563,6 +563,7 @@ The structure of this thesis is as follows:
 
   The following list includes all conference presentations and papers published by the author which are related to this report.
 
+  %(use paralist)
   \paragraph{Conference Presentations:}
   \paragraph{[HSWI@ESWC 2014] Artfinder: A Faceted Browser for Cross-Cultural Art Discovery} Matt Thompson, Julian Padget and Steve Battle, Human Semantic Web Interaction Workshop, European Semantic Web Conference, May 2014, Crete, Greece.\label{pub:hswi}
   \paragraph{[DHIS 2015] Every Object Tells a Story} Matt Thompson, Julian Padget and Steve Battle, Digital Heritage Meets Interactive Storytelling 2015 (conference presentation), April 2015, York UK.\label{pub:dhis}
@@ -577,6 +578,8 @@ The structure of this thesis is as follows:
     Systems} Matthew Thompson, Julian Padget and Ken Satoh, JURIX 29th
   International Conference on Legal Knowledge and Information Systems, December
   2016, Nice, France.\label{pub:jurix}~\citep{thompson2016describing}
+
+  % add ALIA paper
 
 
 % HACK est. poms remaining: 
@@ -4860,18 +4863,29 @@ our TropICAL language.
 
 \chapter{StoryBuilder: An Interface for Trope-based Interactive Story Creation}
 % Think of it as an IDE: what kind of support do users want? Helps to visualise the complexity of the stories. Helps authors to construct the stories that they intend to construct
-
 \label{cha:storybuilder}
+We built StoryBuilder as a graphical user interface to enhance the functionality of
+the TropICAL language. Specifically, it addresses requirements
+R\ref{req:components}. and R\ref{req:vis}. in the requirements listed in Section~\ref{sec:requirements}:
 
-% TODO intro: 2
+\begin{enumerate}[R1.]
+  \setcounter{enumi}{2}
+  \item The user should be able to write and re-use
+    existing story components (from a library)
+  \setcounter{enumi}{6}
+  \item The user should be able to visualise the branches of the
+    story that result in the addition or modification of components to the story.
+\end{enumerate}
 
-\section{Use Cases}
-% TODO intro: 1
-% TODO list use cases: 3
+Although libraries can be stored and reused in text-based programming languages
+through methods such as ``import'' statements, our intention was to create a
+graphical interface to simplify the exploration and viewing of tropes in the
+library. Using StoryBuilder, the user can select a pre-written trope from a
+dropdown box of existing tropes, which then allows them to see its source code
+and visualise its structure in the story with a tree diagram.
 
-\section{Requirements}
-% TODO intro: 1
-% TODO list requirements from use cases: 3
+To address requirement~\ref{req:vis}, we parse the answer set outputs (traces)
+of our answer set solver (as described in Section~\ref{})
 
 \section{Overview of Interface}
 
@@ -4880,16 +4894,6 @@ our TropICAL language.
 % TODO screens & explanation of editor: 2
 % TODO screens & explanation of arranger: 2
 % TODO screens & explanation of visualisations: 2
-
-\section{Annotated User Stories}
-
-% TODO intro: 1
-% TODO user story 1 screens: 2
-% TODO user story 1 explanation: 2
-% TODO user story 2 screens: 2
-% TODO user story 2 explanation: 2
-% TODO user story 3 screens: 2
-% TODO user story 3 explanation: 2
 
 \section{Design Justification}
 % Return to requirements, explain how they are met
@@ -4916,23 +4920,25 @@ our TropICAL language.
 
 % HACK predicted poms remaining: 21
 
-\chapter{Evaluation}
+\section{Evaluation}
 % TODO intro: 2
 
-\section{Methodology}
+\subsection{Methodology}
 % TODO Explain the concept of ``thematic analysis''': 3
 
-\section{Process}
+\subsection{Process}
 % TODO explain the process: 3
 
-\section{Questions}
+\subsection{Questions}
 % TODO list the questions asked: 3
 
-\section{Transcripts}
+\subsection{Identified Themes}
 % TODO transcript snippets: 2
 % TODO transcript snippet explanations: 3
+% TODO forward ref to transcripts in appendix: 1
 % Just choice quotes and snippets go here, but make sure that you forward link
 % to the appendix
+
 
 \section{Identified Themes}
 % TODO intro: 1

@@ -1,0 +1,211 @@
+* DONE David transcript
+  CLOSED: [2017-08-05 Sat 10:20]
+
+Start: 14:40
+
+M: Now I'll get you to do some tasks with the language. So, the first one is to take an existing trope, any of those tropes there, and just edit it in some way. Change it in some way that you see fit.
+D: Sure. So just change something? "The Bucket is an object".
+M: Ah... has it...? Oh no, it's OK. I was worried there for a second. So yeah, that's changed.
+D: Sorry about that, compile error.
+M: One thing that is not ideal is that I don't have very detailed error messages yet. It's kind of frustrating to explain, but there's lots of complicated stuff going on underneath this that's kind of the research-y bit.
+D: Oh, error detection is massive, Matt.
+M: Oh got, yeah, especially in languages that only PhD students in our department use, there's no error stuff there. So, yeah, it's kind of tricky. But I should be able to spot anything that's going wrong and let you know how to fix it.
+D: I'll slow down, though. In fact, you can just say "Next, next, next" when you actually want me to click a button.
+M: OK, sure. But that looks good - so you've changed something. I'd say that counts as finishing the first task. So, obviously you have kind of a programming background, you're used to learning languages, but would you say that this would be easy to pick up for someone who just writes stories and has no programming background?
+D: Oh, hugely. I don't have a great eye for detail, and it's the detail that kills programming. So I'm not having to keep a mental note of when you're using a comma, semicolon, colon, you know as in I-can't-remember-what-language really depends upon that, even HTML, CSS. The nice thing about this is that it's plain, using that conventional punctuation, and symbols. Because it is a language - programming is a language, it's fluency. But of course a newbie, those punctuation marks in my mind I kind of skip them, because they're punctuation, but they're not, they're integral to the working. So the fact that you've kept it without punctuation is fantastic.
+M: Great, great.
+D: The idea that we just carry a new line to declare a new variable. Brilliant. I think maybe a writer might be inclined to pop a full stop behind here, a period at the end of each sentence.M: Actually, you can do that, and it ignores it. So I've written that into it.
+D: Oh, well done. How about, I know Americans, when they do listing they like to use a semicolon.
+M: Ah, that probably won't work in this case, that's actually probably not a good thing to do.
+D: The Americans I've met are very keen on semi-colons when they're running through a list.
+M: OK, OK.
+D: So, apart from that, the only thing really, which would flick up in an author's mind is the use of a double-space. But, you know, live with it.
+M: Yeah, yeah.
+D: Maybe the use of a tab instead of a double space would be more in keeping with the convention of using tabs in word processors.
+M: Yeah, that's a good point actually.
+D: I noticed that you've got some capitals in there, are the capitals important to the running of the program?
+M: Yes they are, very much. So if you have the name of some kind of entity like the Hero, the Home, the Bucket, it's important to give that a name with a capital letter. That's how it kind of identifies that.
+D: If I could just ask, you're using capitals for nouns, then, be that abstract nouns or physical nouns, that's fine. Quick question - Land of Adventure. We haven't used it yet, can I just try something?
+M: Yeah, go ahead. Ah, OK, I think I see what you're doing. I think you might encounter a bug I have. Oh no, you don't. I have this bug which comes up sometimes, but not always, where if you don't put a "the", if you declare it with a "the", it's supposed to ignore the "the", but sometimes it doesn't and you have to use a "the" later. But in this case it's fine, so I'm not quite sure what's going on. But no, that's good. So, yeah, "Land of Adventure" works.
+D: It capitalised "Land"... an author would get bugged by that. Don't worry, I'm just making an observation. "Land of Adventure", I like it in this flowchart where it's capitalised to keep this word separate, that's really cool.
+M: The camel case.
+D: I was interested in how it managed to string that together, that noun.
+M: Hmm, so when it compiles this language, it has to compile it to another language called "InstAL", and then that is compiled to another language which looks a bit like Prolog, called AnsProlog, and that's a kind of declarative... it's a language where you describe the problem, and then the program works out how to solve the problem. Which is called "Declarative Programming".
+D: So you've given it a blanket rule where if you've got a couple of capitals, and then an "of" in the middle...
+M: Yeah, yeah. But in order to translate it to that language I've said: "if you have an entity with multiple words, convert it to this format, so it's one word". So that's kind of just an output of that. OK, you've got a compile error. Did you change anything?
+D: Yeah, I changed the "o" to a capital.
+M: OK, OK, yeah. That would explain it. It has to be exactly the same.
+D: I hope you don't mind be tinkering with your, uh...
+M: Oh no, that's OK. So I think in this case, you'd have to change the declaration on line 4 as well, to be the same thing. But that might work.
+D: Let's give that a go.
+M: Hmm, no I don't think that's worked. I think hyphens probably trip it up.
+D: Yeah, sure.
+M: I wonder why. I'll have to look into that. OK, moving on to task 2, I'd like you to create a trope from scratch. So if you click on "new" underneath that text box, and then type in the trope name first in that text box there. So what would you like to call it? OK, could I ask you to remove the apostrophe, just in case? I don't think it will have a problem, but just in case. Before you click "Save", type in "David is a role", and maybe one other role or object.
+D: Hang on. Yeah.
+M: Great, OK. Then click "save", and go to "edit". Actually, it's a good idea to go to "edit" so you can visualise that it's working as you're creating the trope. So, there you go. "Dave's typical day". So if you click refresh at this point, nothing will appear, because nothing's happening in your story yet. So add an event.
+D: Add something? Yeah, sure.
+M: Oh yeah, of course you need a place.
+D: Uh huh. I can't remember how you declare objects.
+M: "... is an object": "Coffee is an object".
+D: OK. How would I say "Drink is an action"? I don't need that do I?
+M: Actually no, you can just use that. So you can say "David drinks the coffee", and that's fine. OK, save that and see if that works.
+D: Yeah, sure.
+M: Click refresh as well. There might be a compile error because it wants a capital "C" for coffee.
+D: Not really anything to show, is there?
+M: No, it should show the first event, "David drinks Coffee", but it wants the Coffee with a capital "C".
+D: (interrupted by colleagues) Please continue.
+M: So, where it says "David drinks coffee", the "c" in coffee must be a capital C. So that's one convention I had to do. And then try "refresh" and see if that's fixed it. There you go.
+D: Oh.
+M: So yeah, it doesn't automatically refresh the visualisation if you click "save". I did try to implement that, but I had some problems.
+D: Matt, you don't have to explain a damn thing to me, this is quite an achievement.
+M: That's very understanding of you David, thank you very much. So, see if you can add some more events to your trope. I think for this task, don't put any branches in yet, just put in one thing after another for now.
+D: Yeah, sure.
+M: And if you have "David goes to the cafe", so it's grammatically correct, that should work as well. It should ignore the "the"s. If you see what I mean.
+D: I'm with ya. I think because I'm halfway between a programming and writing mind, I'm going to like, programming. Just, you know, real BASIC stuff. Let's see what happens. Let's see if it knows "orders". I doubt it. Let's try.
+M: It doesn't actually know any of these verbs, it's using a tool called "Wordnet" to convert them from the words... to detect if it's a verb or not basically. So it should be fine with any verb you try. Hopefully. So, if you click "save" and "refresh", hopefully it will be OK.
+D: Yeah, cool.
+M: There you go. Cool.
+D: Looks right. Can you hold the line for 20 seconds? 
+M: Sure
+D: (talks to colleagues). OK, Matt.
+M: OK, cool. So that looks good. That's a good first, er... Looks really good.
+D: Except it's put "David drink Coffee" at the beginning.
+M: Interesting... so "drink_david"... oh, yes, so it starts...
+D: That should be there, shouldn't it.
+M: Because it's difficult to determine where a verb goes in a sentence, and it's converting this directly from your sentence structure here to something else entirely, I've just put the verbs at the beginning. So it's verb and then...
+D: Oh hang on, so I've done it wrong. It's because we've declared that... you see how I've highlighted number 5? We declared that as a verb: "David drinks coffee".
+M: Ah, yes.
+D: When really, the story starts at line 6: "David goes to the cafe".
+M: Oh, I see. So you were saying it's the wrong way round? So David should go to the cafe first?
+D: Well, I was trying to declare that as a verb, something which subject does with object. However, what you've just described with the compilation, it doesn't need that at all.
+M: Oh, I see. I see. So you were thinking that it would infer that coffee was something that David drinks because you declared it. So if David orders a coffee, then it follows that David will drink the coffee. That kind of thing.
+D: No, what I was trying to do... trying to to CTRL-z on this, hang on... I popped that in as almost like declaring variables at the beginning to say the kind of things which an object can do to other objects.
+M: Ah, yeah. That's a very Prolog-style of programming, actually, that's quite interesting.
+D: I don't know what that means, but OK.
+M: Yeah, so it's actually related to the language which this compiles to, which is a very obscure language called "Prolog", it's like, if you're writing a Sudoku solver. So normally in programming you tell it exactly how to solve a program, right? But using Prolog, you just tell it the rules of Sudoku, and it would work out how to solve a given set of numbers that you put into it. It's like a very different way of programming. So what you're saying is, by telling it the things you can do to the coffee, you're telling it the problem, and it could... that's exactly how you'd program in Prolog. I'm not sure if you follow me, but that's quite interesting.
+D: OK.
+M: So, that's good. So if you move onto task 4 now, actually. So add some branches to the trope. There is a limitation. So yeah, continue with this trope. One limitation I should mention is that you can't have a trope which is more that five events long at the moment because once you combine lots of tropes together it can get very very complicated with more than five events. So, you've got that. Add some branches to it now with the "Or" keyword.
+D: I'm with ya. Just give me a minute to get creative.
+M: Cool. No problem.
+D: Um... yeah... I'm just referring back to the notes about the syntax. OK. So I would pop in to the market, so I can put that in or I can come down here two spaces "Or David asks Matt how he is".
+M: Ahh, now that's tricky. "Matt how he is"... I wonder if that would work.
+D: Doubt it.
+M: Yeah, I doubt it too. See what happens, though. See what happens. I reckon it's going to have a compile error.
+D: Refresh...
+M: No, it doesn't like that. Doesn't like that.
+D: OK, let me try something else.
+M: Yeah, sure.
+D: Let's just give it a blunt thing of getting rid of those on the end.
+M: I have a feeling that "health" needs to be an object or something, because... but then... yeah. Which obviously isn't ideal. But you could probably add another kind of keyword, like a Subject or something, or a Topic. But try that.
+D: Oh, I could change object... uhh "Condition".
+M: That won't work, that won't work. So I've only told it to have "role", "place" or "object". But "subject" won't work either. It can only be "role", "place" or "object".
+D: Yeah, I'm with ya. I see you've got a slightly different colour variation on "is an object". I would make that a lot clearer
+M: Yeah, so something that I did, which I probably shouldn't have done, is that it's um... in this text editor I'm using, it's using Python syntax highlighting, which I thought was a good idea at the time, but it's highlighting words which are just confusing. So, yeah.
+D: No worries, just a comment you can bin it as you wish. Let me save the trope, and see what happens.
+M: No, it won't like that. Definitely won't like that. If you change "Health is a subject" to an object...
+D: Please repeat, Matt.
+M: So change "subject" to "object" and see if that works.
+D: OK. Save, refresh.
+M: Ah, there we go. So that works. So you can imagine... that's interesting. It's good that you've brought up that kind of question. Because it means that if I want to have people asking people about other things, or talking about certain topics, I can add another thing which isn't a role, a place or an object, it could be a topic or a subject, and that can be another kind of thing.
+D: That would be a really good thing. Let's try it to see what happens.
+M: I KNOW it's not going to work. But yeah, why not? I would have been amazed if that had worked. Alright, that's good, so you've got the branching in there, once that works again. Cool. So, that's task four done. OK, in task five, I'd like you to click on the "arrange" tab. So far we've been in that "edit" tab on the left, so click on "arrange". And then click on the plus to combine, to merge this trope with another. So imagine you have a story, you have multiple tropes happening at the same time. Go with a simple one like "Example 1".
+D: Sorry, did you say "press on the plus button"? I lost the audio.
+M: Yes, that's right. On the plus, yes. Then click on one of the simple tropes like "Example 1", or something like that. And wait a little while, because it's generating all the possible possibilities of combining these tropes together. It should have done it by now... ah, there you go. So you can zoom in on that by hovering your mouse over it and scrolling up. And then you can see all the different possibilities... so basically this is saying "In this story, we have these two tropes, and all the events here are based on following one trope or another, so these are all the different possibilities of the different orders of following the different tropes".
+D: Hmm. I suppose what we need... what I'd love to see here is the relationship between. Oh... by the way, that's fantastic, that's really quite formidable.
+M: Thank you. "Formidable"... that's a good one!
+D: I'll tell you later how we can use this in flowchart decision making.
+M: Oh, wow.
+D: Yeah, this is very interesting.
+M: So you can see the colours of the arrows.
+D: Are all the permutations coming through here?
+M: Sorry... how many permutations...?
+D: Yeah, "go_hero_home" can spill off into "ask_matt_david". Oh... "ask_matt_DAVID"...
+M: Ah yeah, sometimes it gets those orders mixed up. Yeah, that's a bug that I need to fix.
+D: I like the way that the Hero's going to the Land of Adventure, and I'm heading to the cafe.
+M: That could be its own Land of Adventure, depending on how much coffee you have, I think.
+D: Not in Bath! OK, yeah, what can I do for you next?
+M: OK, that looks good. So task 6 is to embed a trope in another trope. So go back to the "edit" tab there. So that's the trope you've already created. We want to embed that trope into a new trope. So click on "new", and create a new trope. So, "David's typical day" has to be kind of a sub-trope of some other trope, maybe "David's typical week", I don't know. So type the name at the bottom for your new trope.
+D: Yep.
+M: Yeah, that looks good.
+D: "Save trope". Edit?
+M: Actually, I don't think it works unless you put in an event. So before you click on an event, put "David" in, and...
+D: Do I need to declare variables again?
+M: Yes, you do. Yeah.
+D: (types)
+M: Ahh... "David is an object". Not a role?
+D: Ah, that's the one. Cheers, mate. I suppose, because an object can be so many things like we just describe, a topic, a condition of health, an abstract noun. Um, yeah. I was clumping in my mind "object" all together.
+M: Oh yeah, yeah, sure. I understand. But it has to be "a" (role), "an" will trip it up. Put in another role if you can, and maybe the first event before you save it. Because if you create a trope and save it, and it doesn't compile, it can mess it up. So "A Boat is an object", good. Actually, I think if you save that, that should work, and then go to "edit". And see if that's appeared...
+D: Not appearing... yet.
+M: Oh, in the dropdown, yeah.
+D: Hang on, hang on. There we go.
+M: There we go. OK.
+D: Yeah, I'm there.
+M: Great. So have a couple of events happen and then have the events of "David's typical day" happen after that.
+D: (types)
+M: Hmm. I think it won't like "Sun is shining". I think if you can say "The Sun shines", that might be better.
+D: Yep, good. No, that's interesting isn't it. Present conditional or present tense.
+M: Yeah... that should be OK. And then "the" rather than "then". "The Sun shines". So you could have maybe "The Sun shines" and then 'The "David's Typical Day"'...
+D: "David goes to Boat".
+M: Ah yeah, and then "David goes to the Boat".
+D: Oh, I see. I see. "David goes to the Boat" OR... I think the syntax did it that way... "David..."
+M: So, you have to put "David's"... I think it has to be 'The "David's Typical Day" trope happens". And the, so "The Sun shines"... don't indent line 6. Put that back onto where... so delete those spaces. And put that back down to two spaces. So yeah, try that. I have a feeling it might work, it might not work though.
+D: Save trope? Problem is, we've still merged the Hero Adventure as well.
+M: Ah no, it'll forget that once you click refresh.
+D: Oh, I see.
+M: I have a feeling there's still this bug where if you try to embed a trope in a branch, it's not working, which is unfortunate. Instead of "Or", could you just put "Then", and unindent it, and see if that works.
+D: I'm wondering if THAT's the problem.
+M: "Then David goes to Boat". Ooh, good point. I think it should be OK. So, just change line 7 to "Then the...", because I'm pretty sure that's not working, sadly. And then delete those spaces at the beginning as well. Hmm, still a compile error, huh? OK. I wonder. "The Sun shines"... So perhaps it doesn't like... Hmm. OK, delete line 6 and line 7, so cut line 6 and line 7 so you can paste them in later. And then see if that works. I'm wondering. Did you click save? You did? So, it doesn't like "The Sun shines". That's interesting. "The Sun is an object", "The Sun"... "is shining"... No, that definitely won't work. Uh.. "The Sun shines"! Give me a second. So, I can edit it from my end very quickly and see if I can fix it.
+D: Go for it.
+M: Because sometimes it can be stuff like too many "the"s, or not enough "the"s. "David's life in Bath". Actually, if you could put "The Sun is an object, The Sun shines", see if that works.
+D: Could you repeat that? I lost audio.
+M: Sure. "THE Sun is an object", and then "THE Sun shines". Sometimes that trips it up.
+D: Yeah, because it was the "is" as a declaration, wasn't it?
+M: No, no, that's not working. OK.
+D: Let's just try this.
+M: No, I don't think it likes adverbs. "The Sun shines on...".
+D: I tell you what, I could make this work by changing The Sun to The Weather. And then say that "The Weather is good", then it would be subject-verb-object. Shall I give it a go?
+M: Yeah, try that. "The Sun shines, The sun is an object"...
+D: Maybe the Weather needs to be declared as a role.
+M: Hmm. Perhaps. Ah OK, interesting. So, for me, I have a feeling a person has to be involved. There always has to be a role involved. So if you say: "The Sun is a role, The Sun shines", that works. I think the way I've designed it is, because this is designed around these intelligent agents, right? So it describes the constraints on these agents. So for every event, an agent has to be in there somewhere, so there always has to be a role. So the sun, er...
+D: I say "subject", and you say "agent", is that correct?
+M: I guess so... Like a role, yeah the subject would be... it has to be an agent. Yeah, that's right, the subject has to be an agent of some kind. But OK, that's interesting. I can't remember where we were. We were on some task.
+D: We were going to embed a trope.
+M: Yeah, OK, "The Sun shines", and then try embedding the trope. Ah yeah, OK, there we go. And save then refresh.
+D: Save the trope. Refresh.
+M: There we go. Excellent.
+D: It worked. Close. 'Cause really it's... what I'm aiming for is "If the Sun shines, then David goes to Boat, Or then the "David's Typical Day" trope happens".
+M: Yeah, I'm going to have to fix that bug where you can't for some reason embed a trope ON a branch, if you see what I mean, which seems quite vital to me, discovering this now talking to you, it seems like a very important thing to have. It's good that we've done this study. OK, so final thing is if you just want to mess around with the tropes you have, you can arrange them with that arrange tab, or change anything and just kind of like... yeah, just create a story freely. I think you've kind of done a lot of that already, though. So yeah, I think something you haven't explored much is the stuff on the "arrange"... so yeah, click on "arrange", and see what happens when you combine tropes together.
+D: Repeat the last 5 seconds.
+M: Sure. Click on that "arrange" tab, and combine lots of tropes together. So play with that a bit. So you've got "David's life in Bath", yeah. Ah, this might have some recursive properties right? So you've got "David's Typical Day", which occurs inside "David's Life in Bath", and then... oh, no, it's OK. No recursion, so it's OK.
+D: It doubles up on "speak_matt_david", though.
+M: I think that's because you have "David's Typical Day" in there twice, right? Because "David's Typical Day" is contained inside "David's Life in Bath". And so, it will do it as part of "David's Life in Bath", and then it will do it as part of "David's Typical Day" as well.
+D: Gotcha. Oh, is that your word recursive?
+M: So that's what I was worried about, I was worried that it would get stuck in a loop where it was doing "David's Typical Day" over and over again, like some kind of "Groundhog Day" scenario. But no, it's OK.
+D: Matt, it does feel that way sometimes.
+M: (laughs). OK, cool. I think that's everything. So, I guess I've got some general questions to ask you. I might have asked you all of them. How useful do you think it is to use tropes to construct a story in this way, as a kind of component of story?
+D: For who?
+M: So if you're a story author, and you want to create a non-linear story with these branches, how useful do you think it is to construct a story using tropes, in this way you have been doing? I mean, if you're creating a computer game...
+D: I think your layman author...
+M: For yeah, a computer game author.
+D: I like the idea of it being able to spit out all permutations. You know, I was looking at some Google layout algorithm which compiled pictures of dinosaurs using botanical (garbled) from the past.
+M: So yeah, you're breaking up quite a bit there, could you repeat?
+D: ...and that was amazing. You know, it's very much... Oh, I beg your pardon. Can you hear me again, Matt?
+M: I can hear you now.
+D: Maybe I was just speaking too quickly.
+M: I think our bandwidth is going down, though. Hang on. So you can stop the screen sharing now, because we've done everything we need to do, and maybe that will conserve some bandwidth.
+D: (garbled)
+M: So hang on, if I close that one. Hello? Ah, hello.
+D: Hi there.
+M: I think we were running out of bandwidth there.
+D: That's fine.
+M: You were just telling me about some Google software which generated all these permutations of something.
+D: Yeah, and I think for people who hit their creative end, of like just showing different permutations of what is possible. I'm an architect, I deal with layouts and flows. When I was in London, it used to be airports. They were hugely complex. And right now I'm doing simplistic things of mainly loft conversions. But still, I have to give options to the client, and so being able just to say... particularly when it's a stair layout. You know, if I was able to just say "these are the options which are possible in this space for this new staircase", that's brilliant, that saves hours and hours of work. You talk about authors and you talked about before doing storylines. I can't speak to them, you'd have to ask them if they think it's usable. I think for most creative people, the only time they would think it would be more worthwhile to use a machine is if there's hundreds of permutations, or if they just want all the permutations possible, or if they themselves have hit a creative wall. That's my preconception, I don't know, you'd have to ask them. But what I'm saying that within my line of work, you see, that's how I see (this being useful).
+M: OK, interesting that it could be useful for your line of work as well, though. That's good to hear.
+D: Let me get back onto the language stuff, because I know that's where you're really aiming for. Well, I don't know. If your author was a Dali-ist, kind of author, who did everything in abstractions, then that would be great. They don't have to keep taking the drugs to come up with wild and wonderful things. Then it would be worth them constraining their way of thinking to what the software demands. Then they would do this trade-off, thinking: "Well, if I kind of put a bit of effort here, I would greater results that this way". I think for your average Dick Francis, though, they would think: "No, I know what I want my characters to do.". But that's me off the top of my head without knowing these people.
+M: I can definitely understand that.
+
+
+
+
+ 
+

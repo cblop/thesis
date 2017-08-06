@@ -1,5 +1,5 @@
 * DONE Lizzie transcript
-  CLOSED: [2017-08-05 Sat 12:00]
+  CLOSED: [2017-08-05 Sat 13:14]
 
 Start: 13:20
 
@@ -168,7 +168,30 @@ L: I dunno, everything is a trope, though.
 M: Oh, it's finally done it! It took a while.
 L: It's tiny.
 M: OK, I guess if you can't zoom in, we can't really see the details. That's a shame. So, OK, do you think there are tropes you wouldn't be able to describe with this language?
-L: Probably if you wanted characters who aren't basic characters like the Princess and the Rogue.
+L: Probably if you wanted characters who aren't basic characters like the Princess and the Rogue. It might be a bit more tricky. Like if you want characters that are multi-layered as well, like the Princess, but she's also a Ninja, then you've got to say like "The Ninja Princess".
+M: Yeah, I understand what you're saying. You want something in there which describes how a certain character behaves, right? Because she's a Princess, she does this, etc.
+L: Yeah, but like say also in storytelling you don't reveal everything at once. So like, normally she'd be a princess until it's suddenly revealed that she's a ninja.
+M: Ah OK. So, she's not a ninja from the beginning, she can become a ninja at some point in the story. Well, she is a ninja at the beginning but it's not revealed until later.
+L: Yeah, but you don't know.
+M: Yeah, OK, interesting.
+L: The same with like, "The Knife of Immense Power", you don't know if "The Knife of Immense Power" has a fallback that creates, like the person who touches it turns evil, then say the rogue would become "The Evil Rogue", but like the system wouldn't recognise that.
+M: Hmm, I see. Yeah, so you'd want something... not only would you want a character to be able to change roles at some point in the story, you'd want something like an object which can do that. Yeah, OK, I see.
+L: And like, "object development", I guess. It's the biggest part in the story is like the build-up and the reveal. You can't really reveal when it's written in from the beginning.
+M: Yeah, that's a good point. OK, cool. Do you have any other general thoughts about this tool? Do you think it's useful to be able to visualise this story like this?
+L: I think it's very useful, but obviously it'd be handy if I can actually see it.
+M: Yeah, sadly, you can zoom in on it, but if you have a mouse with a scrollwheel, I think.
+L: Yeah, which I don't.
+M: OK.
+L: It's a bit like, laptop bias.
+M: Yeah, I guess so. I can do it with my laptop, but I've got like the two-finger scroll thing, which works OK, where you drag two fingers over the trackpad. But that doesn't work on every laptop I think.
+L: Mine only does, like, the sidebar. It doesn't...
+M: Ah, OK. I think that's a Windows...
+L: Ah wait! It works.
+M: Hey!
+L: So what you said literally works, that's perfect.
+M: So you can see you've got the three tropes there, you've got a green line as well as the... ah because yeah, the "Princess Trope" includes the "Rogue Trope". Cool.
+L: Fun times. I'm so glad we discovered this. So as long as someone knows about the two scrolly-thingies, and it works, it's fine.
+M: OK, cool. I'll stop recording now.
 
 
 

@@ -1,0 +1,116 @@
+* Natalia transcript
+
+Start: 14:52
+
+M: So now I'd like you to do some tasks, some simple tasks to do with this language. So task 1 is to take an existing trope from that list of tropes, and just edit it in some way. Change anything you want. So find a trope you like and change something. Something simple at first.
+N: (uses the tool for a while)
+M: So what are you thinking?
+N: Yeah, it's like the variables can have a type. Any type I define, right?
+M: No, they can only be role, or object, or place. But you can change the Hero to something else, for example.
+N: Role, place or object. OK. Do I have to use "the" and "an / a"?
+M: In theory you don't have to, but you should because it sometimes breaks if you don't.
+N: For example?
+M: Yes, that's fine.
+N: Is it case sensitive?
+M: Yes, it is. So one thing I didn't mention is that the variables have to start with a capital letter. So what you've done there is correct, that will work.
+N: Yeah. So if I did, for example: "The prince" now, it wouldn't work?
+M: That wouldn't work, no, it has to be a capital "P".
+N: (uses tool some more). What verbs?
+M: Any verb is fine. You can use any verb. Any verb at all. You have to wait a little bit after you click "Save Trope". So click "save trope", and then click refresh. Ah yeah, so that's worked. OK, cool. So we can go to task 2. So for task 2, I want you to create a new trope from the beginning. In that task, it says use those character roles, but actually I think just use any character roles you want. But at first just have just one thing after another, so at first don't put any branches in. So go to... go back to the tool. And click on the "new" button. Very good. First, type in the name of the trope in that box, which says "trope name". "Task 2" - OK, cool. Right, so first define your character roles.
+N: Is...?
+M: A role. Did you mean to type "Hero". "The Her"? Oh, "The Hero", yeah, yeah. So you don't have to use all of those roles. In fact, you can use any ones that you want to make up.
+N: So if I declare a role, but I will not use it, will it somehow affect the trope?
+M: No, that will be fine. It won't appear, but it won't break it either.
+N: OK. Places. (types) Should I create three places?
+M: Ah no, just create however many you want. Actually no, I think that's fine. So just use those for now. And then work out... have maybe two or three events using those things.
+N: (consults the documentation)
+M: Oh. So if you put "The Mentor goes to the Castle", and make sure the Castle is a capital "C".
+N: So I have to use, like, (types it in)
+M: Yeah. So click on "save trope". I think it will help if you... yeah, click on "Save trope", and then go to "edit" and select your trope. Then you'll be able to visualise your trope as you are editing it. Select your trope from the... what did you call it? "Task 2". Yeah. So click on "refresh". Yeah: "The Mentor goes to the Castle". Ah yeah. Good. Maybe have one more event. OK, very good. So task three was adding objects to your trope, but you've already done that, so there's no need to do that. If we go to task 4, that's to add some branches to your trope. So, using the "Or" keyword - and don't forget to put two spaces before it - add some kind of branches to that.
+N: (uses the tool some more)
+M: So you have to put "Or": "Or the Hero goes to the Castle". Yeah, very good. Ah, save that and see if... so every time you type a line, just to be safe, save it and refresh it, because sometimes it won't work and this will help us work out what's broken it. Ah, but yeah, this one works, so it's OK.
+N: OK, so if I want to go further, for example to make a trope go for example, you know, the way that "goes Castle". You know like the second step where the Hero is already at the castle.
+M: Ah yeah, so actually for this study, this is a very simple version of the language, so I haven't implemented that. I can only have, at the moment, branches with one event, unfortunately. So all the branches have to merge back to the story after one event.
+N: Oh, alright.
+M: So, something I want to ask you though, is: if you did want to do that, how would you design the language so that you could continue that branch? What would you expect to type?
+N: I think that I would expect this to be... for example, I would add here another branch.
+M: OK.
+N: "Or the Hero goes to the"... "Villain goes to the Garden". So for now, it's like we have three options.
+M: Yeah.
+N: And I think really useful would be adding some variable that, another variable that remember the state. So let me represent this here, something like... (types into text box) So instead of making the first option with this syntax without spaces, I would make something like this. For example, first is this, second is this. So later on, you can like refer the number.
+M: So you can say "go back to scene 1", or "go back to event 1", and then it can repeat. Yeah, that's a good idea.
+N: Or easily you can just keep writing more spaces after this one.
+M: Ah I see. I see what you mean. I think.
+N: Yeah, so for example... I mean, for now it's simple, so you can just keep... like this and then that there. "The Hero has the Apple". You kind of make the story go further.
+M: I think that makes a lot of sense. Indenting it another level would extend the branch. That's kind of what I was thinking. I was thinking along those lines as well. OK, that's good that that's an intuitive way to do it.
+N: But at some point, when you add like ten levels, you know the spacing can go really crazy.
+M: Yeah, that is a problem. And that's actually why we have this ability to put the tropes inside the tropes. So once it gets really crazy, you can just refer to another trope that already has those...
+N: Like functions...
+M: Yeah, exactly. OK, cool. What's the next one. So we have the branches. So task 5 is to combine two tropes into a story. So far we've been using that "edit" tab, there's also a tab called "arrange" on the top left. If you click on that. So this allows us to combine multiple tropes together. So you'd say: "This trope is happening in the story, and this trope is happening", and it will visualise the different possibilities for those combined tropes. So if you leave that on task 2, click the "+" symbol, and then click on another trope, maybe a simple one at first, because sometimes this takes a long time. So example 1, for example. And sometimes it takes a little time to generate all the permutations. But it should appear on the right in a little while. It does take some time.
+N: Ah, there is something.
+M: It should replace that... there we go. So it's generated all the different combinations of events that can happen with those two tropes.
+N: Oh yeah.
+M: So you can zoom in, if you hover your mouse in it and scroll up, you can zoom in to see the events. So you can see the red arrows follow the "Task 2" trope, and the blue arrows follow the "Example 1" trope.
+N: And it mixes everything together.
+M: Yes, exactly. OK, cool. So yeah, you can imagine, you could have more than two tropes, but it takes a long time to generate this.
+N: So if I created a really long trope, and then combined with another really long trope, it would create a much bigger scheme than now.
+M: Yes, exactly. So I have to work out how to optimise it so it generates it a lot more quickly.
+N: Yeah, because sometimes not all the... I think that sometimes some options might be really boring. You know, generates, I don't know... You could make a system that detects for example, and create a trope... when you combine two tropes, then you could have a, like a system that for example first will always put an event like going somewhere. Then, for example, events like meeting, like two people meet together.
+M: So it would kind of prioritise the more interesting events. Yeah, that's a good idea. OK.
+N: Yeah, in some way. Or yeah, depending on what the user wants to create.
+M: That's a really good idea actually, I hadn't considered that. OK, yeah, very good. OK, so task 6. So go back to the "edit" tab. For this one, I want you to take the trope that you have made, which is called "task 2", and embed that inside a new trope. So create a new trope and put task 2... just put task 2 at the end of it, because that's the only thing that works right now. So yeah, have a basic trope with some events, and then put "task 2" at the end.
+N: Hold on. And now if I... task 2?
+M: So put some other event first, so say "The Prince goes to the Room, Then 'Task 2' happens". So if you write "then"... actually, no, "Then the 'Task 2' trope happens". And "Task 2" has to be inside double quotes. Actually, that might work. Save that. I'm not sure if I... so usually you have to put "Then the"... and then the name of the trope, and then ..."trope happens". But that might work, so see. "Task 6"... oh, there's two of them. OK. Click refresh and see if that one works. That one won't work. OK. So you have to put "Then the 'Task 2' trope happens".
+N: Here? Or inside the box?
+M: That's right, that's right. "Trope happens". OK, then save the trope, then click "refresh". It might not like it because you have a blank line at the end. OK, try that. "Prince"... OK. "The Prince is a role, The Room is a place". Ah! It worked. Great. It was just a little bit slow. Cool. Excellent. Alright, so for task 7, I want you to just play with the tool and try to come up with some new ideas. Maybe combine some other tropes together with the "arrange" tab to make a new story. So one limitation I have to explain is that at the moment the story can only be five events long, because in the background it's using this really complicated permutation generation thing. And if you have, like, too many possibilities, it just takes far too long for anything longer than five events.
+N: Alright. Five events in one trope?
+M: Yep, that's right. So, yeah, try changing some tropes and combining them together.
+N: (uses the tool)
+M: So, I'm not sure... save that, but I have a feeling it might not actually work, because it has...
+N: (indistinct)
+M: So rather than something altering the state directly by saying "something is somewhere else", it only works with verbs. But there is a small chance it will work, so save it and see what it says. No, it won't work because: "The Child is in the Home, The Woman is in the Home" is just altering the state. Unfortunately at the moment, it only works with verbs like "The Child goes to the Home", or "The Woman goes to the Home". But you can use any verb you want, but it has to be...
+N: Alright, because I see that "is" is used for declaring the variables.
+M: Ah yes, I think that's why it gets a bit confused. So you have to use "is" just for the definitions at the top. Hmm, I'm not sure what's wrong. Ah, there you go. OK. So, do you want to combine that with another trope? So go to the "arrange" tab and see. Or do you want to put some branches in or something?
+N: No, it's fine. Um, if I combine... Hang on, I will combine this with... can I get rid of some tropes.
+M: Yeah, if you go back to "edit", you can delete some of those.
+N: It is annoying to (indistinct)
+M: Ah yeah, so click "delete". Yeah. "Task 6"... if "Task 6" was at all complicated, it might take a little while to generate. So while waiting for that, I can ask you some questions. So leave it running. Do you think that using tropes like this, combining them to form a story, is a good way to create non-linear stories. Do you think it's a good component for stories?
+N: Uh, I think it is a good idea. However, it's like, at this point when you are combining them, you can't really decide where you put which trope, or...
+M: So you always have to just combine them, you can't put them one after another. Yeah, that's a good point.
+N: Yeah, so for example the user would like to choose to start only from the trope, for example, "Meeting", where two people meet, and that's the beginning of the story, because maybe they have an idea for this. And I think it would save time for generating all the possibilities, because you could cut out half of the solutions, right?
+M: Yes, exactly, that's a very good point. So rather than always having the trope merging all the events together, so that it's always one trope, then another trope, then another trope, instead of all those permutations. Ah, there we go. It took a long time to do that, for some reason. Ah yeah, so constraining it in some way so that it generates a subset of those permutations would be a good idea, and then it would take less time to generate all of these.
+N: Yeah, for example the user will choose to start with the "Trope 1", and then for example, he can mix all the other tropes later on. Because at this point, I see that the tropes, they are...
+M: In this case, in "Task 6", you... I guess this was kind of a way of ordering it, because "Task 2" was embedded inside "Task 6" as the last event. So that was kind of a way of making sure that "task 2" happens at the end of "task 6". So there's kind of a way of ordering tropes there, but it's not ideal. As you said, it would be good to specify it with this interface, rather than merging it all together.
+N: I think if the user had some kind of possibility to decide what to put where, and then generate, that would be useful. But at this point, for sure, it generates lots of ideas that you can go through and just search for the ones that you like. I'm just trying to understand...
+M: I think this... it looks like this one has gone slightly wrong as well, because I can't see the story trope anywhere. At the beginning it says "task 2" rather than "story", so I'm thinking that that's some kind of mistake. Because you selected the "story" trope, but that isn't anywhere. It's quite strange.
+N: I'll try to do this again. If I refresh, then will I lose?
+M: You won't lose it, no. It's all stored on a server. So yeah: select "story", then "task 6".
+N: (indistinct)
+M: So again, it might take some time, so I'll ask you some more questions. So in terms of this programming language, do you think that if you didn't have any background in programming, would it be easy to learn, do you think?
+N: Well the syntax is not really difficult. I mean, it's difficult to say because I know how programming works.
+M: So do you think that having a real... having it look like a proper programming language, with proper variables and everything, so you have more power, would be better than having a simplified language like this? So, it'd be more effort for the user to learn it. Sorry?
+N: I mean, if you use much more complicated language in your program, I think less users will be able to use it. They will just give up at the beginning because they will not understand. That's the thing. I think the simplicity of the language is fine. But before starting something like this, I think it would be really useful to create some kind of a tutorial. I mean, not a tutorial, but some kind of a table or chart with the syntax that you can use, with examples of "this is correct" and "this is incorrect". Because if the user will sit and start using it, he will get only compile errors. He will not have a person to ask them. I mean, not many people have the owner of the application there to help them use the program.
+M: No, good point.
+N: Again, (indistinct)
+M: No, I'm not sure what's happened there. That's a shame. So instead of "task 6", try using something else, like "example 2" or "example 1". So this one should be... this one shouldn't take so long because it's a lot simpler. I'm wondering why it's taking a long time. Oh, there you go.
+N: It might be my laptop. Oh, now it took the "story" and "example 1".
+M: OK, so yeah obviously there's some kind of bug.
+N: I see that the "story", it happens more often now. I mean this trope. Because when you had "task 2" and "task 6", it was only "task 6" here, and the rest was "task 2".
+M: Yeah, I don't think that "story" appeared at all in the other time you used it. So it's strange.
+N: No, there wasn't a "story", yeah.
+M: OK. Well, I think that's everything. Unless you have any other general comments, we can finish there.
+N: Um. It's fine for me. If I had any thoughts, I will send an email. I think that you could change actually the way, like making, like when a person sees, the person thinks there are two options, when in fact there are three options.
+M: Yeah, that is tricky. I was thinking maybe... the other way I was thinking of expressing it was something like "Or:", and then everything underneath that were the possibilities.
+N: Yeah, like with numbers or something.
+M: Yeah.
+N: For example, first branch... that would actually be nice. Let me show you...
+M: Hmm, numbers.
+N: Let's say that - I'll just copy from here - the "Then" is starting the branching, right?
+M: That's right, that's the first possibility.
+N: OK. So I thought that you could make like an event, for example, "The Hero goes Home", and a number, and that would be the first branch, and you could write a whole story in there. Even with the spaces... (types into box) So for example, that would be the first branch, and that would be all in the evens, like following the first branch. And when you want to make another, you just bring the second branch. You make like the second. I think it would be clearer without implementing the thing like "Then". Or maybe before, you could make the comment "new branch", at this point the user would know that's it's like, now he can make it clearly.
+M: Yeah, I see what you mean. I think that makes it more like a proper programming language in some sense, because there's more to learn than just typing, but it's a lot clearer once you have typed that way.
+N: I think for the user, you could make it simpler to find a way to not call it like a programming language. Or maybe not call it a branch, but "new"... I mean, I have an idea, I will have to sit and think about it. I could write you an email later.
+M: Yeah, please do.
+N: I'll make a sketch or something, so.
+M: I'll include your email in the thesis when I do the write-up, because I think you have got some really good ideas for how to improve the language, so I think this has been a really good session because I've got some really good feedback from you. So thanks very much.
+N: That's fine. I'm happy that I could help, actually.

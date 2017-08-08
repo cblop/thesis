@@ -1,0 +1,181 @@
+* Scott transcript
+
+(Don't forget that there's some good info on Minstrel before the tasks start)
+
+Start: 12:16
+
+M: Now we can kind of start doing some tasks with it. So, the first task is to just take one of the existing tropes and edit it. I should explain that there's a couple of limitations. So because this uses what's called an "Answer Set" solver, which kind of generates all the different possibilities, I've limited each trope to just five events long. And the reason for that is because when you combine multiple tropes together, it can take a long time to generate all the possiblities.
+S: Sure, you get a combinatorial explosion.
+M: Exactly, so yeah, bear that in mind.
+S: OK. Alright, well I have some questions, but let me pull up one here.
+M: OK.
+S: So you want me just to edit this, huh?
+M: Yeah. And you can use any verb, that should be fine.
+S: OK, so I will add. Let's see here. So that was one of my questions, was... so down here we have things like "goes" and "finds", and so on. So you can use basically any verb in there?
+M: Yes, that's right.
+S: Although it knew to turn "goes" into "go", and "finds" into "find", so you've got some smarts in there somewhere about that.
+M: That's right, it uses Wordnet to work out the basic form of the...
+S: OK, so it tries to find it as a conjugation of it.
+M: Yes, exactly.
+S: OK.
+M: Oh, sorry, you have to click "save trope", and that sends it to the... because this is actually running on a server, so it sends it to a server and puts it in a database.
+S: Do I need to make... do "new" or something...?
+M: No, just editing this one is fine. So click "save trope", then click "refresh", and that should update it. There you go.
+S: OK.
+M: Cool, so that's enough of that first task. The second task is to create a new trope. So in that description it says you can use those character roles, but ignore that. Just create any trope you like. But just for now, don't add any branches to your trope. Just have a sequence of events.
+S: Just a straightforward sequence.
+M: Exactly. So click on the "new" tab. Then first type the trope name in that box underneath. And just in case, please remove the apostrophe. Do both if you want, yeah.
+S: Do I need to save, or?
+M: Um, no, don't save it yet. Put some stuff in there first.
+S: OK. So (types into tool). I've gone off the rails here. Let's say: "The Witch is a role". I can do these in any order, I assume?
+M: Yeah, yeah. As long as they are at the beginning, it's fine.
+S: Yeah, OK. Let's say... (types into tool). So we can start with just anything, so I can just start with, let's say... (more typing).
+M: OK, cool. Now save your trope. If you go to the edit tab, you can kind of visualise it, just in case there's some kind of error or something. Which is actually quite likely. So click "refresh", let's see if it's managed that one. Oh, yep.
+S: Yeah, OK, so (indistinct). OK (types some more). So we don't have objects in the verbs, huh? So I can't say: "The Witch gives the Apple to Sleeping Beauty"?
+M: Yeah, you can. You can.
+S: OK.
+M: Ah, but yeah, save it and refresh. Just in case.
+S: Now, or before I do that? Here, let me take this out and save. I think so far I'm OK. So, "The Witch"...
+M: No... a very un-useful error.
+S: I'll take that out.
+M: OK, I wonder why...
+S: Let's just... that's cool. We'll do it this way (typing).
+M: Oh, it's not appeared. Oh, there we go.
+S: There it is. Ah... (typing). Like this?
+M: Yeah, that should be good.
+S: Oh, you wanna bet?
+M: Yeah.
+S: No problem.
+M: Getting a bit overconfident at this point.
+S: Right, yeah. (more typing)
+M: Remember, it can only be five events long.
+S: Oh, OK. So I'm about at my limit here.
+M: So, you can add some branches to it later.
+S: Right, let's fix this, then. Take out some stuff. We got 1, 2, 3... got one more. Let's see (types).
+M: Cool.
+S: Alright. OK.
+M: So the next task...
+S: Yes, next task.
+M: Task 3 was adding objects to your trope, but you've done that, so that's good. So task 4 is to add some branches to your trope, using the "Or" keyword. And remember to indent with two spaces.
+S: OK. So... now I'm getting off... Sleeping Beauty's pretty sequential, I think there aren't any "ors" to it, but I'll come up with something. So with the branches, am I still trying to keep within five actions, or five on each branch, or...?
+M: No, actually, in this case it doesn't matter. So you can have as many branches as you want.
+S: OK. So, let's do let's do it here, and I gotta go back and refresh myself on how the "or" works here. So yeah, OK. (indistinct) ...in the subplot there. So the "or" can just be one... right now it can just be one action, basically?
+M: Yeah, that's right. It can only be one thing.
+S: OK. I'll change it into a subtrope in a minute. I'm sure that's here somewhere. I'll have a subtrope where the helper helps Sleeping Beauty, then. Let's see... OK. Alight, so I got an "or" over here. Alighty, is that enough, or?
+M: Yeah, that's enough. So before you can do your subtrope, there's one thing you can look at is if you click on the "arrange" tab.
+S: Uh-huh.
+M: You can combine two tropes together. I would advise... so start with two simple tropes, so combine example one and maybe example two or something.
+S: Oh interesting, OK.
+M: And this will generate all the possibilities... yeah, of... if you have those two tropes happening at the same time. Or it should do. That doesn't look quite right to me. Hang on. It's doing one, then the other.
+S: It's sort of showing you picking up the second... oh. So it actually put example two first, but then it tacks one on to the end of...
+M: Yeah, that shouldn't be right. Hmm.
+S: Can I... is there...
+M: Delete that third one, yeah. Try... let me have a look.
+S: I don't have a refresh button here, so try again here.
+M: It's still doing that. Let me see...
+S: So let's put two first.
+M: Oh, that's interesting. Ah OK, some strange bug has happened where it's overwritten Example One with... no, it's overwritten example two.
+S: Oh, it's because I saved... because I didn't save example one? Is that the problem?
+M: Maybe. No, it's OK. I can edit it from my end and put it back in.
+S: OK. You do that.
+M: OK. So example two was the branches. But maybe we should avoid... so go to example three and maybe combine that with example one.
+S: With example one?
+M: Yeah. It might take a little while.
+S: (indistinct)
+M: Yeah, something strange has happened. Could you just refresh the page in your browser?
+S: Sure, let's do that.
+M: OK, now go to arrange, and select example...
+S: Let me just pull up example one and see... so that looks OK.
+M: Yeah, that looks OK.
+S: Alright, so example one first, and then example two?
+M: Yeah.
+S: OK, there's example one that's pulled in.
+M: Hmm, it's still doing that.
+S: It's still flipping it around. Well, y'know, it's beta software.
+M: Well, yeah, it's a bug. OK, try... instead of example one and example two, try example three and example one.
+S: So example three first?
+M: Yeah.
+S: OK. So let's pull in one first.
+M: So I'm just trying it on my end, and I...
+S: Of course, it's working fine?
+M: This was working before. Let's see. It usually takes a while to combine two more complicated tropes, but it doesn't usually take this long. So I'm wondering why... Oh, it's done it on... OK, so it's just worked for me. I think it's quite finicky about the order in which you do it. So refresh the page again. And then click on "arrange". Then do trope three first. Then wait for it to appear.
+S: OK.
+M: There we go.
+S: Ah, there we go.
+M: And then, yeah, example one. And it takes a little bit of time. Even so, hmm. There we go.
+S: Ah, there we go. Wow.
+M: So you can zoom in on that by hovering over it and scrolling... yeah, that's right. So in this case, it hasn't done what it did with the other one, it's actually kind of combined them. So if you look at the first event, and the branches it takes from example one and example two. Oh no, it's doing example three first. Oh, this definitely wasn't happening before.
+S: Except here, it's doing...
+M: Yeah, this is...
+S: So after every step, it's offering to jump into example one, huh?
+M: Yeah. Although strangely, it's the first... yeah, the first event is only example three. But this definitely wasn't the case before, so I'm kind of wondering what's going on here. It's a shame, because this is... I've done seven...
+S: So it's supposed to do all the combinations between the two?
+M: Yeah, that's right. This is the seventh time I've done this study, and I think this might be the last one, so of course it's going to go wrong this time. Yeah, you can see what it's supposed to do. The solver will run it for all of the, yeah, all the different combinations of them there.
+S: Uh-huh. Interesting. OK. Well, I get what it's supposed to do.
+M: OK, cool.
+S: But I see why you get... you really get an explosion if you have complicated, long tropes.
+M: Yes, definitely. OK, so the task... next task is to put a trope inside a trope. So take the trope you already created and put that... either put a new trope at the end of it, or put this at the end of a new trope. Again, this only works if you put it at the end at the moment, if you put it somewhere in the middle, it's not going to work.
+S: Oh, it's not going to work. So, uh, (types). So, did the roles have to match up if I stick it at the end? I guess it won't...
+M: It doesn't matter...
+S: It doesn't really care, does it?
+M: No it doesn't, it doesn't care.
+S: Ah! (indistinct). Happily ever after. Actually, let's do this. So let's change this. Let's make (typing). I'm having rather too much fun with this.
+M: Good, that's all good. Oh, OK. Alright. Save that, let's see if this works, yeah. OK, go to "edit", and then select it. And just see... there we go. That looks OK.
+S: At least we didn't... oh, OK. It did it, no "compile error", that's good. OK.
+M: So you wanna put that at the end of the...
+S: So let me save that, and I'll put that at the end of the other one.
+M: That's right.
+S: And I'm doing it as a subtrope, so I do "Then the 'Item Search' trope happens", OK. So... (types). Do I have to put some quotes?
+M: Yeah, you have to put it in quotes.
+S: Alright.
+M: Yeah, so save it and click "refresh". But... so the five event limit includes the trope you put at the end, so click on...
+S: Oh really, so I might have too much?
+M: Yeah. Click on "refresh" and see... first trope... so yeah, it's already getting to five events there. So delete some of the ones at the beginning.
+S: So I'll cut out some things here. Ah, let's see. I don't need this. That's all syntactic sugar there. Let's see. OK, there we go.
+M: Cool. That's the first event of the happy ending. But you can see what was gonna happen.
+S: So we ran out of... yeah, I'm still running out of events, but yeah, right. Here's the... OK. Yeah.
+M: Alright, cool. I think that's... oh no, the last one is just. It says "free story creation", you can create your own thing. But you've pretty much done that, I think. You've explored all the possibilities. Cool. Alright. So I just kind of want to ask you some open-ended questions about that. So, you can imagine like, obviously you have a programming background, but if you were someone with a non-programming background who's just a story author used to writing, do you think that this would be an easy kind of language to learn and pick up?
+S: Yeah, I think so. I think it's very self-evident what's going on, and how to use it, so I don't think that anybody would have a problem.
+M: And do you think that these tropes would be a good formalism... well, a good way to model the story? So when you're describing these components of a story and combining them together, do you think that is something that would be intuitive to an author?
+S: My only concern I guess would be about the level of abstraction. So, you know I think probably all of us who work in this area fancy ourselves authors to some extent or another, and still I wonder... so I mean at the level I wrote it I think is a little bit too... well... I guess Hero and Heroine, um, that's OK. I guess a lot depends on the verbs, I guess. I think if I can use the right kind of verbs, yeah, I think I can express a lot of tropes. I'd have to give some thought as to... you know, I'm sure there are limitations. But I think at a certain level, this would be fine.
+M: OK, cool. Right. I think I've gotten everything I want to... all the information I need. Do you have any other general comments you'd like to make?
+S: Yeah, so... one of the things I tried to do in MINSTREL... I guess one of the metatheories in MINSTREL was that creativity or something about creativity comes from getting lots of combinations of things, and maybe even unexpected combinations, right? So there's a sort of this tension between... you want this combinatorial explosion kind of thing going on, but you also somehow want to limit it. Or I guess in MISTREL's case, what I was trying to do was sort of intentionally find paths in the combinatorial explosion which hadn't been explored a lot, right? So MINSTREL had this notion that... it had this episodic memory of a bunch of stories, right? So if it saw something, like if the Prince going to the woods happened in lots of things, and it was already in its episodic memory, it would say: "Well, that's not very creative", and maybe try to avoid it, or at least say "Well, if I'm telling a story, and I put that in it, I probably haven't made the story very creative", right?
+M: OK, right.
+S: So when I think of these tropes, what I want to do when I combine them, or when I'm thinking of combining them, I think it would be really interesting if... so like, you have the roles, right? So "The Prince is a role, Sleeping Beauty is a role", and so on, so it'd be kind of interesting when you're doing this, when you're adding two tropes together, to sort of be able to cross-match across those roles, right? So maybe... so I have my generic trope about somebody saving somebody, right? And I have my other generic trope about, you know, people falling in love and getting married, or whatever. And then so I can do these sort of combinations across these two tropes, right? So I get the typical story: "The Hero saves the Princess, and she falls in love with him, and then they live happily ever after", but I could also get: "The Princess saves the Prince", right? And, you know, and so... it would be really interesting in this trope language you have, where if you could... if the language would support sort of matching up those roles and figuring out even objects too. So you have "The Apple is the object that causes Sleeping Beauty to go to sleep" but maybe have objects in other tropes, and when you cross them over: "Oh, this object", you know, King Arthur pulls Excalibur out of the stone, and then later on that becomes the object in the "Sleeping Beauty" trope that makes her go to sleep, for some reason, right, or something.
+M: Hmm.
+S: So some kind of support for that sort of... combinations of different things across the different tropes, and again maybe doing some kind of constraint-based thing to figure out "maybe this makes sense, or this doesn't make sense", you know. Well, this object is not the kind of object, it's not a consumable for instance, right? So maybe in the "Sleeping Beauty" trope, it has to be a consumable that puts her to sleep, and Excalibur's not a consumable, so that doesn't fit in there. But this potion that you found when you were exploring the dungeon, that could be a consumable, or something along those lines.
+M: So yeah, you have to have some information about the type of role that you put in, if it's compatible with other roles in other tropes, and yeah also the type of object, as you said, it could be a consumable, it could be a weapon, for example. And if that can be swapped with another object in another trope to serve the same function.
+S: And MINSTREL did some of that. Of course the problem with that is you get this sort of bootstrapping problem that you'd really like, I mean, sort of the first thing you'd like when you start writing a storytelling program of some sort is complete common-sense knowledge about the world, you know? So just as a starting point, right? So you'd like to know an apple is a consumable, and all these different kinds of things. So there's a big problem there, because how do you get all that knowledge? But yeah, once you have it, once you do some constraint stuff that I think is kind of interesting... The other thing I think would be an interesting... I mean, I'm just rambling, so...
+M: No, this is all interesting stuff, this is all good feedback.
+S: Yeah, so I mean, I'm just taking the opportunity to discuss things with you, you know. But when I think about this notion of having... so your notion is that the trope act as constraints, and you're gonna have some agents acting, and somehow being constrained, right? So one of the interesting things about creativity is when you throw the constraint off, right? So the classic example is kind of modern art, right, where some artists decided: "Well, you know, there's sort of a constraint where paintings should look realistic, but what if we get rid of that?", you know? And we just, we paint stuff that doesn't look realistic. Or you can imagine, if you're doing fairytales, right? You have a constraint that the Hero is a man. But it would be really interesting to have a... some kind of meta-reasoning or something in the program that would say, or even just experiment really without knowing anything by saying: "Well, I'm going to throw this constraint out the door", right? Or even if I read a trope, and I say, you know, "The Woods is a place, and it happens here", maybe you'd have something which says: "Well, I'm going to try using this trope, but I'm gonna throw out that constraint, I'm gonna leave it out of the trope.".
+M: Yeah, I think as you said, it would be nice to invert or subvert a trope by reversing the roles of some characters so as you said before, the princess rescues the hero, or whatever, in a trope. To have that kind of mechanism to add some kind of element of unexpected creativity to it, I think that would be a really good idea. What was I going to say? It's really late here. It's so late, I'm not really able to think straight. What you were saying before about the.. so adding some elements of creativity to it. So what did you just say about that?
+S: Well, so, I can talk forever about creativity as you can imagine... so I think one thing is this notion of you know, you've got a big solution space in some sense, you know, whether it's combinations of your tropes and your actions, or whatever it is. And some parts of it are well-trodden, and some parts aren't, right? And so the ones that aren't are sort of intrinsically more interesting, let's say, or I would say that they are. On the other hand, they have to make sense, and they have to, well, they have to make sense not only in terms of the real world, but also in the sense of the storytelling, right? So you can't just publish a book which is 10,000 words that have never been used in this combination before. Well that's certainly new terrain, but it's not interesting, right? So there's this tension between structure and living within the constraints and being interesting by being in new spaces or selectively throwing out constraints and seeing where that gets you.
+M: Yeah, so what I was going to say, which I forgot to say, which is: the way that this hooks into the multi-agent system, it's not just constraints, so the characters, the agents, see the story as a set of social norms which govern their behaviour. So, as they're social norms, they're kind of suggested behaviour, but they can actually change to break that, break these rules, and obviously there are certain consequences, there would be some penalty for breaking these rules. But if you give your characters, for example, emotional models, so that if they are able to attain their goals, they're happy, but if they're unable to, then they get angry. Then the angrier and angrier they get, the more likely they are just to say "The hell with it", and break away from these constraints, right?
+S: That's interesting, yeah.
+M: Yeah, so that's kind of what all this compiles to, a set of what we call social institutions, rather than just constraints.
+S: So is the intention that the agents... so I write: "The Prince goes to the Woods", so is the intention that the Prince knows something about how to go to the woods, or...
+M: Yeah, the Prince has a... you'd write the Prince with a plan involving going to the Woods.
+S: Gotcha, OK. And he has, presumably his choices about, you know, he knows he can ride his horse there, he can walk there, something along those lines.
+M: Yeah, exactly.
+S: Gotcha. Hmm. Yeah, that's interesting. So another thing I always thought was kind of interesting or sort of fruitful area is: so supposing you get a whole boatload of these tropes. So one of the things MINSTREL did, right, so I said it had an episodic memory, right, so it put, you know, as it "read" stories, which I really just handcrafted and added to the memory, but you know, as it "read" stories they get added to the episodic memory. And the episodic memory does a couple of things. So one of the things is it notices generalisations, right? So "Oh, the Prince rode a horse in this story, and the Prince rode a horse in this story, and the Prince rode a horse in this story" and one of the things that comes out of that, like I that, like I said, is: well, you notice I've seen this a bunch of times, it's not very creative, you know. On the other hand, you do know "Oh, well 'Prince riding a horse' happens a lot of times, so I know that's a standard thing I can do", right?
+M: So that's kind of like a trope, it identifies tropes in these stories.
+S: Well, except it's not really capturing the literary aspect of the trope, right? So it's really just, it's more like learning to plan from the episodic memory. So if you see a bunch of stories where the Prince is in location A, and he ends up in location B, and in between it says he rode his horse, you can sort of learn from that: "Oh, to get from location A to location B, I can ride my horse", right? And then the other... the episodic memory also can do some generalisations, see if he walks from A to B, it can sort of figure out: "Oh, to get from A to B, I can walk or I can ride my horse", right?
+M: Ah right, OK.
+S: Right. So and then the other thing that MINSTREL's episodic memory did is it had these things which I called "TRANs", which, I don't know, stood for something. But basically the idea was that you could have some rules about how you could transform things. So for instance one of those things was "use an agent". So the transform "use an agent transform" says: "well, if you need to do something, you need to get from A to B, you can do it, or you can get an agent to do it for you". So that was kind of a general thing, but it would sort of figure out: "Oh, I can apply that to different things", right? So the story I tell in my dissertation is that when my little niece was like 8 years old or something, spilled her milk in the kitchen, and she knew she was going to be in trouble for spilling it, right? And normally grandma cleaned it up by getting paper towels. Well she couldn't reach the paper towels, right? I'm in the other room watching this. And so she leaves the apartment, and she goes next door, and she comes back with one of the kittens that had been born next door previously, and she puts it on the table to lick up the milk. So she's figured out: "Well, if I can't clean it up, I can get some agent to do it for me.". So you have these memories in there, it's kind of a silly example, but let's say you know that the Prince can get to the woods by walking there, but that's the only thing you know, but maybe through this you can figure out: "Well, I can get an agent to walk me there, instead of me walking there. Horses can walk. Oh - I can ride a horse there", right? On the other hand, if you pick the Princess to be your agent, "I have the Princess carry me to the woods", that doesn't make much sense, right? But you can sort of figure things out like that. So that's sort of level one, although I never really totally got this working, but the idea was: I could pull the story structures into episodic memory and let the same thing happen, right? So if I had what you would call a trope where the Prince goes somewhere. I might be able to automatically learn a variant of that trope, where instead of the Prince going somewhere, the Prince gets an agent to go somewhere for him and act on his behalf. So instead of the Prince going to the woods and kissing Sleeping Beauty, he gets somebody else, you know, the Jester, the Court Jester, to go and do it for him. Now that's a weird kind of thing, right, but in a way, that's actually kind of an interesting story, where does it go from there? So, I mean, again it comes back to the thing I was talking about, you've got different ways to generate different combinations of things, and somehow you want to constrain those to be interesting somehow. And in different ways. I forgot how I got started on that. Looking at what you've written, I can see writing sort of tropes that apply to tropes, right? I read a book once about writing, and about writing novels, and the author was like: "Basically, a novel is: somebody has a problem to solve, and this is how he's going to solve it.". He starts off doing it, and then there's a problem in how he's doing it, and then he solves that problem, but then there's a problem in how he does that, and there's this ripple of problems that eventually comes back and he solves the first problem, and everything's great. But that's kind of a meta-trope, right? So any trope where I'm going and trying to do something, in the middle of there I can pick one of the steps and I can say: "I'm going to break that step", and then I'll insert, as you have, a sort of sub-tropes thing. So I'll put another trope in there, and that will lead me off: I'm doing this, and then I'll do it again, and you can see how that sort of thing can cascade into ending up in a long story of fixing this, and fixing this, and fixing this, and eventually getting around to whatever you were initially trying to do.
+M: Yeah, it sounds almost kind of like a recursive process. Yeah.
+S: Yeah, but I can see in the framework you've set up there, I can see how that could work really easily. By extending the language, you can get this kind of really neat kind of fertile ecosystem of things you can combine in different ways. And one of the things that I never explored was sort of this notion of being an author assistant, right? So one of the problems when I talk about that is, you know, as they say, yeah, it's pretty cool when I say the Prince gets the horse to be his agent to take him to the woods. Oh, it's figured out how to ride a horse to the woods. It makes a lot less sense if the Princess is the one that carries him to the woods, right? But if you had a human author involved in it, you could imagine a thing where as the human author is typing in his tropes and everything, the system is popping up and saying "Look, you have a thing where the Prince is going to the woods. I have a trope where a guy tries to go somewhere, and he runs into a troll under the bridge, and the troll asks him to get some item. Maybe we could insert that here and make this trip to the woods more interesting.". But then if it suggests something completely stupid, it says: "Hey, the Prince goes to the woods, I have this trope where the Princess carries him to the woods", you can say: "Yeah, no, I think that's stupid. But I liked the idea about the troll".
+M: Yeah, so I guess it's kind of like an IDE that suggests different courses of events.
+S: Since you're more into the area of interactive fiction than I was, you would expect to have an author using this and building things with this, so that could be a cool thing. If you need another six years of research for your...
+M: That's the thing, yeah.
+S: Exactly. Believe me, I was in the graduate school for ten years.
+M: Oh, wow.
+S: Don't do what I did! That was probably a bad call.
+M: I'm getting there, but, I only have a few more months to write up, actually.
+S: Are you wrapping things up?
+M: Yeah.
+S: So you have a date to defend and everything already?
+M: Almost. We're sending off for the external examiner to get the dates to defend. But it will be before October, hopefully.
+S: Good luck.
+M: Thanks very much.
+
+

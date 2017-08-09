@@ -1,0 +1,169 @@
+* Tom Transcript
+
+Start: 12:23
+
+M: So, that's the explanation of the language. Have you got any questions, initially?
+T: Um, yes. Do any of these rules, I guess, phrases, have special meaning, such as, where's it gone? "The Hero dies". Does anything special happen after that?
+M: No. It just gives the Hero permission to die. That's literally it. There's nothing really clever going on there.
+T: But it doesn't forbid the Hero from doing anything after they're dead?
+M: No. It would have been too much work for me to actually give some kind of semantics to all the verbs. That is future work, I guess. This is just a case of compiling a controlled natural language to some kind of institution. So giving it the semantics where, yeah, saying "to die", and then the Hero dies, and having that actually have some kind of consequence, like the Hero not being able to perform in the game, would be difficult. Because, I'd have to do that with all the synonyms of dying as well, and all that kind of stuff. So yeah, that's not part of it.
+T: Well, if you're talking about synonyms, there's two things I'd flag up. One is that there's nothing to stop you having keywords, such as "dies".
+M: True, true.
+T: I don't know if "kills" is also a keyword.
+M: No, it's not. Actually, the first iteration of the language, I did have key words. But I decided not to do that, I kind of abandoned it. It ended up being too much work. Actually, I think one thing you might be about to suggest is using WordNet, or something like that, and using synonyms through that. That's probably the way forward, because I'm actually using WordNet to get the stems, not the stems, the root form of these verbs, so you can use any verb and it will kind of, you know, "goes" will become "go", "kills" will become "kill". But using WordNet, I could also get the synonyms of those as well. So that might be a way forward. That's why I'm doing this study, is to actually talk about these things, get these ideas. That's something I hadn't really considered before.
+T: Sure. The other thing, which is something I'll have to share with... no... I'm not signed into Twitter on this account. Something I can send to you later is a very recent series of tweets by Liz England about how they created ScribbleNaughts. Familiar with that game?
+M: No.
+T: OK, ScribbleNaughts is a game where you, a small 2D cartoon character, have a magic pen, which you can write the name of something with, and that thing will appear in front of you and help you to solve your problem. If your problem is that there's a river that you have to get across, you can write "bridge", and you'll have a bridge. But you could also write "crocodile", and run across the back of the crocodile. Or "bucket full of sun", and evaporate all the water.
+M: Wow, so how smart is it? Does it work really well?
+T: It's interesting. I will send you the full... I haven't actually played it, but the series of tweets was about how that wasn't anything like systematic, or Wordnet or anything clever, that was hand-annotated for huge amounts of content.
+M: Wow, OK.
+T: You should definitely read the thread.
+M: Sure. Cool, that sounds really relevant and interesting. Thank you. OK, so I'll try to remind you to send me that after.
+T: Yeah.
+M: OK, so back to this. So, going onto the tasks. So yeah, you said you wanted to edit a trope. So take one of these examples and edit it. Some things to bear in mind, actually. So I've limited it to five events long, because once you start combining tropes together, things... the answer set solver basically dies. So I've limited everything to just five events. What else? You'll discover all the problems. Just edit it and see what happens.
+T: (uses the tool)
+M: So... "die Hero", yeah. So you just added "die Hero" as another possibility.
+T: An alternative to finding a sword, killing the Villain, or going to the Land of Adventure.
+M: Ah yeah, that's right. So after the "go_hero_home" nodes, you've got the four branches from that. So I think that does... did that do what you expected it to do?
+T: Um, once we had talked about the fact that "die" doesn't have any special semantics, yes, that is pretty much what I expected.
+M: Because of course he can't meet the Mentor or go home after he dies. OK.
+T: He can in this situation, it's just the Mentor will be very disappointed, and so will the people at his home.
+M: Oh, OK. OK, cool. So you've edited that. Task 2 is to create a trope from scratch. So if you click on "new", next to "edit". And type in trope name in there. Ah yeah, good idea.
+T: Ah.
+M: Hmm?
+T: OK, so at this point, best to save the trope. So save it, and then click on "edit". And then select your trope. And that way you'll be able to visualise it as you're going along.
+M: Betrayal?
+T: Yeah, I'm just thinking... "meets the Mentor". Ah, I have "betrayal" twice.
+M: Ah, that's interesting. I wonder why that happened. Actually, probably best to delete one of them in case it confuses things. So the reason it says "compile error"... So, whenever there's zero answer sets, it'll just say "compile error", because there's no error message I can really give about that. So in this case, there's zero answer sets because nothing is happening. So set up a first event.
+T: You can always say "nothing is happening".
+M: That's probably a better message to have. You don't have to use all of those roles and places, etc. Just any of those. Also, try to avoid having any blank lines in there, because that can trip it up. It's very, very brittle, as you would imagine.
+T: I had wondered before why there wasn't a distinction between definitions and actions.
+M: Yeah, it's something I should get around to adding at some point, but there's lots of things like that. So, as you're typing each line, it's probably best to save and refresh, in case there's a problem. OK, so you're fine.
+T: This is the one that I'm expecting to trip it up.
+M: Ah, no, it's not going to like that. "The Mentor"... No, that's something I would have to add specifically.
+T: Can I try it, or is that unwise?
+M: It won't work. Try it, it won't work. It'll probably just say "compile error". What?! OK, I wasn't expecting that. It's even using "be" rather than "is". Hang on.
+T: I like that. I'm happy with this.
+M: I will settle for that. Wow.
+T: (types)
+M: Um... oh, you've mistyped "villain" on line 9. Missing an "i". OK. I think you might have reached the length of how many events you can have now. So it's only up to five. But OK, that's proved to be OK. Oh yeah, so you can put in branches. That's actually the next task, so yeah, we'll just go straight onto the next task.
+T: That's alright.
+M: I think...
+T: OK, I've skipped straight through that, but I'm doing it now.
+M: This is what everyone's doing. People get carried away, so I'm letting people do whatever they want. That's fine. Um, did you save and then refresh?
+T: I may not have hit "save" properly. There we go.
+M: OK, cool.
+T: Ah. Is... oh yeah, "kill_hero_villain", that's... yeah.
+M: But it does sometimes get those word orders wrong. So it can sometimes say "kill_villain_hero" when it's the other way round. But it seems to be OK in this case.
+T: Yeah, that makes sense to me as a computer programmer. "kill_hero_villain", it's like a tuple.
+M: It's like a prefix notation, really.
+T: Yeah, that's right. But I can see that confusing other people.
+M: I figured you'd get it. I have had to explain it to other people.
+T: Oh actually, if that's the word order, then "be_villain_mentor" is potentially the wrong way round.
+M: "The Villain"... yes, you're right, yes. So this is a bug that has confused me, because I'm not sure why it's been doing that, and I've been trying... I don't know. I eventually gave up. So I just explain it when it happens.
+T: Anyway, I have an object, though it's not one of those. Does it matter that it's not one of those?
+M: Ah yeah, it's fine. Don't worry.
+T: Ah, I've added another branch.
+M: OK, that's cool. So task number five: put two tropes in a story. So, so far you've been in the "edit" tab. Go up... so scroll up and go to the "arrange" tab. So you've got your betrayal trope there. If you click "+", you can add another trope. I would suggest adding a simple one first, because sometimes it takes a while. So example 1 was pretty simple.
+T: I can't remember what's in there, but...
+M: So I've go the solver running on Mist, but even that - the Mist server at Bath - even that takes a while sometimes to generate these answer sets, because it's using two InstAL institutions and then generating all the possible... so there you go. If you hover your mouse over it and scroll up, it will zoom in. So you can see the blue lines relate to the "betrayal" trope, and the red lines are the "Example 1" trope, and so it's saying like: "if you follow the Example 1 trope, it will take you... you can choose this action, and then it will lead on to this next thing, etc".
+T: I got it.
+M: So yeah, once you've looked at that, you can try combining it with some other tropes. You could even try a third trope, but I think we could be sitting here for a while. It works, but the... I need to talk you you about optimising the answer set generation, because it's quite slow.
+T: Um, do you know the work of Adam Smith?
+M: Uh, the name rings a bell, but...
+T: He does a lot of answer set programming work for game content, procedural generation.
+M: OK.
+T: Um, he's also currently running a course at the University of Santa Cruz on answer set programming for games.
+M: Hmm, OK.
+T: ...which I started following along with, and then I got busy with other things, but have been meaning to finish. Last week I got a paper rejected, which I was pretty much expecting.
+M: From who?
+T: From the procedural content generation workshop at FDG.
+M: Oh, OK, right. That's a shame.
+T: But one of the reviewers followed a pattern which I have pretty much conclusively identified as his. And one of the things he pointed to was a few of the recent lectures in his course, cover, what is it? Not focused optimisation. Targeted optimisation for re-grounding. So I can send you those links as well.
+M: Yeah, that could be useful. Although it might be too late at this point, because I'm doing this study and then writing up. But it would be good to include in the thesis as ways I could improve this, yeah. For sure. OK, so moving on then. So you've played with that, so... oh yeah, task 6 is to use the trope that you created and embed it inside of another trope. So, your trope was called "betrayal", so if you go back to the "edit" tab, and create a new trope. Some trope which will contain a betrayal somewhere. Because this uses bridge institutions, and it's a bit finicky, at the moment it will only work if your trope happens at the end of the previous trope. Yep.
+T: OK. That won't work.
+M: What were you trying to do?
+T: "Hero has trust issues, Hero goes Home, a betrayal happens, Hero takes object".
+M: Ah, OK. No, that won't.
+T: So it's something that happens with a betrayal at the end.
+M: Yeah. I like how the visualisation has gone over the text box there. I haven't noticed that before, that's pretty cool. Oh wait, what happened?
+T: I made the new thing, I tried to switch to the "arrange" tab to get this visualisation to go away, but when I go back to "edit", it's still there.
+M: Ah yeah, OK.
+T: But if I load "Hero makes an enemy", or...
+M: Ah, oh. OK, there's a bug where if it doesn't compile, it won't add it there. So if you go back to "new", if you don't put anything in there, it won't compile properly, so it won't add it, even with that tick mark, which is misleading. The tick mark just means it's uploaded to the server. So I think for it to compile, you need two roles at least. Yeah.
+T: Fair enough.
+M: Or yeah, two lines, I think, at least of things. And then I think it will compile.
+T: Um... is the apostrophe going to mess it up?
+M: I would avoid it when you're adding a trope here. But add it in when you're editing it, just to see if it works. So don't have it now, but add it later. I have a feeling I accounted for apostrophes, but change it later. So... oh yeah, so select your... so put it in now and see if it will compile.
+T: There we go.
+M: So yeah, zero answer sets because there's no event. So, yes, put in... yeah, put in a basic event. "Hero goes to friend's house"... see if that works. I'm not sure if it will. I honestly can't remember if I took that into account. Ah, OK, try that. So save that and refresh. Because I'm not sure if "friend's house" with the apostrophe is going to work. I don' think it will. Get rid of the apostrophe. Hmm. OK, I wonder what's going wrong here. Could you put "the"s in front of everything? Because it should be optional, but sometimes it seems to get tripped up if you don't have "the" in front of certain words.
+T: Yes, "the".
+M: And then: "The Hero goes to the Friend's House". Yeah, try that. OK. I think you have to "save", then refresh. So, with the "betrayal" trope... 1, 2, 3, 4... OK, it's five events long, so that's the problem. That's why the "betrayal" trope has been cut off. So maybe get rid of one of your events there. I'll have to extend this, I think, five events is too short. Trouble is, though, the answer sets... you saw how long it took to generate answer sets sometimes. So maybe delete line five. Oh, hang on, you have. Oh, "betrayal" is five events long, isn't it? So it's always going to be too long for this. So go back and edit the "betrayal" trope. Uh, yeah. If you... hang on... 1, 2, 3, 4. It should be OK now, so if you try that. Hello?
+T: Yeah.
+M: Ah cool, so that seems to have worked OK. So, the final task is I don't know, just kind of mess around with it. Try arranging things with the "arrange" tab, try some things that you haven't got the chance to try yet.
+T: I'm trying to remember other tropes. (uses tool). Um, so this is one where somebody gets the treasure.
+M: OK. Oh, I wonder why that's gone wrong. That seems quite straightforward.
+T: I can guess, actually. Oh no, it's basically that one. I was gonna say: where does the root... what's the root of the tree?
+M: Uh, yeah, no it should be OK, because it's the same as the other one, as you said. Because it creates a "Start" node as the root.
+T: Oh, does it?
+M: Yeah. Oh, that's interesting. "The Hero takes the Treasure, Or the Villain takes the Treasure". That should be OK. I wonder why it's not. (reads the trope). Hmm.
+T: (reads the trope)
+M: I can't see any obvious problems with that. "Hero goes to the cave"... try deleting the "Or" statement, and see if that's tripping it up. Just, yeah, go line by line. How many spaces do you have there, just two?
+T: Two.
+M: Yeah, so it should be OK. Hmm, OK. Try deleting that line, and save and refresh. That's weird. "...is a role, Villain is a role".
+T: That one works fine.
+M: Hmm. I wonder... Ah, I know what it is, yeah. There's a bug that I forgot about. If the trope name is the same as something in the trope, so you've got Treasure as the name of the trope. Ah, so this trips up the ASP because the name of the institution ends up being the same as the name of something in the institution, which it doesn't like.
+T: Cool. Ah, OK, so we have that. (types into tool)
+M: Uh oh, what was it called?
+T: Find the map.
+M: If you click on the last blank one, it's probably that, if you want to copy and paste it.
+T: Pardon?
+M: If you click on one of the blank ones, like the one at the bottom, it's probably that one, so you can copy and paste the text. Yeah, there you go.
+T: Why...?
+M: I don't know. Right, (reads the trope). Ah yeah, that's it.
+T: There we go. "The Hero goes to the Market, The Hero finds the Map". There you go.
+M: Nice! Cool.
+T: And then...
+M: I wonder... try changing "overhears" for something else. It should be OK. What it does is: "overhears" will go into Wordnet, and it'll look up any word that matches that and find the root verb of it. I should imagine "overhears" is in there. But just in case... oh, so it's not that. Oh.
+T: Oh no, "betray" was there, it was just taking a long time.
+M: Uh, what next?
+T: It did show up, momentarily. "betray_hero_spy", good.
+M: So "overhears" wasn't there, then? Oh yeah, so arrange them, yeah. Yeah, yeah, wait for it before you add a new one.
+T: Yeah, I think that's all I need, because the Hero finds a Map, no the Hero goes to the Market, finds a Map, the Hero's going to the Cave, but they get betrayed by the Spy, who the Villain pays, and then the Villain takes the Treasure, maybe. Ah, that may be too long.
+M: Ah, maybe.
+T: It's going to be too long, isn't it? "Hero goes to Market, Hero finds the Map, is betrayed and paid"... ah. You can see my screen, right?
+M: Yeah, just about. Could you zoom in?
+T: Yeah, sorry. So what I was thinking is: "Hero goes to Market, finds the Map, is betrayed, the Villain pays them off (though I can possibly get rid of that one), the Hero goes to the Cave, (which I would expect to come off here), but the Villain takes the Gold".
+M: Oh yeah, so "The Villain takes the Gold" is... yeah, yeah.
+T: But there's no branch after "pay_villain_spy".
+M: Ah, OK. So another thing that it might be is that sometimes it doesn't generate all the nodes that it should, because I limited it to 100, and there are some...
+T: I think I can fix that, because I don't need to worry about the thing, and then finding the map, I don't need to worry about going to the market. "The Hero finds the Map"... yeah. So then in "arrange", "find the map",  and over here. Yeah, there we go. That top one: "The Hero finds the Map, is betrayed by the Spy, Hero goes to the cave, but the Villain takes the Gold"
+M: Oh, OK. Cool. Are there any other interesting paths through that that would make a good story? "Hero finds the Map, goes to the Cave, Then the Spy betrays him".
+T: Well yeah, goes to the Cave, takes the Gold, and then the Spy betrays him. Gets to the Cave, the Hero takes the Gold AND the Spy betrays him makes makes a little less sense, maybe.
+M: Hmm, yeah. He kind of betrays him by taking the gold, you'd say. But OK.
+T: Um, well yeah, this next one is similar except the spy doesn't betray him until after they're at the cave, and then the Villain takes the gold, so that one's cool. And again, that one makes... here the Spy betrays him before he's found the map, even.
+M: Ah, right.
+T: But that's not the end of the world, it could be like... for some reason all I can think of is Hansel and Gretl, by leaving a trail of breadcrumbs.
+M: Ah yeah, I see what you mean.
+T: And then the Villain gets the gold. I'm not very kind to my Hero.
+M: He just ends up being betrayed all the time. OK, cool. So, that's great. That's everything in the study. So, what do you think of this use of tropes to assemble the story? Do you think that tropes are a suitable component, are they a kind of good abstraction?
+T: Yes, I do. I think that just looking at this image... do you want me to capture this image in some way?
+M: Only if you want to, I mean I'm recording this whole thing.
+T: I can send you that as well, for reference. Um... what was I saying? Yes, looking at this image, one thing that occurs to me is that it might be useful to apply preconditions of some kind. I don't know how feasible that is, but specifically looking at this later one, not allowing the "betray" trope to happen before the Hero has something worth betraying.
+M: Yeah, I'd agree that that's a good idea. So I had an extra bit of syntax, which was "when", so you'd say: "When the Hero finds the Map, Then the Spy betrays the Hero". So when some kind of event happens, then something happens. Or when a sequence of events have happened. But of course you could also say "if". So you'd say... I wasn't sure which was the best way to do it. So saying: "When event X, event Y and event Z have happened, then event 2 can happen". Or: "Event A happens if Event B, Event C and Event D have happened". I think it's not important which one... I dunno. But it was all kind of event-based, because there's no kind of sense of state in this at the moment. So you could say "The Hero takes the Sword", and then "the Hero goes to the Land of Adventure if the Hero has the Sword". But, yeah, that's the kind of thing I think would be needed.
+T: Yeah. How much state do you track? So here, where I say: "take_villain_gold"...
+M: So, it's literally just the events that have happened. So if you say: "take_villain_gold", there's no fluent that appears that says that the Villain has the gold. That's something that I have to add for it.
+T: What was the rest of the question?
+M: I've forgotten. I think that that's everything that I wanted to say. Have you got any other general comments?
+T: Um... the limitation of five events made things a little trickier.
+M: Yeah, that's for sure.
+T: More so on this screen than the others, really.
+M: Yeah. Maybe... I think I'll try extending it to ten events and see how long it'll take to generate those answer sets, because it was taking a really long time, but I kind of changed the constraints I was using, etc, and it might be better now. So that's something I should tweak before the next study.
+T: Then just with this information, this line I assume is part of the language? ("_" is a trope where:)
+M: Yes, so the way you're editing it now it puts that in for you, yeah. I'm not sure why I decided to do that. But if you were using text files, you'd write it as it is in that example rather than as it is there. You'd actually put that bit at the top as well. And everything else is indented one level.
+T: Yeah. Well, if this were just in the same font as the rest of this, then it would be more clear that that was happening.
+M: Ah, OK, sure.
+T: But that's just so incredibly minor. Yeah, I think the color-coding of the different tropes is very handy. I dunno how you've got "find map" there, instead of "find the map".
+M: I just delete "the"s wherever there's a "the", I tell it to ignore it in the parser.
+T: Yeah. Nothing else comes to mind at the moment.
+M: OK, cool.

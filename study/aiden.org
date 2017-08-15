@@ -3,200 +3,195 @@
 
 Start: 16:00
 
-A: So if "Example 1" defined a hero here, and in "Kill then Search"... oh I guess... have they defined Hero there? Hero's a role here, and then in "Kill then Search" the Hero's also a role... will that cause any confusion, because the Hero's being defined twice?
-M: That's a really good question, actually. In an older version of this I had it so that you could have different heros in the different tropes. At the moment they're using the same Hero, just called "Hero". But you can actually choose different names for the different Heros, and you'd have two heroes in the story. But just to simplify this whole thing, I decided "if there's two heroes, just have them as the same person".
-A: Fair enough.
-M: OK yeah, so you've done the first task, which is great. So task 2 is to create your own trope. So if you click on "New", the first thing you have to do is click on the trope name in that box. And try to avoid uh... some special characters. Yeah, that's fine, "New trope" is fine. Uh, so given the following character roles (Hero, Villain and Mentor). Um, so you have to declare those. Yeah, exactly, very good. And then the three places: Home, the Evil Lair and Land of Adventure.
-A: How does it deal with spaces?
-M: It's fine with spaces, yeah. Most of the time. I'll let you know if it isn't. The problem is that, as you probably know with PhDs, is you have to do stuff which looks really simple but under the surface is really complicated. It's really hard for me to actually get some informative error messages up on here, so I'll try my best to work out what's going wrong when it does go wrong. But for now, it's going alright.
-A: OK.
-M: So, I'd like you to construct your own tropes, just using the sequences and branches for now. Actually, no, part of this one is just having sequences, so just one thing after another.
-A: OK, so I could do like: The Villain's in the Evil Lair.
-M: Yeah.
-A: I'm just trying to remember the exact syntax. It's "goes"?
-M: That's fine. It should be fine with any verb.
-A: Oh, OK.
-M: And any form of any verb.
-A: (types "resides")
-M: Yeah, that should be OK. I hope! So, how are you finding this? Is it easy to learn so far?
-A: Yes, especially with the examples, so I can basically just copy everything you've done so far. When you told be that any verb could fit in there, that wasn't immediately apparent to me, so maybe if it said that explicitly?
-M: Sure.
-A: I was looking for like "oh, is 'goes' another keyword?", so to speak.
-M: That's a good idea. I tried this before on some people, and it /wasn't/ OK with every verb, so I wasn't saying it before. But now it is! I changed it a lot. So, that's a good point, I should make that explicit. Have you used any programming languages similar to this before, with like a controlled natural language?
-A: Uh, kind of, when I was working at Microsoft, they made their own in-house one to do testing for "Fable Legends".
-M: Oh wow, cool.
-A: So it was kind of complicated. I wasn't directly involved in it, I only dabbled in it very briefly, but this reminds me of that a little bit.
-M: OK, wow. Very nice.
-A: That was for like, designers trying to test out scenarios without any coding experience. They could say like "The Hero is here" and "This sort of Villain appears" with text, and it'd generate code for them, that was the idea.
-M: Yeah, that sounds very similar to this use case. I've designed this for people who aren't programmers, like story authors, so that they can create these interactive stories. But yeah, keep going, sounds really good.
-A: Uh, doing OK. "The Villain resides in the Evil Lair", uh... Besides... so, we've got people in places. I'm trying to think what else we've got... They can find objects, but I haven't got any objects they can find. Can I implement objects, or am I just supposed to be using this stuff?
-M: Uh, for this task... That's the next task. So this one's just roles and places.
-A: Just roles and places... I'll just put everyone in places then, I guess. So, "Hero arrives in Home". I do have to add the "in", right? That is the keyword?
-M: No, you can delete "in". "in" is not significant at all.
-A: Why is it purple, then?
-M: Uh, because it's using a Python syntax highlighter, I think. I was trying to get some kind of syntax highlighting, and I was too lazy to write my own. So that's why. That is a bit confusing though, yeah. So "Home" has to be capital "H".
-A: Ah. Oh yeah, that is how I defined it, yeah. "Then the Hero goes to the Evil Lair".
-M: OK, save that. It's not going to update that visualisation... This interface is a little bit clunky, so you have to go to "Edit", and then select it. Where is it? You did save it, right?
-A: And it came up with the tick as well.
-M: Uh oh... Let me refresh my one.
-A: And it's saved the title "A new trope"
-M: Ah OK, yeah, it seems to have saved the title as a blank string, and we can't change that. I'll just do some fiddling around here. I wonder why it didn't like that... Ah, it's saving all the titles as blank strings. Why is it doing that? It wasn't doing that before. It might not like the fact that you're... no, it's not that. Hmm... I wonder if it's the case that there's something here that it doesn't like... OK, I'm just editing it so that I know there's not anything that will trip it up.
-A: OK
-M: I'm wondering if when it doesn't compile, then it saves it with a blank name. But that wouldn't make sense. Hmm. Oh! OK, let's see. Ah yeah, so if it doesn't compile (this is a bug I need to fix), it will save it with a blank name. So, the thing that's tripping it up, by the look of it, is that you're missing an "a", which is "The Hero is _a_ role". At the top there.
-A: OK, I've re-input it in, because I've lost it. Are you looking at the old...?
-M: I'll re-input it in for you. So...
-A: I've just got this new one here, if you look at the screen capture. Is that one fine?
-M: Oh, hang on... Don't save it though, because I've just saved one called "New Trope", which is hopefully the same. I'm just going through the blank ones and deleting them now. I wasn't aware of that bug, but I am now, which is good.
-A: Great.
-M: So yeah, if you go to "edit", and "select new trope"...
-A: It's not there. Shall I refresh the page maybe, if it's on yours?
-M: You might have to refresh the page, yeah. And OK, we get a compile error if you try to refresh. So there's still something it doesn't like there. So as I said before, the trouble is with this is that if it doesn't work, then it's really hard to get any useful error messages up here.
-A: I've got "the Evil Lair" was supposed to be capitalised with "T", that's what I've missed off.
-M: Ah, OK. I think it ignores the "the's" though, so it might not be that.
-A: But "the" was part of its name, because I put "the Evil Lair" is a place, right?
-M: I think even then it ignores the "the's". Oh! I think if you... It doesn't seem to like... Yeah it's the "in" in "resides in" it doesn't like, I think. So if you delete the "resides in". Because it seems to be fine with the verbs, but sometimes if you have extra particles after those verbs, it doesn't like them. But yeah, it's OK if you remove the "in".
-A: Still got an error.
-M: Ah. Did you click "save", then "refresh"?
-A: (clicks)
-M: Ah, there you go. It takes a while sometimes. It's doing really complicated stuff on a really slow server. OK, cool. So that's the first task done. So any feedback on that? I know there are plenty of bugs, and error messages are a concern, but are there any thoughts that you have?
-A: I mean, yeah, when you look past the bugs, then the system is quite intuitive.
-M: OK, cool. Let's see... so if you go back to the tasks. Add a "Weapon" and an "Evil Plan" to your trope. And again, don't have any branches, just do one thing after another in sequences.
-A: OK, do I have to define all these before I start? Can they be anywhere?
-M: Yeah, they do have to be...
-A: So I define the roles, then I define the places do I then define the weapons and whatnot?
-M: That would make sense, but as long as all your definitions are at the start, then that's fine.
-A: It could be anywhere, as long as I'm using stuff that's already been defined?
-M: Yeah, yeah, exactly.
-A: I was just wondering if this is a kind of constructor of sorts, but it's not?
-M: Uh, it's not object-oriented or anything like that. It's really basic.
-A: OK, that makes it easier really. So, is "Weapon" an alternative to "place" or "role"?
-M: You'd have to put them as objects. So "Weapon" is an object, "The Evil Plan" is an object. Cool. Yeah, good. I think if you have that blank line, it doesn't like it. But add them into the trope somewhere.
-A: So, could I say like: "The Mentor gives the Hero the Weapon"?
-M: Uh, yes, you can. Maybe. I can't remember if I did that or not. Maybe. See what happens if you do that. Save it and refresh first to see if that works. I have a feeling that "has"... I did some kind of half-baked thing with that that might not work any more. So try that. No, yeah, OK, change it to something else.
-A: Just "has" by itself, or is it the word "has" that's wrong?
-M: It's the word "has" that I reserved as a keyword and then did nothing with. OK yeah, try that. Sometimes it takes a little while. There we go, yeah.
-A: OK, great. So... "The Mentor gives"...
-M: Yeah, see if that works. That should work.
-A: Look, it's compiled.
-M: It's compiled, but it hasn't appeared. Ah, OK, so because this goes through an answer set solver, I've limited it to just five steps. So if you remove one of those, like "The Mentor lives at Home" or something. Because if I have more than five steps in the answer set solver, it can take really, really long because it's searching through all the possibilities. Once you have lots of branches in there it just takes ages. There you go, it says "Give Hero Mentor Weapon".
-A: OK.
-M: Cool. Alright. Any more thoughts on that task?
-A: Um, I guess just the info that you can combine the two roles in one sentence would be good. I asked you about that. It makes sense that it would, just maybe some people would simply have to put the separate steps.
-M: OK, yeah, yeah. That's something I should brief people on before. OK, cool. So, task 4 is now: feel free to add some branches to your trope with the "Or" keyword. And remember you have to indent it two spaces.
-A: OK. So the "Mentor gives the Hero the Weapon". Kills the Hero... a real twist in the tale up front!
-M: Yeah! So save and try that. Ah so, it's sometimes very slow. And that hasn't worked. Why doesn't that work?
-A: There we go, it just came up.
-M: It has! It's just incredibly slow. OK.
-A: I'm not sure how the Hero then goes to the Evil Lair. But that's just a flaw in my own story!
-M: Sorry? Oh yeah, he kills the Hero, and then he goes to the Evil Lair even though he's dead! How does that happen?
-A: He respawns at the Evil Lair as a daemon of the Villain?
-M: I like your thinking, yeah. So if you want to add more branches, you can chain branches together. So at the moment there's two possibilities there, but if you add another "Or" on the same level of indentation below that, it will create another possibility.
-A: OK, so, I can do more than one. "The Mentor attempts to kill the Hero"...
-M: I wonder if that's going to... Try that out and see if that compiles. I'm not sure if it will. Get rid of that blank line.
-A: OK, yeah.
-M: Because I'm not sure if that will compile. No. Too complicated. Oh! What's that? "The Mentor kills"... Oh no, it's... Hmm. Did you save that one?
-A: It seems to have gone back to the previous.
-M: OK, that's weird.
-A: So I'll just say "attacks the Hero".
-M: Yeah. There you go. Hmm. OK, so this is a limitation. Oh, what's this? That's interesting. Ah yeah, so one limitation is that unfortunately I haven't implemented extending a branch beyond one event. Because again, it makes things very very complicated. I just wanted to demonstrate the simple nature of this language. So like, what you're trying to do... I can see what you're trying to do there is you're trying to say "The Mentor attacks the Hero, THEN the Hero escapes" on that branch, and then you'd branch it further. Unfortunately, you're not able to continue a branch like that. We're just testing out very simple branching.
-A: OK.
-M: Cool. It's interesting that that still compiled, though, but it just put it onto the end of every branch.
-A: Of both possible... yeah.
-M: OK, cool. OK, let's see. Task five: so the next task, go to the arrange tab on the left. And with this you can select... so select one of the simpler tropes, like Example 1, then click "+", then click another one, and again a simple one again like Example 2, and then wait a bit, and then it will visualise both of them at the same time. Eventually. Again, this is very slow. There you go. So, when you have both of those tropes happening in a story... so we've got a story saying "OK, I want these two tropes", then it generates all the possible branches with those two tropes happening. So it looks like Example 2 starts with three branches, and with Example 1 there's only one possibility, so it's kind of like... this is a tree with all the different combinations of events that you can do. So, yeah, just doing that WAS task five. Do you think this is useful for, you know, if someone is trying to write a story with tropes like this, is it useful to have this kind of visualisation?
-A: Yeah, certainly, if some of the stuff we've mentioned had been ironed out then I could definitely see this being a useful tool.
-M: Cool, cool. Alright. Any other comments that come to mind?
-A: Uh, yeah, well just back on the.. when you're refreshing and compiling, it would be useful to have a little loading icon or whatever so that I know that it HAS loaded or hasn't.
-M: Yeah, I definitely agree. It's something I've tried to do, but unfortunately didn't have time for. But, yeah, that's good to know. So next task, task 6: I want you to embed a trope within another trope. So maybe like take the trope you've already made, and embed an existing trope in it, or something like that.
-A: I'm just going to take this bit I added in the previous one.
-M: OK, cool. And remember it can only be five steps long at the moment.
-A: OK, yeah. I'm trying to remember how to embed another trope...
-M: Do you have the document open? So it's there, and the "Name trope happens". Yeah. That's alright.
-A: Example 3, let's go for it.
-M: Example 3... was that a complicated one? I wonder... OK, if it was a complicated one, it might take a while. Yeah, that was quite a complicated one. But yeah, we'll be waiting a couple of minutes perhaps. No, not that long! Oh, there you go. New Trope, New Trope... It's only got ones from your trope, why is that? I think it's longer than five things long. So delete maybe "The Hero arrives Home", or something like that. Again, it might be doing the previous one. Just wait a little while. Example 3... what was example 3? Example 3 is a bit complicated. Oh, OK, it's got... Ah again, yeah yeah, OK. So maybe I need to extend it so that it does more than five events, because it's just done the first event of Example 3, and that's all that it can handle, sadly. Um. Try another one, try embedding a different one. Yeah, maybe I should consider having it do more than five events. But as you can see, it's slow enough as it is. OK, Example 1. I think... hang on, that's already five events. So it's just chaining Example 1 on the end there. See what happens if you put Example 1 earlier in the trope.
-A: OK.
-M: Ah yeah, that's actually something I haven't tested. I always put them at the end when I was testing it. So, I should have tested putting it earlier. But that's interesting to know that that doesn't work. I'll have to go in and... Oh, or did it? No, it didn't, that one's at the end. OK, so, any thoughts that have occurred to you doing that? Again, we've encountered some more bugs, but as I said that's kind of the point of doing this exercise.
-A: Uh, not a load relating to that task specifically. With this springy nature thing, how do you compress it entirely?
-M: There's no way of collapsing it. I'm just using a plain old JavaScript library. I agree that it would be nice to collapse the nodes, wouldn't it, so that you could...
-A: 'Cause I like it when it's simple, like bring it all out, then I add a few branches and it's way too big, and then I wanna like... bring it in.
-M: Yeah, that's a good idea. I'll see if I can change that. But yeah, for now, you're stuck with it as it is, sadly.
-A: I appreciate that it's not a high priority.
-M: OK, so final task, task seven is: start with a new trope, just a blank one, and create a... just think of a story and see if you can create it using tropes. And again, use multiple tropes. Rather than have a trope called "Brand New Trope", think about what the trope is doing, so is it describing the Hero going on a quest or something?
-A: OK, let's have a "Revenge Trope".
-M: Cool, cool. Yeah, yeah.
-A: OK. So "The Villain is a role, the Hero is a role, the Villain kills...". So, I could... say, like, "The Hero is Angry", I'm not relating that to any place or object, that's fine as a statement?
-M: Again, I used to have this thing... at the moment you do have to have verbs, I know "is" is kind of a verb... but "is" and "has" are reserved as key words because I wanted to do something else, and I forgot to un-reserve them, kinda thing. So, yeah, don't use "is", use something else. So "The Hero gets angry", or "The Hero becomes angry". So save that, and see if that compiles by going into the "edit" tab. Oh, OK. I reckon it doesn't like "Becomes angry". "Angers" perhaps, "Angers" might work.
-A: OK
-M: Cool. So you've got that trope, now make another trope. So you've got some revenge in your story there, what else do you want to happen in your story?
-A: Uh... we could have a betrayal.
-M: OK, cool.
-A: "The Hero trusts the Mentor, the Mentor betrays the Hero".
-M: Cool.
-A: I've got it really in for Mentors apparently, I didn't realise. I had the mentor killing the Hero previously, now he's betraying him. I don't have much trust of mentors, apparently. That's news to me.
-M: Ah, yeah. Well, it's interesting all the subconscious stuff that's coming up through this process of creation. I like it. OK, so you've got that, now if you go to the arrange tab, you can combine those tropes together. Yeah, there you go. Again, when you have multiple tropes, it seems to take a long time. Why is that? So, it's done the revenge trope, but now you've added the betrayal... ooh, there's lots of possibilities.
-A: Yes, whether we start with the revenge first, or the betrayal first.
-M: Yeah, basically.
-A: Either way, it goes badly for the hero.
-M: Yeah, true.
-A: "The Villain kills the Friend, then the Hero is trusting in the Mentor, then he is betrayed by the Mentor, and that makes him even angrier, so he goes and kills the Villain". That makes total sense! I mean, he was angry at the villain, but with the betrayal on top of that it just led to the revenge. Boom. Narrative conceived, right there.
-M: Excellent. Alright, so, are you done creating your story, do you think?
-A: Uh, yep, yeah I think that's good, yeah.
-M: Alright, so, I just want to ask some kind of open-ended questions to you.
-A: OK.
-M: So if you were a story author, if you were writing an interactive narrative for a story-based game, how would this kind of tool help you, do you think?
-A: Er, yeah, it would be useful just to throw out all the different possibilities, certainly, to make sure you're not missing any potential outcome.
+*Participant:* So if "Example 1" defined a hero here, and in "Kill then Search"... oh I guess... have they defined Hero there? Hero's a role here, and then in "Kill then Search" the Hero's also a role... will that cause any confusion, because the Hero's being defined twice?
+*Myself:* That's a really good question, actually. In an older version of this I had it so that you could have different heros in the different tropes. At the moment they're using the same Hero, just called "Hero". But you can actually choose different names for the different Heros, and you'd have two heroes in the story. But just to simplify this whole thing, I decided "if there's two heroes, just have them as the same person".
+*Participant:* Fair enough.
+*Myself:* OK yeah, so you've done the first task, which is great. So task 2 is to create your own trope. So if you click on "New", the first thing you have to do is click on the trope name in that box. And try to avoid uh... some special characters. Yeah, that's fine, "New trope" is fine. Uh, so given the following character roles (Hero, Villain and Mentor). Um, so you have to declare those. Yeah, exactly, very good. And then the three places: Home, the Evil Lair and Land of Adventure.
+*Participant:* How does it deal with spaces?
+*Myself:* It's fine with spaces, yeah. Most of the time. I'll let you know if it isn't. The problem is that, as you probably know with PhDs, is you have to do stuff which looks really simple but under the surface is really complicated. It's really hard for me to actually get some informative error messages up on here, so I'll try my best to work out what's going wrong when it does go wrong. But for now, it's going alright.
+*Participant:* OK.
+*Myself:* So, I'd like you to construct your own tropes, just using the sequences and branches for now. Actually, no, part of this one is just having sequences, so just one thing after another.
+*Participant:* OK, so I could do like: The Villain's in the Evil Lair.
+*Myself:* Yeah.
+*Participant:* I'm just trying to remember the exact syntax. It's "goes"?
+*Myself:* That's fine. It should be fine with any verb.
+*Participant:* Oh, OK.
+*Myself:* And any form of any verb.
+*Participant:* (types "resides")
+*Myself:* Yeah, that should be OK. I hope! So, how are you finding this? Is it easy to learn so far?
+*Participant:* Yes, especially with the examples, so I can basically just copy everything you've done so far. When you told be that any verb could fit in there, that wasn't immediately apparent to me, so maybe if it said that explicitly?
+*Myself:* Sure.
+*Participant:* I was looking for like "oh, is 'goes' another keyword?", so to speak.
+*Myself:* That's a good idea. I tried this before on some people, and it /wasn't/ OK with every verb, so I wasn't saying it before. But now it is! I changed it a lot. So, that's a good point, I should make that explicit. Have you used any programming languages similar to this before, with like a controlled natural language?
+*Participant:* Uh, kind of, when I was working at Microsoft, they made their own in-house one to do testing for "Fable Legends".
+*Myself:* Oh wow, cool.
+*Participant:* So it was kind of complicated. I wasn't directly involved in it, I only dabbled in it very briefly, but this reminds me of that a little bit.
+*Myself:* OK, wow. Very nice.
+*Participant:* That was for like, designers trying to test out scenarios without any coding experience. They could say like "The Hero is here" and "This sort of Villain appears" with text, and it'd generate code for them, that was the idea.
+*Myself:* Yeah, that sounds very similar to this use case. I've designed this for people who aren't programmers, like story authors, so that they can create these interactive stories. But yeah, keep going, sounds really good.
+*Participant:* Uh, doing OK. "The Villain resides in the Evil Lair", uh... Besides... so, we've got people in places. I'm trying to think what else we've got... They can find objects, but I haven't got any objects they can find. Can I implement objects, or am I just supposed to be using this stuff?
+*Myself:* Uh, for this task... That's the next task. So this one's just roles and places.
+*Participant:* Just roles and places... I'll just put everyone in places then, I guess. So, "Hero arrives in Home". I do have to add the "in", right? That is the keyword?
+*Myself:* No, you can delete "in". "in" is not significant at all.
+*Participant:* Why is it purple, then?
+*Myself:* Uh, because it's using a Python syntax highlighter, I think. I was trying to get some kind of syntax highlighting, and I was too lazy to write my own. So that's why. That is a bit confusing though, yeah. So "Home" has to be capital "H".
+*Participant:* Ah. Oh yeah, that is how I defined it, yeah. "Then the Hero goes to the Evil Lair".
+*Myself:* OK, save that. It's not going to update that visualisation... This interface is a little bit clunky, so you have to go to "Edit", and then select it. Where is it? You did save it, right?
+*Participant:* And it came up with the tick as well.
+*Myself:* Uh oh... Let me refresh my one.
+*Participant:* And it's saved the title "A new trope"
+*Myself:* Ah OK, yeah, it seems to have saved the title as a blank string, and we can't change that. I'll just do some fiddling around here. I wonder why it didn't like that... Ah, it's saving all the titles as blank strings. Why is it doing that? It wasn't doing that before. It might not like the fact that you're... no, it's not that. Hmm... I wonder if it's the case that there's something here that it doesn't like... OK, I'm just editing it so that I know there's not anything that will trip it up.
+*Participant:* OK
+*Myself:* I'm wondering if when it doesn't compile, then it saves it with a blank name. But that wouldn't make sense. Hmm. Oh! OK, let's see. Ah yeah, so if it doesn't compile (this is a bug I need to fix), it will save it with a blank name. So, the thing that's tripping it up, by the look of it, is that you're missing an "a", which is "The Hero is _a_ role". At the top there.
+*Participant:* OK, I've re-input it in, because I've lost it. Are you looking at the old...?
+*Myself:* I'll re-input it in for you. So...
+*Participant:* I've just got this new one here, if you look at the screen capture. Is that one fine?
+*Myself:* Oh, hang on... Don't save it though, because I've just saved one called "New Trope", which is hopefully the same. I'm just going through the blank ones and deleting them now. I wasn't aware of that bug, but I am now, which is good.
+*Participant:* Great.
+*Myself:* So yeah, if you go to "edit", and "select new trope"...
+*Participant:* It's not there. Shall I refresh the page maybe, if it's on yours?
+*Myself:* You might have to refresh the page, yeah. And OK, we get a compile error if you try to refresh. So there's still something it doesn't like there. So as I said before, the trouble is with this is that if it doesn't work, then it's really hard to get any useful error messages up here.
+*Participant:* I've got "the Evil Lair" was supposed to be capitalised with "T", that's what I've missed off.
+*Myself:* Ah, OK. I think it ignores the "the's" though, so it might not be that.
+*Participant:* But "the" was part of its name, because I put "the Evil Lair" is a place, right?
+*Myself:* I think even then it ignores the "the's". Oh! I think if you... It doesn't seem to like... Yeah it's the "in" in "resides in" it doesn't like, I think. So if you delete the "resides in". Because it seems to be fine with the verbs, but sometimes if you have extra particles after those verbs, it doesn't like them. But yeah, it's OK if you remove the "in".
+*Participant:* Still got an error.
+*Myself:* Ah. Did you click "save", then "refresh"?
+*Participant:* (clicks)
+*Myself:* Ah, there you go. It takes a while sometimes. It's doing really complicated stuff on a really slow server. OK, cool. So that's the first task done. So any feedback on that? I know there are plenty of bugs, and error messages are a concern, but are there any thoughts that you have?
+*Participant:* I mean, yeah, when you look past the bugs, then the system is quite intuitive.
+*Myself:* OK, cool. Let's see... so if you go back to the tasks. Add a "Weapon" and an "Evil Plan" to your trope. And again, don't have any branches, just do one thing after another in sequences.
+*Participant:* OK, do I have to define all these before I start? Can they be anywhere?
+*Myself:* Yeah, they do have to be...
+*Participant:* So I define the roles, then I define the places do I then define the weapons and whatnot?
+*Myself:* That would make sense, but as long as all your definitions are at the start, then that's fine.
+*Participant:* It could be anywhere, as long as I'm using stuff that's already been defined?
+*Myself:* Yeah, yeah, exactly.
+*Participant:* I was just wondering if this is a kind of constructor of sorts, but it's not?
+*Myself:* Uh, it's not object-oriented or anything like that. It's really basic.
+*Participant:* OK, that makes it easier really. So, is "Weapon" an alternative to "place" or "role"?
+*Myself:* You'd have to put them as objects. So "Weapon" is an object, "The Evil Plan" is an object. Cool. Yeah, good. I think if you have that blank line, it doesn't like it. But add them into the trope somewhere.
+*Participant:* So, could I say like: "The Mentor gives the Hero the Weapon"?
+*Myself:* Uh, yes, you can. Maybe. I can't remember if I did that or not. Maybe. See what happens if you do that. Save it and refresh first to see if that works. I have a feeling that "has"... I did some kind of half-baked thing with that that might not work any more. So try that. No, yeah, OK, change it to something else.
+*Participant:* Just "has" by itself, or is it the word "has" that's wrong?
+*Myself:* It's the word "has" that I reserved as a keyword and then did nothing with. OK yeah, try that. Sometimes it takes a little while. There we go, yeah.
+*Participant:* OK, great. So... "The Mentor gives"...
+*Myself:* Yeah, see if that works. That should work.
+*Participant:* Look, it's compiled.
+*Myself:* It's compiled, but it hasn't appeared. Ah, OK, so because this goes through an answer set solver, I've limited it to just five steps. So if you remove one of those, like "The Mentor lives at Home" or something. Because if I have more than five steps in the answer set solver, it can take really, really long because it's searching through all the possibilities. Once you have lots of branches in there it just takes ages. There you go, it says "Give Hero Mentor Weapon".
+*Participant:* OK.
+*Myself:* Cool. Alright. Any more thoughts on that task?
+*Participant:* Um, I guess just the info that you can combine the two roles in one sentence would be good. I asked you about that. It makes sense that it would, just maybe some people would simply have to put the separate steps.
+*Myself:* OK, yeah, yeah. That's something I should brief people on before. OK, cool. So, task 4 is now: feel free to add some branches to your trope with the "Or" keyword. And remember you have to indent it two spaces.
+*Participant:* OK. So the "Mentor gives the Hero the Weapon". Kills the Hero... a real twist in the tale up front!
+*Myself:* Yeah! So save and try that. Ah so, it's sometimes very slow. And that hasn't worked. Why doesn't that work?
+*Participant:* There we go, it just came up.
+*Myself:* It has! It's just incredibly slow. OK.
+*Participant:* I'm not sure how the Hero then goes to the Evil Lair. But that's just a flaw in my own story!
+*Myself:* Sorry? Oh yeah, he kills the Hero, and then he goes to the Evil Lair even though he's dead! How does that happen?
+*Participant:* He respawns at the Evil Lair as a daemon of the Villain?
+*Myself:* I like your thinking, yeah. So if you want to add more branches, you can chain branches together. So at the moment there's two possibilities there, but if you add another "Or" on the same level of indentation below that, it will create another possibility.
+*Participant:* OK, so, I can do more than one. "The Mentor attempts to kill the Hero"...
+*Myself:* I wonder if that's going to... Try that out and see if that compiles. I'm not sure if it will. Get rid of that blank line.
+*Participant:* OK, yeah.
+*Myself:* Because I'm not sure if that will compile. No. Too complicated. Oh! What's that? "The Mentor kills"... Oh no, it's... Hmm. Did you save that one?
+*Participant:* It seems to have gone back to the previous.
+*Myself:* OK, that's weird.
+*Participant:* So I'll just say "attacks the Hero".
+*Myself:* Yeah. There you go. Hmm. OK, so this is a limitation. Oh, what's this? That's interesting. Ah yeah, so one limitation is that unfortunately I haven't implemented extending a branch beyond one event. Because again, it makes things very very complicated. I just wanted to demonstrate the simple nature of this language. So like, what you're trying to do... I can see what you're trying to do there is you're trying to say "The Mentor attacks the Hero, THEN the Hero escapes" on that branch, and then you'd branch it further. Unfortunately, you're not able to continue a branch like that. We're just testing out very simple branching.
+*Participant:* OK.
+*Myself:* Cool. It's interesting that that still compiled, though, but it just put it onto the end of every branch.
+*Participant:* Of both possible... yeah.
+*Myself:* OK, cool. OK, let's see. Task five: so the next task, go to the arrange tab on the left. And with this you can select... so select one of the simpler tropes, like Example 1, then click "+", then click another one, and again a simple one again like Example 2, and then wait a bit, and then it will visualise both of them at the same time. Eventually. Again, this is very slow. There you go. So, when you have both of those tropes happening in a story... so we've got a story saying "OK, I want these two tropes", then it generates all the possible branches with those two tropes happening. So it looks like Example 2 starts with three branches, and with Example 1 there's only one possibility, so it's kind of like... this is a tree with all the different combinations of events that you can do. So, yeah, just doing that WAS task five. Do you think this is useful for, you know, if someone is trying to write a story with tropes like this, is it useful to have this kind of visualisation?
+*Participant:* Yeah, certainly, if some of the stuff we've mentioned had been ironed out then I could definitely see this being a useful tool.
+*Myself:* Cool, cool. Alright. Any other comments that come to mind?
+*Participant:* Uh, yeah, well just back on the.. when you're refreshing and compiling, it would be useful to have a little loading icon or whatever so that I know that it HAS loaded or hasn't.
+*Myself:* Yeah, I definitely agree. It's something I've tried to do, but unfortunately didn't have time for. But, yeah, that's good to know. So next task, task 6: I want you to embed a trope within another trope. So maybe like take the trope you've already made, and embed an existing trope in it, or something like that.
+*Participant:* I'm just going to take this bit I added in the previous one.
+*Myself:* OK, cool. And remember it can only be five steps long at the moment.
+*Participant:* OK, yeah. I'm trying to remember how to embed another trope...
+*Myself:* Do you have the document open? So it's there, and the "Name trope happens". Yeah. That's alright.
+*Participant:* Example 3, let's go for it.
+*Myself:* Example 3... was that a complicated one? I wonder... OK, if it was a complicated one, it might take a while. Yeah, that was quite a complicated one. But yeah, we'll be waiting a couple of minutes perhaps. No, not that long! Oh, there you go. New Trope, New Trope... It's only got ones from your trope, why is that? I think it's longer than five things long. So delete maybe "The Hero arrives Home", or something like that. Again, it might be doing the previous one. Just wait a little while. Example 3... what was example 3? Example 3 is a bit complicated. Oh, OK, it's got... Ah again, yeah yeah, OK. So maybe I need to extend it so that it does more than five events, because it's just done the first event of Example 3, and that's all that it can handle, sadly. Um. Try another one, try embedding a different one. Yeah, maybe I should consider having it do more than five events. But as you can see, it's slow enough as it is. OK, Example 1. I think... hang on, that's already five events. So it's just chaining Example 1 on the end there. See what happens if you put Example 1 earlier in the trope.
+*Participant:* OK.
+*Myself:* Ah yeah, that's actually something I haven't tested. I always put them at the end when I was testing it. So, I should have tested putting it earlier. But that's interesting to know that that doesn't work. I'll have to go in and... Oh, or did it? No, it didn't, that one's at the end. OK, so, any thoughts that have occurred to you doing that? Again, we've encountered some more bugs, but as I said that's kind of the point of doing this exercise.
+*Participant:* Uh, not a load relating to that task specifically. With this springy nature thing, how do you compress it entirely?
+*Myself:* There's no way of collapsing it. I'm just using a plain old JavaScript library. I agree that it would be nice to collapse the nodes, wouldn't it, so that you could...
+*Participant:* 'Cause I like it when it's simple, like bring it all out, then I add a few branches and it's way too big, and then I wanna like... bring it in.
+*Myself:* Yeah, that's a good idea. I'll see if I can change that. But yeah, for now, you're stuck with it as it is, sadly.
+*Participant:* I appreciate that it's not a high priority.
+*Myself:* OK, so final task, task seven is: start with a new trope, just a blank one, and create a... just think of a story and see if you can create it using tropes. And again, use multiple tropes. Rather than have a trope called "Brand New Trope", think about what the trope is doing, so is it describing the Hero going on a quest or something?
+*Participant:* OK, let's have a "Revenge Trope".
+*Myself:* Cool, cool. Yeah, yeah.
+*Participant:* OK. So "The Villain is a role, the Hero is a role, the Villain kills...". So, I could... say, like, "The Hero is Angry", I'm not relating that to any place or object, that's fine as a statement?
+*Myself:* Again, I used to have this thing... at the moment you do have to have verbs, I know "is" is kind of a verb... but "is" and "has" are reserved as key words because I wanted to do something else, and I forgot to un-reserve them, kinda thing. So, yeah, don't use "is", use something else. So "The Hero gets angry", or "The Hero becomes angry". So save that, and see if that compiles by going into the "edit" tab. Oh, OK. I reckon it doesn't like "Becomes angry". "Angers" perhaps, "Angers" might work.
+*Participant:* OK
+*Myself:* Cool. So you've got that trope, now make another trope. So you've got some revenge in your story there, what else do you want to happen in your story?
+*Participant:* Uh... we could have a betrayal.
+*Myself:* OK, cool.
+*Participant:* "The Hero trusts the Mentor, the Mentor betrays the Hero".
+*Myself:* Cool.
+*Participant:* I've got it really in for Mentors apparently, I didn't realise. I had the mentor killing the Hero previously, now he's betraying him. I don't have much trust of mentors, apparently. That's news to me.
+*Myself:* Ah, yeah. Well, it's interesting all the subconscious stuff that's coming up through this process of creation. I like it. OK, so you've got that, now if you go to the arrange tab, you can combine those tropes together. Yeah, there you go. Again, when you have multiple tropes, it seems to take a long time. Why is that? So, it's done the revenge trope, but now you've added the betrayal... ooh, there's lots of possibilities.
+*Participant:* Yes, whether we start with the revenge first, or the betrayal first.
+*Myself:* Yeah, basically.
+*Participant:* Either way, it goes badly for the hero.
+*Myself:* Yeah, true.
+*Participant:* "The Villain kills the Friend, then the Hero is trusting in the Mentor, then he is betrayed by the Mentor, and that makes him even angrier, so he goes and kills the Villain". That makes total sense! I mean, he was angry at the villain, but with the betrayal on top of that it just led to the revenge. Boom. Narrative conceived, right there.
+*Myself:* Excellent. Alright, so, are you done creating your story, do you think?
 
 ** Postamble
-M: OK, cool. Er, so the idea is that you describe the story in this language, and it constrains the actions of some intelligent agents, so they see what they are permitted to do according to the certain branch of the story that they're on. I'm just kind of debriefing you here, you know. And in the background, this simple programming language is compiling to this language called InstAL. I don't know if you had Charlie Page lecturing you for intelligent agents?
-A: Yeah
-M: She's working on InstAL. It's a language which compiles to this Answer Set Programming code, which looks a bit like Prolog, so this compiles twice from this to InstAL, and then from InstAL to ASP.
-A: What's the advantage of that?
-M: Answer Set Programming generates all the different possibilities given a set of constraints, and the advantage of using that over something like Prolog is that you ground all the variables first, so that you know that it will terminate eventually (well, you can never guarantee that), you kind of limit the set of things that it will generate, so it will generate. With Prolog, you don't always have to ground the variables, so you don't know that... you might have some variables that won't be set to something concrete, some particular value. But with ASP, it is. It's kind of difficult to explain, but with ASP, it's just easier to generate all these different possibilities, basically. And that's what we're doing here with all these possibilities that you can see on the screen, all these different possibilities being generated. And the point of using this InstAL language is that it's a language for permissions and obligations, so when you're putting in the events here, you're saying basically what an agent is permitted to do at any period of time, and when you do the branching with the "Or"s, you're giving an agent multiple permissions, you can say "You can do this, or you can do this, or you can do this", so they see they're permitted this set of actions, and then they choose one and it goes off on one branch. So it's kind of using all that technology of answer sets and what we call "Institutions", which is permissions and obligations underneath, so even though the tools are kind of cool as a way of visualising all these paths, the stuff it compiles to is reasonable sophisticated and research-y.
+*Myself:* OK, cool. Er, so the idea is that you describe the story in this language, and it constrains the actions of some intelligent agents, so they see what they are permitted to do according to the certain branch of the story that they're on. I'm just kind of debriefing you here, you know. And in the background, this simple programming language is compiling to this language called InstAL. I don't know if you had Charlie Page lecturing you for intelligent agents?
+*Participant:* Yeah
+*Myself:* She's working on InstAL. It's a language which compiles to this Answer Set Programming code, which looks a bit like Prolog, so this compiles twice from this to InstAL, and then from InstAL to ASP.
+*Participant:* What's the advantage of that?
+*Myself:* Answer Set Programming generates all the different possibilities given a set of constraints, and the advantage of using that over something like Prolog is that you ground all the variables first, so that you know that it will terminate eventually (well, you can never guarantee that), you kind of limit the set of things that it will generate, so it will generate. With Prolog, you don't always have to ground the variables, so you don't know that... you might have some variables that won't be set to something concrete, some particular value. But with ASP, it is. It's kind of difficult to explain, but with ASP, it's just easier to generate all these different possibilities, basically. And that's what we're doing here with all these possibilities that you can see on the screen, all these different possibilities being generated. And the point of using this InstAL language is that it's a language for permissions and obligations, so when you're putting in the events here, you're saying basically what an agent is permitted to do at any period of time, and when you do the branching with the "Or"s, you're giving an agent multiple permissions, you can say "You can do this, or you can do this, or you can do this", so they see they're permitted this set of actions, and then they choose one and it goes off on one branch. So it's kind of using all that technology of answer sets and what we call "Institutions", which is permissions and obligations underneath, so even though the tools are kind of cool as a way of visualising all these paths, the stuff it compiles to is reasonable sophisticated and research-y.
 
 ** Preamble
-M: Hello! Hello Aiden.
-A: Hey
-M: How's it going? Thanks again for agreeing to take part in this study.
-A: Sure. Sounds interesting.
-M: You're actually my first participant. So we'll see... you're kind of a guinea pig, so we'll see how it goes.
-A: OK.
-M: So basically, the point of this study is that I've made a programming language for story tropes. So if you want to create an interactive story for a game with multiple paths through it, you can construct the story using these components which are called "tropes". Actually, before you begin, I've got a document I'd like you to read, it's kind of the consent form. Just read it and say "Yeah, I understand".
-A: Sure.
-M: Do you see that link I just put there?
-A: I got it.
-M: OK, great.
-A: (reads the consent form) Yep, all looks pretty standard.
-M: Excellent. OK. So I've got another document here which is an explanation as to what to do in this study. So the start of it is a brief description of the programming language. I might have said before, it's very kind of limited in scope. There are some limitations with it, you can't describe every kind of story with it. I just want to get a feel for how suitable it is for people authoring these stories when combined with this kind of visualisation tool. So yeah, have a read through that. Actually no, I'll read it out for you.
+*Myself:* Hello! Hello Aiden.
+*Participant:* Hey
+*Myself:* How's it going? Thanks again for agreeing to take part in this study.
+*Participant:* Sure. Sounds interesting.
+*Myself:* You're actually my first participant. So we'll see... you're kind of a guinea pig, so we'll see how it goes.
+*Participant:* OK.
+*Myself:* So basically, the point of this study is that I've made a programming language for story tropes. So if you want to create an interactive story for a game with multiple paths through it, you can construct the story using these components which are called "tropes". Actually, before you begin, I've got a document I'd like you to read, it's kind of the consent form. Just read it and say "Yeah, I understand".
+*Participant:* Sure.
+*Myself:* Do you see that link I just put there?
+*Participant:* I got it.
+*Myself:* OK, great.
+*Participant:* (reads the consent form) Yep, all looks pretty standard.
+*Myself:* Excellent. OK. So I've got another document here which is an explanation as to what to do in this study. So the start of it is a brief description of the programming language. I might have said before, it's very kind of limited in scope. There are some limitations with it, you can't describe every kind of story with it. I just want to get a feel for how suitable it is for people authoring these stories when combined with this kind of visualisation tool. So yeah, have a read through that. Actually no, I'll read it out for you.
 So, kind of like a lot of programming languages you have these declarations where you have to declare something like a variable ahead of time. There are three types of things: roles, which are characters, places (which are locations in your story) and objects. So you'd say, at the beginning of your file, stuff like "The Hero is a role", "The Knife is an object", "The Land of Adventure is a place". These are just declaring the entities you'd use in the story. And th en you'd create events by describing them in, almost like plain English. So like: "The Hero goes Home, Then the Hero finds the Sword, Then the Hero goes to the Land of Adventure.". So yeah, the syntax is kind of like what they call "controlled natural language": it looks a bit like natural language statements, but it's actually a kind of restricted syntax. So you can't use just any English statements.
-A: Yeah, I'm familiar with that.
-M: OK, cool, excellent. So yeah, the first letter of any role, object or place name has to be capitalised when you use it as well. So as well as sequencing, you can have branches where you have to indent with two spaces. So you can say: "The Hero goes Home, Or the Hero finds a Sword, Or the Hero dies".
+*Participant:* Yeah, I'm familiar with that.
+*Myself:* OK, cool, excellent. So yeah, the first letter of any role, object or place name has to be capitalised when you use it as well. So as well as sequencing, you can have branches where you have to indent with two spaces. So you can say: "The Hero goes Home, Or the Hero finds a Sword, Or the Hero dies".
 Actually, what I can do is... if you load up the tool itself, so go to... actually, I'll paste the link. There you go. So, go to that link there and... let's see... so there should be two tabs on the left: "edit" and "arrange" and there's a drop-down box that says "trope name". So if you select "Example 1", under "Trope name"...
-A: Yeah, I'm looking at it now.
-M: Cool. So that's the first example from the document where it says "sequencing". If you click the green button, "refresh", you should be able to see a tree visualisation (or in this case, one thing after another) appear on the right. Can you see that? Before we continue, I need to ask you to do something else. I need to have a screen cast of how you're interacting with this tool. If you go to the top right and click "share screen".
-A: (tries to share screen). Alright, I've got it.
-M: Oh yeah, I can see that. That's great. So yeah, if you go there, you can see a visualisation of that. So if you go back to the other tab with the participant information. Not that one... the second link I send you was a description of the language.
-A: That's what I hid, isn't it?
-M: Ah no, not there. Go back to the Hangouts text window. So I sent you three links, the second one is the one that describes the language.
-A: This one?
-M: Yeah, that's the one. So yeah, being able to see that will help you a bit better. You declare the roles, objects and places, then you can sequence them. So yeah, close this tab and go to the tool. This is the first example in that document, right, where it's just one thing after another, as you can see in the visualisation. Also, if you drag the nodes around in the visualisation, it will change the layout. It's one of those springy graph layouts. Yeah, there you go. So, go back to the document which describes the language.
-A: I've got it open on another screen.
-M: Oh yeah, cool, cool, I understand.
-A: So I can look at them at the same time. Do you want to see it on the screen?
-M: It's OK, I've got it open in another tab anyway. So after sequencing, you can have branches, where you say "One thing happens, or another thing happens", or you can string them so you have multiple options. So if you click on example 2 in that dropdown menu. And then click refresh. It takes a little while... there you go, yeah. So in this case, if you look at the language on the left, it says "The Hero goes Home, Or the Hero finds the Sword, Or the Hero dies", so you have those three alternatives. So, you can chain these things together. If you click on Example 3, and then refresh, you can visualise that, which is like a combination of sequences and branches. It will take a little while, because I'm running this on a really slow server. There you go. So you can see the first event is "The Hero goes home", then one of three possibilities: he finds a sword, or he goes to the land of adventure, or he kills the villain. And then he meets the mentor, then he goes home. So this is like one thing after another, and the branches as well. OK?
-A: Yeah.
-M: Cool. So the last thing I need to tell you about is having subtropes, which is when you embed one trope inside of another, it's like a way of creating abstractions with this language. The way you do that is... so for this, you need two tropes, right? So if you go to "Item Search" in the dropdown. Sometimes it doesn't refresh the text box, which is weird. So click on something that isn't "Item Search" in that dropdown. And then click on "Item Search" again. It's not refreshing the text box, that's weird. Just let me check on my end that it's not being overwritten by something. No, it should be OK. I think you have to refresh the page, sadly. So yeah, go to "Item Search" there. Oh.
-A: It's the other one, isn't it?
-M: You might have managed to overwrite that. Hang on... Yeah, it's been overwritten somehow. Let me just put the one I wanted in... Item search. (Clicks frantically). Right, if you refresh the page again, and then go to "Item Search", I've just changed it. There you go. So, that's a very basic "One thing happens, and then there's two branches". But this Trope can be embedded inside another trope. So if you go to the "Kill then Search" trope at the bottom. Oh, that one's been overwritten as well for some reason. That's weird.
-A: I dare not refresh it.
-M: I'll just replace that with what I want as well, hang on a sec. I wonder why that's getting overwritten, that's a bit weird. Yeah, I have to hunt down that bug and see what's going on. So refresh the page, and go to that...
-A: Yeah, I see it. It's called "Item Search", yeah?
-M: Yeah, exactly. So you just say like "Then the", and then the name of the trope in quote marks, and then "Trope Happens". The first... "The Hero goes away, and then the Hero kills the Villain", so one thing after another (the first two events) and then the forking branches from the previous trope happen after that, so it's like you've embedded one trope inside another.
-A: Yeah.
-M: So, those are the basics of the language. I guess you're looking at the document on the other screen, right?
-A: Yeah.
-M: So I've got some tasks there. I've got seven tasks that I'd like you to do. And they're going to get more and more complicated. So the first one is to edit an existing trope that's somewhere. So just select a trope from that dropdown box and change it. So any one of those examples is fine.
-A: Is this one fine, the "Kill then Search"?
-M: Yeah, sure. So, I'm supposed to ask you lots of open-ended questions now. So, as you're doing this I'll ask you some questions. So just start working away.
-A: Uh, so I could. So presumably "Example 1" is the same as "Item Search", I could call that instead?
-M: Hmm, that's an interesting thought. You could try that. I think you have to click "save trope" first. You do, you have to click "save trope" first.
+*Participant:* Yeah, I'm looking at it now.
+*Myself:* Cool. So that's the first example from the document where it says "sequencing". If you click the green button, "refresh", you should be able to see a tree visualisation (or in this case, one thing after another) appear on the right. Can you see that? Before we continue, I need to ask you to do something else. I need to have a screen cast of how you're interacting with this tool. If you go to the top right and click "share screen".
+*Participant:* (tries to share screen). Alright, I've got it.
+*Myself:* Oh yeah, I can see that. That's great. So yeah, if you go there, you can see a visualisation of that. So if you go back to the other tab with the participant information. Not that one... the second link I send you was a description of the language.
+*Participant:* That's what I hid, isn't it?
+*Myself:* Ah no, not there. Go back to the Hangouts text window. So I sent you three links, the second one is the one that describes the language.
+*Participant:* This one?
+*Myself:* Yeah, that's the one. So yeah, being able to see that will help you a bit better. You declare the roles, objects and places, then you can sequence them. So yeah, close this tab and go to the tool. This is the first example in that document, right, where it's just one thing after another, as you can see in the visualisation. Also, if you drag the nodes around in the visualisation, it will change the layout. It's one of those springy graph layouts. Yeah, there you go. So, go back to the document which describes the language.
+*Participant:* I've got it open on another screen.
+*Myself:* Oh yeah, cool, cool, I understand.
+*Participant:* So I can look at them at the same time. Do you want to see it on the screen?
+*Myself:* It's OK, I've got it open in another tab anyway. So after sequencing, you can have branches, where you say "One thing happens, or another thing happens", or you can string them so you have multiple options. So if you click on example 2 in that dropdown menu. And then click refresh. It takes a little while... there you go, yeah. So in this case, if you look at the language on the left, it says "The Hero goes Home, Or the Hero finds the Sword, Or the Hero dies", so you have those three alternatives. So, you can chain these things together. If you click on Example 3, and then refresh, you can visualise that, which is like a combination of sequences and branches. It will take a little while, because I'm running this on a really slow server. There you go. So you can see the first event is "The Hero goes home", then one of three possibilities: he finds a sword, or he goes to the land of adventure, or he kills the villain. And then he meets the mentor, then he goes home. So this is like one thing after another, and the branches as well. OK?
+*Participant:* Yeah.
+*Myself:* Cool. So the last thing I need to tell you about is having subtropes, which is when you embed one trope inside of another, it's like a way of creating abstractions with this language. The way you do that is... so for this, you need two tropes, right? So if you go to "Item Search" in the dropdown. Sometimes it doesn't refresh the text box, which is weird. So click on something that isn't "Item Search" in that dropdown. And then click on "Item Search" again. It's not refreshing the text box, that's weird. Just let me check on my end that it's not being overwritten by something. No, it should be OK. I think you have to refresh the page, sadly. So yeah, go to "Item Search" there. Oh.
+*Participant:* It's the other one, isn't it?
+*Myself:* You might have managed to overwrite that. Hang on... Yeah, it's been overwritten somehow. Let me just put the one I wanted in... Item search. (Clicks frantically). Right, if you refresh the page again, and then go to "Item Search", I've just changed it. There you go. So, that's a very basic "One thing happens, and then there's two branches". But this Trope can be embedded inside another trope. So if you go to the "Kill then Search" trope at the bottom. Oh, that one's been overwritten as well for some reason. That's weird.
+*Participant:* I dare not refresh it.
+*Myself:* I'll just replace that with what I want as well, hang on a sec. I wonder why that's getting overwritten, that's a bit weird. Yeah, I have to hunt down that bug and see what's going on. So refresh the page, and go to that...
+*Participant:* Yeah, I see it. It's called "Item Search", yeah?
+*Myself:* Yeah, exactly. So you just say like "Then the", and then the name of the trope in quote marks, and then "Trope Happens". The first... "The Hero goes away, and then the Hero kills the Villain", so one thing after another (the first two events) and then the forking branches from the previous trope happen after that, so it's like you've embedded one trope inside another.
+*Participant:* Yeah.
+*Myself:* So, those are the basics of the language. I guess you're looking at the document on the other screen, right?
+*Participant:* Yeah.
+*Myself:* So I've got some tasks there. I've got seven tasks that I'd like you to do. And they're going to get more and more complicated. So the first one is to edit an existing trope that's somewhere. So just select a trope from that dropdown box and change it. So any one of those examples is fine.
+*Participant:* Is this one fine, the "Kill then Search"?
+*Myself:* Yeah, sure. So, I'm supposed to ask you lots of open-ended questions now. So, as you're doing this I'll ask you some questions. So just start working away.
+*Participant:* Uh, so I could. So presumably "Example 1" is the same as "Item Search", I could call that instead?
+*Myself:* Hmm, that's an interesting thought. You could try that. I think you have to click "save trope" first. You do, you have to click "save trope" first.
 
 

@@ -3,195 +3,195 @@
 
 Start: 13:20
 
-M: That's everything I have to explain about that language. Do you have any questions about it?
-L: I think it's pretty simple.
-M: OK, cool. So do you have any programming experience at all?
-L: None.
-M: OK, that's good. That's what I wanted. Right, so if you go to the other tab with the information in it. I've got some tasks that I'd like you to do. The first one is just to pick a trope that's already there and edit it in some way. So you can do whatever you want to it. There are some limitations that I have to explain. The first one is that you can only have up to five events long, and I've put that limitation on there because once you have multiple tropes combined, which we haven't done yet but we will do, it can get very complicated, so I've limited it to just five events. So, yeah, pick any of those tropes and change it in some way.
-L: Right. How would you, like, edit it? What would you change, exactly?
-M: So, I guess instead of the Hero killing the Villain, the Hero could meet the Villain, or you could change the name of the Villain to "The Puppy". I don't know. Stuff like that.
-L: That would be quite funny. I might do that one.
-M: OK, cool. So you have to make sure to change it, where it says "The Hero kills the Villain", it has to say: "The Hero kills the Villain Cat", because otherwise it won't work. Ok, so then click "save". Oh yeah, you don't want it to kill the Villain Cat. So, I think it has to be lower case "B". I think it would work either way, actually, but just in case. So click "save", and then "refresh". There you go! Excellent. OK, cool. So that's the first task done. Second task is to create a trope. But just a very simple one which doesn't have any branches. So you can choose the Hero, Villain, or Mentor, and some places, so Home or Evil Lair.
-L: Do I click on "new", or...?
-M: Yeah, create a brand new one, so click on that "new"... there you go. So, type the name first, in the "trope name" box.
-L: Can I go rogue?
-M: Yeah, that's cool.
-L: Now, what was it called? It's not "object". How does...?
-M: This is the name of the trope.
-L: Yep. Oh, trope name? So just "rogue"?
-M: Could you... I think... there used to be a bug where it didn't... so if you have a thing called "Rogue" in the trope, it didn't like that. So could you call it "Rogue trope" or something. I'm not sure if that bug's still there, but just in case, call it "Rogue trope".
-L: Should "trope" be like, capital as well?
-M: It doesn't... yeah, just in case. Yeah.
-L: Trope... save?
-M: Don't save it yet. Type some stuff first. Oh, sorry, so delete those words and type it in the text box above. Don't delete it all, it still needs the name in that trope name.
-L: (laughs). So type "Rogue Trope", and then...
-M: Yeah. And then go into that text box above, and start typing "Rogue is a role", or something like that.
-L: Is it role?
-M: Yeah, that's right.
-L: "Rogue is a role".
-M: Hmm. I think that will work. Yeah, sometimes it doesn't like lots of words. I think that's OK. Probably. We'll see.
-L: Should I save it or carry on?
-M: Yeah actually, save it, and then actually go to edit and choose the trope from there. And that way, when you save it you can visualise it. There you go: "Rogue Trope". So actually, if you try to visualise it now, nothing will appear because there's no events.
-L: No. There's no events happening. We need an event.
-M: Yeah.
-L: I think I have to click... for some reason it's stuck on the first...
-M: It's stuck?
-L: It's like frozen.
-M: Oh, that's weird. Oh, it's alright now. OK. Haven't seen that before.
-L: Carry on. So now what?
-M: Oh wait. Oh no, this is OK. In the first task I was limiting you to certain character roles, but I think it's OK. Just keep doing your own thing, it's fine.
-L: Don't know how "Rogue" came to my head, I was like "yay!". Um, so... What would I type? So, like, "Rogue searches for Knife", or...?
-M: Yeah, that's fine. I think Knife has to be capital "K".
-L: Oh yeah.
-M: See if that works. Oh, get rid of the space at the end of that line. Yeah. OK. Save that and see... oh. Click refresh just in case.
-L: "Compile error"!
-M: So it's not a very useful error message, sadly. Because it was difficult to get anything more useful than that. It might... so there's a couple of things it might not like. For starters, you've put "Knife", but not "Knife of Immense Power", where "Rogue searches for Knife". That might be that. I have a feeling there might be other problems, though. But try that, then click "save", and then "refresh".
-L: No. Maybe it just doesn't like the word "rogue".
-M: No, I think "rogue" should be fine. So delete... just call it "Knife" rather than "Knife of Immense Power".
-L: Aww.
-M: Because it might not like that.
-L: Gets rid of all the creativity!
-M: OK, save and refresh.
-L: Nope, compile error.
-M: No, OK. Try "The Rogue is a role, The Knife is an object".
-L: With a capital Knife? Capital K?
-M: It shouldn't make a difference, but... and then "The Rogue searches for the Knife". Yeah, try that. Ah, OK. It's still not working. I will have a look at your trope and see if I can get it working. "The Rogue searches for the Knife", "The Rogue"... It might not like... hmm. It should like "searches for", though, I'm sure I've used that before.
-L: It sort of went purple.
-M: Ah, yeah, I'm actually using the syntax highlighting for a different language, so it doesn't mean anything, unfortunately. OK, "looks for" is OK. Hang on. "Search"... it doesn't like "searches for", but it likes "looks for" for some reason. So save that and refresh. Ah, that's weird. Why... I don't know why that is. So I...
-L: Look Rogue knife?
-M: Oh yeah, yeah. Again because the verb is always at the beginning. So it's like "The Rogue looks for the knife". OK, keep going. Strange that it doesn't like "searches for", but "looks for" is alright. Oh yeah, so try putting that in, yeah.
-L: Otherwise the Knife is a bit boring. (indistinct)
-M: OK, see if that works.
-L: No!
-M: OK. Try the "Knife of Power", because that...
-L: Knife of Power! No, it just doesn't like knives of power at all.
-M: That's weird. I wonder why that is. I think I just limited it to two words for names of things, sadly. So you can call it "Power Knife". It's not very creative, sadly. Although no, I didn't do that, because "Land of Adventure" is three words.
-L: Yeah.
-M: Hmm, I'm not sure why that... hang on. Oh no, it DOES like "Knife of Power". Hang on... So I'm editing it myself here.
-L: Yeah yeah. "Knife of Power"! (indistinct)
-M: So it doesn't like "Knife of Immense Power", but "Knife of Power"... it's OK if "Power" has a capital "P". So hang on, I think that's what I've done, I've said "Every word has to be capitalised". But then "of" is OK.
-L: Yeah, because it's a combine-y thingy, isn't it.
-M: Yeah, but I haven't told it that. Ah yeah, so yeah, "Knife of Immense Power" is fine if "Immense" and "Power" have capital letters at the start.
-L: Oh yay! OK, cool. I like it.
-M: Cool.
-L: "Knife of Immense Power"!
-M: Cool. Nice. So what happens next?
-L: Ah, "Compile error".
-M: Hmm. Try deleting the line at the end, the blank line. Oh! No, I know what it is. So it doesn't like it when these declarations, when you say "The Vendor is a role", that has to be before anything else, that has to be before any event. Save that and refresh. OK, cool. Alright, I think that's enough. So if we go to task 3. Oh you've kind of done that already, it's adding objects to your trope. So let's go to task 4: add branches to your trope. So add some kind of branching event where something happens or something else happens.
-L: A branch...
-M: So to do that, on the next line you do "Or something else happens", but you have to do two spaces and then "Or". OK, that sounds good. OK. Oh no! "Evil People is a role"... try "The Evil People is a role". That doesn't make sense.
-L: Evil People! "The Evil People"... oh yeah, because there's that down here.
-M: Yeah, I think that's confusing it. OK, OK, cool. So the way I did program this, or at least so I thought, was that it ignores the "the"s, but it isn't ignoring them. Or it's... I guess it's ignoring them if they're there, but it's expecting them to be there, which isn't what we want.
-L: This one's a capital "The".
-M: I think in the case of the... it doesn't matter if it's capital or not. But it just wants the "the"s to be there. Which is annoying. Alright, I'll have to fix that. OK, so that's good. You've got the branching going, that's great. Oh, so task five. This is cool. If you scroll up to the top of the page. So this is where you want to combine two tropes together. So click on the "arrange" tab there. So you've got your trope there. If you want to combine that with another trope, click "+", and then choose one of the other ones. Preferably a simple one, like "Example 1". Then we can... because it takes a little while actually. Because there's complicated stuff going on underneath where it's combining everything. And then you'll see, you'll get this big tree appear... eventually. There you go. So this is all the different possibilities, combining these tropes together.
-L: Wow! That's pretty cool.
-M: And if you zoom in, so if you scroll... hover over and scroll up. Put your mouse over the visualisation and scroll up with your scroll wheel.
-L: Oh!
-M: Oh no, it's not doing it, though. Do you have a mouse?
-L: I have, like, a laptop.
-M: Can you scroll... do you know how to scroll with your touchpad, your trackpad on the laptop?
-L: Yes, it's like this, but it's not doing it.
-M: Oh, that's not good. I guess you could do it without scrolling. But you can see that there's the blue lines and the red lines. And the blue lines are one of those tropes. I can't quite read it. And the red lines are the other. So you can see which event follows which trope, according to each decision.
-L: Even the writing itself is tiny.
-M: Yeah. You should be able to zoom in, but it's not working.
-L: Ooh, I got closer somehow.
-M: Ah yeah, it should be if you scroll up, or try scrolling down. It's not doing it though, that's weird. You could try... let's see. No, I don't know what else would do it. I think scrolling is the only way. You've managed to do it somehow, mysteriously.
-L: Mysteriously! Don't ask me how, I do not know.
-M: OK cool, so you've combined two tropes. You can try combining other ones now. So instead of example 1, you could try a more complicated one. But it might take a little while. Example 3 was pretty complicated.
-L: I'm going to do 2. Ooh, nice!
-M: Yeah.
-L: That's pretty cool.
-M: Cool. Alright, so the next task is... I want to to take your existing trope and embed that into another trope. So create a new trope. And give it a new name.
-L: I guess let's go stereotypes.
-M: The Princess trope... oh good. OK. Actually, if you go to edit, see if it appears. Sometimes if it doesn't compile, it gives it a blank name, which you don't want. Oh, it's given it a blank name. OK, go back to "new", and put some stuff in there like "Princess is a role". OK, and then click "save", and then go back to "edit".
-L: Nope.
-M: Hmm. Put a first event in there. Go back to "new". I'll just go and delete those blank ones. Sorry?
-L: "The Princess is a"... ah.
-M: I think you have to put some event in there. Oh no, it's saved that one. I guess it has to have... so if you go to "edit", and select the "Princess Trope", it's appeared there.
-L: Cool.
-M: I think it has.
-L: We'll find out.
-M: Yeah.
-L: Oh yeah, it's there twice.
-M: OK, cool. Choose one of them. Oh, actually delete one of them, it might get confused.
-L: Yep.
-M: OK, so now add some kind of events in there.
-L: Um. Ah - "Compile Error".
-M: "The Princess hits the Guard"... oh, that's strange, that should work. OK, "hits the Guard", I don't know why it doesn't like that. Try lowercase "t" rather than capital "T". Try that. Oh, that's weird. It wanted a lowercase "t". Alright, OK. Add another event.
-L: Cool. "Get Princess Key"!
-M: So with the "Or", it has to be capital "O".
-L: Plus two spaces.
-M: Yeah, that's right.
-L: That the one?
-M: Yeah, that's right. OK, save... oh.
-L: "Compile error", oh wait...
-M: Oh no, it's OK. "Princess hits the Guard"... ah, yeah another thing is it looks like... so the verb is always the first word, but then those words, it always puts in alphabetical order I think, so it looks the "Princess hits the Guard" is the same as "The Guard hits the Princess". That's not a great representation. Ah, OK, never mind. Alright, so, for your last event, put like 'Then the "Rogue Trope" happens". So maybe delete the spaces and put "Then the"...
-L: Capital "Then", or...?
-M: Oh yeah, capital "T". And "Rogue Trope" has to be in double quotes.
-L: Oh yeah.
-M: "Rogue Trope"... I think you have to put 'The "Rogue Trope" trope happens". Which is a bit redundant. Trope has to be lowercase "t".
-L: OK.
-M: OK, see if that works.
-L: "Compile error"!
-M: No! Huh, OK. Yeah, I'm not sure why that's not working. Try... so instead of that branch of "Or the Guard hits the Princess", try just putting "The Guard hits the Princess".
-L: "The Guard hits the Princess".
-M: Yeah.
-L: Nope.
-M: Oh, that's weird.
-L: Oh wait... yes.
-M: Oh, it's OK. OK. Should have tested this a bit more. I'll have to fix this. So it doesn't like there being some kind of branch before when it puts the sub-tropes in. OK. That's good to know. What else? So we've done task 6. OK, for task 7, just mess around with that and combining tropes with the "arrange" thing. So try creating a story for yourself and combining them together using existing tropes, or you can create some more if you want. Using that "arrange" tab from before.
-L: But how can I edit, like, the Rogue trope, do I have to go back to the Rogue Trope?
-M: Yeah, you do. So notice that you've got five events total when you combine those tropes together. So you can't have any more events.
-L: Ah. Can I have an "Or"?
-M: You can, yeah, you can add more "Or"s. It looked like it was going to work, but it's not any more. Oh it's because you haven't put "The Princess is a role" at the top.
-L: Oh, OK. Nice.
-M: Cool. Do you want to try clicking on the "arrange" tab and combining tropes together?
-L: OK. Plus... it's kind of like combining two already though, hasn't it?
-M: Yeah, yeah. Kind of. But it's put them in a kind of strict sequence, so that one always happens after the others, but this kind of merges them all together.
-L: Right. So, Example 3.
-M: It sometimes takes a little while. I think Example 3 was quite complicated, so it will be interesting to see what emerges.
-L: I'll have no idea though, because it'll be too small.
-M: Oh yeah, that's a good point. This one might be really small. When it does appear.
-L: It's taking a long time.
-M: Hmm. OK, I'll ask you some questions while we're waiting for that. So, do you think that this language is easy to pick up as a non-programmer? Is it easy to learn?
-L: Yes, but obviously I needed your help sometimes because I didn't know why it wasn't working.
-M: Yeah, OK. So imagine all the bugs have disappeared. So in that case, do you think it would be easy to use?
-L: Yes, I would say so.
-M: OK, cool. OK, great. So do you think that composing stories out of tropes like this is a convenient way to make stories?
-L: I'd say yes, but I think that it also helps that I am a creative writer, so I automatically think of a story pattern.
-M: Hmm, OK.
-L: So like creating a story pattern on the builder is a lot easier, because I know how to, like, combine them. So in my head, I always view that the Princess will meet the Rogue eventually. And I had to create the second trope.
-M: OK, so, I think that's good because it is kind of designed more towards creative thinkers and story authors rather than programmers. So it's good that that helps.
-L: Like if I didn't have that already in my head, I don't know... I think I'd be a bit more lost.
-M: OK. Is there anything you think that would be difficult to describe with tropes?
-L: I dunno, everything is a trope, though.
-M: Oh, it's finally done it! It took a while.
-L: It's tiny.
-M: OK, I guess if you can't zoom in, we can't really see the details. That's a shame. So, OK, do you think there are tropes you wouldn't be able to describe with this language?
-L: Probably if you wanted characters who aren't basic characters like the Princess and the Rogue. It might be a bit more tricky. Like if you want characters that are multi-layered as well, like the Princess, but she's also a Ninja, then you've got to say like "The Ninja Princess".
-M: Yeah, I understand what you're saying. You want something in there which describes how a certain character behaves, right? Because she's a Princess, she does this, etc.
-L: Yeah, but like say also in storytelling you don't reveal everything at once. So like, normally she'd be a princess until it's suddenly revealed that she's a ninja.
-M: Ah OK. So, she's not a ninja from the beginning, she can become a ninja at some point in the story. Well, she is a ninja at the beginning but it's not revealed until later.
-L: Yeah, but you don't know.
-M: Yeah, OK, interesting.
-L: The same with like, "The Knife of Immense Power", you don't know if "The Knife of Immense Power" has a fallback that creates, like the person who touches it turns evil, then say the rogue would become "The Evil Rogue", but like the system wouldn't recognise that.
-M: Hmm, I see. Yeah, so you'd want something... not only would you want a character to be able to change roles at some point in the story, you'd want something like an object which can do that. Yeah, OK, I see.
-L: And like, "object development", I guess. It's the biggest part in the story is like the build-up and the reveal. You can't really reveal when it's written in from the beginning.
-M: Yeah, that's a good point. OK, cool. Do you have any other general thoughts about this tool? Do you think it's useful to be able to visualise this story like this?
-L: I think it's very useful, but obviously it'd be handy if I can actually see it.
-M: Yeah, sadly, you can zoom in on it, but if you have a mouse with a scrollwheel, I think.
-L: Yeah, which I don't.
-M: OK.
-L: It's a bit like, laptop bias.
-M: Yeah, I guess so. I can do it with my laptop, but I've got like the two-finger scroll thing, which works OK, where you drag two fingers over the trackpad. But that doesn't work on every laptop I think.
-L: Mine only does, like, the sidebar. It doesn't...
-M: Ah, OK. I think that's a Windows...
-L: Ah wait! It works.
-M: Hey!
-L: So what you said literally works, that's perfect.
-M: So you can see you've got the three tropes there, you've got a green line as well as the... ah because yeah, the "Princess Trope" includes the "Rogue Trope". Cool.
-L: Fun times. I'm so glad we discovered this. So as long as someone knows about the two scrolly-thingies, and it works, it's fine.
-M: OK, cool. I'll stop recording now.
+*Myself:* That's everything I have to explain about that language. Do you have any questions about it?
+*Participant:* I think it's pretty simple.
+*Myself:* OK, cool. So do you have any programming experience at all?
+*Participant:* None.
+*Myself:* OK, that's good. That's what I wanted. Right, so if you go to the other tab with the information in it. I've got some tasks that I'd like you to do. The first one is just to pick a trope that's already there and edit it in some way. So you can do whatever you want to it. There are some limitations that I have to explain. The first one is that you can only have up to five events long, and I've put that limitation on there because once you have multiple tropes combined, which we haven't done yet but we will do, it can get very complicated, so I've limited it to just five events. So, yeah, pick any of those tropes and change it in some way.
+*Participant:* Right. How would you, like, edit it? What would you change, exactly?
+*Myself:* So, I guess instead of the Hero killing the Villain, the Hero could meet the Villain, or you could change the name of the Villain to "The Puppy". I don't know. Stuff like that.
+*Participant:* That would be quite funny. I might do that one.
+*Myself:* OK, cool. So you have to make sure to change it, where it says "The Hero kills the Villain", it has to say: "The Hero kills the Villain Cat", because otherwise it won't work. Ok, so then click "save". Oh yeah, you don't want it to kill the Villain Cat. So, I think it has to be lower case "B". I think it would work either way, actually, but just in case. So click "save", and then "refresh". There you go! Excellent. OK, cool. So that's the first task done. Second task is to create a trope. But just a very simple one which doesn't have any branches. So you can choose the Hero, Villain, or Mentor, and some places, so Home or Evil Lair.
+*Participant:* Do I click on "new", or...?
+*Myself:* Yeah, create a brand new one, so click on that "new"... there you go. So, type the name first, in the "trope name" box.
+*Participant:* Can I go rogue?
+*Myself:* Yeah, that's cool.
+*Participant:* Now, what was it called? It's not "object". How does...?
+*Myself:* This is the name of the trope.
+*Participant:* Yep. Oh, trope name? So just "rogue"?
+*Myself:* Could you... I think... there used to be a bug where it didn't... so if you have a thing called "Rogue" in the trope, it didn't like that. So could you call it "Rogue trope" or something. I'm not sure if that bug's still there, but just in case, call it "Rogue trope".
+*Participant:* Should "trope" be like, capital as well?
+*Myself:* It doesn't... yeah, just in case. Yeah.
+*Participant:* Trope... save?
+*Myself:* Don't save it yet. Type some stuff first. Oh, sorry, so delete those words and type it in the text box above. Don't delete it all, it still needs the name in that trope name.
+*Participant:* (laughs). So type "Rogue Trope", and then...
+*Myself:* Yeah. And then go into that text box above, and start typing "Rogue is a role", or something like that.
+*Participant:* Is it role?
+*Myself:* Yeah, that's right.
+*Participant:* "Rogue is a role".
+*Myself:* Hmm. I think that will work. Yeah, sometimes it doesn't like lots of words. I think that's OK. Probably. We'll see.
+*Participant:* Should I save it or carry on?
+*Myself:* Yeah actually, save it, and then actually go to edit and choose the trope from there. And that way, when you save it you can visualise it. There you go: "Rogue Trope". So actually, if you try to visualise it now, nothing will appear because there's no events.
+*Participant:* No. There's no events happening. We need an event.
+*Myself:* Yeah.
+*Participant:* I think I have to click... for some reason it's stuck on the first...
+*Myself:* It's stuck?
+*Participant:* It's like frozen.
+*Myself:* Oh, that's weird. Oh, it's alright now. OK. Haven't seen that before.
+*Participant:* Carry on. So now what?
+*Myself:* Oh wait. Oh no, this is OK. In the first task I was limiting you to certain character roles, but I think it's OK. Just keep doing your own thing, it's fine.
+*Participant:* Don't know how "Rogue" came to my head, I was like "yay!". Um, so... What would I type? So, like, "Rogue searches for Knife", or...?
+*Myself:* Yeah, that's fine. I think Knife has to be capital "K".
+*Participant:* Oh yeah.
+*Myself:* See if that works. Oh, get rid of the space at the end of that line. Yeah. OK. Save that and see... oh. Click refresh just in case.
+*Participant:* "Compile error"!
+*Myself:* So it's not a very useful error message, sadly. Because it was difficult to get anything more useful than that. It might... so there's a couple of things it might not like. For starters, you've put "Knife", but not "Knife of Immense Power", where "Rogue searches for Knife". That might be that. I have a feeling there might be other problems, though. But try that, then click "save", and then "refresh".
+*Participant:* No. Maybe it just doesn't like the word "rogue".
+*Myself:* No, I think "rogue" should be fine. So delete... just call it "Knife" rather than "Knife of Immense Power".
+*Participant:* Aww.
+*Myself:* Because it might not like that.
+*Participant:* Gets rid of all the creativity!
+*Myself:* OK, save and refresh.
+*Participant:* Nope, compile error.
+*Myself:* No, OK. Try "The Rogue is a role, The Knife is an object".
+*Participant:* With a capital Knife? Capital K?
+*Myself:* It shouldn't make a difference, but... and then "The Rogue searches for the Knife". Yeah, try that. Ah, OK. It's still not working. I will have a look at your trope and see if I can get it working. "The Rogue searches for the Knife", "The Rogue"... It might not like... hmm. It should like "searches for", though, I'm sure I've used that before.
+*Participant:* It sort of went purple.
+*Myself:* Ah, yeah, I'm actually using the syntax highlighting for a different language, so it doesn't mean anything, unfortunately. OK, "looks for" is OK. Hang on. "Search"... it doesn't like "searches for", but it likes "looks for" for some reason. So save that and refresh. Ah, that's weird. Why... I don't know why that is. So I...
+*Participant:* Look Rogue knife?
+*Myself:* Oh yeah, yeah. Again because the verb is always at the beginning. So it's like "The Rogue looks for the knife". OK, keep going. Strange that it doesn't like "searches for", but "looks for" is alright. Oh yeah, so try putting that in, yeah.
+*Participant:* Otherwise the Knife is a bit boring. (indistinct)
+*Myself:* OK, see if that works.
+*Participant:* No!
+*Myself:* OK. Try the "Knife of Power", because that...
+*Participant:* Knife of Power! No, it just doesn't like knives of power at all.
+*Myself:* That's weird. I wonder why that is. I think I just limited it to two words for names of things, sadly. So you can call it "Power Knife". It's not very creative, sadly. Although no, I didn't do that, because "Land of Adventure" is three words.
+*Participant:* Yeah.
+*Myself:* Hmm, I'm not sure why that... hang on. Oh no, it DOES like "Knife of Power". Hang on... So I'm editing it myself here.
+*Participant:* Yeah yeah. "Knife of Power"! (indistinct)
+*Myself:* So it doesn't like "Knife of Immense Power", but "Knife of Power"... it's OK if "Power" has a capital "P". So hang on, I think that's what I've done, I've said "Every word has to be capitalised". But then "of" is OK.
+*Participant:* Yeah, because it's a combine-y thingy, isn't it.
+*Myself:* Yeah, but I haven't told it that. Ah yeah, so yeah, "Knife of Immense Power" is fine if "Immense" and "Power" have capital letters at the start.
+*Participant:* Oh yay! OK, cool. I like it.
+*Myself:* Cool.
+*Participant:* "Knife of Immense Power"!
+*Myself:* Cool. Nice. So what happens next?
+*Participant:* Ah, "Compile error".
+*Myself:* Hmm. Try deleting the line at the end, the blank line. Oh! No, I know what it is. So it doesn't like it when these declarations, when you say "The Vendor is a role", that has to be before anything else, that has to be before any event. Save that and refresh. OK, cool. Alright, I think that's enough. So if we go to task 3. Oh you've kind of done that already, it's adding objects to your trope. So let's go to task 4: add branches to your trope. So add some kind of branching event where something happens or something else happens.
+*Participant:* A branch...
+*Myself:* So to do that, on the next line you do "Or something else happens", but you have to do two spaces and then "Or". OK, that sounds good. OK. Oh no! "Evil People is a role"... try "The Evil People is a role". That doesn't make sense.
+*Participant:* Evil People! "The Evil People"... oh yeah, because there's that down here.
+*Myself:* Yeah, I think that's confusing it. OK, OK, cool. So the way I did program this, or at least so I thought, was that it ignores the "the"s, but it isn't ignoring them. Or it's... I guess it's ignoring them if they're there, but it's expecting them to be there, which isn't what we want.
+*Participant:* This one's a capital "The".
+*Myself:* I think in the case of the... it doesn't matter if it's capital or not. But it just wants the "the"s to be there. Which is annoying. Alright, I'll have to fix that. OK, so that's good. You've got the branching going, that's great. Oh, so task five. This is cool. If you scroll up to the top of the page. So this is where you want to combine two tropes together. So click on the "arrange" tab there. So you've got your trope there. If you want to combine that with another trope, click "+", and then choose one of the other ones. Preferably a simple one, like "Example 1". Then we can... because it takes a little while actually. Because there's complicated stuff going on underneath where it's combining everything. And then you'll see, you'll get this big tree appear... eventually. There you go. So this is all the different possibilities, combining these tropes together.
+*Participant:* Wow! That's pretty cool.
+*Myself:* And if you zoom in, so if you scroll... hover over and scroll up. Put your mouse over the visualisation and scroll up with your scroll wheel.
+*Participant:* Oh!
+*Myself:* Oh no, it's not doing it, though. Do you have a mouse?
+*Participant:* I have, like, a laptop.
+*Myself:* Can you scroll... do you know how to scroll with your touchpad, your trackpad on the laptop?
+*Participant:* Yes, it's like this, but it's not doing it.
+*Myself:* Oh, that's not good. I guess you could do it without scrolling. But you can see that there's the blue lines and the red lines. And the blue lines are one of those tropes. I can't quite read it. And the red lines are the other. So you can see which event follows which trope, according to each decision.
+*Participant:* Even the writing itself is tiny.
+*Myself:* Yeah. You should be able to zoom in, but it's not working.
+*Participant:* Ooh, I got closer somehow.
+*Myself:* Ah yeah, it should be if you scroll up, or try scrolling down. It's not doing it though, that's weird. You could try... let's see. No, I don't know what else would do it. I think scrolling is the only way. You've managed to do it somehow, mysteriously.
+*Participant:* Mysteriously! Don't ask me how, I do not know.
+*Myself:* OK cool, so you've combined two tropes. You can try combining other ones now. So instead of example 1, you could try a more complicated one. But it might take a little while. Example 3 was pretty complicated.
+*Participant:* I'm going to do 2. Ooh, nice!
+*Myself:* Yeah.
+*Participant:* That's pretty cool.
+*Myself:* Cool. Alright, so the next task is... I want to to take your existing trope and embed that into another trope. So create a new trope. And give it a new name.
+*Participant:* I guess let's go stereotypes.
+*Myself:* The Princess trope... oh good. OK. Actually, if you go to edit, see if it appears. Sometimes if it doesn't compile, it gives it a blank name, which you don't want. Oh, it's given it a blank name. OK, go back to "new", and put some stuff in there like "Princess is a role". OK, and then click "save", and then go back to "edit".
+*Participant:* Nope.
+*Myself:* Hmm. Put a first event in there. Go back to "new". I'll just go and delete those blank ones. Sorry?
+*Participant:* "The Princess is a"... ah.
+*Myself:* I think you have to put some event in there. Oh no, it's saved that one. I guess it has to have... so if you go to "edit", and select the "Princess Trope", it's appeared there.
+*Participant:* Cool.
+*Myself:* I think it has.
+*Participant:* We'll find out.
+*Myself:* Yeah.
+*Participant:* Oh yeah, it's there twice.
+*Myself:* OK, cool. Choose one of them. Oh, actually delete one of them, it might get confused.
+*Participant:* Yep.
+*Myself:* OK, so now add some kind of events in there.
+*Participant:* Um. Ah - "Compile Error".
+*Myself:* "The Princess hits the Guard"... oh, that's strange, that should work. OK, "hits the Guard", I don't know why it doesn't like that. Try lowercase "t" rather than capital "T". Try that. Oh, that's weird. It wanted a lowercase "t". Alright, OK. Add another event.
+*Participant:* Cool. "Get Princess Key"!
+*Myself:* So with the "Or", it has to be capital "O".
+*Participant:* Plus two spaces.
+*Myself:* Yeah, that's right.
+*Participant:* That the one?
+*Myself:* Yeah, that's right. OK, save... oh.
+*Participant:* "Compile error", oh wait...
+*Myself:* Oh no, it's OK. "Princess hits the Guard"... ah, yeah another thing is it looks like... so the verb is always the first word, but then those words, it always puts in alphabetical order I think, so it looks the "Princess hits the Guard" is the same as "The Guard hits the Princess". That's not a great representation. Ah, OK, never mind. Alright, so, for your last event, put like 'Then the "Rogue Trope" happens". So maybe delete the spaces and put "Then the"...
+*Participant:* Capital "Then", or...?
+*Myself:* Oh yeah, capital "T". And "Rogue Trope" has to be in double quotes.
+*Participant:* Oh yeah.
+*Myself:* "Rogue Trope"... I think you have to put 'The "Rogue Trope" trope happens". Which is a bit redundant. Trope has to be lowercase "t".
+*Participant:* OK.
+*Myself:* OK, see if that works.
+*Participant:* "Compile error"!
+*Myself:* No! Huh, OK. Yeah, I'm not sure why that's not working. Try... so instead of that branch of "Or the Guard hits the Princess", try just putting "The Guard hits the Princess".
+*Participant:* "The Guard hits the Princess".
+*Myself:* Yeah.
+*Participant:* Nope.
+*Myself:* Oh, that's weird.
+*Participant:* Oh wait... yes.
+*Myself:* Oh, it's OK. OK. Should have tested this a bit more. I'll have to fix this. So it doesn't like there being some kind of branch before when it puts the sub-tropes in. OK. That's good to know. What else? So we've done task 6. OK, for task 7, just mess around with that and combining tropes with the "arrange" thing. So try creating a story for yourself and combining them together using existing tropes, or you can create some more if you want. Using that "arrange" tab from before.
+*Participant:* But how can I edit, like, the Rogue trope, do I have to go back to the Rogue Trope?
+*Myself:* Yeah, you do. So notice that you've got five events total when you combine those tropes together. So you can't have any more events.
+*Participant:* Ah. Can I have an "Or"?
+*Myself:* You can, yeah, you can add more "Or"s. It looked like it was going to work, but it's not any more. Oh it's because you haven't put "The Princess is a role" at the top.
+*Participant:* Oh, OK. Nice.
+*Myself:* Cool. Do you want to try clicking on the "arrange" tab and combining tropes together?
+*Participant:* OK. Plus... it's kind of like combining two already though, hasn't it?
+*Myself:* Yeah, yeah. Kind of. But it's put them in a kind of strict sequence, so that one always happens after the others, but this kind of merges them all together.
+*Participant:* Right. So, Example 3.
+*Myself:* It sometimes takes a little while. I think Example 3 was quite complicated, so it will be interesting to see what emerges.
+*Participant:* I'll have no idea though, because it'll be too small.
+*Myself:* Oh yeah, that's a good point. This one might be really small. When it does appear.
+*Participant:* It's taking a long time.
+*Myself:* Hmm. OK, I'll ask you some questions while we're waiting for that. So, do you think that this language is easy to pick up as a non-programmer? Is it easy to learn?
+*Participant:* Yes, but obviously I needed your help sometimes because I didn't know why it wasn't working.
+*Myself:* Yeah, OK. So imagine all the bugs have disappeared. So in that case, do you think it would be easy to use?
+*Participant:* Yes, I would say so.
+*Myself:* OK, cool. OK, great. So do you think that composing stories out of tropes like this is a convenient way to make stories?
+*Participant:* I'd say yes, but I think that it also helps that I am a creative writer, so I automatically think of a story pattern.
+*Myself:* Hmm, OK.
+*Participant:* So like creating a story pattern on the builder is a lot easier, because I know how to, like, combine them. So in my head, I always view that the Princess will meet the Rogue eventually. And I had to create the second trope.
+*Myself:* OK, so, I think that's good because it is kind of designed more towards creative thinkers and story authors rather than programmers. So it's good that that helps.
+*Participant:* Like if I didn't have that already in my head, I don't know... I think I'd be a bit more lost.
+*Myself:* OK. Is there anything you think that would be difficult to describe with tropes?
+*Participant:* I dunno, everything is a trope, though.
+*Myself:* Oh, it's finally done it! It took a while.
+*Participant:* It's tiny.
+*Myself:* OK, I guess if you can't zoom in, we can't really see the details. That's a shame. So, OK, do you think there are tropes you wouldn't be able to describe with this language?
+*Participant:* Probably if you wanted characters who aren't basic characters like the Princess and the Rogue. It might be a bit more tricky. Like if you want characters that are multi-layered as well, like the Princess, but she's also a Ninja, then you've got to say like "The Ninja Princess".
+*Myself:* Yeah, I understand what you're saying. You want something in there which describes how a certain character behaves, right? Because she's a Princess, she does this, etc.
+*Participant:* Yeah, but like say also in storytelling you don't reveal everything at once. So like, normally she'd be a princess until it's suddenly revealed that she's a ninja.
+*Myself:* Ah OK. So, she's not a ninja from the beginning, she can become a ninja at some point in the story. Well, she is a ninja at the beginning but it's not revealed until later.
+*Participant:* Yeah, but you don't know.
+*Myself:* Yeah, OK, interesting.
+*Participant:* The same with like, "The Knife of Immense Power", you don't know if "The Knife of Immense Power" has a fallback that creates, like the person who touches it turns evil, then say the rogue would become "The Evil Rogue", but like the system wouldn't recognise that.
+*Myself:* Hmm, I see. Yeah, so you'd want something... not only would you want a character to be able to change roles at some point in the story, you'd want something like an object which can do that. Yeah, OK, I see.
+*Participant:* And like, "object development", I guess. It's the biggest part in the story is like the build-up and the reveal. You can't really reveal when it's written in from the beginning.
+*Myself:* Yeah, that's a good point. OK, cool. Do you have any other general thoughts about this tool? Do you think it's useful to be able to visualise this story like this?
+*Participant:* I think it's very useful, but obviously it'd be handy if I can actually see it.
+*Myself:* Yeah, sadly, you can zoom in on it, but if you have a mouse with a scrollwheel, I think.
+*Participant:* Yeah, which I don't.
+*Myself:* OK.
+*Participant:* It's a bit like, laptop bias.
+*Myself:* Yeah, I guess so. I can do it with my laptop, but I've got like the two-finger scroll thing, which works OK, where you drag two fingers over the trackpad. But that doesn't work on every laptop I think.
+*Participant:* Mine only does, like, the sidebar. It doesn't...
+*Myself:* Ah, OK. I think that's a Windows...
+*Participant:* Ah wait! It works.
+*Myself:* Hey!
+*Participant:* So what you said literally works, that's perfect.
+*Myself:* So you can see you've got the three tropes there, you've got a green line as well as the... ah because yeah, the "Princess Trope" includes the "Rogue Trope". Cool.
+*Participant:* Fun times. I'm so glad we discovered this. So as long as someone knows about the two scrolly-thingies, and it works, it's fine.
+*Myself:* OK, cool. I'll stop recording now.
 
 
 

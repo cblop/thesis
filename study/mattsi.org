@@ -2,203 +2,203 @@
 
 Start: 6:23
 
-M: Right, so have you got any questions about that language?
-J: It just occurred to me: what happens if you do it recursively? What if "Item Search" also calls "Kill Then Search"? Presumably it would get...
-M: Uhh, yeah that's a very good question. That's a really good question! OK, you can try it out. If you go to "Item Search"...
-J: Let me just copy the name of this one, "Kill then Search".
-M: I have a feeling it will not work, because this is very brittle. So yeah, put 'Then the "Kill then Search"'... and the "Kill then Search" has to be in quotes... "...trope happens".
-J: "...trope happens". Is that right?
-M: Yeah. Save that.
-J: Uhh... "save trope".
-M: And then click "refresh".
-J: Ah, OK. It's just ignored it, basically. It seems to have just thrown that one out.
-M: Ah, that's lucky. That's good. As long as that's not broken my thing running on the server, then that's great. I wonder. I'll try that later and see what's happening in the background. Because it shouldn't just ignore it. But I'm glad it hasn't broken it. Right, so that's good, that's actually a good thing to bring up, which I kind of hadn't considered. So yeah, save that one and do that again. So one thing I should mention is that this is like a really basic proof of concept, I've got limited time to do this, so I've really implemented the very basics of this language. There's stuff that you're going to notice which would be a good idea to put in. And that's actually part of the point of this study, is like, just for you to identify what I should be adding to this language. Because I've just put these basics, you know, just events, one after another, and then very simple branching, and then calling other tropes. But, yeah, I'd like to hear your opinion about what's missing. OK, so we'll start with these tasks. Also, yeah, there are lots of bugs, which I'll point out some of them ahead of time. So task 1 is: edit an existing trope, so select perhaps one of the simple ones like the example tropes, and just edit it to change it however you want.
-J: OK, cool.
-M: Did you... the "Home" declaration has disappeared. Was that not there before?
-J: Oh, yeah. I don't think I changed that.
-M: "The Hero goes Home"... hmm. Somehow it still works, though. Oh, OK. It's because when I put it in... so every time I do a study, I copy and paste this in from somewhere. And what it's done is it thinks "go home" is a verb with two words. So it kind of still visualises it. So yeah, actually, could you put in that declaration of home, "Home is a place"?
-J: Yeah OK, so lowercase "place".
-M: Yeah.
-J: Is it "The" Home is a place?
-M: "Home is a place"... either should work. But just put "Home". Oh no, it's still using the old one. You have to click "save", then "refresh".
-J: Oh, OK.
-M: Yeah, "go_hero_home", cool.
-J: "go_hero_home", makes sense. Cool. Erm, so I could do something like: "Sword is an object, Home is a place", er, "Danger Mountain is a place". How's it going to deal with that space, is it going to be OK with that?
-M: It should be OK with that.
-J: Er, "The Hero goes Danger Mountain".
-M: You might want "goes TO Danger Mountain". Well, see if that works. It might do, it might not. So save it, and click "refresh". I think it's OK. Yeah, there you go. "go_hero_dangerMountain".
-J: Oh, OK. Cool. "Hero goes to Danger Mountain". Erm, yeah, "Then he finds the Sword, or the Hero dies". Can you sub-say, can you say "The Hero finds the Sword", and then does something, or something else? Like, it gets confusing with the nesting, doesn't it, because that's one level of nesting, but can you go to a second level of nesting?
-M: Ah, sadly not, because I've kind of limited it so that there's only one level of nesting. Which is very limited.
-J: Otherwise it would get very complicated, wouldn't it?
-M: Yeah, but I think that is actually essential if I want to have like a proper branching thing eventually. It's something that I didn't really realise until I started doing these studies. But yeah, I think that is something that's come up that I'll have to add to this language after.
-J: Makes sense. Erm, "The Hero finds a Sword, Or the Hero dies".
-M: Ah, that's enough actually if you...
-J: Cool.
-M: So that's the first task done. Do you have any general comments so far about... do you think that this language would be easy to learn for someone who hasn't done any programming before?
-J: Yeah. I think in some ways it might be easier for someone who hasn't done programming before to learn than someone who has. Like one of the things that confuses me a bit is intuitively thinking about the grammar, because there's obviously some clever thing going on, kind of similar to what Ruby does, where Ruby has this whole thing about how it translates grammar. It seems to be aware of whether "to" should go before something, or things like this. So it's kind of less predictable in a way.
-M: Are you talking like, erm, with that Rspec thing? Is it Rspec? Ruby has this kind of natural-language testing language, which is a DSL for writing tests or something. Is that what you're talking about?
-J: Er, that sort of thing, yeah, that's right. When you're working on Rails. I did this years ago, so I hardly remember. There's this whole thing about the grammar whereby if you name an object a plural, Ruby will recognise that and treat it correctly, and it can generate plurals of objects and things like this.
-M: Yeah, that rings a bell. Yeah. I haven't used Ruby for a long time. I'm probably in the same situation as you, I worked with Rails a long time ago, and haven't used it since.
-J: Same. Yeah, I'm just drawing the comparison because of this thing about the grammar is slightly less predictable. Because I'm not sure if... shall I assume the interpreter isn't clever enough, and just write it in a literal way, or should I just write it in a human way and just trust the interpreter to do something clever and understand it?
-M: That's a good point, it is quite opaque. You weren't sure if "Danger Mountain" was going to be recognised because it's got a space there, and then putting the "to" after "goes to"... It's not too bad, because once you've declared the things it knows that has to be somewhere, it knows what those things are. And also the verbs are going into Wordnet, so it's kind of stemming the verbs, like, you know, putting them into their basic forms, so it knows that "goes" is "go", "finds" is "find", etc. But it's generally OK, it's reasonably robust, but still quite easy to break. But yeah, that's a good point. I think it might be easier for someone who's quite naive and not used to programming, who isn't aware of the complexity of these things. Hmm, OK, yeah, good point. Right, OK, so if you go to the second task.
-J: Alright. "Create a trope". Right, "Given the following character roles and the following places, construct a trope using TropICAL."
-M: So for this one, I just want you to create a one-thing-after-another sequence of events. So before we start, type in the name of the trope, in the "trope name" box. So that should be at the top, really.
-J: Um, "Super Duper Trope".
-M: Yep, that should be OK.
-J: "The Hero is a Role". Yeah, is that right?
-M: "role" should be lowercase "r".
-J: "The Hero is a role, Villain is a role, Mentor is a role". It would be nice to be able to just do "Hero, Villain, Mentor are roles", like that.
-M: OK, that's the kind of comment I want, because obviously I've implemented the most basic version of this language, but I do want to know how to improve it and make it more intuitive, so thanks for that feedback.
-J: Yeah, no problem, it seemed like a fairly straightforward thing to stick on top.
-M: I think... so this language is kind of based on this other language called "Inform", which people used to write text adventures, and it looks a lot like this. And I think they have a mechanism like that, where you don't have to keep typing "so-and-so is a so-and-so", you can just do the words separated by commas, and just do it that way.
-J: Makes a lot of sense.
-M: Yeah. OK, so you've got all those things...
-J: Um, so then just put them in some sequence and doing some things?
-M: Yeah, so could you just get rid of the blank lines, because I think sometimes that trips it up. It shouldn't do, but yep. OK. And that one.. yep. So have no blank lines.
-J: OK. So, a thing happens... "The Hero"... let's say, start with "The Villain goes"... How's it going to behave if I put "The" before? "...goes to the Evil Lair". Um.
-M: Actually, could I ask you to save it.
-J: Oh yeah.
-M: And you can't actually visualise it from this thing, but go to "edit", and select the trope you've saved.
-J: Right.
-M: There you go. And then you can visualise it. And see... so "compile error". It might be because you've got a blank line at the end, so try that. Then click "save", and "refresh".
-J: No, it doesn't like it.
-M: Oh, that's interesting. So "The Villain goes to the"... I think it might want "The" in front of the declarations, so "The Hero, The Villain, The Mentor".
-J: Oh, right. OK.
-M: And I think it has to be capital "T" as well.
-J: Capital what, sorry?
-M: Capital "T", at the beginning.
-J: Oh, right.
-M: So try that. There you go, cool.
-J: Nice, right. Um. "The Villain goes to the Evil Lair". Presumably the Evil Lair can't do something, because it's a place?
-M: Oh, that's a good point. It can, I haven't actually put anything to stop it from doing things. So you can try that and see what happens. So yeah, a good way to try to break it. I think...
-J: It looks like it hasn't, er...
-M: Click "save" again. Ah there you go, "compile error".
-J: OK, so it doesn't like places moving to other places.
-M: Which, actually, I can't think of any reason why not. Because when this is compiled, it's just like... it just has statements that, you know, one thing is a kind of other thing, but it doesn't put any limitations on what those things can do. So, huh, I wonder why it's not liking that. There might be another reason for it.
-J: "Evil"... oh, have I...? No, I have spelled that right. "goes to the Land of Adventure", "Land of Adventure is a place". It looks fairly sensible, doesn't it?
-M: Yeah. Hmm, interesting.
-J: I think it's fair enough to call it a compile error, if you're trying to make one geographical location stand up and move to another one.
-M: Ha, yes.
-J: Erm, so I'll stick an object in there as well. What've we got? "The Sword is an object".
-M: So, you have to put declarations at the beginning.
-J: Ah, OK, that makes sense actually.
-M: It's just another limitation which saved me a lot of work.
-J: I think that makes a lot of sense actually, because otherwise you can't really do it intuitively. Yeah. I'm trying to think of a word. You can't do it in time, basically. Chronologically. Um... "The Villain goes to the Evil Lair, Or he"... can you say something like: "Either this role does this, or it does nothing"?
-M: Uhh... you can say it. It won't have any semantic meaning, but you can do two spaces, then an "Or the Villain goes nowhere". But then nowhere isn't a place. It would probably interpret that as a separate verb.
-J: It would just, like, assume this is a thing, and it wouldn't bother to know the meaning of it, it would just say... "it does this thing".
-M: Yeah, exactly.
-J: Makes sense.
-M: Oh, no. I think you can say, maybe not in this version, but I had at one point you being able to say "The Villain may not go to the Evil Lair", and it would prohibit the Villain from doing that. But in this case, it's kind of the case that it's prohibited from doing that by default, so there's no point in kind of specifying that. OK, so I think "Or" has to be capital "O".
-J: Ah, right.
-M: And be careful with that "the Hero", I think it wants a lower-case "t" as well. Yeah, so I'm sorry about the lack of information in the compile messages, that's just the way it turned out sadly, it's kind of hard to give any information that would be relevantt to anyone in that interface. Uh, "The Hero goes to the Land of Adventure, Or the Hero goes"... it might have to have "Nowhere" as a place. So declare nowhere as a place. And it has to be capital "N" when it's a thing. So when you put "The Hero goes to Nowhere", it's currently not a capital "N".
-J: Ah right, yes.
-M: Is that gonna work? No. Oh, yes! There we go. Cool.
-J: So, "The Villain goes to Evil Lair, The Hero either goes Nowhere, Or goes to Land of Adventure". Makes sense. Another thing that would be... again, it's strange because the more you get into it, the more you think about it, the more you start turning it into a regular programming language. One thing that would be useful would be able to say... to have... what's the phrase I'm looking for? Sort of a... well, if functions basically, to be able to say "If the Hero is in Nowhere, then he finds a Sword", or something.
-M: Yeah, yeah. That's something I definitely thought about and tried to do, but couldn't implement in time for doing these studies. I was kind of also thinking of like the way to describe that, would you put... would it make sense to have the "if" at the beginning, or the end of a statement, or just like... so if you want to have your "if" dependent on lots of events having occurred previously, it's kind of hard to kind of think of an elegant way of doing that. You could just put like "if:", and then list the events that could happen as the preconditions. But yeah... so how would you do it, you'd say "If the Hero goes to the Land of Adventure, and...".
-J: Something like "If the Hero is in the Land of Adventure, then the Hero finds the Sword". I think it would work out OK because if you have, it might not be as complex as it sounds, because if you have multiple ways the Hero can end up in the Land of Adventure, then you can simplify all those things down to "If he ends up there, then he gets the Sword", regardless of how he got there, if that makes sense.
-M: Yeah, I think that makes a lot of sense. I was kind of keeping it event-based, so that, you know, instead of "If the Hero is in the Land of Adventure", I had it so it was like "When the Hero goes to the Land of Adventure". Then X, Y and Z happens. But I think "If" makes more sense, because if you're familiar with programming, you know about "Ifs", etc. And also it allows you to describe things other than events, like when you want... when a Hero picks up an object, you want to be able to say "If the Hero has an object", but again that would involve more work, and having these special... these fluents which describe what state holds at what time. So for the time being, just for the point of this study, I'm keeping it event-based, just really, really simple.
-J: Makes sense.
-M: OK, cool. So... right. I think you've kind of played with that task enough, so if you move on to the next task, which was task 3. It says "adding objects", but I think you've kind of done that, you had objects. So move onto task 4, which is adding branches. Oh, again, you've done that. OK. That's cool. You're kind of moving through all the tasks already. That's cool. So, next... OK, this one's easy. Go to the "arrange" tab in the interface. And for this you can combine different tropes. So add a trope to your "Super Duper Trope". Maybe one of the simple ones, like "Example 1", or "Example 3". Just wait... so sometimes this takes a long time because it's sadly quite CPU intensive, and this is running on a server somewhere.
-J: Oh, wow.
-M: There you go. So this has worked out all the different possibilities of combining these two tropes.
-J: That's really cool. "Go to Evil Lair"... So "go_home_hero", or "go_villain_evilLair", the Villain can then go to the Evil Lair, the Villain can then (garbled) the Sword. So at each level it's going through one path of each trope.
-M: Yes, that's right. So one thing I should mention is that I've limited this so that it visualises a maximum of five events in a chain, because otherwise it could just take too long. And also like a maximum of a hundred different possibilities, because again it could get stuck. So sometimes it doesn't generate all the possible nodes. But in this case, the tropes are simple enough that I think that's all the possibilities.
-J: Hmm. What about if you had an object or a place with the same name, in two different tropes? How does it handle that?
-M: That's a really good question, and it treats them as the same thing in this case. So it is kind of like they're really merged. Again, in an earlier version I had it so that you could specify different names for the different roles, so that you could have a Hero called "Luke Skywalker" in one trope, and a Hero called, I don't know, "Darth Vader", if you wanted that, in another trope. And they would actually have different permissions and they would be visualised as different things. But as you can imagine, that would increase the complexity of this visualisation again, and we would have more and more stuff to be generated into this tree. Again, I'm trying to keep it simple for this.
-J: So, is it impossible then, for say, "The Hero finds the Sword", and within another trope to say "The Villain finds the Sword"? Or would it allow that?
-M: Yeah, it would allow that. So they could both find the sword according to the two tropes.
-J: OK, that makes sense.
-M: Ah right, OK. Cool. So could you go to task 6, then. I'm going to ask you to embed a trope inside the one you created already, perhaps. Or maybe, no, take the one you created and embed that in a new trope.
-J: Right, OK. So "Super Duper Trope" is this one.
-M: Or maybe embed it in an existing trope if you can't be bothered to type it. Either way. So type the name of a new trope here. This has still got the name of an old one.
-J: "the Hero is a role"...
-M: So yeah, be careful with the capital "T"s on the "the"s at the beginning.
-J: Ah, right.
-M: But that is something I need to bear in mind to fix, I think.
-J: Yeah, that would definitely make it more robust, if can stop thinking about that.
-M: Yeah, and it's easy enough to fix, so that would be a good point.
-J: Hmm. "The Hero finds the Smartphone, The Warm Bed is a place"...
-M: You have to put that before the Hero finds the Smartphone.
-J: Ah, right, yes, sorry. 'Hero goes to the Warm Bed, Or the "Super Duper" trope happens'.
-M: Hopefully that will work. So you have to save it, then go to "edit", and visualise. Oh, it's compiled, so... Ah no. So I have a feeling it doesn't like putting that in a branch. So just change it to 'Then the "Super Duper" trope happens'. So this is something which is quite frustrating because the mechanism behind this is something which is super awkward and difficult, but it always works when it's at the end of a trope. Oh, OK, it's not liking that either. Interesting. Oh.
-J: I think it was adding "the" fixed it.
-M: OK, so it's the "the". So actually change that to "Or". Change that back to "Or" and see if that works now.
-J: Let's see. I can't remember if I had the "the" there before or not.
-M: Oh, OK.
-J: No, it doesn't like it.
-M: OK, right, that's another thing to fix. Cool.
-J: I wonder what's... this was working a second ago.
-M: I think if you click "refresh" too much, it queues up all the things. Ah yeah, OK, cool.
-J: So I was just clicking too much, and it got confused.
-M: Yeah, I think that was it. OK, cool.
-J: "The Hero finds Smartphone", "The Hero goes to the Warm Bed", "The Villain goes to the Evil Lair". Makes sense.
-M: Cool. OK, sweet. Alright, so the final task is to just mess around with the interface, basically, and make any kind of story you want. So you could do it by arranging the existing tropes you have with the "arrange" tab, or by altering ones you've already made, or creating new ones. Just spend a few minutes doing that. And while you're doing that I'll ask you some open-ended questions about, you know, what your thoughts are when you're using it.
-J: Uh-huh. Uh... open-ended thoughts?
-M: So, er, if you were making a story-based game, and you wanted to create a kind of branching narrative, and assuming that the mechanism you're doing it is that you have these intelligent agents as the characters, do you think this would be a good way of writing the constraints for these characters, so that you can visualise...
-J: Yeah, I think it makes a lot of... I was imagining it earlier that each of these could relate to a plan in some intelligent agent, and then you'd be able to just somewhat dynamically... where all the agents are actually behave in somewhat sensible manners following a traditional story structure. I think that makes a lot of sense, Matt.
-M: That's exactly, thanks, that's exactly the intention of this language. It should be OK with two words there. I'm pretty confident that that's fine.
-J: Um... "The Farm Boy finds the...". So, one thing it can't express is where it started at. You can say: "The Robot goes to the Starship", but then you can't say something like: "goes to the Planet FROM the Starship". So you have to, say, make an event arriving somewhere rather than declaring that they started somewhere.
-M: Yeah, that's a good point. So I had these special reserved words for "is" and "has", so you could say "The Robot is at the Planet they came from", "The Robot is"... but you actually can't. I think it will break it, because I reserved those words and didn't do anything with them because it turned out to be complicated. So yeah, would that solve your problem though, if you wanted to say where it started from? You'd say "The Robot is at this planet, Planet X, Then the Robot goes to Planet Y".
-J: Yeah, then I could do things like: "The Farm Boy is at the Planet", or I suppose I'd have to do it after declaring the planet, but yeah.
-M: Yeah, yeah. That's right. That's how it would work.
-J: You could say: "The Robot goes to the Starship, Then the Farm Boy finds the Robot". Oh wait, is the Robot a role, or...? Oh, it's an object, OK. Oh, so I'm saying an object goes... let's see if that works, that'll be interesting.
-M: Oh, I have a feeling that's... OK, yeah.
-J: I'm guessing it probably won't, because we had places moving around, and that didn't work.
-M: It doesn't like it because of the blank line, I think.
-J: Oh right, sorry, yeah.
-M: So try that. No, it doesn't like that either.
-J: I don't see any other errors either, so it's got to be that, hasn't it?
-M: "Starship is a place, Robot is an object"... yeah, so try "The Robot is a role", then. Ah, there you go. So it doesn't like objects going to places. Interesting.
-J: But it is happy with people, roles finding other roles, which makes sense doesn't it? Seems sensible.
-M: Yeah, yeah. I think that makes sense.
-J: Um, so what else is there? He meets the Wise Man. Er... so "Farm Boy..."
-M: There's going to have to be a capital "H". Yeah, exactly.
-J: I'm trying to think where this actually branches off. Um.
-M: So yeah, I've limited this to maximum five events long. At the moment it is five events long. But you can still put branches in there, so that will... that's fine.
-J: Right, OK. Or make subtropes as well?
-M: Ah yeah, as long as it's the last event, I think. You could put "then"... so the last event could be "Then the whatever trope happens".
-J: Right, OK, so I could do something like, save that, then (indistinct) make this much more modular and do, like, a "Receiving the Laser Sword". "The Farm Boy is a role". Oh yeah, can you do... "The Wise Man is a role"... you can't do giving, right? I can't say something like...
-M: You can, but again it won't have any semantic... oh yeah, it would. Kind of. It would give an agent permission to give something to another agent. So it would work, it would compile and work. Yeah, so actually that would be fine.
-J: Let's try that. "Receiving the Laser Sword". "Compile Error".
-M: So I think you have to put "an object".
-J: Oh, OK.
-M: "The Laser Sword is an object". And then "The Wise Man" has to be capital "W". Oh no, so "Laser Sword" is fine, but when you say "The Laser Sword is an object", it has to be "an object".
-J: Oh right, OK. 
-M: Yeah, "The Laser Sword". Yeah, try that. There you go.
-J: Makes sense. "Or the Farm Boy goes to Home".
-M: So... oh, that's interesting. You should have indented the "Or" with two spaces, but it works anyway. Interesting. Oh well. So yeah, don't forget to put "The Hut is a place".
-J: Oh right, yes. (runs through the events) "Then the 'Receiving the LaserSword trope happens".
-M: Ah, I've got a feeling though. See what... OK. Why is that... so it was OK before, was it? Or was it OK... delete that last one, see if...
-J: Yeah, I guess it is that last one.
-M: OK, so "Then the 'Receiving the LaserSword trope happens". OK, save that. Try again. It looks right.
-J: Is it doing something?
-M: Maybe. It's hard to tell. Yeah, try again. Hmm. Refresh the page and try again. Sometimes it gets stuck.
-J: Is this stuff stored on my computer, or...?
-M: It's stored on a server, so it's all good. It seems to be getting stuck for some reason. That's interesting.
-J: It was a fairly simple thing, wasn't it? It was one "or" node.
-M: Yeah, and it was fine. It compiled and visualised that fine. I wonder why it's getting stuck.
-J: OK, so it did compile on the server, but it didn't come back to here.
-M: Yeah. I can just load it up on my server and see what's happening.
-J: I'm getting an error 500, for some reason. From the "new" endpoint, "story/new".
-M: Yeah. Hmm.
-J: Yeah, it has a 200 first, and then a 500 afterwards.
-M: That's interesting. Try having it just two events long. So get rid of everything between "The Robot goes to the Planet" and the last event. Huh, weird.
-J: Maybe it's because the trope it's going into has a nested clause? Something about that confusing it?
-M: No, it should be fine. Let me see. I'm just going to load up my logs. So... "Receiving the LaserSword"... it's compiled that OK. So... it hasn't solved it.
-J: Is it taking too long to solve, is that it?
-M: That's probably it. It's probably just taking a really long time to solve for some reason, but I can't imagine why. Huh. Yeah, I'm not sure. "Receiving the LaserSword"... that's definitely the name of that trope. "...goes to the Planet, the Planet is a place, the Hut is a place, Farm Boy goes to Home". So it's fine with that trope, it just doesn't like that... Oh. OK no, it's compiled, it's kind of compiled it, but not... there's something it's not quite doing right.
-J: No.
-M: So it's supposed to be creating this thing called a "Bridge Institution" which describes the link between the first institution, the first trope in this case, and the second one, which gives the first event of the second trope permission to happen. But it's not compiling that at all. OK, well, that's something I'll have to look into. Alight, so if you go to "arrange" and just play around with that for a bit.
-J: It's not going to like "A New Hope" is it? Let's put another one in.
-M: So yeah, that is the one it's doing. So this is the kind of thing that will take a while sometimes. I had this running on my own server on previous studies, and it was really slow. So I've moved it to "Mist", which is one of the nicer servers on Bath, which is a lot quicker. So cool. Alright. I'm trying to think of any other questions I can ask you. I think that about covers it, though. Have you got any other thoughts.
-J: Not really. I think I can definitely see where you're going with it, I think it's a really cool idea actually.
-M: Oh, cheers.
-J: So I'm imagining you can do something like export, you design the outline of a story, export it to some format like JSON or XML, put it into some part of your system, and then your agents begin to follow this series of actions where each node is a plan that they execute, and once a plan is completed then all the other agents know that this event has happened, and therefore the possible actions they have are this.
-M: Yeah, exactly, exactly. I think that for for this to be a complete system, we need to have another language for authoring the agents and their plans, and their dialogue, which kind of hooks into this, but again that's outside the scope of this PhD. But it's something I'd like to do, I think. Because a lot of this multi-agent system stuff is really inaccessible to people that just want to make games, especially story-based games, who don't do a lot of programming. It is quite esoteric, and just niche, and so it'd be cool to have a simple way to use it, to do simlpe agent stuff like this.
-J: And I guess you can then easily... if you decide to change the story in some way, you can just recompile this, change a few things, and it will put it all where it needs to go.
-M: Yeah, exactly.
-J: I mean, I think we've already talked about, like, my thoughts about the language. I think the only thing that might improve it is if you can make it more robust, like having whitespaces would be really useful, actually having comments so you can highlight "here are my declarations, here are my things that happen", and such.
-M: Yeah, yeah, that's a good idea. Certainly. I definitely agree.
-J: And then multiple levels of nesting, that kind of stuff. I think with those kinds of things it would be really, really powerful.
-M: Yeah. Definitely. I definitely agree. Cool. Well, thanks very much.
-J: No problem.
+*Myself:* Right, so have you got any questions about that language?
+*Participant:* It just occurred to me: what happens if you do it recursively? What if "Item Search" also calls "Kill Then Search"? Presumably it would get...
+*Myself:* Uhh, yeah that's a very good question. That's a really good question! OK, you can try it out. If you go to "Item Search"...
+*Participant:* Let me just copy the name of this one, "Kill then Search".
+*Myself:* I have a feeling it will not work, because this is very brittle. So yeah, put 'Then the "Kill then Search"'... and the "Kill then Search" has to be in quotes... "...trope happens".
+*Participant:* "...trope happens". Is that right?
+*Myself:* Yeah. Save that.
+*Participant:* Uhh... "save trope".
+*Myself:* And then click "refresh".
+*Participant:* Ah, OK. It's just ignored it, basically. It seems to have just thrown that one out.
+*Myself:* Ah, that's lucky. That's good. As long as that's not broken my thing running on the server, then that's great. I wonder. I'll try that later and see what's happening in the background. Because it shouldn't just ignore it. But I'm glad it hasn't broken it. Right, so that's good, that's actually a good thing to bring up, which I kind of hadn't considered. So yeah, save that one and do that again. So one thing I should mention is that this is like a really basic proof of concept, I've got limited time to do this, so I've really implemented the very basics of this language. There's stuff that you're going to notice which would be a good idea to put in. And that's actually part of the point of this study, is like, just for you to identify what I should be adding to this language. Because I've just put these basics, you know, just events, one after another, and then very simple branching, and then calling other tropes. But, yeah, I'd like to hear your opinion about what's missing. OK, so we'll start with these tasks. Also, yeah, there are lots of bugs, which I'll point out some of them ahead of time. So task 1 is: edit an existing trope, so select perhaps one of the simple ones like the example tropes, and just edit it to change it however you want.
+*Participant:* OK, cool.
+*Myself:* Did you... the "Home" declaration has disappeared. Was that not there before?
+*Participant:* Oh, yeah. I don't think I changed that.
+*Myself:* "The Hero goes Home"... hmm. Somehow it still works, though. Oh, OK. It's because when I put it in... so every time I do a study, I copy and paste this in from somewhere. And what it's done is it thinks "go home" is a verb with two words. So it kind of still visualises it. So yeah, actually, could you put in that declaration of home, "Home is a place"?
+*Participant:* Yeah OK, so lowercase "place".
+*Myself:* Yeah.
+*Participant:* Is it "The" Home is a place?
+*Myself:* "Home is a place"... either should work. But just put "Home". Oh no, it's still using the old one. You have to click "save", then "refresh".
+*Participant:* Oh, OK.
+*Myself:* Yeah, "go_hero_home", cool.
+*Participant:* "go_hero_home", makes sense. Cool. Erm, so I could do something like: "Sword is an object, Home is a place", er, "Danger Mountain is a place". How's it going to deal with that space, is it going to be OK with that?
+*Myself:* It should be OK with that.
+*Participant:* Er, "The Hero goes Danger Mountain".
+*Myself:* You might want "goes TO Danger Mountain". Well, see if that works. It might do, it might not. So save it, and click "refresh". I think it's OK. Yeah, there you go. "go_hero_dangerMountain".
+*Participant:* Oh, OK. Cool. "Hero goes to Danger Mountain". Erm, yeah, "Then he finds the Sword, or the Hero dies". Can you sub-say, can you say "The Hero finds the Sword", and then does something, or something else? Like, it gets confusing with the nesting, doesn't it, because that's one level of nesting, but can you go to a second level of nesting?
+*Myself:* Ah, sadly not, because I've kind of limited it so that there's only one level of nesting. Which is very limited.
+*Participant:* Otherwise it would get very complicated, wouldn't it?
+*Myself:* Yeah, but I think that is actually essential if I want to have like a proper branching thing eventually. It's something that I didn't really realise until I started doing these studies. But yeah, I think that is something that's come up that I'll have to add to this language after.
+*Participant:* Makes sense. Erm, "The Hero finds a Sword, Or the Hero dies".
+*Myself:* Ah, that's enough actually if you...
+*Participant:* Cool.
+*Myself:* So that's the first task done. Do you have any general comments so far about... do you think that this language would be easy to learn for someone who hasn't done any programming before?
+*Participant:* Yeah. I think in some ways it might be easier for someone who hasn't done programming before to learn than someone who has. Like one of the things that confuses me a bit is intuitively thinking about the grammar, because there's obviously some clever thing going on, kind of similar to what Ruby does, where Ruby has this whole thing about how it translates grammar. It seems to be aware of whether "to" should go before something, or things like this. So it's kind of less predictable in a way.
+*Myself:* Are you talking like, erm, with that Rspec thing? Is it Rspec? Ruby has this kind of natural-language testing language, which is a DSL for writing tests or something. Is that what you're talking about?
+*Participant:* Er, that sort of thing, yeah, that's right. When you're working on Rails. I did this years ago, so I hardly remember. There's this whole thing about the grammar whereby if you name an object a plural, Ruby will recognise that and treat it correctly, and it can generate plurals of objects and things like this.
+*Myself:* Yeah, that rings a bell. Yeah. I haven't used Ruby for a long time. I'm probably in the same situation as you, I worked with Rails a long time ago, and haven't used it since.
+*Participant:* Same. Yeah, I'm just drawing the comparison because of this thing about the grammar is slightly less predictable. Because I'm not sure if... shall I assume the interpreter isn't clever enough, and just write it in a literal way, or should I just write it in a human way and just trust the interpreter to do something clever and understand it?
+*Myself:* That's a good point, it is quite opaque. You weren't sure if "Danger Mountain" was going to be recognised because it's got a space there, and then putting the "to" after "goes to"... It's not too bad, because once you've declared the things it knows that has to be somewhere, it knows what those things are. And also the verbs are going into Wordnet, so it's kind of stemming the verbs, like, you know, putting them into their basic forms, so it knows that "goes" is "go", "finds" is "find", etc. But it's generally OK, it's reasonably robust, but still quite easy to break. But yeah, that's a good point. I think it might be easier for someone who's quite naive and not used to programming, who isn't aware of the complexity of these things. Hmm, OK, yeah, good point. Right, OK, so if you go to the second task.
+*Participant:* Alright. "Create a trope". Right, "Given the following character roles and the following places, construct a trope using TropICAL."
+*Myself:* So for this one, I just want you to create a one-thing-after-another sequence of events. So before we start, type in the name of the trope, in the "trope name" box. So that should be at the top, really.
+*Participant:* Um, "Super Duper Trope".
+*Myself:* Yep, that should be OK.
+*Participant:* "The Hero is a Role". Yeah, is that right?
+*Myself:* "role" should be lowercase "r".
+*Participant:* "The Hero is a role, Villain is a role, Mentor is a role". It would be nice to be able to just do "Hero, Villain, Mentor are roles", like that.
+*Myself:* OK, that's the kind of comment I want, because obviously I've implemented the most basic version of this language, but I do want to know how to improve it and make it more intuitive, so thanks for that feedback.
+*Participant:* Yeah, no problem, it seemed like a fairly straightforward thing to stick on top.
+*Myself:* I think... so this language is kind of based on this other language called "Inform", which people used to write text adventures, and it looks a lot like this. And I think they have a mechanism like that, where you don't have to keep typing "so-and-so is a so-and-so", you can just do the words separated by commas, and just do it that way.
+*Participant:* Makes a lot of sense.
+*Myself:* Yeah. OK, so you've got all those things...
+*Participant:* Um, so then just put them in some sequence and doing some things?
+*Myself:* Yeah, so could you just get rid of the blank lines, because I think sometimes that trips it up. It shouldn't do, but yep. OK. And that one.. yep. So have no blank lines.
+*Participant:* OK. So, a thing happens... "The Hero"... let's say, start with "The Villain goes"... How's it going to behave if I put "The" before? "...goes to the Evil Lair". Um.
+*Myself:* Actually, could I ask you to save it.
+*Participant:* Oh yeah.
+*Myself:* And you can't actually visualise it from this thing, but go to "edit", and select the trope you've saved.
+*Participant:* Right.
+*Myself:* There you go. And then you can visualise it. And see... so "compile error". It might be because you've got a blank line at the end, so try that. Then click "save", and "refresh".
+*Participant:* No, it doesn't like it.
+*Myself:* Oh, that's interesting. So "The Villain goes to the"... I think it might want "The" in front of the declarations, so "The Hero, The Villain, The Mentor".
+*Participant:* Oh, right. OK.
+*Myself:* And I think it has to be capital "T" as well.
+*Participant:* Capital what, sorry?
+*Myself:* Capital "T", at the beginning.
+*Participant:* Oh, right.
+*Myself:* So try that. There you go, cool.
+*Participant:* Nice, right. Um. "The Villain goes to the Evil Lair". Presumably the Evil Lair can't do something, because it's a place?
+*Myself:* Oh, that's a good point. It can, I haven't actually put anything to stop it from doing things. So you can try that and see what happens. So yeah, a good way to try to break it. I think...
+*Participant:* It looks like it hasn't, er...
+*Myself:* Click "save" again. Ah there you go, "compile error".
+*Participant:* OK, so it doesn't like places moving to other places.
+*Myself:* Which, actually, I can't think of any reason why not. Because when this is compiled, it's just like... it just has statements that, you know, one thing is a kind of other thing, but it doesn't put any limitations on what those things can do. So, huh, I wonder why it's not liking that. There might be another reason for it.
+*Participant:* "Evil"... oh, have I...? No, I have spelled that right. "goes to the Land of Adventure", "Land of Adventure is a place". It looks fairly sensible, doesn't it?
+*Myself:* Yeah. Hmm, interesting.
+*Participant:* I think it's fair enough to call it a compile error, if you're trying to make one geographical location stand up and move to another one.
+*Myself:* Ha, yes.
+*Participant:* Erm, so I'll stick an object in there as well. What've we got? "The Sword is an object".
+*Myself:* So, you have to put declarations at the beginning.
+*Participant:* Ah, OK, that makes sense actually.
+*Myself:* It's just another limitation which saved me a lot of work.
+*Participant:* I think that makes a lot of sense actually, because otherwise you can't really do it intuitively. Yeah. I'm trying to think of a word. You can't do it in time, basically. Chronologically. Um... "The Villain goes to the Evil Lair, Or he"... can you say something like: "Either this role does this, or it does nothing"?
+*Myself:* Uhh... you can say it. It won't have any semantic meaning, but you can do two spaces, then an "Or the Villain goes nowhere". But then nowhere isn't a place. It would probably interpret that as a separate verb.
+*Participant:* It would just, like, assume this is a thing, and it wouldn't bother to know the meaning of it, it would just say... "it does this thing".
+*Myself:* Yeah, exactly.
+*Participant:* Makes sense.
+*Myself:* Oh, no. I think you can say, maybe not in this version, but I had at one point you being able to say "The Villain may not go to the Evil Lair", and it would prohibit the Villain from doing that. But in this case, it's kind of the case that it's prohibited from doing that by default, so there's no point in kind of specifying that. OK, so I think "Or" has to be capital "O".
+*Participant:* Ah, right.
+*Myself:* And be careful with that "the Hero", I think it wants a lower-case "t" as well. Yeah, so I'm sorry about the lack of information in the compile messages, that's just the way it turned out sadly, it's kind of hard to give any information that would be relevantt to anyone in that interface. Uh, "The Hero goes to the Land of Adventure, Or the Hero goes"... it might have to have "Nowhere" as a place. So declare nowhere as a place. And it has to be capital "N" when it's a thing. So when you put "The Hero goes to Nowhere", it's currently not a capital "N".
+*Participant:* Ah right, yes.
+*Myself:* Is that gonna work? No. Oh, yes! There we go. Cool.
+*Participant:* So, "The Villain goes to Evil Lair, The Hero either goes Nowhere, Or goes to Land of Adventure". Makes sense. Another thing that would be... again, it's strange because the more you get into it, the more you think about it, the more you start turning it into a regular programming language. One thing that would be useful would be able to say... to have... what's the phrase I'm looking for? Sort of a... well, if functions basically, to be able to say "If the Hero is in Nowhere, then he finds a Sword", or something.
+*Myself:* Yeah, yeah. That's something I definitely thought about and tried to do, but couldn't implement in time for doing these studies. I was kind of also thinking of like the way to describe that, would you put... would it make sense to have the "if" at the beginning, or the end of a statement, or just like... so if you want to have your "if" dependent on lots of events having occurred previously, it's kind of hard to kind of think of an elegant way of doing that. You could just put like "if:", and then list the events that could happen as the preconditions. But yeah... so how would you do it, you'd say "If the Hero goes to the Land of Adventure, and...".
+*Participant:* Something like "If the Hero is in the Land of Adventure, then the Hero finds the Sword". I think it would work out OK because if you have, it might not be as complex as it sounds, because if you have multiple ways the Hero can end up in the Land of Adventure, then you can simplify all those things down to "If he ends up there, then he gets the Sword", regardless of how he got there, if that makes sense.
+*Myself:* Yeah, I think that makes a lot of sense. I was kind of keeping it event-based, so that, you know, instead of "If the Hero is in the Land of Adventure", I had it so it was like "When the Hero goes to the Land of Adventure". Then X, Y and Z happens. But I think "If" makes more sense, because if you're familiar with programming, you know about "Ifs", etc. And also it allows you to describe things other than events, like when you want... when a Hero picks up an object, you want to be able to say "If the Hero has an object", but again that would involve more work, and having these special... these fluents which describe what state holds at what time. So for the time being, just for the point of this study, I'm keeping it event-based, just really, really simple.
+*Participant:* Makes sense.
+*Myself:* OK, cool. So... right. I think you've kind of played with that task enough, so if you move on to the next task, which was task 3. It says "adding objects", but I think you've kind of done that, you had objects. So move onto task 4, which is adding branches. Oh, again, you've done that. OK. That's cool. You're kind of moving through all the tasks already. That's cool. So, next... OK, this one's easy. Go to the "arrange" tab in the interface. And for this you can combine different tropes. So add a trope to your "Super Duper Trope". Maybe one of the simple ones, like "Example 1", or "Example 3". Just wait... so sometimes this takes a long time because it's sadly quite CPU intensive, and this is running on a server somewhere.
+*Participant:* Oh, wow.
+*Myself:* There you go. So this has worked out all the different possibilities of combining these two tropes.
+*Participant:* That's really cool. "Go to Evil Lair"... So "go_home_hero", or "go_villain_evilLair", the Villain can then go to the Evil Lair, the Villain can then (garbled) the Sword. So at each level it's going through one path of each trope.
+*Myself:* Yes, that's right. So one thing I should mention is that I've limited this so that it visualises a maximum of five events in a chain, because otherwise it could just take too long. And also like a maximum of a hundred different possibilities, because again it could get stuck. So sometimes it doesn't generate all the possible nodes. But in this case, the tropes are simple enough that I think that's all the possibilities.
+*Participant:* Hmm. What about if you had an object or a place with the same name, in two different tropes? How does it handle that?
+*Myself:* That's a really good question, and it treats them as the same thing in this case. So it is kind of like they're really merged. Again, in an earlier version I had it so that you could specify different names for the different roles, so that you could have a Hero called "Luke Skywalker" in one trope, and a Hero called, I don't know, "Darth Vader", if you wanted that, in another trope. And they would actually have different permissions and they would be visualised as different things. But as you can imagine, that would increase the complexity of this visualisation again, and we would have more and more stuff to be generated into this tree. Again, I'm trying to keep it simple for this.
+*Participant:* So, is it impossible then, for say, "The Hero finds the Sword", and within another trope to say "The Villain finds the Sword"? Or would it allow that?
+*Myself:* Yeah, it would allow that. So they could both find the sword according to the two tropes.
+*Participant:* OK, that makes sense.
+*Myself:* Ah right, OK. Cool. So could you go to task 6, then. I'm going to ask you to embed a trope inside the one you created already, perhaps. Or maybe, no, take the one you created and embed that in a new trope.
+*Participant:* Right, OK. So "Super Duper Trope" is this one.
+*Myself:* Or maybe embed it in an existing trope if you can't be bothered to type it. Either way. So type the name of a new trope here. This has still got the name of an old one.
+*Participant:* "the Hero is a role"...
+*Myself:* So yeah, be careful with the capital "T"s on the "the"s at the beginning.
+*Participant:* Ah, right.
+*Myself:* But that is something I need to bear in mind to fix, I think.
+*Participant:* Yeah, that would definitely make it more robust, if can stop thinking about that.
+*Myself:* Yeah, and it's easy enough to fix, so that would be a good point.
+*Participant:* Hmm. "The Hero finds the Smartphone, The Warm Bed is a place"...
+*Myself:* You have to put that before the Hero finds the Smartphone.
+*Participant:* Ah, right, yes, sorry. 'Hero goes to the Warm Bed, Or the "Super Duper" trope happens'.
+*Myself:* Hopefully that will work. So you have to save it, then go to "edit", and visualise. Oh, it's compiled, so... Ah no. So I have a feeling it doesn't like putting that in a branch. So just change it to 'Then the "Super Duper" trope happens'. So this is something which is quite frustrating because the mechanism behind this is something which is super awkward and difficult, but it always works when it's at the end of a trope. Oh, OK, it's not liking that either. Interesting. Oh.
+*Participant:* I think it was adding "the" fixed it.
+*Myself:* OK, so it's the "the". So actually change that to "Or". Change that back to "Or" and see if that works now.
+*Participant:* Let's see. I can't remember if I had the "the" there before or not.
+*Myself:* Oh, OK.
+*Participant:* No, it doesn't like it.
+*Myself:* OK, right, that's another thing to fix. Cool.
+*Participant:* I wonder what's... this was working a second ago.
+*Myself:* I think if you click "refresh" too much, it queues up all the things. Ah yeah, OK, cool.
+*Participant:* So I was just clicking too much, and it got confused.
+*Myself:* Yeah, I think that was it. OK, cool.
+*Participant:* "The Hero finds Smartphone", "The Hero goes to the Warm Bed", "The Villain goes to the Evil Lair". Makes sense.
+*Myself:* Cool. OK, sweet. Alright, so the final task is to just mess around with the interface, basically, and make any kind of story you want. So you could do it by arranging the existing tropes you have with the "arrange" tab, or by altering ones you've already made, or creating new ones. Just spend a few minutes doing that. And while you're doing that I'll ask you some open-ended questions about, you know, what your thoughts are when you're using it.
+*Participant:* Uh-huh. Uh... open-ended thoughts?
+*Myself:* So, er, if you were making a story-based game, and you wanted to create a kind of branching narrative, and assuming that the mechanism you're doing it is that you have these intelligent agents as the characters, do you think this would be a good way of writing the constraints for these characters, so that you can visualise...
+*Participant:* Yeah, I think it makes a lot of... I was imagining it earlier that each of these could relate to a plan in some intelligent agent, and then you'd be able to just somewhat dynamically... where all the agents are actually behave in somewhat sensible manners following a traditional story structure. I think that makes a lot of sense, Matt.
+*Myself:* That's exactly, thanks, that's exactly the intention of this language. It should be OK with two words there. I'm pretty confident that that's fine.
+*Participant:* Um... "The Farm Boy finds the...". So, one thing it can't express is where it started at. You can say: "The Robot goes to the Starship", but then you can't say something like: "goes to the Planet FROM the Starship". So you have to, say, make an event arriving somewhere rather than declaring that they started somewhere.
+*Myself:* Yeah, that's a good point. So I had these special reserved words for "is" and "has", so you could say "The Robot is at the Planet they came from", "The Robot is"... but you actually can't. I think it will break it, because I reserved those words and didn't do anything with them because it turned out to be complicated. So yeah, would that solve your problem though, if you wanted to say where it started from? You'd say "The Robot is at this planet, Planet X, Then the Robot goes to Planet Y".
+*Participant:* Yeah, then I could do things like: "The Farm Boy is at the Planet", or I suppose I'd have to do it after declaring the planet, but yeah.
+*Myself:* Yeah, yeah. That's right. That's how it would work.
+*Participant:* You could say: "The Robot goes to the Starship, Then the Farm Boy finds the Robot". Oh wait, is the Robot a role, or...? Oh, it's an object, OK. Oh, so I'm saying an object goes... let's see if that works, that'll be interesting.
+*Myself:* Oh, I have a feeling that's... OK, yeah.
+*Participant:* I'm guessing it probably won't, because we had places moving around, and that didn't work.
+*Myself:* It doesn't like it because of the blank line, I think.
+*Participant:* Oh right, sorry, yeah.
+*Myself:* So try that. No, it doesn't like that either.
+*Participant:* I don't see any other errors either, so it's got to be that, hasn't it?
+*Myself:* "Starship is a place, Robot is an object"... yeah, so try "The Robot is a role", then. Ah, there you go. So it doesn't like objects going to places. Interesting.
+*Participant:* But it is happy with people, roles finding other roles, which makes sense doesn't it? Seems sensible.
+*Myself:* Yeah, yeah. I think that makes sense.
+*Participant:* Um, so what else is there? He meets the Wise Man. Er... so "Farm Boy..."
+*Myself:* There's going to have to be a capital "H". Yeah, exactly.
+*Participant:* I'm trying to think where this actually branches off. Um.
+*Myself:* So yeah, I've limited this to maximum five events long. At the moment it is five events long. But you can still put branches in there, so that will... that's fine.
+*Participant:* Right, OK. Or make subtropes as well?
+*Myself:* Ah yeah, as long as it's the last event, I think. You could put "then"... so the last event could be "Then the whatever trope happens".
+*Participant:* Right, OK, so I could do something like, save that, then (indistinct) make this much more modular and do, like, a "Receiving the Laser Sword". "The Farm Boy is a role". Oh yeah, can you do... "The Wise Man is a role"... you can't do giving, right? I can't say something like...
+*Myself:* You can, but again it won't have any semantic... oh yeah, it would. Kind of. It would give an agent permission to give something to another agent. So it would work, it would compile and work. Yeah, so actually that would be fine.
+*Participant:* Let's try that. "Receiving the Laser Sword". "Compile Error".
+*Myself:* So I think you have to put "an object".
+*Participant:* Oh, OK.
+*Myself:* "The Laser Sword is an object". And then "The Wise Man" has to be capital "W". Oh no, so "Laser Sword" is fine, but when you say "The Laser Sword is an object", it has to be "an object".
+*Participant:* Oh right, OK. 
+*Myself:* Yeah, "The Laser Sword". Yeah, try that. There you go.
+*Participant:* Makes sense. "Or the Farm Boy goes to Home".
+*Myself:* So... oh, that's interesting. You should have indented the "Or" with two spaces, but it works anyway. Interesting. Oh well. So yeah, don't forget to put "The Hut is a place".
+*Participant:* Oh right, yes. (runs through the events) "Then the 'Receiving the LaserSword trope happens".
+*Myself:* Ah, I've got a feeling though. See what... OK. Why is that... so it was OK before, was it? Or was it OK... delete that last one, see if...
+*Participant:* Yeah, I guess it is that last one.
+*Myself:* OK, so "Then the 'Receiving the LaserSword trope happens". OK, save that. Try again. It looks right.
+*Participant:* Is it doing something?
+*Myself:* Maybe. It's hard to tell. Yeah, try again. Hmm. Refresh the page and try again. Sometimes it gets stuck.
+*Participant:* Is this stuff stored on my computer, or...?
+*Myself:* It's stored on a server, so it's all good. It seems to be getting stuck for some reason. That's interesting.
+*Participant:* It was a fairly simple thing, wasn't it? It was one "or" node.
+*Myself:* Yeah, and it was fine. It compiled and visualised that fine. I wonder why it's getting stuck.
+*Participant:* OK, so it did compile on the server, but it didn't come back to here.
+*Myself:* Yeah. I can just load it up on my server and see what's happening.
+*Participant:* I'm getting an error 500, for some reason. From the "new" endpoint, "story/new".
+*Myself:* Yeah. Hmm.
+*Participant:* Yeah, it has a 200 first, and then a 500 afterwards.
+*Myself:* That's interesting. Try having it just two events long. So get rid of everything between "The Robot goes to the Planet" and the last event. Huh, weird.
+*Participant:* Maybe it's because the trope it's going into has a nested clause? Something about that confusing it?
+*Myself:* No, it should be fine. Let me see. I'm just going to load up my logs. So... "Receiving the LaserSword"... it's compiled that OK. So... it hasn't solved it.
+*Participant:* Is it taking too long to solve, is that it?
+*Myself:* That's probably it. It's probably just taking a really long time to solve for some reason, but I can't imagine why. Huh. Yeah, I'm not sure. "Receiving the LaserSword"... that's definitely the name of that trope. "...goes to the Planet, the Planet is a place, the Hut is a place, Farm Boy goes to Home". So it's fine with that trope, it just doesn't like that... Oh. OK no, it's compiled, it's kind of compiled it, but not... there's something it's not quite doing right.
+*Participant:* No.
+*Myself:* So it's supposed to be creating this thing called a "Bridge Institution" which describes the link between the first institution, the first trope in this case, and the second one, which gives the first event of the second trope permission to happen. But it's not compiling that at all. OK, well, that's something I'll have to look into. Alight, so if you go to "arrange" and just play around with that for a bit.
+*Participant:* It's not going to like "A New Hope" is it? Let's put another one in.
+*Myself:* So yeah, that is the one it's doing. So this is the kind of thing that will take a while sometimes. I had this running on my own server on previous studies, and it was really slow. So I've moved it to "Mist", which is one of the nicer servers on Bath, which is a lot quicker. So cool. Alright. I'm trying to think of any other questions I can ask you. I think that about covers it, though. Have you got any other thoughts.
+*Participant:* Not really. I think I can definitely see where you're going with it, I think it's a really cool idea actually.
+*Myself:* Oh, cheers.
+*Participant:* So I'm imagining you can do something like export, you design the outline of a story, export it to some format like JSON or XML, put it into some part of your system, and then your agents begin to follow this series of actions where each node is a plan that they execute, and once a plan is completed then all the other agents know that this event has happened, and therefore the possible actions they have are this.
+*Myself:* Yeah, exactly, exactly. I think that for for this to be a complete system, we need to have another language for authoring the agents and their plans, and their dialogue, which kind of hooks into this, but again that's outside the scope of this PhD. But it's something I'd like to do, I think. Because a lot of this multi-agent system stuff is really inaccessible to people that just want to make games, especially story-based games, who don't do a lot of programming. It is quite esoteric, and just niche, and so it'd be cool to have a simple way to use it, to do simlpe agent stuff like this.
+*Participant:* And I guess you can then easily... if you decide to change the story in some way, you can just recompile this, change a few things, and it will put it all where it needs to go.
+*Myself:* Yeah, exactly.
+*Participant:* I mean, I think we've already talked about, like, my thoughts about the language. I think the only thing that might improve it is if you can make it more robust, like having whitespaces would be really useful, actually having comments so you can highlight "here are my declarations, here are my things that happen", and such.
+*Myself:* Yeah, yeah, that's a good idea. Certainly. I definitely agree.
+*Participant:* And then multiple levels of nesting, that kind of stuff. I think with those kinds of things it would be really, really powerful.
+*Myself:* Yeah. Definitely. I definitely agree. Cool. Well, thanks very much.
+*Participant:* No problem.

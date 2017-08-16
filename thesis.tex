@@ -4889,7 +4889,7 @@ To address requirement~\ref{req:vis}, we parse the answer set outputs (traces)
 of our answer set solver (as described in Section~\ref{}) to create a tree
 diagram of all of the possible events that they describe.
 
-\section{Overview of Interface}
+\section{Interface}
 
 % TODO intro: 1
 % TODO description of interface: 2
@@ -4897,9 +4897,32 @@ diagram of all of the possible events that they describe.
 % TODO screens & explanation of arranger: 2
 
 
-\subsection{Interface Overview}
+\subsection{Overview}
+
+Figure~\ref{fig:sb-start} shows what the user sees when they first start the
+\emph{StoryBuilder} tool. On the left side of the screen are two tabs:
+\emph{edit} and \emph{arrange}. The \emph{edit} tab allows the user to edit
+existing tropes, or to create a new trope of their own. While editing these
+tropes, their structures are visualised on the right side of the screen (which
+is blank in this initial screenshot). Figure~\ref{fig:st-edit-ann} shows the
+same screen as figure~\ref{fig:sb-start}, with the addition of annotations that
+explain the function of each item in the interface.
 
 \subsubsection{The \emph{edit} tab}
+To edit a trope that has been created previously, the user selects it from a
+list of tropes in the dropdown box at the bottom-left of the screen. This causes
+the trope's text to appear in the text editor that occupies most of the
+left-hand portion of the screen. From here, the user may amend the text in the
+editor, and click the blue \emph{save trope} button to make the changes persist.
+The user may also click the red \emph{delete} button to remove the trope from
+the database.
+
+If the user selects a trope and then, at some point, clicks the green
+\emph{refresh} button, a visualisation of its path structure appears on the
+right side of the screen. An example visualisation appears in
+figure~\ref{fig:sb-edit-ann2}, with annotations that further explain the features
+of the interface in the \emph{edit} tab.
+
 \begin{figure}[!t]
 \centerline{\includegraphics[width=\textwidth]{storybuilder5.png}}
 \caption{The initial view when \emph{StoryBuilder} starts}\label{fig:sb-start}
@@ -4915,18 +4938,73 @@ diagram of all of the possible events that they describe.
 \caption{An explanation of how the \emph{edit} tab is used}\label{fig:sb-edit-ann2}
 \end{figure}
 
-\subsubsection{The \emph{arrange} tab}
+The user also uses the interface in the \emph{edit} tab to create a new trope.
+Figure~\ref{fig:sb-new-ann} shows the five steps that a user must take in order
+to create a trope:
+
+\begin{enumerate}
+  \item The user clicks on the ``new'' tab below the text area to create a new trope
+  \item The user types the name of the trope into the text box below the main
+    text area (and below the ``new'' tab that they have just clicked on).
+  \item The trope name appears at the top of the interface as the first line of
+    the \emph{TropICAL} trope. For example, for a trope named ``Chase Scene'',
+    the line above the text area will appear as: \emph{``Chase Scene'' is a
+      trope where:}
+  \item The user types the TropICAL code into the main text area
+  \item The user clicks on the blue ``save'' button at the bottom of the screen
+    to save the trope.
+\end{enumerate}
+
+Once a trope is created, then the user may return to the \emph{edit} tab to
+select and visualise it.
+
 \begin{figure}[!t]
 \centerline{\includegraphics[width=\textwidth]{storybuilder-new1.png}}
 \caption{An explanation of how a new trope is created}\label{fig:sb-new-ann}
 \end{figure}
 
-\begin{figure}[!t]
+
+\subsubsection{The \emph{arrange} tab}
+
+The \emph{arrange} tab allows the user to combine multiple tropes into a story,
+and to visualise all the possible paths through that story.
+
+Figure~\ref{fig:sb-arrange} shows the view that the user sees when the
+\emph{arrange} tab is first clicked. The screen appears mostly blank, with the
+exception of a green rectangle on the left side of the screen, where the user
+may select from a list of pre-written tropes. The user may select extra tropes
+by clicking on the blue plus (``+'') symbol below the green box.
+
+Once one or more tropes are selected, a tree visualisation appears on the right
+side of the screen to show the combination of paths that a story may take based
+on the selected tropes. Figure~\ref{fig:sb-combine-ann} shows the steps that a
+user takes to combine tropes together in the interface, along with a part of the
+visualisation that appears as a result of selecting two example tropes. In order
+to combine multiple tropes together in this way, a user must go through these steps:
+
+\begin{enumerate}
+  \item The user clicks on the ``arrange'' tab at the top-left of the screen
+  \item The user selects a trope from the dropdown box inside the green rectangle
+  \item The user waits for the resulting visualisation to appear
+  \item The user clicks on the blue ``+'' symbol below the selected trope on the left
+  \item The user selects another trope from the dropdown box that has just appeared
+  \item The user waits for the resulting visualisation to appear
+\end{enumerate}
+
+A particularly important feature of the visualisation is that the name of the
+trope that an event follows appears along its corresponding line. In the example
+shown in figure~\ref{fig:sb-combine-ann}, events that follow the \emph{Example
+  1} trope are connected with a red arrow, and events that follow the \emph{Item
+Search} trope are connected with a blue arrow. This allows the user to visualise
+the effect adding a certain trope has on the potential paths that their story
+may take.
+
+\begin{figure}[!h]
 \centerline{\includegraphics[width=\textwidth]{storybuilder6.png}}
-\caption{The view when the user clicks the \emph{arrange} tab}\label{fig:sb1}
+\caption{The view when the user clicks the \emph{arrange} tab}\label{fig:sb-arrange}
 \end{figure}
 
-\begin{figure}[!t]
+\begin{figure}[!h]
 \centerline{\includegraphics[width=\textwidth]{storybuilder-combine1.png}}
 \caption{An explanation of tropes are combined in the \emph{arrange} tab}\label{fig:sb-combine-ann}
 \end{figure}
@@ -4934,45 +5012,67 @@ diagram of all of the possible events that they describe.
 
 \subsection{Usage Examples}
 
-\begin{figure}[!t]
+The figures in this section show how the simple trope examples listed in sections~\ref{sec:seq-code}
+to~\ref{sec:subtrope-code} appear when edited and visualised using the
+\emph{StoryBuilder} tool.
+
+
+\begin{figure}[!h]
 \centerline{\includegraphics[width=\textwidth]{storybuilder-seq1.png}}
 \caption{Two consecutive events (from listing~\ref{lst:seq2})}\label{fig:sb-seq1}
 \end{figure}
 
-\begin{figure}[!t]
+\begin{figure}[!h]
 \centerline{\includegraphics[width=\textwidth]{storybuilder-seq2.png}}
 \caption{A sequence of events (from listing~\ref{lst:seq4})}\label{fig:sb-seq2}
 \end{figure}
 
-\begin{figure}[!t]
+To demonstrate the visualisation of sequences of events,
+figure~\ref{fig:sb-seq1} shows a sequence just two events long, with the code
+from listing~\ref{lst:seq2} as input. Figure~\ref{fig:sb-seq2} uses the longer
+sequence of five events from listing~\ref{lst:seq4} as its input.
+
+
+\begin{figure}[!h]
 \centerline{\includegraphics[width=\textwidth]{storybuilder-branch1.png}}
 \caption{Two branches (from listing~\ref{lst:branch1})}\label{fig:sb-branch1}
 \end{figure}
 
-\begin{figure}[!t]
+\begin{figure}[!h]
 \centerline{\includegraphics[width=\textwidth]{storybuilder-branch2.png}}
 \caption{Five branches (from listing~\ref{lst:branch2})}\label{fig:sb-branch2}
 \end{figure}
 
-\begin{figure}[!t]
+\begin{figure}[!h]
 \centerline{\includegraphics[width=\textwidth]{storybuilder-branch3.png}}
 \caption{A combination of branches and sequences (from listing~\ref{lst:branch3})}\label{fig:sb-branch3}
 \end{figure}
 
-\begin{figure}[!t]
+\emph{StoryBuilder}'s visualisation of branches are demonstrated in the figures
+that follow. Figure~\ref{fig:sb-branch1} shows the simple two-branch trope of
+listing~\ref{lst:branch1}. Figure~\ref{fig:sb-branch2} shows the visualisation
+of a trope with five different branches, as described by the trope in
+listing~\ref{lst:branch2}. Finally, the more complicated combination of
+sequences and branches from listing~\ref{lst:branch3} is shown in figure~\ref{fig:sb-branch3}.
+
+\begin{figure}[!h]
 \centerline{\includegraphics[width=\textwidth]{storybuilder-subtrope1.png}}
 \caption{Subtrope to be embedded (from listing~\ref{lst:subtrope1})}\label{fig:sb-subtrope1}
 \end{figure}
 
-\begin{figure}[!t]
+\begin{figure}[!h]
 \centerline{\includegraphics[width=\textwidth]{storybuilder-subtrope2.png}}
 \caption{Trope containing a subtrope (from listing~\ref{lst:subtrope2})}\label{fig:sb-subtrope2}
 \end{figure}
 
-\subsection{Creating a story with StoryBuilder: The Hero's Journey}
-\subsubsection{The Departure}
-\subsubsection{The Initiation}
-\subsubsection{The Return}
+The final two figures in this section demonstrate the use of \emph{StoryBuilder}
+for embedding subtropes inside of other tropes. Figure~\ref{fig:sb-subtrope1} is
+the \emph{StoryBuilder} visualisation that corresponds to the subtrope that is
+to be embedded (described in listing~\ref{lst:subtrope1}). The actual embedding
+of this subtrope, as described in listing~\ref{lst:subtrope2}, and its resulting visualisation are shown in figure~\ref{fig:sb-subtrope2}.
+
+\subsection{Creating a story with StoryBuilder: A Noir Detective Story}
+
 
 
 \section{Design Justification}

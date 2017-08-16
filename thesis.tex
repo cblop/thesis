@@ -3646,7 +3646,7 @@ tropes into new ones. We do this through \emph{Subtropes}, which are simply prev
 new trope. Take this simple trope example:
 
 \begin{lstlisting}[showstringspaces=false, label={lst:subtrope1}, caption={Subtrope
-te be embedded}]
+to be embedded}]
 "Item Search" is a trope where:
    The Macguffin is an object
    The Hero is a role
@@ -4879,14 +4879,15 @@ R\ref{req:components}. and R\ref{req:vis}. in the requirements listed in Section
 \end{enumerate}
 
 Although libraries can be stored and reused in text-based programming languages
-through methods such as ``import'' statements, our intention was to create a
+through methods such as ``import'' statements, our intention is to create a
 graphical interface to simplify the exploration and viewing of tropes in the
 library. Using StoryBuilder, the user can select a pre-written trope from a
 dropdown box of existing tropes, which then allows them to see its source code
 and visualise its structure in the story with a tree diagram.
 
 To address requirement~\ref{req:vis}, we parse the answer set outputs (traces)
-of our answer set solver (as described in Section~\ref{})
+of our answer set solver (as described in Section~\ref{}) to create a tree
+diagram of all of the possible events that they describe.
 
 \section{Overview of Interface}
 
@@ -4894,7 +4895,85 @@ of our answer set solver (as described in Section~\ref{})
 % TODO description of interface: 2
 % TODO screens & explanation of editor: 2
 % TODO screens & explanation of arranger: 2
-% TODO screens & explanation of visualisations: 2
+
+
+\subsection{Interface Overview}
+
+\subsubsection{The \emph{edit} tab}
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder5.png}}
+\caption{The initial view when \emph{StoryBuilder} starts}\label{fig:sb-start}
+\end{figure}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder-a1.png}}
+\caption{An explanation of the \emph{edit} tab}\label{fig:sb-edit-ann}
+\end{figure}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder-a2.png}}
+\caption{An explanation of how the \emph{edit} tab is used}\label{fig:sb-edit-ann2}
+\end{figure}
+
+\subsubsection{The \emph{arrange} tab}
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder-new1.png}}
+\caption{An explanation of how a new trope is created}\label{fig:sb-new-ann}
+\end{figure}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder6.png}}
+\caption{The view when the user clicks the \emph{arrange} tab}\label{fig:sb1}
+\end{figure}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder-combine1.png}}
+\caption{An explanation of tropes are combined in the \emph{arrange} tab}\label{fig:sb-combine-ann}
+\end{figure}
+
+
+\subsection{Usage Examples}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder-seq1.png}}
+\caption{Two consecutive events (from listing~\ref{lst:seq2})}\label{fig:sb-seq1}
+\end{figure}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder-seq2.png}}
+\caption{A sequence of events (from listing~\ref{lst:seq4})}\label{fig:sb-seq2}
+\end{figure}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder-branch1.png}}
+\caption{Two branches (from listing~\ref{lst:branch1})}\label{fig:sb-branch1}
+\end{figure}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder-branch2.png}}
+\caption{Five branches (from listing~\ref{lst:branch2})}\label{fig:sb-branch2}
+\end{figure}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder-branch3.png}}
+\caption{A combination of branches and sequences (from listing~\ref{lst:branch3})}\label{fig:sb-branch3}
+\end{figure}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder-subtrope1.png}}
+\caption{Subtrope to be embedded (from listing~\ref{lst:subtrope1})}\label{fig:sb-subtrope1}
+\end{figure}
+
+\begin{figure}[!t]
+\centerline{\includegraphics[width=\textwidth]{storybuilder-subtrope2.png}}
+\caption{Trope containing a subtrope (from listing~\ref{lst:subtrope2})}\label{fig:sb-subtrope2}
+\end{figure}
+
+\subsection{Creating a story with StoryBuilder: The Hero's Journey}
+\subsubsection{The Departure}
+\subsubsection{The Initiation}
+\subsubsection{The Return}
+
 
 \section{Design Justification}
 % Return to requirements, explain how they are met
@@ -4941,51 +5020,50 @@ of our answer set solver (as described in Section~\ref{})
 % to the appendix
 
 
-
-\section{Identified Themes}
+\subsection{Identified Themes}
 % TODO intro: 1
 % TODO list themes: 4
-\subsection{Features}
-\subsubsection{Different characters in different tropes}
+\subsubsection{Features}
+\paragraph{Different characters in different tropes}
 Participant A, line~\ref{lne:feature1a}
 Participant D, line~\ref{lne:feature1d}
-\subsubsection{State management}
+\paragraph{State management}
 Participant A, lines~\ref{lne:feature2a},~\ref{lne:feature2a2}~\ref{lne:feature2a3}
 Participant B, line~\ref{lne:feature2b}
 Participant D, line~\ref{lne:feature2d}
 Participant F, line~\ref{lne:feature2f}
-\subsubsection{Event with two agents}
+\paragraph{Event with two agents}
 Participant A, line~\ref{lne:feature3a}
 Participant D, line~\ref{lne:feature3d}
 Participant G, line~\ref{lne:feature3g}
-\subsubsection{Event semantics}
+\paragraph{Event semantics}
 Participant A, line~\ref{lne:feature4a}
 Participant D, lines~\ref{lne:feature4d},~\ref{lne:feature4d2}
 Participant H, lines~\ref{lne:feature4h},~\ref{lne:feature4h2}
-\subsubsection{Other types of entities}
+\paragraph{Other types of entities}
 Participant B, line~\ref{lne:feature5b}
 Participant F, line~\ref{lne:feature5f}
-\subsubsection{Subject must be an agent}
+\paragraph{Subject must be an agent}
 Participant B, line~\ref{lne:feature6b}
 Participant D, lines~\ref{lne:feature6d},~\ref{lne:feature6d2}
-\subsubsection{Story structure}
+\paragraph{Story structure}
 Participant C, line~\ref{lne:feature7c}
 Participant F, line~\ref{lne:feature7f}
 Participant G, line~\ref{lne:feature7g}
-\subsubsection{Conditionals}
+\paragraph{Conditionals}
 Participant D, line~\ref{lne:feature8d}
 Participant H, line~\ref{lne:feature8h}
 
-\subsection{Syntax}
-\subsubsection{Spaces in words}
+\subsubsection{Syntax}
+\paragraph{Spaces in words}
 Participant A, line~\ref{lne:syntax1a}
 Participant D, lines~\ref{lne:syntax1d},~\ref{lne:syntax1d2}
-\subsubsection{Using any verb}
+\paragraph{Using any verb}
 Participant A, line~\ref{lne:syntax2a}
 Participant B, line~\ref{lne:syntax2b}
 Participant F, lines~\ref{lne:syntax2f}
 Participant G, lines~\ref{lne:syntax2g}
-\subsubsection{Use of ``the''}
+\paragraph{Use of ``the''}
 Participant A, line~\ref{lne:syntax3a}
 Participant B, lines~\ref{lne:syntax3b},~\ref{lne:syntax3b2}
 Participant C, line~\ref{lne:syntax3c}
@@ -4993,52 +5071,52 @@ Participant D, line~\ref{lne:syntax3d}
 Participant E, lines~\ref{lne:syntax3e},~\ref{lne:syntax3e2}
 Participant F, line~\ref{lne:syntax3f}
 Participant H, line~\ref{lne:syntax3h}
-\subsubsection{Entity declarations}
+\paragraph{Entity declarations}
 Participant A, line~\ref{lne:syntax4a}
 Participant C, line~\ref{lne:syntax4c}
 Participant D, lines~\ref{lne:syntax4d},~\ref{lne:syntax4d2}
-\subsubsection{Capitalisation}
+\paragraph{Capitalisation}
 Participant B, lines~\ref{lne:syntax5b},~\ref{lne:syntax5b2}
 Participant C, lines~\ref{lne:syntax5c},~\ref{lne:syntax5c2},~\ref{lne:syntax5c3},~\ref{lne:syntax5c4}
 Participant D, lines~\ref{lne:syntax5d},~\ref{lne:syntax5d2},~\ref{lne:syntax5d3},~\ref{lne:syntax5d4}
 Participant E, line~\ref{lne:syntax5e}
 Participant F, lines~\ref{lne:syntax5f},~\ref{lne:syntax5f2}
 
-\subsection{Limitations}
-\subsubsection{Five event limit}
+\subsubsection{Limitations}
+\paragraph{Five event limit}
 Participant A, line~\ref{lne:bug1a}
 Participant C, line~\ref{lne:bug1c}
 Participant D, line~\ref{lne:bug1d}
 Participant E, lines~\ref{lne:bug1e},~\ref{lne:bug1e2}
 Participant G, lines~\ref{lne:bug1g},~\ref{lne:bug1g2}
 Participant H, lines~\ref{lne:bug1h},~\ref{lne:bug1h2}
-\subsubsection{Branch length limit}
+\paragraph{Branch length limit}
 Participant A, line~\ref{lne:bug2a}
 Participant D, lines~\ref{lne:bug2d},~\ref{lne:bug2d2}
 Participant F, line~\ref{lne:bug2f}
 Participant G, line~\ref{lne:bug2g}
-\subsubsection{Subtrope at end}
+\paragraph{Subtrope at end}
 Participant A, line~\ref{lne:bug3a}
 Participant B, line~\ref{lne:bug3b}
 Participant C, line~\ref{lne:bug3c}
 Participant E, line~\ref{lne:bug3e}
 Participant H, lines~\ref{lne:bug3h}
-\subsubsection{Error messages}
+\paragraph{Error messages}
 Participant B, lines~\ref{lne:bug4b}
 Participant G, line~\ref{lne:bug4g}
 
-\subsection{Usability}
-\subsubsection{Ease of use}
+\subsubsection{Usability}
+\paragraph{Ease of use}
 Participant A, line~\ref{lne:use1a}
 Participant B, line~\ref{lne:use1b}
 Participant D, lines~\ref{lne:use1d},~\ref{lne:use1d2}
 Participant E, line~\ref{lne:use1e}
 Participant F, lines~\ref{lne:use1f},~\ref{lne:use1f2}
 Participant G, lines~\ref{lne:use1g}
-\subsubsection{Visualisation}
+\paragraph{Visualisation}
 Participant B, lines~\ref{lne:use2b},~\ref{lne:use2b2},~\ref{lne:use2b3}
 Participant E, lines~\ref{lne:use2e},~\ref{lne:use2e2},~\ref{lne:use2e4}
-\subsubsection{Tropes}
+\paragraph{Tropes}
 Participant C, lines~\ref{lne:use3c},~\ref{lne:use3c2}
 Participant E, lines~\ref{lne:use3e},~\ref{lne:use3e2},~\ref{lne:use3e3}
 Participant F, lines~\ref{lne:use3f}
@@ -5822,7 +5900,7 @@ Weapon".\bug{Five event limit}\label{lne:bug1a}
 \textbf{Myself:} It has! It's just incredibly slow. OK.
 
 \textbf{Participant:} I'm not sure how the Hero then goes to the Evil Lair. But
-that's just a flaw in my own story!\feature{Event semantics}\label{feature4a}
+that's just a flaw in my own story!\feature{Event semantics}\label{lne:feature4a}
 
 \textbf{Myself:} Sorry? Oh yeah, he kills the Hero, and then he goes to the Evil Lair even though he's dead! How does that happen?
 
@@ -8326,7 +8404,7 @@ Dialogue starts at 12:23.
 
 \textbf{Participant:} Um, yes. Do any of these rules, I guess, phrases, have
 special meaning, such as, where's it gone? "The Hero dies". Does anything
-special happen after that?\feature{Event semantics}\label{lne:feature4}
+special happen after that?\feature{Event semantics}\label{lne:feature4h}
 
 \textbf{Myself:} No. It just gives the Hero permission to die. That's literally it. There's nothing really clever going on there.
 

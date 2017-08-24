@@ -16,7 +16,6 @@
 \usepackage{multicol}
 \usepackage{subcaption}
 \usepackage{verbatim}
-\usepackage{hyperref}
 % \usepackage[inline]{enumitem}
 \usepackage{paralist}
 %\usepackage{amsfonts}
@@ -30,6 +29,7 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \usepackage[]{todonotes}
+\usepackage{hyperref}
 
 \newcounter{myenumi}
 \setcounter{myenumi}{0}
@@ -5071,9 +5071,198 @@ the \emph{StoryBuilder} visualisation that corresponds to the subtrope that is
 to be embedded (described in listing~\ref{lst:subtrope1}). The actual embedding
 of this subtrope, as described in listing~\ref{lst:subtrope2}, and its resulting visualisation are shown in figure~\ref{fig:sb-subtrope2}.
 
-\subsection{Creating a story with StoryBuilder: A Noir Detective Story}
+\subsection{Creating a story with StoryBuilder: Punch and Judy}
 
+The tropes that appear in Punch and Judy can be divided into two types: those
+that are present throughout the story, and those that describe particular scenes
+of the story. One trope that is a constant feature of Punch and Judy shows is
+audience participation, where the characters shouts something at the audience
+with the expectation of a response. For example, the Punch character may shout
+something like: ``Where is he?'', with the traditional audience response being
+``He's behind you!''.
 
+There are also particular scenes that always feature in a Punch and Judy show.
+We want them to appear in our story as well, but one after another, in sequence.
+We will achieve this by using one as a subtrope of another. The two scenes that
+we will describe are the ``Babysitting scene'', where Judy leaves Punch with the
+Baby, and the ``Crocodile Sausages'' scene, where a crocodile eats some sausages
+that Punch has been trusted with looking after.
+
+Listing~\ref{lst:audience-participation} shows a basic description of the events
+that happen in audience participation: a character calls out to the audience,
+then the audience calls back. When integrated into a multi-agent system, each
+character agent will be assigned the ``character'' role, so that the social
+norms from this trope will apply to them.
+Figure~\ref{fig:audience-participation} shows how this trope appears when it is
+input into StoryBuilder.
+
+Because this trope is present throughout the Punch and Judy story, it can be
+either inserted as a subtrope into other tropes, or (perhaps more effectively)
+passed to the answer set solver along with the other tropes in the story, so
+that its events can occur at any point. This is described further in
+section~\ref{sec:combining-tropes} below.
+
+\begin{lstlisting}[label={list:audience-participation},caption={The ``Audience participation'' trope}]
+``Audience Participation'' is a trope where:
+The Character is a role
+The Audience is a role
+The Character shouts at the Audience
+Then the Audience shouts at the Character
+\end{lstlisting}
+
+\begin{figure}[!h]
+\centerline{\includegraphics[width=\textwidth]{audience-trope.png}}
+\caption{The ``Audience Participation'' trope in StoryBuilder}\label{fig:audience-participation}
+\end{figure}
+
+Listing~\ref{lst:list:babysitting-trope} shows a trope to describe the
+``Babysitting'' scene from Punch and Judy. We have decided to put a branching
+point in this trope, where Punch may either kill the baby, or the baby escapes.
+This gives the option of a more ``family-friendly'' alternative of the scene,
+suitable for younger audiences. The StoryBuilder visualisation appears in Figure~\ref{fig:babysitting-trope}.
+
+\begin{lstlisting}[label={list:babysitting-trope},caption={The ``Babysitting'' trope}]
+``Babysitting'' is a trope where:
+  Punch is a role
+  Judy is a role
+  The Baby is a role
+  Away is a place
+  Home is a place
+  Judy kisses Punch
+  Then Judy goes Away
+  Then Punch chases the Baby
+  Then Punch kills the Baby
+    Or the Baby escapes
+  Then Judy returns Home
+\end{lstlisting}
+
+\begin{figure}[!h]
+\centerline{\includegraphics[width=\textwidth]{babysitting-trope.png}}
+\caption{The ``Babysitting'' trope in StoryBuilder}\label{fig:babysitting-trope}
+\end{figure}
+
+Listing~\ref{lst:list:sausages-trope} shows the TropICAL definition of the
+``Crocodile Sausages'' scene in Punch and Judy. This scene is a simple sequence
+of events, but we will see how to interpose events from other tropes between
+them below. Its StoryBuilder visualisation appears in Figure~\ref{fig:crocodile-sausages}.
+
+\begin{lstlisting}[label={list:sausages-trope},caption={The ``Crocodile Sausages'' trope}]
+``Crocodile Sausages'' is a trope where:
+  Punch is a role
+  Joey is a role
+  Crocodile is a role
+  The Sausages are an object
+  Away is a place
+  Home is a place
+  Joey meets Punch
+  Then Joey leaves behind the Sausages
+  Then Joey goes Away
+  Then the Crocodile appears
+  Then the Crocodile chases Punch
+  Then the Crocodile eats the Sausages
+  Then Joey returns Home
+\end{lstlisting}
+
+\begin{figure}[!h]
+\centerline{\includegraphics[width=\textwidth]{crocodile-trope.png}}
+\caption{The ``Crocodile Sausages'' trope in StoryBuilder}\label{fig:crocodile-sausages}
+\end{figure}
+
+However, these tropes can be further simplified and modularised. Both the
+``Babysitting'' and ``Crocodile Sausages'' feature events where a character
+leaves the stage, only to return later. With this knowledge, we can abstract
+these events into the ``Absentation'' trope, shown in
+listing~\ref{list:absentation-trope}.
+
+\begin{lstlisting}[label={list:absentation-trope},caption={An ``Absentation'' trope}]
+``Absentation'' is a trope where:
+  Absentee is a role
+  Home is a place 
+  Away is a place
+  The Absentee goes Away
+  Then the Absentee returns Home
+\end{lstlisting}
+
+Similarly, many Punch and Judy scenes end
+with two characters chasing each other, such as when the Crocodile chases Punch,
+or the scene where the Policeman chases Punch. From this, we can create the
+``Chase Scene'' trope of listing~\ref{list:chase-trope}.
+
+\begin{lstlisting}[label={list:chase-trope},caption={A ``Chase Scene'' trope}]
+``Chase Scene'' is a trope where:
+  Pursuer is a role
+  Pursued is a role
+  The Pursuer chases the Pursued
+  Then the Pursuer catches the Pursued
+    Or the Pursued escapes
+\end{lstlisting}
+
+Creating these new abstractions allows us to rewrite our tropes without
+repeating ourselves. Listing~\ref{list:babysitting-trope-subtrope} shows how the
+``Babysitting'' trope would be rewritten by incorporating the ``Absentation''
+and ``Chase Scene'' tropes as subtropes.
+Listing~\ref{list:sausages-trope-subtrope} does the same for the ``Sausages'' trope.
+
+\begin{lstlisting}[label={list:babysitting-trope-subtrope},caption={The ``Babysitting''
+trope, redefined with a subtrope}]
+``Babysitting'' is a trope where:
+  Punch is a role
+  Judy is a role
+  The Baby is a role
+  Away is a place
+  Home is a place
+  Judy kisses Punch
+  Then the ``Absentation'' trope happens
+  Then the ``Chase Scene'' trope happens
+\end{lstlisting}
+
+\begin{lstlisting}[label={list:sausages-trope-subtrope},caption={The ``Sausages''
+trope, redefined with a subtrope}]
+``Sausages'' is a trope where:
+  Punch is a role
+  Joey is a role
+  Crocodile is a role
+  The Sausages are an object
+  Away is a place
+  Home is a place
+  Joey gives the Sausages to Punch
+  Then the ``Absentation'' trope happens
+  Then the Crocodile appears
+  Then the Crocodile chases Punch
+  Then the Crocodile eats the Sausages
+  Then Joey returns Home
+\end{lstlisting}
+
+\subsubsection{Combining Tropes Together}
+\label{sec:combining-tropes}
+
+Sometimes we want to combine two or more tropes together into a story, so that
+the characters are free to choose to follow the events of any of the tropes that
+may be happening. In this example, we describe a scene where the events of the
+``Babysitting'' scene are combined with the ``Audience Participation'' trope. If
+both tropes are described in TropICAL and compiled to InstAL, they describe
+social norms that regulate the actions of character agents. When both of these
+tropes are given as inputs to an answer set solver, then we are able to generate
+all of the possible permutations of the possible events of both of these tropes.
+
+Using the ``arrange'' tab in StoryBuilder, we select both the ``Audience
+Participation'' and ``Babysitting'' tropes. The tree visualisation that appears
+on the right of the screen shows us all of the permutations that appear as the
+output of the answer set solver. Figure~\ref{fig:combining-tropes} shows the
+result of doing this in StoryBuilder. The tree visualisation on the right has
+been enlarged so that its nodes are legible. The nodes of the tree describe the
+events that are occurring, and the links between nodes are labelled with the
+name of the trope that their following nodes (events) correspond to.
+
+\begin{figure}[!h]
+\centerline{\includegraphics[width=\textwidth]{trope-combining.png}}
+\caption{Combining the ``Babysitting'' and ``Audience Participation'' tropes in StoryBuilder}\label{fig:combining-tropes}
+\end{figure}
+
+Using this part of the StoryBuilder tool, the user is able to interactively
+explore the different combinations of events that different tropes add to their
+story. When these combinations of tropes are visualised, they are then able to
+refine their tropes further in order to build the non-linear narrative that they desire.
 
 \section{Design Justification}
 % Return to requirements, explain how they are met
@@ -5081,145 +5270,574 @@ of this subtrope, as described in listing~\ref{lst:subtrope2}, and its resulting
 % TODO intro: 1
 % TODO explain how requirements have been met: 4
 
-\section{Example Stories}
-\label{sec:story-vis}
-% Return to tests from previous section (though these could be the ``user
-% stories'''), and put screenshots of visualisations
+In the introduction to this chapter, we describe how the StoryBuilder tool
+addresses requirements R\ref{req:components} and R\ref{req:vis} in the
+requirements shown in section~\ref{sec:requirements}:
 
-% TODO intro: 1
-% TODO hero's journey screens: 2
-% TODO hero's journey explanation: 2
-% TODO evil empire screens: 2
-% TODO evil empire explanation: 2
-% TODO both screens: 2
-% TODO both explanation: 2
+\begin{enumerate}[R1.]
+  \setcounter{enumi}{2}
+  \item The user should be able to write and re-use
+    existing story components (from a library)
+  \setcounter{enumi}{6}
+  \item The user should be able to visualise the branches of the
+    story that result in the addition or modification of components to the story.
+\end{enumerate}
 
-% TODO outro: 1
-
-% evaluation
-
-% HACK predicted poms remaining: 21
+StoryBuilder fulfills requirement R\ref{req:components} by storing every trope
+that the author creates in a database, so that they may be reused and amended if
+needed. Requirement R\ref{req:vis} is met through StoryBuilder's use of a tree
+visualisation that updates as the story author is editing the tropes in the tool.
 
 \section{Evaluation}
 % TODO intro: 2
 
-\subsection{Methodology}
-% TODO Explain the concept of ``thematic analysis''': 3
+In order to evaluate the effectiveness of both TropICAL and StoryBuilder for the
+construction of tropes and nonlinear stories, we carried out a usability study,
+evaluated qualitatively through a thematic analysis (described by~\citet{clarke2014thematic}).
 
 \subsection{Process}
 % TODO explain the process: 3
 
-\subsection{Questions}
-% TODO list the questions asked: 3
+The study begins with a brief explanation of the syntax and features of the
+TropICAL language: entities (roles, places, objects), events (sequences and
+branches) and subtropes. Once they have become familiar with the language and
+seen some visualisations of example tropes, they are asked to complete seven
+tasks. The tasks start with the user making simple changes to existing tropes,
+and give the user increasing freedom, finally giving them the opportunity to
+create tropes for a story of their own.
+
+\subsection{User Tasks}
+This section describes the tasks that the users carried out as part of the study.
+
+\subsubsection*{Task 1: Edit an Existing Trope}
+\label{sec:org14aee76}
+The user is instructed to get a feel for the language by browsing through
+the examples provided, then presented with this task:
+
+\begin{quote}
+In the 'edit' tab, select an existing trope from the dropdown box. Edit its text on the left, and then save it. Again, Matt will give you advice to make sure it compiles correctly. Once this is done, check to see that the visualisation seems to be as expected.
+\end{quote}
+
+This task is designed to examine how easily the user is able to read and
+understand the TropICAL languages before making small changes to existing tropes.
+
+\subsubsection*{Task 2: Create a Trope}
+\label{sec:org96a6276}
+
+The second task gives the user some specific character roles and places to use
+in their trope, and then instructs them to combine them together into a sequence
+of events:
+
+\begin{quote}
+Given the following character roles:
+
+\begin{itemize}
+\item Hero
+\item Villain
+\item Mentor
+\end{itemize}
+
+And the following places:
+
+\begin{itemize}
+\item Home
+\item Evil Lair
+\item Land of Adventure
+\end{itemize}
+
+Construct a trope using Tropical. Your statements will be simple sequences at first, i.e:
+
+\begin{verbatim}
+The Hero goes home
+Then the Hero goes away
+Then the Villain kills the Hero
+\end{verbatim}
+
+Make sure to declare your roles and objects first.
+\end{quote}
+
+This task is designed to allow the users to gently begin creating their own
+tropes, by limiting their role and place choices at first, as well as limiting
+their trope complexity by only allowing sequences of events without branches.
+
+\subsubsection*{Task 3: Adding objects to your trope}
+\label{sec:org9cb2b36}
+
+This task extends task 2 by allowing the user to add objects to their trope.
+
+\begin{quote}
+Add the following objects to your trope:
+
+\begin{itemize}
+\item Weapon
+\item Evil Plan
+\end{itemize}
+
+For example:
+
+\begin{verbatim}
+The Hero takes the Weapon
+Then the Villain makes an Evil Plan
+\end{verbatim}
+\end{quote}
+
+\subsubsection*{Task 4: Add branches to your trope}
+\label{sec:org80c0de6}
+
+In task 4, the user is asked to add some branching points to the trope that they
+have made:
+
+\begin{quote}
+Using the "Or" keyword, add branches to your story. For example:
+
+
+\begin{verbatim}
+The Hero goes to the Land of Adventure
+Then the Hero kills the Villain
+  Or the Villain kills the Mentor
+  Or the Mentor goes home
+\end{verbatim}
+\end{quote}
+
+This task introduces the concept of branches to the user for the first time.
+
+\subsubsection*{Task 5: Put two tropes into a story}
+\label{sec:orga5afeae}
+
+In this task, the user takes two existing tropes from the database, and combines
+them together with the ``arrange'' tab:
+
+\begin{quote}
+Using the "Arrange" tab in Storybuilder, select two (or more) tropes from the dropdown boxes to visualise all the possible paths through a story with those tropes.
+\end{quote}
+
+Once this task is completed, the user is able to see a visualisation of all of the possible
+combinations of events that result from combining two tropes together.
+
+\subsubsection*{Task 6: Tropes within Tropes}
+\label{sec:orga5bc382}
+
+This task introduces the user to the concept of a \emph{subtrope}, asking them
+to embed an existing trope inside of a new one:
+
+\begin{quote}
+Create a new trope that uses an existing trope as a "subtrope". For example:
+
+\begin{verbatim}
+"Hero May Leave" is a trope where:
+   The Hero is a role
+   Away is a place
+   Home is a place
+   The Hero goes Away
+     Or the Hero stays at Home
+
+"Crime Flee Dilemma" is a trope where:
+  The Hero is a role
+  The Puppy is a role
+  The Hero kills the Puppy
+  Then the Hero panics
+  Then the "Hero May Leave" trope happens
+\end{verbatim}
+
+In the above example, the first trope is used inside the second trope.
+\end{quote}
+
+\subsubsection*{Task 7: Free Story Creation}
+\label{sec:orgeed4725}
+
+Finally, the user is given the opportunity to create whatever they want. They
+can create new tropes, embed subtropes, and combine them into a story:
+
+\begin{quote}
+Using a combination of the techniques learned up until now, please create a story of your own, using any combination of characters, places, objects, and subtropes.
+
+Once you have created the story, you can explore the possible paths through it with the tree visualisation.
+\end{quote}
+
+\subsection{Limitations of the System}
+
+Due to time restrictions and bugs in StoryBuilder, the following limitations
+applied to the participants' use of the software:
+
+\begin{itemize}
+  \item Tropes can have a maximum of five events in a sequence (not including branches)
+  \item Subtropes must go at the end of a trope
+  \item Branches cannot be extended beyond one event
+  \item Branches cannot be cut off (by writing ``Then the story ends''), and so
+    always merge back into the main story
+  \item The tropes must be event-based. This means that updating the state of
+    entities by writing statements such as ``The Hero has an Apple'', or ``The
+    Apple is in the Barn'' does not work. Verbs other than \emph{has} or
+    \emph{is} must be used in these cases, for example: ``The Hero takes the
+    Apple'' or ``The Apple rests in the Barn''.
+  \item Though the parser can translate obligations, deadlines and violation
+    events from TropICAL to InstAL and ASP, the participants were not asked to
+    test this due to the complexity that it would add. The aim of the study was
+    to examine the use of tropes as reusable story components, and teaching the
+    complexity of obligations with deadlines and consequences would have
+    introduced a steeper learning curve for the users.
+\end{itemize}
+
+Despite these limitations, enough of the TropICAL language and StoryBuilder
+interface were implemented to test the usage of building a story using tropes as
+re-usable components.
+
+\subsection{Participants}
+Eight participants were recruited for the study:
+
+\begin{itemize}
+\item \textbf{Participant A} is a computer science student,
+with good programming experience
+\item \textbf{Participant B} is an architect and former English teacher with a little programming experience
+\item \textbf{Participant C} is a creative writer with no programming experience
+\item \textbf{Participant D} is a computer science student with good programming experience
+\item \textbf{Participant E} is a computer science student with good programming experience
+\item \textbf{Participant F} is a creative computing student with some programming experience
+\item \textbf{Participant G} is a computer scientist that works on well-known
+interactive fiction tools
+\item \textbf{Participant H} is a computer science graduate student with good
+programming (and answer-set programming) experience
+\end{itemize}
+
+The studies were conducted using Google Hangouts, with each participant loading
+StoryBuilder by going to a web address
+(\url{http://mthompson.org/storybuilder}) and sharing a screen capture of their
+interactions with the system. Each study was recorded using screen capture
+software. The full transcripts are listed in
+Appendix~\ref{appendix:transcripts}.
 
 \subsection{Identified Themes}
-% TODO transcript snippets: 2
-% TODO transcript snippet explanations: 3
-% TODO forward ref to transcripts in appendix: 1
-% Just choice quotes and snippets go here, but make sure that you forward link
-% to the appendix
-
-
-\subsection{Identified Themes}
-% TODO intro: 1
+% ATODO intro: 1
 % TODO list themes: 4
+We identify eighteen different themes from the participant transcripts listed in
+Appendix~\ref{appendix:transcripts}. These themes fall into four categories:
+
+\begin{enumerate}
+\item \textbf{Features}: what the user can or can't express with
+  TropICAL and StoryBuilder.
+\item \textbf{Syntax}: words and indentation used in the TropICAL language
+\item \textbf{Limitations}: things that the user wanted to do, but
+  couldn't, and any bugs in the system
+\item \textbf{Usability}: how user-friendly both the StoryBuilder
+  interface and TropICAL language are for story authors
+\end{enumerate}
+
+The themes, identified when a pattern appears in the experiences of two or more
+participants, are as follows:
+
 \subsubsection{Features}
-\paragraph{Different characters in different tropes}
-Participant A, line~\ref{lne:feature1a}
-Participant D, line~\ref{lne:feature1d}
-\paragraph{State management}
-Participant A, lines~\ref{lne:feature2a},~\ref{lne:feature2a2}~\ref{lne:feature2a3}
-Participant B, line~\ref{lne:feature2b}
-Participant D, line~\ref{lne:feature2d}
-Participant F, line~\ref{lne:feature2f}
-\paragraph{Event with two agents}
-Participant A, line~\ref{lne:feature3a}
-Participant D, line~\ref{lne:feature3d}
-Participant G, line~\ref{lne:feature3g}
-\paragraph{Event semantics}
-Participant A, line~\ref{lne:feature4a}
-Participant D, lines~\ref{lne:feature4d},~\ref{lne:feature4d2}
-Participant H, lines~\ref{lne:feature4h},~\ref{lne:feature4h2}
-\paragraph{Other types of entities}
-Participant B, line~\ref{lne:feature5b}
-Participant F, line~\ref{lne:feature5f}
-\paragraph{Subject must be an agent}
-Participant B, line~\ref{lne:feature6b}
-Participant D, lines~\ref{lne:feature6d},~\ref{lne:feature6d2}
-\paragraph{Story structure}
-Participant C, line~\ref{lne:feature7c}
-Participant F, line~\ref{lne:feature7f}
-Participant G, line~\ref{lne:feature7g}
-\paragraph{Conditionals}
-Participant D, line~\ref{lne:feature8d}
-Participant H, line~\ref{lne:feature8h}
+\begin{itemize}
+\item \textbf{Different characters in different tropes}
+
+This theme comes from participants asking questions such as ``what happens if I
+have two different heroes in two different tropes?''.
+
+For example, if there are two tropes active in one story, such as \emph{The
+  Hero's Journey} and \emph{The Chase Scene}, both tropes have Hero characters
+in them. Does our system allow us to use two different characters for each hero
+role, one per trope?
+
+This feature is very possible to implement. In fact, it was featured in an early
+version of StoryBuilder. The user was able to select named characters to fulfil
+roles. In this case, they could select (for example) ``Luke Skywalker'' to be
+the hero in the \emph{Hero's Journey}, and ``Harry Potter'' to be the hero in
+the \emph{Chase Scene}. In order to simplify the StoryBuilder interface for the
+study, this feature was removed. This means that the same character plays
+multiple roles in the system used for the study.
+
+This theme appears in these lines of the transcript:
+
+\begin{itemize}
+\item Participant A, line~\lineref{lne:feature1a}
+\item Participant D, line~\lineref{lne:feature1d}
+\end{itemize}
+
+\item \textbf{State management}
+
+  Some participants wanted to be able to write statements such as these:
+
+  \begin{itemize}
+    \item ``The Hero is in the Barn''
+    \item ``The Villain has a Sword''
+    \item ``The Mentor is worried''
+  \end{itemize}
+
+  The intention is to update the state of these characters, objects and places.
+  Though this was not implemented at the time of the study, creating fluents in
+  InstAL to keep track of state would be simple:
+
+  \begin{itemize}
+    \item \texttt{in(hero, barn)}
+    \item \texttt{has(villain, sword)}
+    \item \texttt{is(mentor, worried)}
+  \end{itemize}
+
+  The only difficulty would be updating the state when changes occur later. For
+  example, if the hero has an apple, and then gives it to the villain, then the
+  \texttt{has(hero, apple)} fluent would have to be terminated.
+
+  This theme appears in these lines of the transcript:
+
+\begin{itemize}
+\item Participant A, lines~\lineref{lne:feature2a},~\lineref{lne:feature2a2}~\lineref{lne:feature2a3}
+\item Participant B, line~\lineref{lne:feature2b}
+\item Participant D, line~\lineref{lne:feature2d}
+\item Participant F, line~\lineref{lne:feature2f}
+\end{itemize}
+
+\item \textbf{Event with three entities}
+
+Some participants in the study wanted to express events involving three
+entities, such as ``The Mentor gives the Sword to the Hero''. In this case, the
+three entities are \emph{Mentor}, \emph{Hero} and \emph{Sword}. The TropICAL
+parser was designed to handle statements such as these, but is not currently
+robust enough to handle some of the examples that the participants wanted to express.
+
+This introduces another question: how complex do we want statements to be? Would
+it be useful to allow events involving four entities, such as ``The Hero frees
+the Princess by giving the Sausages to the Dog''? The fact that no participants
+tried to enter statements with more than three entities indicates that this kind
+of event would be more complex than most users need.
+
+  This theme appears in these lines of the transcript:
+
+\begin{itemize}
+\item Participant A, line~\lineref{lne:feature3a}
+\item Participant D, line~\lineref{lne:feature3d}
+\item Participant G, line~\lineref{lne:feature3g}
+\end{itemize}
+
+\item \textbf{Event semantics}
+
+A common pattern in the study was the users expecting the language to have
+semantics beyond allowing the agents to carry out certain actions. The actions
+that TropICAL permits and obliges the agents to carry out are simply seen by the
+agents as keywords that they themselves have to interpret. This means that the
+semantics of the verbs that are permitted and obliged by the system must be
+described in the plans of the agent. For example, if an event states ``The Hero
+goes Home'', then the Hero agent only sees that it has permission to go home. It
+is up to the Hero to interpret this to mean that it physically has to move to
+another location, which should be described in a pre-existing plan.
+
+The expectation that the events would have semantics created surprising effects
+for the participants while visualising their tropes. Some users would write
+events where one character is killed, such as ``The Villain kills the Hero'',
+and expect all subsequent branches featuring the Hero to disappear after that
+event. This was not the case, as the solver has no way of knowing that the
+\emph{kill} verb should remove the Hero agent from the story.
+
+This theme appears in these lines of the transcript:
+
+\begin{itemize}
+\item Participant A, line~\lineref{lne:feature4a}
+\item Participant D, lines~\lineref{lne:feature4d},~\lineref{lne:feature4d2}
+\item Participant H, lines~\lineref{lne:feature4h},~\lineref{lne:feature4h2}
+\end{itemize}
+
+\item \textbf{Other types of entities}
+
+Some users felt constrained by the fact that entities could only be roles,
+objects or places. Participant B wanted to describe the health state of agents
+with statements such as ``Healthy is a Condition'' and ``David is Healthy''.
+Participant F expected to be able to define any type of entity at first, and had
+to be corrected.
+
+This theme appears in these lines of the transcript:
+
+\begin{itemize}
+\item Participant B, line~\lineref{lne:feature5b}
+\item Participant F, line~\lineref{lne:feature5f}
+\end{itemize}
+
+\item \textbf{Subject must be an agent}
+
+  There were users who wanted objects to be able to perform actions. For
+  example, Participant B wanted to be able to write ``The Sun is an object, The
+  Sun shines'', but had to define the Sun as a role rather than an object. This
+  is an unavoidable constraint due to the fact that TropICAL describes social
+  norms. Unless we allow objects to be simulated by agents in addition to roles,
+  it would not make sense to give them permission to carry out actions.
+
+  
+This theme appears in these lines of the transcript:
+
+\begin{itemize}
+\item Participant B, line~\lineref{lne:feature6b}
+\item Participant D, lines~\lineref{lne:feature6d},~\lineref{lne:feature6d2}
+\end{itemize}
+
+
+\item \textbf{Story structure}
+
+Three users in the study stated that they would like to have more control over
+story structure. Participant C stated that she would like the character roles to
+be dynamic and changeable, so that (for example), a Princess character could
+later be revealed to be a Ninja.
+
+Participant F expressed a desire for the linear sequencing of tropes, rather
+than combining them together. This is possible if the tropes are sequenced as
+subtropes within another trope, that happen one after another. For example:
+
+\begin{verbatim}
+``Trope Sequence'' is a trope where:
+The ``Trope A'' trope happens
+Then the ``Trope B'' trope happens
+Then the ``Trope C'' trope happens
+Then the ``Trope D'' trope happens
+\end{verbatim}
+
+This theme appears in these lines of the transcript:
+
+\begin{itemize}
+\item Participant C, line~\lineref{lne:feature7c}
+\item Participant F, line~\lineref{lne:feature7f}
+\item Participant G, line~\lineref{lne:feature7g}
+\end{itemize}
+
+\item \textbf{Conditionals}
+
+A couple of participants stated that they would like to add some kind of
+conditional ``if'' statement to the language, so that the user may have
+preconditions for sequences of events. For example:
+
+\begin{verbatim}
+The Hero goes Home
+If the Villain goes Home:
+  The Hero fights the Villain
+  Then the Hero kills the Villain
+    Or the Villain escapes
+Then the Hero goes Away
+\end{verbatim}
+
+This would be a good feature to add to the language. In particular, if one could
+add several preconditions, the resulting tropes could become very expressive:
+
+\begin{verbatim}
+\end{verbatim}
+
+This theme appears in these lines of the transcript:
+
+\begin{itemize}
+\item Participant D, line~\lineref{lne:feature8d}
+\item Participant H, line~\lineref{lne:feature8h}
+\end{itemize}
+\end{itemize}
 
 \subsubsection{Syntax}
-\paragraph{Spaces in words}
-Participant A, line~\ref{lne:syntax1a}
-Participant D, lines~\ref{lne:syntax1d},~\ref{lne:syntax1d2}
-\paragraph{Using any verb}
-Participant A, line~\ref{lne:syntax2a}
-Participant B, line~\ref{lne:syntax2b}
-Participant F, lines~\ref{lne:syntax2f}
-Participant G, lines~\ref{lne:syntax2g}
-\paragraph{Use of ``the''}
-Participant A, line~\ref{lne:syntax3a}
-Participant B, lines~\ref{lne:syntax3b},~\ref{lne:syntax3b2}
-Participant C, line~\ref{lne:syntax3c}
-Participant D, line~\ref{lne:syntax3d}
-Participant E, lines~\ref{lne:syntax3e},~\ref{lne:syntax3e2}
-Participant F, line~\ref{lne:syntax3f}
-Participant H, line~\ref{lne:syntax3h}
-\paragraph{Entity declarations}
-Participant A, line~\ref{lne:syntax4a}
-Participant C, line~\ref{lne:syntax4c}
-Participant D, lines~\ref{lne:syntax4d},~\ref{lne:syntax4d2}
-\paragraph{Capitalisation}
-Participant B, lines~\ref{lne:syntax5b},~\ref{lne:syntax5b2}
-Participant C, lines~\ref{lne:syntax5c},~\ref{lne:syntax5c2},~\ref{lne:syntax5c3},~\ref{lne:syntax5c4}
-Participant D, lines~\ref{lne:syntax5d},~\ref{lne:syntax5d2},~\ref{lne:syntax5d3},~\ref{lne:syntax5d4}
-Participant E, line~\ref{lne:syntax5e}
-Participant F, lines~\ref{lne:syntax5f},~\ref{lne:syntax5f2}
+\begin{itemize}
+\item \textbf{Spaces in words}
+
+\begin{itemize}
+\item Participant A, line~\lineref{lne:syntax1a}
+\item Participant D, lines~\lineref{lne:syntax1d},~\lineref{lne:syntax1d2}
+\end{itemize}
+\item \textbf{Using any verb}
+
+\begin{itemize}
+\item Participant A, line~\lineref{lne:syntax2a}
+\item Participant B, line~\lineref{lne:syntax2b}
+\item Participant F, lines~\lineref{lne:syntax2f}
+\item Participant G, lines~\lineref{lne:syntax2g}
+\end{itemize}
+
+\item \textbf{Use of ``the''}
+
+\begin{itemize}
+\item Participant A, line~\lineref{lne:syntax3a}
+\item Participant B, lines~\lineref{lne:syntax3b},~\lineref{lne:syntax3b2}
+\item Participant C, line~\lineref{lne:syntax3c}
+\item Participant D, line~\lineref{lne:syntax3d}
+\item Participant E, lines~\lineref{lne:syntax3e},~\lineref{lne:syntax3e2}
+\item Participant F, line~\lineref{lne:syntax3f}
+\item Participant H, line~\lineref{lne:syntax3h}
+\end{itemize}
+
+\item \textbf{Entity declarations}
+
+\begin{itemize}
+\item Participant A, line~\lineref{lne:syntax4a}
+\item Participant C, line~\lineref{lne:syntax4c}
+\item Participant D, lines~\lineref{lne:syntax4d},~\lineref{lne:syntax4d2}
+\end{itemize}
+  
+\item \textbf{Capitalisation}
+
+\begin{itemize}
+\item Participant B, lines~\lineref{lne:syntax5b},~\lineref{lne:syntax5b2}
+\item Participant C, lines~\lineref{lne:syntax5c},~\lineref{lne:syntax5c2},~\lineref{lne:syntax5c3},~\lineref{lne:syntax5c4}
+\item Participant D, lines~\lineref{lne:syntax5d},~\lineref{lne:syntax5d2},~\lineref{lne:syntax5d3},~\lineref{lne:syntax5d4}
+\item Participant E, line~\lineref{lne:syntax5e}
+\item Participant F, lines~\lineref{lne:syntax5f},~\lineref{lne:syntax5f2}
+\end{itemize}
+\end{itemize}
 
 \subsubsection{Limitations}
-\paragraph{Five event limit}
-Participant A, line~\ref{lne:bug1a}
-Participant C, line~\ref{lne:bug1c}
-Participant D, line~\ref{lne:bug1d}
-Participant E, lines~\ref{lne:bug1e},~\ref{lne:bug1e2}
-Participant G, lines~\ref{lne:bug1g},~\ref{lne:bug1g2}
-Participant H, lines~\ref{lne:bug1h},~\ref{lne:bug1h2}
-\paragraph{Branch length limit}
-Participant A, line~\ref{lne:bug2a}
-Participant D, lines~\ref{lne:bug2d},~\ref{lne:bug2d2}
-Participant F, line~\ref{lne:bug2f}
-Participant G, line~\ref{lne:bug2g}
-\paragraph{Subtrope at end}
-Participant A, line~\ref{lne:bug3a}
-Participant B, line~\ref{lne:bug3b}
-Participant C, line~\ref{lne:bug3c}
-Participant E, line~\ref{lne:bug3e}
-Participant H, lines~\ref{lne:bug3h}
-\paragraph{Error messages}
-Participant B, lines~\ref{lne:bug4b}
-Participant G, line~\ref{lne:bug4g}
+\begin{itemize}
+\item \textbf{Five event limit}
+
+\begin{itemize}
+\item Participant A, line~\lineref{lne:bug1a}
+\item Participant C, line~\lineref{lne:bug1c}
+\item Participant D, line~\lineref{lne:bug1d}
+\item Participant E, lines~\lineref{lne:bug1e},~\lineref{lne:bug1e2}
+\item Participant G, lines~\lineref{lne:bug1g},~\lineref{lne:bug1g2}
+\item Participant H, lines~\lineref{lne:bug1h},~\lineref{lne:bug1h2}
+\end{itemize}
+
+\item \textbf{Branch length limit}
+
+\begin{itemize}
+\item Participant A, line~\lineref{lne:bug2a}
+\item Participant D, lines~\lineref{lne:bug2d},~\lineref{lne:bug2d2}
+\item Participant F, line~\lineref{lne:bug2f}
+\item Participant G, line~\lineref{lne:bug2g}
+\end{itemize}
+
+\item \textbf{Subtrope at end}
+\begin{itemize}
+\item Participant A, line~\lineref{lne:bug3a}
+\item Participant B, line~\lineref{lne:bug3b}
+\item Participant C, line~\lineref{lne:bug3c}
+\item Participant E, line~\lineref{lne:bug3e}
+\item Participant H, lines~\lineref{lne:bug3h}
+\end{itemize}
+
+\item \textbf{Error messages}
+
+\begin{itemize}
+\item Participant B, lines~\lineref{lne:bug4b}
+\item Participant G, line~\lineref{lne:bug4g}
+\end{itemize}
+\end{itemize}
 
 \subsubsection{Usability}
-\paragraph{Ease of use}
-Participant A, line~\ref{lne:use1a}
-Participant B, line~\ref{lne:use1b}
-Participant D, lines~\ref{lne:use1d},~\ref{lne:use1d2}
-Participant E, line~\ref{lne:use1e}
-Participant F, lines~\ref{lne:use1f},~\ref{lne:use1f2}
-Participant G, lines~\ref{lne:use1g}
-\paragraph{Visualisation}
-Participant B, lines~\ref{lne:use2b},~\ref{lne:use2b2},~\ref{lne:use2b3}
-Participant E, lines~\ref{lne:use2e},~\ref{lne:use2e2},~\ref{lne:use2e4}
-\paragraph{Tropes}
-Participant C, lines~\ref{lne:use3c},~\ref{lne:use3c2}
-Participant E, lines~\ref{lne:use3e},~\ref{lne:use3e2},~\ref{lne:use3e3}
-Participant F, lines~\ref{lne:use3f}
+
+\begin{itemize}
+\item \textbf{Ease of use}
+
+\begin{itemize}
+\item Participant A, line~\lineref{lne:use1a}
+\item Participant B, line~\lineref{lne:use1b}
+\item Participant D, lines~\lineref{lne:use1d},~\lineref{lne:use1d2}
+\item Participant E, line~\lineref{lne:use1e}
+\item Participant F, lines~\lineref{lne:use1f},~\lineref{lne:use1f2}
+\item Participant G, lines~\lineref{lne:use1g}
+\end{itemize}
+
+\item \textbf{Visualisation}
+
+\begin{itemize}
+\item Participant B, lines~\lineref{lne:use2b},~\lineref{lne:use2b2},~\lineref{lne:use2b3}
+\item Participant E, lines~\lineref{lne:use2e},~\lineref{lne:use2e2},~\lineref{lne:use2e4}
+\end{itemize}
+
+\item \textbf{Tropes}
+\begin{itemize}
+\item Participant C, lines~\lineref{lne:use3c},~\lineref{lne:use3c2}
+\item Participant E, lines~\lineref{lne:use3e},~\lineref{lne:use3e2},~\lineref{lne:use3e3}
+\item Participant F, lines~\lineref{lne:use3f}
+\end{itemize}
+\end{itemize}
 
 \section{Discussion}
 \subsection{Comparison with a Propp-based Formalism Approach}
@@ -5795,6 +6413,7 @@ This is the parse tree output of the sequence of events in listing~\ref{lst:seq3
 \label{appendix:evil-empire-traces}
 
 \chapter{Thematic Analysis Transcripts}
+\label{appendix:transcripts}
 
 % features
 \def\feature#1{\todo[color=green,size=\scriptsize]{\textbf{Feature:} #1}}
@@ -5826,7 +6445,7 @@ cause any confusion, because the Hero's being defined twice?\feature{Different
 
 \textbf{Myself:} OK yeah, so you've done the first task, which is great. So task 2 is to create your own trope. So if you click on "New", the first thing you have to do is click on the trope name in that box. And try to avoid uh\ldots{} some special characters. Yeah, that's fine, "New trope" is fine. Uh, so given the following character roles (Hero, Villain and Mentor). Um, so you have to declare those. Yeah, exactly, very good. And then the three places: Home, the Evil Lair and Land of Adventure.
 
-\textbf{Participant:} How does it deal with spaces?\syntax{Spaces in words}\label{lne:syntax1a}
+\textbf{Participant:} How does it deal with spaces?\syntax{Spaces in words}\linelabel{lne:syntax1a}
 
 \textbf{Myself:} It's fine with spaces, yeah. Most of the time. I'll let you know if it isn't. The problem is that, as you probably know with PhDs, is you have to do stuff which looks really simple but under the surface is really complicated. It's really hard for me to actually get some informative error messages up on here, so I'll try my best to work out what's going wrong when it does go wrong. But for now, it's going alright.
 
@@ -5835,12 +6454,12 @@ cause any confusion, because the Hero's being defined twice?\feature{Different
 \textbf{Myself:} So, I'd like you to construct your own tropes, just using the sequences and branches for now. Actually, no, part of this one is just having sequences, so just one thing after another.
 
 \textbf{Participant:} OK, so I could do like: The Villain's in the Evil
-Lair.\feature{State management}\label{lne:feature2a}
+Lair.\feature{State management}\linelabel{lne:feature2a}
 
 \textbf{Myself:} Yeah.
 
 \textbf{Participant:} I'm just trying to remember the exact syntax. It's
-"goes"?\syntax{Using any verb}\label{lne:syntax2a}
+"goes"?\syntax{Using any verb}\linelabel{lne:syntax2a}
 
 \textbf{Myself:} That's fine. It should be fine with any verb.
 
@@ -5917,7 +6536,7 @@ Lair.\feature{State management}\label{lne:feature2a}
 \textbf{Myself:} You might have to refresh the page, yeah. And OK, we get a compile error if you try to refresh. So there's still something it doesn't like there. So as I said before, the trouble is with this is that if it doesn't work, then it's really hard to get any useful error messages up here.
 
 \textbf{Participant:} I've got "the Evil Lair" was supposed to be capitalised
-with "T", that's what I've missed off.\syntax{Use of ``the''}\label{lne:syntax3a}
+with "T", that's what I've missed off.\syntax{Use of ``the''}\linelabel{lne:syntax3a}
 
 \textbf{Myself:} Ah, OK. I think it ignores the "the's" though, so it might not be that.
 
@@ -5934,12 +6553,12 @@ with "T", that's what I've missed off.\syntax{Use of ``the''}\label{lne:syntax3a
 \textbf{Myself:} Ah, there you go. It takes a while sometimes. It's doing really complicated stuff on a really slow server. OK, cool. So that's the first task done. So any feedback on that? I know there are plenty of bugs, and error messages are a concern, but are there any thoughts that you have?
 
 \textbf{Participant:} I mean, yeah, when you look past the bugs, then the system
-is quite intuitive.\usability{Ease of use}\label{lne:use1a}
+is quite intuitive.\usability{Ease of use}\linelabel{lne:use1a}
 
 \textbf{Myself:} OK, cool. Let's see\ldots{} so if you go back to the tasks. Add a "Weapon" and an "Evil Plan" to your trope. And again, don't have any branches, just do one thing after another in sequences.
 
 \textbf{Participant:} OK, do I have to define all these before I start? Can they
-be anywhere?\syntax{Entity definitions}\label{lne:syntax4a}
+be anywhere?\syntax{Entity definitions}\linelabel{lne:syntax4a}
 
 \textbf{Myself:} Yeah, they do have to be\ldots{}
 
@@ -5960,12 +6579,12 @@ be anywhere?\syntax{Entity definitions}\label{lne:syntax4a}
 \textbf{Myself:} You'd have to put them as objects. So "Weapon" is an object, "The Evil Plan" is an object. Cool. Yeah, good. I think if you have that blank line, it doesn't like it. But add them into the trope somewhere.
 
 \textbf{Participant:} So, could I say like: "The Mentor gives the Hero the
-Weapon"?\feature{Event with two agents}\label{lne:feature3a}
+Weapon"?\feature{Event with three entities}\linelabel{lne:feature3a}
 
 \textbf{Myself:} Uh, yes, you can. Maybe. I can't remember if I did that or not. Maybe. See what happens if you do that. Save it and refresh first to see if that works. I have a feeling that "has"\ldots{} I did some kind of half-baked thing with that that might not work any more. So try that. No, yeah, OK, change it to something else.
 
 \textbf{Participant:} Just "has" by itself, or is it the word "has" that's
-wrong?\feature{State management}\label{lne:feature2a2}
+wrong?\feature{State management}\linelabel{lne:feature2a2}
 
 \textbf{Myself:} It's the word "has" that I reserved as a keyword and then did nothing with. OK yeah, try that. Sometimes it takes a little while. There we go, yeah.
 
@@ -5981,7 +6600,7 @@ remove one of those, like "The Mentor lives at Home" or something. Because if I
 have more than five steps in the answer set solver, it can take really, really
 long because it's searching through all the possibilities. Once you have lots of
 branches in there it just takes ages. There you go, it says "Give Hero Mentor
-Weapon".\bug{Five event limit}\label{lne:bug1a}
+Weapon".\bug{Five event limit}\linelabel{lne:bug1a}
 
 \textbf{Participant:} OK.
 
@@ -6000,7 +6619,7 @@ Weapon".\bug{Five event limit}\label{lne:bug1a}
 \textbf{Myself:} It has! It's just incredibly slow. OK.
 
 \textbf{Participant:} I'm not sure how the Hero then goes to the Evil Lair. But
-that's just a flaw in my own story!\feature{Event semantics}\label{lne:feature4a}
+that's just a flaw in my own story!\feature{Event semantics}\linelabel{lne:feature4a}
 
 \textbf{Myself:} Sorry? Oh yeah, he kills the Hero, and then he goes to the Evil Lair even though he's dead! How does that happen?
 
@@ -6030,7 +6649,7 @@ simple nature of this language. So like, what you're trying to do\ldots{} I can
 see what you're trying to do there is you're trying to say "The Mentor attacks
 the Hero, THEN the Hero escapes" on that branch, and then you'd branch it
 further. Unfortunately, you're not able to continue a branch like that. We're
-just testing out very simple branching.\bug{Branch length limit}\label{lne:bug2a}
+just testing out very simple branching.\bug{Branch length limit}\linelabel{lne:bug2a}
 
 \textbf{Participant:} OK.
 
@@ -6068,7 +6687,7 @@ earlier. But that's interesting to know that that doesn't work. I'll have to go
 in and\ldots{} Oh, or did it? No, it didn't, that one's at the end. OK, so, any
 thoughts that have occurred to you doing that? Again, we've encountered some
 more bugs, but as I said that's kind of the point of doing this
-exercise.\bug{Subtrope at end}\label{lne:bug3a}
+exercise.\bug{Subtrope at end}\linelabel{lne:bug3a}
 
 \textbf{Participant:} Uh, not a load relating to that task specifically. With this springy nature thing, how do you compress it entirely?
 
@@ -6089,7 +6708,7 @@ exercise.\bug{Subtrope at end}\label{lne:bug3a}
 \textbf{Participant:} OK. So "The Villain is a role, the Hero is a role, the
 Villain kills\ldots{}". So, I could\ldots{} say, like, "The Hero is Angry", I'm
 not relating that to any place or object, that's fine as a
-statement?\feature{State management}\label{lne:feature2a3}
+statement?\feature{State management}\linelabel{lne:feature2a3}
 
 \textbf{Myself:} Again, I used to have this thing\ldots{} at the moment you do have to have verbs, I know "is" is kind of a verb\ldots{} but "is" and "has" are reserved as key words because I wanted to do something else, and I forgot to un-reserve them, kinda thing. So, yeah, don't use "is", use something else. So "The Hero gets angry", or "The Hero becomes angry". So save that, and see if that compiles by going into the "edit" tab. Oh, OK. I reckon it doesn't like "Becomes angry". "Angers" perhaps, "Angers" might work.
 
@@ -6140,7 +6759,7 @@ Dialogue starts at 14:40.
 \textbf{Myself:} One thing that is not ideal is that I don't have very detailed
 error messages yet. It's kind of frustrating to explain, but there's lots of
 complicated stuff going on underneath this that's kind of the research-y
-bit.\bug{Error messages}\label{lne:bug4b}
+bit.\bug{Error messages}\linelabel{lne:bug4b}
 
 \textbf{Participant:} Oh, error detection is massive, Matt.
 
@@ -6159,7 +6778,7 @@ and symbols. Because it is a language - programming is a language, it's fluency.
 But of course a newbie, those punctuation marks in my mind I kind of skip them,
 because they're punctuation, but they're not, they're integral to the working.
 So the fact that you've kept it without punctuation is fantastic.\usability{Ease
-of use}\label{lne:use1b}
+of use}\linelabel{lne:use1b}
 
 \textbf{Myself:} Great, great.
 
@@ -6185,7 +6804,7 @@ behind here, a period at the end of each sentence.
 
 \textbf{Myself:} Yeah, that's a good point actually.
 
-\textbf{Participant:} I noticed that you've got some capitals in there, are the capitals important to the running of the program?\syntax{Capitalisation}\label{lne:syntax5b}
+\textbf{Participant:} I noticed that you've got some capitals in there, are the capitals important to the running of the program?\syntax{Capitalisation}\linelabel{lne:syntax5b}
 
 \textbf{Myself:} Yes they are, very much. So if you have the name of some kind of entity like the Hero, the Home, the Bucket, it's important to give that a name with a capital letter. That's how it kind of identifies that.
 
@@ -6197,7 +6816,7 @@ comes up sometimes, but not always, where if you don't put a "the", if you
 declare it with a "the", it's supposed to ignore the "the", but sometimes it
 doesn't and you have to use a "the" later. But in this case it's fine, so I'm
 not quite sure what's going on. But no, that's good. So, yeah, "Land of
-Adventure" works.\syntax{Use of ``the''}\label{lne:syntax3b}
+Adventure" works.\syntax{Use of ``the''}\linelabel{lne:syntax3b}
 
 \textbf{Participant:} It capitalised "Land"\ldots{} an author would get bugged by that. Don't worry, I'm just making an observation. "Land of Adventure", I like it in this flowchart where it's capitalised to keep this word separate, that's really cool.
 
@@ -6240,7 +6859,7 @@ Adventure" works.\syntax{Use of ``the''}\label{lne:syntax3b}
 \textbf{Myself:} "\ldots{} is an object": "Coffee is an object".
 
 \textbf{Participant:} OK. How would I say "Drink is an action"? I don't need
-that do I?\syntax{Using any verb}\label{lne:syntax2b}
+that do I?\syntax{Using any verb}\linelabel{lne:syntax2b}
 
 \textbf{Myself:} Actually no, you can just use that. So you can say "David drinks the coffee", and that's fine. OK, save that and see if that works.
 
@@ -6250,7 +6869,7 @@ that do I?\syntax{Using any verb}\label{lne:syntax2b}
 
 \textbf{Participant:} Not really anything to show, is there?
 
-\textbf{Myself:} No, it should show the first event, "David drinks Coffee", but it wants the Coffee with a capital "C".\syntax{Capitalisation}\label{lne:syntax5b2}
+\textbf{Myself:} No, it should show the first event, "David drinks Coffee", but it wants the Coffee with a capital "C".\syntax{Capitalisation}\linelabel{lne:syntax5b2}
 
 \textbf{Participant:} (interrupted by colleagues) Please continue.
 
@@ -6344,7 +6963,7 @@ that do I?\syntax{Using any verb}\label{lne:syntax2b}
 
 \textbf{Myself:} That won't work, that won't work. So I've only told it to have
 "role", "place" or "object". But "subject" won't work either. It can only be
-"role", "place" or "object".\feature{Other types of entities}\label{lne:feature5b}
+"role", "place" or "object".\feature{Other types of entities}\linelabel{lne:feature5b}
 
 \textbf{Participant:} Yeah, I'm with ya. I see you've got a slightly different colour variation on "is an object". I would make that a lot clearer
 
@@ -6433,7 +7052,7 @@ that do I?\syntax{Using any verb}\label{lne:syntax2b}
 \textbf{Participant:} (types)
 
 \textbf{Myself:} Hmm. I think it won't like "Sun is shining". I think if you can
-say "The Sun shines", that might be better.\feature{State management}\label{lne:feature2b}
+say "The Sun shines", that might be better.\feature{State management}\linelabel{lne:feature2b}
 
 \textbf{Participant:} Yep, good. No, that's interesting isn't it. Present conditional or present tense.
 
@@ -6463,7 +7082,7 @@ say "The Sun shines", that might be better.\feature{State management}\label{lne:
 
 \textbf{Myself:} Because sometimes it can be stuff like too many "the"s, or not
 enough "the"s. "David's life in Bath". Actually, if you could put "The Sun is an
-object, The Sun shines", see if that works.\syntax{Use of ``the''}\label{lne:syntax3b2}
+object, The Sun shines", see if that works.\syntax{Use of ``the''}\linelabel{lne:syntax3b2}
 
 \textbf{Participant:} Could you repeat that? I lost audio.
 
@@ -6489,7 +7108,7 @@ say: "The Sun is a role, The Sun shines", that works. I think the way I've
 designed it is, because this is designed around these intelligent agents, right?
 So it describes the constraints on these agents. So for every event, an agent
 has to be in there somewhere, so there always has to be a role. So the sun,
-er\ldots{}\feature{Subject must be an agent}\label{lne:feature6b}
+er\ldots{}\feature{Subject must be an agent}\linelabel{lne:feature6b}
 
 \textbf{Participant:} I say "subject", and you say "agent", is that correct?
 
@@ -6514,7 +7133,7 @@ that arrange tab, or change anything and just kind of like\ldots{} yeah, just
 create a story freely. I think you've kind of done a lot of that already,
 though. So yeah, I think something you haven't explored much is the stuff on the
 "arrange"\ldots{} so yeah, click on "arrange", and see what happens when you
-combine tropes together.\bug{Subtrope at end}\label{lne:bug3b}
+combine tropes together.\bug{Subtrope at end}\linelabel{lne:bug3b}
 
 \textbf{Participant:} Repeat the last 5 seconds.
 
@@ -6540,7 +7159,7 @@ combine tropes together.\bug{Subtrope at end}\label{lne:bug3b}
 
 \textbf{Myself:} For yeah, a computer game author.
 
-\textbf{Participant:} I like the idea of it being able to spit out all permutations. You know, I was looking at some Google layout algorithm which compiled pictures of dinosaurs using botanical (garbled) from the past.\usability{Visualisation}\label{lne:use2b}
+\textbf{Participant:} I like the idea of it being able to spit out all permutations. You know, I was looking at some Google layout algorithm which compiled pictures of dinosaurs using botanical (garbled) from the past.\usability{Visualisation}\linelabel{lne:use2b}
 
 \textbf{Myself:} So yeah, you're breaking up quite a bit there, could you repeat?
 
@@ -6564,11 +7183,11 @@ combine tropes together.\bug{Subtrope at end}\label{lne:bug3b}
 
 \textbf{Myself:} You were just telling me about some Google software which generated all these permutations of something.
 
-\textbf{Participant:} Yeah, and I think for people who hit their creative end, of like just showing different permutations of what is possible. I'm an architect, I deal with layouts and flows. When I was in London, it used to be airports. They were hugely complex. And right now I'm doing simplistic things of mainly loft conversions. But still, I have to give options to the client, and so being able just to say\ldots{} particularly when it's a stair layout. You know, if I was able to just say "these are the options which are possible in this space for this new staircase", that's brilliant, that saves hours and hours of work. You talk about authors and you talked about before doing storylines. I can't speak to them, you'd have to ask them if they think it's usable. I think for most creative people, the only time they would think it would be more worthwhile to use a machine is if there's hundreds of permutations, or if they just want all the permutations possible, or if they themselves have hit a creative wall. That's my preconception, I don't know, you'd have to ask them. But what I'm saying that within my line of work, you see, that's how I see (this being useful).\usability{Visualisation}\label{lne:use2b2}
+\textbf{Participant:} Yeah, and I think for people who hit their creative end, of like just showing different permutations of what is possible. I'm an architect, I deal with layouts and flows. When I was in London, it used to be airports. They were hugely complex. And right now I'm doing simplistic things of mainly loft conversions. But still, I have to give options to the client, and so being able just to say\ldots{} particularly when it's a stair layout. You know, if I was able to just say "these are the options which are possible in this space for this new staircase", that's brilliant, that saves hours and hours of work. You talk about authors and you talked about before doing storylines. I can't speak to them, you'd have to ask them if they think it's usable. I think for most creative people, the only time they would think it would be more worthwhile to use a machine is if there's hundreds of permutations, or if they just want all the permutations possible, or if they themselves have hit a creative wall. That's my preconception, I don't know, you'd have to ask them. But what I'm saying that within my line of work, you see, that's how I see (this being useful).\usability{Visualisation}\linelabel{lne:use2b2}
 
 \textbf{Myself:} OK, interesting that it could be useful for your line of work as well, though. That's good to hear.
 
-\textbf{Participant:} Let me get back onto the language stuff, because I know that's where you're really aiming for. Well, I don't know. If your author was a Dali-ist, kind of author, who did everything in abstractions, then that would be great. They don't have to keep taking the drugs to come up with wild and wonderful things. Then it would be worth them constraining their way of thinking to what the software demands. Then they would do this trade-off, thinking: "Well, if I kind of put a bit of effort here, I would greater results that this way". I think for your average Dick Francis, though, they would think: "No, I know what I want my characters to do.". But that's me off the top of my head without knowing these people.\usability{Visualisation}\label{lne:use2b3}
+\textbf{Participant:} Let me get back onto the language stuff, because I know that's where you're really aiming for. Well, I don't know. If your author was a Dali-ist, kind of author, who did everything in abstractions, then that would be great. They don't have to keep taking the drugs to come up with wild and wonderful things. Then it would be worth them constraining their way of thinking to what the software demands. Then they would do this trade-off, thinking: "Well, if I kind of put a bit of effort here, I would greater results that this way". I think for your average Dick Francis, though, they would think: "No, I know what I want my characters to do.". But that's me off the top of my head without knowing these people.\usability{Visualisation}\linelabel{lne:use2b3}
 
 \textbf{Myself:} I can definitely understand that.
 \end{linenumbers}
@@ -6655,7 +7274,7 @@ Dialogue starts at 13:20.
 
 \textbf{Participant:} Don't know how "Rogue" came to my head, I was like "yay!". Um, so\ldots{} What would I type? So, like, "Rogue searches for Knife", or\ldots{}?
 
-\textbf{Myself:} Yeah, that's fine. I think Knife has to be capital "K".\syntax{Capitalisation}\label{lne:syntax5c}
+\textbf{Myself:} Yeah, that's fine. I think Knife has to be capital "K".\syntax{Capitalisation}\linelabel{lne:syntax5c}
 
 \textbf{Participant:} Oh yeah.
 
@@ -6681,7 +7300,7 @@ Dialogue starts at 13:20.
 
 \textbf{Myself:} No, OK. Try "The Rogue is a role, The Knife is an object".
 
-\textbf{Participant:} With a capital Knife? Capital K?\syntax{Capitalisation}\label{lne:syntax5c2}
+\textbf{Participant:} With a capital Knife? Capital K?\syntax{Capitalisation}\linelabel{lne:syntax5c2}
 
 \textbf{Myself:} It shouldn't make a difference, but\ldots{} and then "The Rogue searches for the Knife". Yeah, try that. Ah, OK. It's still not working. I will have a look at your trope and see if I can get it working. "The Rogue searches for the Knife", "The Rogue"\ldots{} It might not like\ldots{} hmm. It should like "searches for", though, I'm sure I've used that before.
 
@@ -6711,7 +7330,7 @@ Dialogue starts at 13:20.
 
 \textbf{Participant:} Yeah yeah. "Knife of Power"! (indistinct)
 
-\textbf{Myself:} So it doesn't like "Knife of Immense Power", but "Knife of Power"\ldots{} it's OK if "Power" has a capital "P". So hang on, I think that's what I've done, I've said "Every word has to be capitalised". But then "of" is OK.\syntax{Capitalisation}\label{lne:syntax5c3}
+\textbf{Myself:} So it doesn't like "Knife of Immense Power", but "Knife of Power"\ldots{} it's OK if "Power" has a capital "P". So hang on, I think that's what I've done, I've said "Every word has to be capitalised". But then "of" is OK.\syntax{Capitalisation}\linelabel{lne:syntax5c3}
 
 \textbf{Participant:} Yeah, because it's a combine-y thingy, isn't it.
 
@@ -6734,7 +7353,7 @@ before any event. Save that and refresh. OK, cool. Alright, I think that's
 enough. So if we go to task 3. Oh you've kind of done that already, it's adding
 objects to your trope. So let's go to task 4: add branches to your trope. So add
 some kind of branching event where something happens or something else
-happens.\syntax{Entity declarations}\label{lne:syntax4c}
+happens.\syntax{Entity declarations}\linelabel{lne:syntax4c}
 
 \textbf{Participant:} A branch\ldots{}
 
@@ -6757,7 +7376,7 @@ ones. Preferably a simple one, like "Example 1". Then we can\ldots{} because it
 takes a little while actually. Because there's complicated stuff going on
 underneath where it's combining everything. And then you'll see, you'll get this
 big tree appear\ldots{} eventually. There you go. So this is all the different
-possibilities, combining these tropes together.\syntax{Use of ``the''}\label{lne:syntax3c}
+possibilities, combining these tropes together.\syntax{Use of ``the''}\linelabel{lne:syntax3c}
 
 \textbf{Participant:} Wow! That's pretty cool.
 
@@ -6843,7 +7462,7 @@ possibilities, combining these tropes together.\syntax{Use of ``the''}\label{lne
 
 \textbf{Myself:} Oh no, it's OK. "Princess hits the Guard"\ldots{} ah, yeah another thing is it looks like\ldots{} so the verb is always the first word, but then those words, it always puts in alphabetical order I think, so it looks the "Princess hits the Guard" is the same as "The Guard hits the Princess". That's not a great representation. Ah, OK, never mind. Alright, so, for your last event, put like 'Then the "Rogue Trope" happens". So maybe delete the spaces and put "Then the"\ldots{}
 
-\textbf{Participant:} Capital "Then", or\ldots{}?\syntax{Capitalisation}\label{lne:syntax5c4}
+\textbf{Participant:} Capital "Then", or\ldots{}?\syntax{Capitalisation}\linelabel{lne:syntax5c4}
 
 \textbf{Myself:} Oh yeah, capital "T". And "Rogue Trope" has to be in double quotes.
 
@@ -6875,13 +7494,13 @@ puts the sub-tropes in. OK. That's good to know. What else? So we've done task
 6. OK, for task 7, just mess around with that and combining tropes with the
 "arrange" thing. So try creating a story for yourself and combining them
 together using existing tropes, or you can create some more if you want. Using
-that "arrange" tab from before.\bug{Subtrope at end}\label{lne:bug3c}
+that "arrange" tab from before.\bug{Subtrope at end}\linelabel{lne:bug3c}
 
 \textbf{Participant:} But how can I edit, like, the Rogue trope, do I have to go back to the Rogue Trope?
 
 \textbf{Myself:} Yeah, you do. So notice that you've got five events total when
 you combine those tropes together. So you can't have any more events.\bug{Five
-  event limit}\label{lne:bug1c}
+  event limit}\linelabel{lne:bug1c}
 
 \textbf{Participant:} Ah. Can I have an "Or"?
 
@@ -6915,11 +7534,11 @@ you combine those tropes together. So you can't have any more events.\bug{Five
 
 \textbf{Myself:} OK, cool. OK, great. So do you think that composing stories out of tropes like this is a convenient way to make stories?
 
-\textbf{Participant:} I'd say yes, but I think that it also helps that I am a creative writer, so I automatically think of a story pattern.\usability{Tropes}\label{lne:use3c}
+\textbf{Participant:} I'd say yes, but I think that it also helps that I am a creative writer, so I automatically think of a story pattern.\usability{Tropes}\linelabel{lne:use3c}
 
 \textbf{Myself:} Hmm, OK.
 
-\textbf{Participant:} So like creating a story pattern on the builder is a lot easier, because I know how to, like, combine them. So in my head, I always view that the Princess will meet the Rogue eventually. And I had to create the second trope.\usability{Tropes}\label{lne:use3c2}
+\textbf{Participant:} So like creating a story pattern on the builder is a lot easier, because I know how to, like, combine them. So in my head, I always view that the Princess will meet the Rogue eventually. And I had to create the second trope.\usability{Tropes}\linelabel{lne:use3c2}
 
 \textbf{Myself:} OK, so, I think that's good because it is kind of designed more towards creative thinkers and story authors rather than programmers. So it's good that that helps.
 
@@ -6939,7 +7558,7 @@ you combine those tropes together. So you can't have any more events.\bug{Five
 
 \textbf{Myself:} Yeah, I understand what you're saying. You want something in there which describes how a certain character behaves, right? Because she's a Princess, she does this, etc.
 
-\textbf{Participant:} Yeah, but like say also in storytelling you don't reveal everything at once. So like, normally she'd be a princess until it's suddenly revealed that she's a ninja.\feature{Story structure}\label{lne:feature7c}
+\textbf{Participant:} Yeah, but like say also in storytelling you don't reveal everything at once. So like, normally she'd be a princess until it's suddenly revealed that she's a ninja.\feature{Story structure}\linelabel{lne:feature7c}
 
 \textbf{Myself:} Ah OK. So, she's not a ninja from the beginning, she can become a ninja at some point in the story. Well, she is a ninja at the beginning but it's not revealed until later.
 
@@ -7039,7 +7658,7 @@ however you want.\bug{Five event limit}
 
 \textbf{Myself:} Yeah.
 
-\textbf{Participant:} Is it "The" Home is a place?\syntax{Use of ``the''}\label{lne:syntax3d}
+\textbf{Participant:} Is it "The" Home is a place?\syntax{Use of ``the''}\linelabel{lne:syntax3d}
 
 \textbf{Myself:} "Home is a place"\ldots{} either should work. But just put "Home". Oh no, it's still using the old one. You have to click "save", then "refresh".
 
@@ -7050,7 +7669,7 @@ however you want.\bug{Five event limit}
 \textbf{Participant:} "go_hero_home", makes sense.
 Cool. Erm, so I could do something like: "Sword is an object, Home is a place",
 er, "Danger Mountain is a place". How's it going to deal with that space, is it
-going to be OK with that?\syntax{Spaces in words}\label{lne:syntax1d}
+going to be OK with that?\syntax{Spaces in words}\linelabel{lne:syntax1d}
 
 \textbf{Myself:} It should be OK with that.
 
@@ -7062,7 +7681,7 @@ going to be OK with that?\syntax{Spaces in words}\label{lne:syntax1d}
 "Then he finds the Sword, or the Hero dies". Can you sub-say, can you say "The
 Hero finds the Sword", and then does something, or something else? Like, it gets
 confusing with the nesting, doesn't it, because that's one level of nesting, but
-can you go to a second level of nesting?\bug{Branch length limit}\label{lne:bug2d}
+can you go to a second level of nesting?\bug{Branch length limit}\linelabel{lne:bug2d}
 
 \textbf{Myself:} Ah, sadly not, because I've kind of limited it so that there's only one level of nesting. Which is very limited.
 
@@ -7084,7 +7703,7 @@ the things that confuses me a bit is intuitively thinking about the grammar,
 because there's obviously some clever thing going on, kind of similar to what
 Ruby does, where Ruby has this whole thing about how it translates grammar. It
 seems to be aware of whether "to" should go before something, or things like
-this. So it's kind of less predictable in a way.\usability{Ease of use}\label{lne:use1d}
+this. So it's kind of less predictable in a way.\usability{Ease of use}\linelabel{lne:use1d}
 
 \textbf{Myself:} Are you talking like, erm, with that Rspec thing? Is it Rspec? Ruby has this kind of natural-language testing language, which is a DSL for writing tests or something. Is that what you're talking about?
 
@@ -7096,7 +7715,7 @@ this. So it's kind of less predictable in a way.\usability{Ease of use}\label{ln
 this thing about the grammar is slightly less predictable. Because I'm not sure
 if\ldots{} shall I assume the interpreter isn't clever enough, and just write it
 in a literal way, or should I just write it in a human way and just trust the
-interpreter to do something clever and understand it?\syntax{Spaces in words}\label{lne:syntax1d2}
+interpreter to do something clever and understand it?\syntax{Spaces in words}\linelabel{lne:syntax1d2}
 
 \textbf{Myself:} That's a good point, it is quite opaque. You weren't sure if "Danger Mountain" was going to be recognised because it's got a space there, and then putting the "to" after "goes to"\ldots{} It's not too bad, because once you've declared the things it knows that has to be somewhere, it knows what those things are. And also the verbs are going into Wordnet, so it's kind of stemming the verbs, like, you know, putting them into their basic forms, so it knows that "goes" is "go", "finds" is "find", etc. But it's generally OK, it's reasonably robust, but still quite easy to break. But yeah, that's a good point. I think it might be easier for someone who's quite naive and not used to programming, who isn't aware of the complexity of these things. Hmm, OK, yeah, good point. Right, OK, so if you go to the second task.
 
@@ -7146,7 +7765,7 @@ interpreter to do something clever and understand it?\syntax{Spaces in words}\la
 
 \textbf{Participant:} Oh, right. OK.
 
-\textbf{Myself:} And I think it has to be capital "T" as well.\syntax{Capitalisation}\label{lne:syntax5d}
+\textbf{Myself:} And I think it has to be capital "T" as well.\syntax{Capitalisation}\linelabel{lne:syntax5d}
 
 \textbf{Participant:} Capital what, sorry?
 
@@ -7158,7 +7777,7 @@ interpreter to do something clever and understand it?\syntax{Spaces in words}\la
 
 \textbf{Participant:} Nice, right. Um. "The Villain goes to the Evil Lair".
 Presumably the Evil Lair can't do something, because it's a
-place?\feature{Subject must be an agent}\label{lne:feature6d}
+place?\feature{Subject must be an agent}\linelabel{lne:feature6d}
 
 \textbf{Myself:} Oh, that's a good point. It can, I haven't actually put anything to stop it from doing things. So you can try that and see what happens. So yeah, a good way to try to break it. I think\ldots{}
 
@@ -7181,7 +7800,7 @@ place?\feature{Subject must be an agent}\label{lne:feature6d}
 \textbf{Participant:} Erm, so I'll stick an object in there as well. What've we got? "The Sword is an object".
 
 \textbf{Myself:} So, you have to put declarations at the
-beginning.\syntax{Entity declarations}\label{lne:syntax4d}
+beginning.\syntax{Entity declarations}\linelabel{lne:syntax4d}
 
 \textbf{Participant:} Ah, OK, that makes sense actually.
 
@@ -7189,7 +7808,7 @@ beginning.\syntax{Entity declarations}\label{lne:syntax4d}
 
 \textbf{Participant:} I think that makes a lot of sense actually, because otherwise you can't really do it intuitively. Yeah. I'm trying to think of a word. You can't do it in time, basically. Chronologically. Um\ldots{} "The Villain goes to the Evil Lair, Or he"\ldots{} can you say something like: "Either this role does this, or it does nothing"?
 
-\textbf{Myself:} Uhh\ldots{} you can say it. It won't have any semantic meaning, but you can do two spaces, then an "Or the Villain goes nowhere". But then nowhere isn't a place. It would probably interpret that as a separate verb.\feature{Event semantics}\label{lne:feature4d}
+\textbf{Myself:} Uhh\ldots{} you can say it. It won't have any semantic meaning, but you can do two spaces, then an "Or the Villain goes nowhere". But then nowhere isn't a place. It would probably interpret that as a separate verb.\feature{Event semantics}\linelabel{lne:feature4d}
 
 \textbf{Participant:} It would just, like, assume this is a thing, and it wouldn't bother to know the meaning of it, it would just say\ldots{} "it does this thing".
 
@@ -7197,17 +7816,17 @@ beginning.\syntax{Entity declarations}\label{lne:syntax4d}
 
 \textbf{Participant:} Makes sense.
 
-\textbf{Myself:} Oh, no. I think you can say, maybe not in this version, but I had at one point you being able to say "The Villain may not go to the Evil Lair", and it would prohibit the Villain from doing that. But in this case, it's kind of the case that it's prohibited from doing that by default, so there's no point in kind of specifying that. OK, so I think "Or" has to be capital "O".\syntax{Capitalisation}\label{lne:syntax5d2}
+\textbf{Myself:} Oh, no. I think you can say, maybe not in this version, but I had at one point you being able to say "The Villain may not go to the Evil Lair", and it would prohibit the Villain from doing that. But in this case, it's kind of the case that it's prohibited from doing that by default, so there's no point in kind of specifying that. OK, so I think "Or" has to be capital "O".\syntax{Capitalisation}\linelabel{lne:syntax5d2}
 
 \textbf{Participant:} Ah, right.
 
-\textbf{Myself:} And be careful with that "the Hero", I think it wants a lower-case "t" as well. Yeah, so I'm sorry about the lack of information in the compile messages, that's just the way it turned out sadly, it's kind of hard to give any information that would be relevant to anyone in that interface. Uh, "The Hero goes to the Land of Adventure, Or the Hero goes"\ldots{} it might have to have "Nowhere" as a place. So declare nowhere as a place. And it has to be capital "N" when it's a thing. So when you put "The Hero goes to Nowhere", it's currently not a capital "N".\syntax{Capitalisation}\label{lne:syntax5d3}
+\textbf{Myself:} And be careful with that "the Hero", I think it wants a lower-case "t" as well. Yeah, so I'm sorry about the lack of information in the compile messages, that's just the way it turned out sadly, it's kind of hard to give any information that would be relevant to anyone in that interface. Uh, "The Hero goes to the Land of Adventure, Or the Hero goes"\ldots{} it might have to have "Nowhere" as a place. So declare nowhere as a place. And it has to be capital "N" when it's a thing. So when you put "The Hero goes to Nowhere", it's currently not a capital "N".\syntax{Capitalisation}\linelabel{lne:syntax5d3}
 
 \textbf{Participant:} Ah right, yes.
 
 \textbf{Myself:} Is that gonna work? No. Oh, yes! There we go. Cool.
 
-\textbf{Participant:} So, "The Villain goes to Evil Lair, The Hero either goes Nowhere, Or goes to Land of Adventure". Makes sense. Another thing that would be\ldots{} again, it's strange because the more you get into it, the more you think about it, the more you start turning it into a regular programming language. One thing that would be useful would be able to say\ldots{} to have\ldots{} what's the phrase I'm looking for? Sort of a\ldots{} well, if functions basically, to be able to say "If the Hero is in Nowhere, then he finds a Sword", or something.\feature{Conditionals}\label{lne:feature8d}
+\textbf{Participant:} So, "The Villain goes to Evil Lair, The Hero either goes Nowhere, Or goes to Land of Adventure". Makes sense. Another thing that would be\ldots{} again, it's strange because the more you get into it, the more you think about it, the more you start turning it into a regular programming language. One thing that would be useful would be able to say\ldots{} to have\ldots{} what's the phrase I'm looking for? Sort of a\ldots{} well, if functions basically, to be able to say "If the Hero is in Nowhere, then he finds a Sword", or something.\feature{Conditionals}\linelabel{lne:feature8d}
 
 \textbf{Myself:} Yeah, yeah. That's something I definitely thought about and tried to do, but couldn't implement in time for doing these studies. I was kind of also thinking of like the way to describe that, would you put\ldots{} would it make sense to have the "if" at the beginning, or the end of a statement, or just like\ldots{} so if you want to have your "if" dependent on lots of events having occurred previously, it's kind of hard to kind of think of an elegant way of doing that. You could just put like "if:", and then list the events that could happen as the preconditions. But yeah\ldots{} so how would you do it, you'd say "If the Hero goes to the Land of Adventure, and\ldots{}".
 
@@ -7229,7 +7848,7 @@ beginning.\syntax{Entity declarations}\label{lne:syntax4d}
 
 \textbf{Participant:} Hmm. What about if you had an object or a place with the
 same name, in two different tropes? How does it handle that?\feature{Different
-  characters in different tropes}\label{lne:feature1d}
+  characters in different tropes}\linelabel{lne:feature1d}
 
 \textbf{Myself:} That's a really good question, and it treats them as the same thing in this case. So it is kind of like they're really merged. Again, in an earlier version I had it so that you could specify different names for the different roles, so that you could have a Hero called "Luke Skywalker" in one trope, and a Hero called, I don't know, "Darth Vader", if you wanted that, in another trope. And they would actually have different permissions and they would be visualised as different things. But as you can imagine, that would increase the complexity of this visualisation again, and we would have more and more stuff to be generated into this tree. Again, I'm trying to keep it simple for this.
 
@@ -7260,7 +7879,7 @@ same name, in two different tropes? How does it handle that?\feature{Different
 \textbf{Participant:} Hmm. "The Hero finds the Smartphone, The Warm Bed is a place"\ldots{}
 
 \textbf{Myself:} You have to put that before the Hero finds the
-Smartphone.\syntax{Entity declarations}\label{lne:syntax4d2}
+Smartphone.\syntax{Entity declarations}\linelabel{lne:syntax4d2}
 
 \textbf{Participant:} Ah, right, yes, sorry. 'Hero goes to the Warm Bed, Or the "Super Duper" trope happens'.
 
@@ -7298,7 +7917,7 @@ Smartphone.\syntax{Entity declarations}\label{lne:syntax4d2}
 earlier that each of these could relate to a plan in some intelligent agent, and
 then you'd be able to just somewhat dynamically\ldots{} where all the agents are
 actually behave in somewhat sensible manners following a traditional story
-structure. I think that makes a lot of sense, Matt.\usability{Ease of use}\label{lne:use1d2}
+structure. I think that makes a lot of sense, Matt.\usability{Ease of use}\linelabel{lne:use1d2}
 
 \textbf{Myself:} That's exactly, thanks, that's exactly the intention of this language. It should be OK with two words there. I'm pretty confident that that's fine.
 
@@ -7306,7 +7925,7 @@ structure. I think that makes a lot of sense, Matt.\usability{Ease of use}\label
 it can't express is where it started at. You can say: "The Robot goes to the
 Starship", but then you can't say something like: "goes to the Planet FROM the
 Starship". So you have to, say, make an event arriving somewhere rather than
-declaring that they started somewhere.\feature{State management}\label{lne:feature2d}
+declaring that they started somewhere.\feature{State management}\linelabel{lne:feature2d}
 
 \textbf{Myself:} Yeah, that's a good point. So I had these special reserved words for "is" and "has", so you could say "The Robot is at the Planet they came from", "The Robot is"\ldots{} but you actually can't. I think it will break it, because I reserved those words and didn't do anything with them because it turned out to be complicated. So yeah, would that solve your problem though, if you wanted to say where it started from? You'd say "The Robot is at this planet, Planet X, Then the Robot goes to Planet Y".
 
@@ -7317,7 +7936,7 @@ declaring that they started somewhere.\feature{State management}\label{lne:featu
 \textbf{Participant:} You could say: "The Robot goes to the Starship, Then the
 Farm Boy finds the Robot". Oh wait, is the Robot a role, or\ldots{}? Oh, it's an
 object, OK. Oh, so I'm saying an object goes\ldots{} let's see if that works,
-that'll be interesting.\feature{Subject must be an agent}\label{lne:feature6d2}
+that'll be interesting.\feature{Subject must be an agent}\linelabel{lne:feature6d2}
 
 \textbf{Myself:} Oh, I have a feeling that's\ldots{} OK, yeah.
 
@@ -7339,13 +7958,13 @@ that'll be interesting.\feature{Subject must be an agent}\label{lne:feature6d2}
 
 \textbf{Participant:} Um, so what else is there? He meets the Wise Man. Er\ldots{} so "Farm Boy\ldots{}"
 
-\textbf{Myself:} There's going to have to be a capital "H". Yeah, exactly.\syntax{Capitalisation}\label{lne:syntax5d4}
+\textbf{Myself:} There's going to have to be a capital "H". Yeah, exactly.\syntax{Capitalisation}\linelabel{lne:syntax5d4}
 
 \textbf{Participant:} I'm trying to think where this actually branches off. Um.
 
 \textbf{Myself:} So yeah, I've limited this to maximum five events long. At the
 moment it is five events long. But you can still put branches in there, so that
-will\ldots{} that's fine.\bug{Five event limit}\label{lne:bug1d}
+will\ldots{} that's fine.\bug{Five event limit}\linelabel{lne:bug1d}
 
 \textbf{Participant:} Right, OK. Or make subtropes as well?
 
@@ -7355,9 +7974,9 @@ will\ldots{} that's fine.\bug{Five event limit}\label{lne:bug1d}
 (indistinct) make this much more modular and do, like, a "Receiving the Laser
 Sword". "The Farm Boy is a role". Oh yeah, can you do\ldots{} "The Wise Man is a
 role"\ldots{} you can't do giving, right? I can't say something
-like\ldots{}\feature{Event with two agents}\label{lne:feature3d}
+like\ldots{}\feature{Event with three entities}\linelabel{lne:feature3d}
 
-\textbf{Myself:} You can, but again it won't have any semantic\ldots{} oh yeah, it would. Kind of. It would give an agent permission to give something to another agent. So it would work, it would compile and work. Yeah, so actually that would be fine.\feature{Event semantics}\label{lne:feature4d2}
+\textbf{Myself:} You can, but again it won't have any semantic\ldots{} oh yeah, it would. Kind of. It would give an agent permission to give something to another agent. So it would work, it would compile and work. Yeah, so actually that would be fine.\feature{Event semantics}\linelabel{lne:feature4d2}
 
 \textbf{Participant:} Let's try that. "Receiving the Laser Sword". "Compile Error".
 
@@ -7441,7 +8060,7 @@ like\ldots{}\feature{Event with two agents}\label{lne:feature3d}
 
 \textbf{Participant:} And then multiple levels of nesting, that kind of stuff. I
 think with those kinds of things it would be really, really powerful.\bug{Branch
-length limit}\label{lne:bug2d2}
+length limit}\linelabel{lne:bug2d2}
 
 \textbf{Myself:} Yeah. Definitely. I definitely agree. Cool. Well, thanks very much.
 
@@ -7472,11 +8091,11 @@ knowledge of programming languages, it seems that the only thing you need to
 know is "if-then" statements, because it's a pretty simple\ldots{} as it stands
 right now it's pretty simple. The declarations themselves, I think they might be
 hard for a non-programmer to understand, like why do you have to declare these
-things beforehand?\usability{Ease of use}\label{lne:use1e}
+things beforehand?\usability{Ease of use}\linelabel{lne:use1e}
 
 \textbf{Myself:} Yeah, so in a previous version of the language I was trying to work out a way to do it without declarations. So it'd work out what a character is, what an object is, etc based on the verbs used. But that was way too hard. So I just thought that I've just got to put those declarations in, sadly.
 
-\textbf{Participant:} Yeah, I think that's the one thing that anyone might have difficulty working out. Other than that\ldots{} OK, so you know like: "The Hero does this, or the Hero does that, and then the Hero does"\ldots{} you have like two sets of "if" statements. I don't know what else to call them. I mean OK, at first you're like: "How does that work?", and then I think the visualisation of those branching things\ldots{} I think that actually quite helps to understand. I think the visualisation helps you understand the code.\usability{Visualisation}\label{lne:use2e}
+\textbf{Participant:} Yeah, I think that's the one thing that anyone might have difficulty working out. Other than that\ldots{} OK, so you know like: "The Hero does this, or the Hero does that, and then the Hero does"\ldots{} you have like two sets of "if" statements. I don't know what else to call them. I mean OK, at first you're like: "How does that work?", and then I think the visualisation of those branching things\ldots{} I think that actually quite helps to understand. I think the visualisation helps you understand the code.\usability{Visualisation}\linelabel{lne:use2e}
 
 \textbf{Myself:} OK, cool. That's good to know, actually. Thank you. OK, so on to the next task. So this is like creating a trope of your own from scratch. And to kind of help you, I've limited the scope of what you can do. So if you go to the other document you have open in a tab. I think it was the information\ldots{} was it that one? Yeah. And go down to "task 2: create a trope".
 
@@ -7508,7 +8127,7 @@ things beforehand?\usability{Ease of use}\label{lne:use1e}
 
 \textbf{Myself:} So again, I've kind of limited it so you can only have a
 maximum of five events, one after another. I'll explain why after you've done
-this task.\bug{Five event limit}\label{lne:bug1e}
+this task.\bug{Five event limit}\linelabel{lne:bug1e}
 
 \textbf{Participant:} OK. So the only verbs I have is "goes"? At the moment?
 
@@ -7516,7 +8135,7 @@ this task.\bug{Five event limit}\label{lne:bug1e}
 
 \textbf{Participant:} OK, so "Hero goes Home", for example?
 
-\textbf{Myself:} Yeah, "Home" has to be capital "H". Yeah, that's right.\syntax{Capitalisation}\label{lne:syntax5e}
+\textbf{Myself:} Yeah, "Home" has to be capital "H". Yeah, that's right.\syntax{Capitalisation}\linelabel{lne:syntax5e}
 
 \textbf{Participant:} Um, "The Hero meets the Mentor".
 
@@ -7582,7 +8201,7 @@ this task.\bug{Five event limit}\label{lne:bug1e}
 
 \textbf{Myself:} Refresh\ldots{} so "Lair is a place"\ldots{} hang on, let
 me\ldots{} I'll try on my computer to see where exactly it's going wrong. I
-wonder if it's expecting "THE Lair is a place".\syntax{Use of ``the''}\label{lne:syntax3e}
+wonder if it's expecting "THE Lair is a place".\syntax{Use of ``the''}\linelabel{lne:syntax3e}
 
 \textbf{Participant:} So should we just go to "Lair"?
 
@@ -7597,7 +8216,7 @@ wonder if it's expecting "THE Lair is a place".\syntax{Use of ``the''}\label{lne
 \textbf{Myself:} OK, so put those two back in. So it's the "the" problem. So if
 you declare it as a "the", it has to be a "the" later as well. Even though it's
 supposed to ignore the "the"s. Alright. So put those two events back in, that
-you had.\syntax{Use of ``the''}\label{lne:syntax3e2}
+you had.\syntax{Use of ``the''}\linelabel{lne:syntax3e2}
 
 \textbf{Participant:} Sure. "Save" and "Refresh".
 
@@ -7620,7 +8239,7 @@ it kind of searches all the different possibilities, so it's doing this really
 expensive search through all these different possibilities of what can happen.
 And if the number of events is larger than five for complicated examples, it
 just takes really long. So I've limited it to a maximum of five events that can
-happen.\bug{Five event limit}\label{lne:bug1e2}
+happen.\bug{Five event limit}\linelabel{lne:bug1e2}
 
 \textbf{Participant:} The tractability is\ldots{}
 
@@ -7702,7 +8321,7 @@ happen.\bug{Five event limit}\label{lne:bug1e2}
 
 \textbf{Myself:} No, it's taking a long time.
 
-\textbf{Participant:} But I imagine if I did know a story, the individual tropes inside out, just to be able to like\ldots{} oh gosh, there it is\ldots{} just to be able to line them up and see what the various different paths are, and\ldots{} I guess for example, if these are two different characters, maybe just looking at them occurring simultaneously. I don't know, it's quite big. Oh, there we are. I'm trying to work out what this is showing me.\usability{Visualisation}\label{lne:use2e2}
+\textbf{Participant:} But I imagine if I did know a story, the individual tropes inside out, just to be able to like\ldots{} oh gosh, there it is\ldots{} just to be able to line them up and see what the various different paths are, and\ldots{} I guess for example, if these are two different characters, maybe just looking at them occurring simultaneously. I don't know, it's quite big. Oh, there we are. I'm trying to work out what this is showing me.\usability{Visualisation}\linelabel{lne:use2e2}
 
 \textbf{Myself:} So if you look at the connections between the nodes, it's labelled with the name of the trope there, so you can say if the red arrows are following your trope, task 2, it's saying "this can happen, but then after that we can follow the other trope, the example 1 trope, and the Hero can go home".
 
@@ -7710,7 +8329,7 @@ happen.\bug{Five event limit}\label{lne:bug1e2}
 
 \textbf{Myself:} Yeah.
 
-\textbf{Participant:} I mean, I can't think\ldots{} OK, personally I can't think of an application, I don't know, maybe it will come to light. I can't, um, I don't know. I'm having trouble understanding it from the outset. I get what's going on here, you're taking steps from each of the tropes and slicing them together and producing paths and showing what happens. Oh wait no, I see, I see. It's like introducing the tropes at each individual\ldots{} what happens when you introduce the second trope at each\ldots{} stage of the first trope. And comparing them that way, I guess? Yeah. Oh so like, you can take a diversion. So like there can be one trope, and that would go one way, and then a second trope would go another way. But if you're half way through the first trope, and then decide to go on the second trope, and then return to the first trope. I think that's what it's showing me, anyway.\usability{Visualisation}\label{lne:use2e3}
+\textbf{Participant:} I mean, I can't think\ldots{} OK, personally I can't think of an application, I don't know, maybe it will come to light. I can't, um, I don't know. I'm having trouble understanding it from the outset. I get what's going on here, you're taking steps from each of the tropes and slicing them together and producing paths and showing what happens. Oh wait no, I see, I see. It's like introducing the tropes at each individual\ldots{} what happens when you introduce the second trope at each\ldots{} stage of the first trope. And comparing them that way, I guess? Yeah. Oh so like, you can take a diversion. So like there can be one trope, and that would go one way, and then a second trope would go another way. But if you're half way through the first trope, and then decide to go on the second trope, and then return to the first trope. I think that's what it's showing me, anyway.\usability{Visualisation}\linelabel{lne:use2e3}
 
 \textbf{Myself:} Yes, something like that. So do you remember from the intelligent agents lectures, I think Charlie gave a lecture on institutions, which is like permissions and obligations, and social norms which act on intelligent agents. So the point of the system is that if you have intelligent agents which act out the characters in a story, these are kind of like the constraints which act on these agents. So this language actually compiles to like, a constraint language, which describes the permissions and obligations that act on these agents. I don't know if Charlie mentioned it in the lecture, it's called "InstAL". And then that compiles to this Answer Set programming language, which is a kind-of-like Prolog-like language, which we can use to generate all the different possibilities of these permissions and obligations. And that's kind of what we're visualising here. So if you're\ldots{} this describes what agents are permitted, what they're allowed to do at any point in the story. And then given a certain sequence of events, they're allowed to do something else.
 
@@ -7731,7 +8350,7 @@ happen.\bug{Five event limit}\label{lne:bug1e2}
 \textbf{Myself:} And unfortunately there's another limitation here, which is
 that the trope has to happen at the end of this trope. Again, I found a bug
 where it can't happen during the trope, it has to happen at the
-end.\bug{Subtrope at end}\label{lne:bug3e}
+end.\bug{Subtrope at end}\linelabel{lne:bug3e}
 
 \textbf{Participant:} Oh, the subtrope has to be at the end?
 
@@ -7769,7 +8388,7 @@ end.\bug{Subtrope at end}\label{lne:bug3e}
 
 \textbf{Myself:} Yes, that's right, yes. So save that trope. Hopefully that will compile. So click on edit, and if it appears\ldots{} use subtrope. Yeah. So select that and click refresh. Hopefully. I have a feeling this one's going to take a long time as well, so while that's churning away, I'll ask you\ldots{} So at the moment, because of this bug it can only happen at the end of a trope. But do you think this is a good way to kind of include these abstractions? Do you think that this method of composing tropes together into a story is a good way to create stories?
 
-\textbf{Participant:} It's really interesting, because it's like you're subdividing the story into these different modules, and you're developing them independently. I could see there being a placeholder, so\ldots{} I don't know. I imagine it would be quite cool. Yeah, OK. Just like kind of modularising the story itself. Like into different acts, for example.\usability{Tropes}\label{lne:use3e}
+\textbf{Participant:} It's really interesting, because it's like you're subdividing the story into these different modules, and you're developing them independently. I could see there being a placeholder, so\ldots{} I don't know. I imagine it would be quite cool. Yeah, OK. Just like kind of modularising the story itself. Like into different acts, for example.\usability{Tropes}\linelabel{lne:use3e}
 
 \textbf{Myself:} Yes, exactly.
 
@@ -7861,11 +8480,11 @@ end.\bug{Subtrope at end}\label{lne:bug3e}
 
 \textbf{Myself:} So OK, but the idea of tropes and composing stories out of tropes, do you think that's a useful way to create these kind of stories? So you can visualise the branches?
 
-\textbf{Participant:} Yeah, I think\ldots{} I imagine the process before using this software would be to write out the story itself and translate that into some computer code with tropes. I mean, OK, so I've written one short story in my lifetime.\usability{Tropes}\label{lne:use3e2}
+\textbf{Participant:} Yeah, I think\ldots{} I imagine the process before using this software would be to write out the story itself and translate that into some computer code with tropes. I mean, OK, so I've written one short story in my lifetime.\usability{Tropes}\linelabel{lne:use3e2}
 
 \textbf{Myself:} OK, yeah.
 
-\textbf{Participant:} I've never written anything for guiding AI. But dividing up a story into tropes. I guess there would have to be a translation process when the story's written to the actual thing you're building on the computer. But then I guess that's quite cool because you get to play with your own ideas, and it's like an extension of your own cognition. I don't know. I don't think I have much else to say on that.\usability{Tropes}\label{lne:use3e3}
+\textbf{Participant:} I've never written anything for guiding AI. But dividing up a story into tropes. I guess there would have to be a translation process when the story's written to the actual thing you're building on the computer. But then I guess that's quite cool because you get to play with your own ideas, and it's like an extension of your own cognition. I don't know. I don't think I have much else to say on that.\usability{Tropes}\linelabel{lne:use3e3}
 
 \textbf{Myself:} That's cool, I think I've got plenty of useful information from you. At the very least, I definitely know about some more bugs that I need to squash.
 
@@ -7882,12 +8501,12 @@ Dialogue starts at 14:52.
 \textbf{Myself:} So what are you thinking?
 
 \textbf{Participant:} Yeah, it's like the variables can have a type. Any type I
-define, right?\feature{Other types of entities}\label{lne:feature5f}
+define, right?\feature{Other types of entities}\linelabel{lne:feature5f}
 
 \textbf{Myself:} No, they can only be role, or object, or place. But you can change the Hero to something else, for example.
 
 \textbf{Participant:} Role, place or object. OK. Do I have to use "the" and "an
-/ a"?\syntax{Use of ``the''}\label{lne:syntax3f}
+/ a"?\syntax{Use of ``the''}\linelabel{lne:syntax3f}
 
 \textbf{Myself:} In theory you don't have to, but you should because it sometimes breaks if you don't.
 
@@ -7901,7 +8520,7 @@ define, right?\feature{Other types of entities}\label{lne:feature5f}
 
 \textbf{Participant:} Yeah. So if I did, for example: "The prince" now, it wouldn't work?
 
-\textbf{Myself:} That wouldn't work, no, it has to be a capital "P".\syntax{Capitalisation}\label{lne:syntax5f}
+\textbf{Myself:} That wouldn't work, no, it has to be a capital "P".\syntax{Capitalisation}\linelabel{lne:syntax5f}
 
 \textbf{Participant:} (uses tool some more). What verbs?
 
@@ -7914,7 +8533,7 @@ character roles you want. But at first just have just one thing after another,
 so at first don't put any branches in. So go to\ldots{} go back to the tool. And
 click on the "new" button. Very good. First, type in the name of the trope in
 that box, which says "trope name". "Task 2" - OK, cool. Right, so first define
-your character roles.\syntax{Using any verb}\label{lne:syntax2f}
+your character roles.\syntax{Using any verb}\linelabel{lne:syntax2f}
 
 \textbf{Participant:} Is\ldots{}?
 
@@ -7930,7 +8549,7 @@ your character roles.\syntax{Using any verb}\label{lne:syntax2f}
 
 \textbf{Participant:} (consults the documentation)
 
-\textbf{Myself:} Oh. So if you put "The Mentor goes to the Castle", and make sure the Castle is a capital "C".\syntax{Capitalisation}\label{lne:syntax5f2}
+\textbf{Myself:} Oh. So if you put "The Mentor goes to the Castle", and make sure the Castle is a capital "C".\syntax{Capitalisation}\linelabel{lne:syntax5f2}
 
 \textbf{Participant:} So I have to use, like, (types it in)
 
@@ -7942,7 +8561,7 @@ your character roles.\syntax{Using any verb}\label{lne:syntax2f}
 
 \textbf{Participant:} OK, so if I want to go further, for example to make a
 trope go for example, you know, the way that "goes Castle". You know like the
-second step where the Hero is already at the castle.\bug{Branch length limit}\label{lne:bug2f}
+second step where the Hero is already at the castle.\bug{Branch length limit}\linelabel{lne:bug2f}
 
 \textbf{Myself:} Ah yeah, so actually for this study, this is a very simple version of the language, so I haven't implemented that. I can only have, at the moment, branches with one event, unfortunately. So all the branches have to merge back to the story after one event.
 
@@ -7963,7 +8582,7 @@ that, another variable that remembers the state. So let me represent this here,
 something like\ldots{} (types into text box) So instead of making the first
 option with this syntax without spaces, I would make something like this. For
 example, first is this, second is this. So later on, you can like refer the
-number.\feature{State management}\label{lne:feature2f}
+number.\feature{State management}\linelabel{lne:feature2f}
 
 \textbf{Myself:} So you can say "go back to scene 1", or "go back to event 1", and then it can repeat. Yeah, that's a good idea.
 
@@ -7977,7 +8596,7 @@ number.\feature{State management}\label{lne:feature2f}
 
 \textbf{Participant:} But at some point, when you add like ten levels, you know the spacing can go really crazy.
 
-\textbf{Myself:} Yeah, that is a problem. And that's actually why we have this ability to put the tropes inside the tropes. So once it gets really crazy, you can just refer to another trope that already has those\ldots{}\usability{Tropes}\label{lne:use3f}
+\textbf{Myself:} Yeah, that is a problem. And that's actually why we have this ability to put the tropes inside the tropes. So once it gets really crazy, you can just refer to another trope that already has those\ldots{}\usability{Tropes}\linelabel{lne:use3f}
 
 \textbf{Participant:} Like functions\ldots{}
 
@@ -8043,7 +8662,7 @@ number.\feature{State management}\label{lne:feature2f}
 
 \textbf{Myself:} So you always have to just combine them, you can't put them one after another. Yeah, that's a good point.
 
-\textbf{Participant:} Yeah, so for example the user would like to choose to start only from the trope, for example, "Meeting", where two people meet, and that's the beginning of the story, because maybe they have an idea for this. And I think it would save time for generating all the possibilities, because you could cut out half of the solutions, right?\feature{Story structure}\label{lne:feature7f}
+\textbf{Participant:} Yeah, so for example the user would like to choose to start only from the trope, for example, "Meeting", where two people meet, and that's the beginning of the story, because maybe they have an idea for this. And I think it would save time for generating all the possibilities, because you could cut out half of the solutions, right?\feature{Story structure}\linelabel{lne:feature7f}
 
 \textbf{Myself:} Yes, exactly, that's a very good point. So rather than always having the trope merging all the events together, so that it's always one trope, then another trope, then another trope, instead of all those permutations. Ah, there we go. It took a long time to do that, for some reason. Ah yeah, so constraining it in some way so that it generates a subset of those permutations would be a good idea, and then it would take less time to generate all of these.
 
@@ -8064,7 +8683,7 @@ number.\feature{State management}\label{lne:feature2f}
 \textbf{Myself:} So again, it might take some time, so I'll ask you some more questions. So in terms of this programming language, do you think that if you didn't have any background in programming, would it be easy to learn, do you think?
 
 \textbf{Participant:} Well the syntax is not really difficult. I mean, it's
-difficult to say because I know how programming works.\usability{Ease of use}\label{lne:use1f}
+difficult to say because I know how programming works.\usability{Ease of use}\linelabel{lne:use1f}
 
 \textbf{Myself:} So do you think that having a real\ldots{} having it look like a proper programming language, with proper variables and everything, so you have more power, would be better than having a simplified language like this? So, it'd be more effort for the user to learn it. Sorry?
 
@@ -8077,7 +8696,7 @@ tutorial, but some kind of a table or chart with the syntax that you can use,
 with examples of "this is correct" and "this is incorrect". Because if the user
 will sit and start using it, he will get only compile errors. He will not have a
 person to ask them. I mean, not many people have the owner of the application
-there to help them use the program.\usability{Ease of use}\label{lne:use1f2}
+there to help them use the program.\usability{Ease of use}\linelabel{lne:use1f2}
 
 \textbf{Myself:} No, good point.
 
@@ -8149,7 +8768,7 @@ Dialogue starts at 12:16.
 
 \textbf{Participant:} OK, so I will add. Let's see here. So that was one of my
 questions, was\ldots{} so down here we have things like "goes" and "finds", and
-so on. So you can use basically any verb in there?\syntax{Using any verb}\label{lne:syntax2g}
+so on. So you can use basically any verb in there?\syntax{Using any verb}\linelabel{lne:syntax2g}
 
 \textbf{Myself:} Yes, that's right.
 
@@ -8191,7 +8810,7 @@ so on. So you can use basically any verb in there?\syntax{Using any verb}\label{
 
 \textbf{Participant:} Yeah, OK, so (indistinct). OK (types some more). So we
 don't have objects in the verbs, huh? So I can't say: "The Witch gives the Apple
-to Sleeping Beauty"?\feature{Event with two agents}\label{lne:feature3g}
+to Sleeping Beauty"?\feature{Event with three entities}\linelabel{lne:feature3g}
 
 \textbf{Myself:} Yeah, you can. You can.
 
@@ -8201,7 +8820,7 @@ to Sleeping Beauty"?\feature{Event with two agents}\label{lne:feature3g}
 
 \textbf{Participant:} Now, or before I do that? Here, let me take this out and save. I think so far I'm OK. So, "The Witch"\ldots{}
 
-\textbf{Myself:} No\ldots{} a very un-useful error.\bug{Error messages}\label{lne:bug4g}
+\textbf{Myself:} No\ldots{} a very un-useful error.\bug{Error messages}\linelabel{lne:bug4g}
 
 \textbf{Participant:} I'll take that out.
 
@@ -8212,7 +8831,7 @@ to Sleeping Beauty"?\feature{Event with two agents}\label{lne:feature3g}
 \textbf{Myself:} Oh, it's not appeared. Oh, there we go.
 
 \textbf{Participant:} There it is. Ah\ldots{} (typing). Like this?\bug{Five
-  event limit}\label{lne:bug1g}
+  event limit}\linelabel{lne:bug1g}
 
 \textbf{Myself:} Yeah, that should be good.
 
@@ -8251,7 +8870,7 @@ to Sleeping Beauty"?\feature{Event with two agents}\label{lne:feature3g}
 \textbf{Participant:} OK. So, let's do let's do it here, and I gotta go back and
 refresh myself on how the "or" works here. So yeah, OK. (indistinct) \ldots{}in
 the subplot there. So the "or" can just be one\ldots{} right now it can just be
-one action, basically?\bug{Branch length limit}\label{lne:bug2g}
+one action, basically?\bug{Branch length limit}\linelabel{lne:bug2g}
 
 \textbf{Myself:} Yeah, that's right. It can only be one thing.
 
@@ -8393,7 +9012,7 @@ won't\ldots{}/feature{Different characters in different tropes}
 
 \textbf{Myself:} Yeah, so save it and click "refresh". But\ldots{} so the five
 event limit includes the trope you put at the end, so click on\ldots{}\bug{Five
-  event limit}\label{lne:bug1g2}
+  event limit}\linelabel{lne:bug1g2}
 
 \textbf{Participant:} Oh really, so I might have too much?
 
@@ -8409,11 +9028,11 @@ event limit includes the trope you put at the end, so click on\ldots{}\bug{Five
 
 \textbf{Participant:} Yeah, I think so. I think it's very self-evident what's
 going on, and how to use it, so I don't think that anybody would have a
-problem.\usability{Ease of use}\label{lne:use1g}
+problem.\usability{Ease of use}\linelabel{lne:use1g}
 
 \textbf{Myself:} And do you think that these tropes would be a good formalism\ldots{} well, a good way to model the story? So when you're describing these components of a story and combining them together, do you think that is something that would be intuitive to an author?
 
-\textbf{Participant:} My only concern I guess would be about the level of abstraction. So, you know I think probably all of us who work in this area fancy ourselves authors to some extent or another, and still I wonder\ldots{} so I mean at the level I wrote it I think is a little bit too\ldots{} well\ldots{} I guess Hero and Heroine, um, that's OK. I guess a lot depends on the verbs, I guess. I think if I can use the right kind of verbs, yeah, I think I can express a lot of tropes. I'd have to give some thought as to\ldots{} you know, I'm sure there are limitations. But I think at a certain level, this would be fine.\feature{Story structure}\label{lne:feature7g}
+\textbf{Participant:} My only concern I guess would be about the level of abstraction. So, you know I think probably all of us who work in this area fancy ourselves authors to some extent or another, and still I wonder\ldots{} so I mean at the level I wrote it I think is a little bit too\ldots{} well\ldots{} I guess Hero and Heroine, um, that's OK. I guess a lot depends on the verbs, I guess. I think if I can use the right kind of verbs, yeah, I think I can express a lot of tropes. I'd have to give some thought as to\ldots{} you know, I'm sure there are limitations. But I think at a certain level, this would be fine.\feature{Story structure}\linelabel{lne:feature7g}
 
 \textbf{Myself:} OK, cool. Right. I think I've gotten everything I want to\ldots{} all the information I need. Do you have any other general comments you'd like to make?
 
@@ -8504,7 +9123,7 @@ Dialogue starts at 12:23.
 
 \textbf{Participant:} Um, yes. Do any of these rules, I guess, phrases, have
 special meaning, such as, where's it gone? "The Hero dies". Does anything
-special happen after that?\feature{Event semantics}\label{lne:feature4h}
+special happen after that?\feature{Event semantics}\linelabel{lne:feature4h}
 
 \textbf{Myself:} No. It just gives the Hero permission to die. That's literally it. There's nothing really clever going on there.
 
@@ -8548,7 +9167,7 @@ special happen after that?\feature{Event semantics}\label{lne:feature4h}
 
 \textbf{Myself:} Ah yeah, that's right. So after the "go_hero_home" nodes, you've got the four branches from that. So I think that does\ldots{} did that do what you expected it to do?
 
-\textbf{Participant:} Um, once we had talked about the fact that "die" doesn't have any special semantics, yes, that is pretty much what I expected.\feature{Event semantics}\label{lne:feature4h2}
+\textbf{Participant:} Um, once we had talked about the fact that "die" doesn't have any special semantics, yes, that is pretty much what I expected.\feature{Event semantics}\linelabel{lne:feature4h2}
 
 \textbf{Myself:} Because of course he can't meet the Mentor or go home after he dies. OK.
 
@@ -8665,7 +9284,7 @@ special happen after that?\feature{Event semantics}\label{lne:feature4h}
 \textbf{Myself:} What were you trying to do?
 
 \textbf{Participant:} "Hero has trust issues, Hero goes Home, a betrayal
-happens, Hero takes object".\bug{Subtrope at end}\label{lne:bug3h}
+happens, Hero takes object".\bug{Subtrope at end}\linelabel{lne:bug3h}
 
 \textbf{Myself:} Ah, OK. No, that won't.
 
@@ -8705,7 +9324,7 @@ generate answer sets sometimes. So maybe delete line five. Oh, hang on, you
 have. Oh, "betrayal" is five events long, isn't it? So it's always going to be
 too long for this. So go back and edit the "betrayal" trope. Uh, yeah. If
 you\ldots{} hang on\ldots{} 1, 2, 3, 4. It should be OK now, so if you try that.
-Hello?\bug{Five event limit}\label{lne:bug1h}
+Hello?\bug{Five event limit}\linelabel{lne:bug1h}
 
 \textbf{Participant:} Yeah.
 
@@ -8807,7 +9426,7 @@ Hello?\bug{Five event limit}\label{lne:bug1h}
 
 \textbf{Myself:} Only if you want to, I mean I'm recording this whole thing.
 
-\textbf{Participant:} I can send you that as well, for reference. Um\ldots{} what was I saying? Yes, looking at this image, one thing that occurs to me is that it might be useful to apply preconditions of some kind. I don't know how feasible that is, but specifically looking at this later one, not allowing the "betray" trope to happen before the Hero has something worth betraying.\feature{Conditionals}\label{lne:feature8h}
+\textbf{Participant:} I can send you that as well, for reference. Um\ldots{} what was I saying? Yes, looking at this image, one thing that occurs to me is that it might be useful to apply preconditions of some kind. I don't know how feasible that is, but specifically looking at this later one, not allowing the "betray" trope to happen before the Hero has something worth betraying.\feature{Conditionals}\linelabel{lne:feature8h}
 
 \textbf{Myself:} Yeah, I'd agree that that's a good idea. So I had an extra bit of syntax, which was "when", so you'd say: "When the Hero finds the Map, Then the Spy betrays the Hero". So when some kind of event happens, then something happens. Or when a sequence of events have happened. But of course you could also say "if". So you'd say\ldots{} I wasn't sure which was the best way to do it. So saying: "When event X, event Y and event Z have happened, then event 2 can happen". Or: "Event A happens if Event B, Event C and Event D have happened". I think it's not important which one\ldots{} I dunno. But it was all kind of event-based, because there's no kind of sense of state in this at the moment. So you could say "The Hero takes the Sword", and then "the Hero goes to the Land of Adventure if the Hero has the Sword". But, yeah, that's the kind of thing I think would be needed.
 
@@ -8820,7 +9439,7 @@ Hello?\bug{Five event limit}\label{lne:bug1h}
 \textbf{Myself:} I've forgotten. I think that that's everything that I wanted to say. Have you got any other general comments?
 
 \textbf{Participant:} Um\ldots{} the limitation of five events made things a
-little trickier.\bug{Five event limit}\label{lne:bug1h2}
+little trickier.\bug{Five event limit}\linelabel{lne:bug1h2}
 
 \textbf{Myself:} Yeah, that's for sure.
 
@@ -8838,7 +9457,7 @@ little trickier.\bug{Five event limit}\label{lne:bug1h2}
 
 \textbf{Participant:} But that's just so incredibly minor. Yeah, I think the
 color-coding of the different tropes is very handy. I dunno how you've got "find
-map" there, instead of "find the map".\syntax{Use of ``the''}\label{lne:syntax3h}
+map" there, instead of "find the map".\syntax{Use of ``the''}\linelabel{lne:syntax3h}
 
 \textbf{Myself:} I just delete "the"s wherever there's a "the", I tell it to ignore it in the parser.
 

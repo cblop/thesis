@@ -5553,7 +5553,6 @@ This theme appears in these lines of the transcript:
 \end{itemize}
 
 \item \textbf{State management}
-
   Some participants wanted to be able to write statements such as these:
 
   \begin{itemize}
@@ -5713,7 +5712,42 @@ This would be a good feature to add to the language. In particular, if one could
 add several preconditions, the resulting tropes could become very expressive:
 
 \begin{verbatim}
+If the Hero meets the Mentor
+And the Hero finds the Sword
+And the Hero kills the Villain
+  Then the Hero goes Home
+  Then the Hero rests
 \end{verbatim}
+
+However, due to the event-based nature of TropICAL in its current form, this is
+not too dissimilar from different from simply chaining permitted events
+together. The only difference is that the preconditions above can occur in any
+order, while those below must happen in a strict sequence:
+
+\begin{verbatim}
+The Hero meets the Mentor
+Then the Hero finds the Sword
+Then the Hero kills the Villain
+Then the Hero goes Home
+Then the Hero rests
+\end{verbatim}
+
+For conditionals to be truly useful, we need to first implement ways to modify
+and check for changes in state for each entity (as described earlier under
+``State Management''). Then the preconditions can be rephrased in the following way:
+
+\begin{verbatim}
+If the Hero has met the Mentor
+And the Hero has the Sword
+And the Villain is dead
+  Then the Hero goes Home
+  Then the Hero rests
+\end{verbatim}
+
+These preconditions, while enabling the user to express new combinations of
+events, add an extra complexity to the language that was not needed during the
+evaluation of the suitability of tropes as re-usable story components. This is
+the reason for its omission during the study.
 
 This theme appears in these lines of the transcript:
 
@@ -5727,11 +5761,29 @@ This theme appears in these lines of the transcript:
 \begin{itemize}
 \item \textbf{Spaces in words}
 
+Two participants were unsure if spaces were allowed in the names of entities of
+a trope. For example, ``Danger Mountain'' and ``Land of Adventure'' are both
+understood by the parser to be entity names. Participants (especially those
+familiar with programming) expected that the system would only be able to handle
+single-word entity names.
+
+This theme appears in these lines of the transcript:
+
 \begin{itemize}
 \item Participant A, line~\lineref{lne:syntax1a}
 \item Participant D, lines~\lineref{lne:syntax1d},~\lineref{lne:syntax1d2}
 \end{itemize}
+
 \item \textbf{Using any verb}
+
+This was another issue where users were confused by the parser being ``too
+clever''. Many users started writing their tropes with the assumption that only
+a restricted subset of verbs were permitted. In fact, any English-language verb
+is allowed by the parser, due to the fact that the verbs are fed into WordNet to
+be interpreted. Once users were told this fact, they had no problem choosing
+their own verbs to use in their tropes.
+
+This theme appears in these lines of the transcript:
 
 \begin{itemize}
 \item Participant A, line~\lineref{lne:syntax2a}
@@ -5741,6 +5793,16 @@ This theme appears in these lines of the transcript:
 \end{itemize}
 
 \item \textbf{Use of ``the''}
+
+The TropICAL parser is designed to ignore any use of ``the'' in the name of an
+entity. For example, it will translate ``The Hero'' into just ``Hero''. This
+caused some confusion amongst users, especially when the parser would
+inconsistently ignore the ``the''s. Sometimes, for example, if a role was
+declared with a name starting with ``The'', the parser expected to see it
+referred to with the ``the'' later on, as though it were part of the name. This
+was not by design, however, and was the result of a bug in the parser.
+
+This theme appears in these lines of the transcript:
 
 \begin{itemize}
 \item Participant A, line~\lineref{lne:syntax3a}
@@ -5754,6 +5816,14 @@ This theme appears in these lines of the transcript:
 
 \item \textbf{Entity declarations}
 
+Some users expected to be able to put their entity declarations (such as ``The
+Hero is a role'') at any point in the trope definition. However, the parser
+expects all of the entity declarations to be at the beginning. Though this was
+explained to users at the start of the study, some still wanted to be able to
+put the entity definitions anywhere in the text.
+
+This theme appears in these lines of the transcript:
+
 \begin{itemize}
 \item Participant A, line~\lineref{lne:syntax4a}
 \item Participant C, line~\lineref{lne:syntax4c}
@@ -5761,6 +5831,13 @@ This theme appears in these lines of the transcript:
 \end{itemize}
   
 \item \textbf{Capitalisation}
+
+Entity names must be capitalised in TropICAL. This was a point of confusion for
+many participants, who often forgot to capitalise their entity names. This theme
+occurred so often that it would be worth considering adapting the parser to
+allow for entity names with lowercase or flexible capitalisations.
+
+This theme appears in these lines of the transcript:
 
 \begin{itemize}
 \item Participant B, lines~\lineref{lne:syntax5b},~\lineref{lne:syntax5b2}
@@ -5775,6 +5852,20 @@ This theme appears in these lines of the transcript:
 \begin{itemize}
 \item \textbf{Five event limit}
 
+As explained above, the \emph{clingo} answer-set solver that StoryBuilder uses
+was limited to producing answer sets of only five events in length for the
+duration of the study. This was done to reduce the amount of time that
+participants would have to wait when combining many tropes together. For
+individual tropes, the solver is quick to produce answer sets that are at least
+twenty events long, even with multiple branches. When multiple such tropes are
+fed as inputs into the solver, however, it may take some time to process.
+
+Since many users found the five-event limit too constraining, it would be a
+worthwhile exercise to find ways to optimise the answer-set solver so that it
+can produce its output more efficiently.
+
+This theme appears in these lines of the transcript:
+
 \begin{itemize}
 \item Participant A, line~\lineref{lne:bug1a}
 \item Participant C, line~\lineref{lne:bug1c}
@@ -5786,6 +5877,15 @@ This theme appears in these lines of the transcript:
 
 \item \textbf{Branch length limit}
 
+In the prototype implementation used for the study, trope branches were limited
+to being only one event long. The path of a trope could only diverge for one
+event, before merging back into the main story path. Many participants wanted to
+be able to extend these branches so that the alternative story paths could be
+longer. This was included in the design of the language, but not implemented for
+this proof-of-concept version for the study.
+
+This theme appears in these lines of the transcript:
+
 \begin{itemize}
 \item Participant A, line~\lineref{lne:bug2a}
 \item Participant D, lines~\lineref{lne:bug2d},~\lineref{lne:bug2d2}
@@ -5794,6 +5894,14 @@ This theme appears in these lines of the transcript:
 \end{itemize}
 
 \item \textbf{Subtrope at end}
+
+Again, this was another limitation of the proof-of-concept prototype. Embedding
+subtropes inside a trope only worked with the answer-set solver if they were
+embedded as the very last event of the trope. The eventual fully-implemented
+system would allow subtropes to be embedded at any point in its parent trope.
+
+This theme appears in these lines of the transcript:
+  
 \begin{itemize}
 \item Participant A, line~\lineref{lne:bug3a}
 \item Participant B, line~\lineref{lne:bug3b}
@@ -5804,6 +5912,16 @@ This theme appears in these lines of the transcript:
 
 \item \textbf{Error messages}
 
+When a piece of TropICAL code does not compile in StoryBuilder, of if zero
+answer sets are produced by the solver, the error message ``Compilation Error''
+is displayed in place of the tree visualisation on the right. This is not very
+helpful to the user, as it does not give them enough detail to be able to
+identify the errors in their code in order to fix them. Solving this issue would
+require parsing the errors that come from the TropICAL parser, the InstAL
+compiler and the clingo answer set solver to identify the source of the error.
+
+This theme appears in these lines of the transcript:
+
 \begin{itemize}
 \item Participant B, lines~\lineref{lne:bug4b}
 \item Participant G, line~\lineref{lne:bug4g}
@@ -5811,9 +5929,27 @@ This theme appears in these lines of the transcript:
 \end{itemize}
 
 \subsubsection{Usability}
-
 \begin{itemize}
 \item \textbf{Ease of use}
+
+Participants described the system as ``intuitive'' (Participant A,
+line~\lineref{lne:use1a}), ``simple to use'' (Participant F,
+line~\lineref{lne:use1f2}), and ``self-evident'' (Participant G, line~\lineref{lne:use1g}). Features described as making the system easy to learn
+for non-programmers included the lack of a need for punctuation (Participant B, line~\lineref{lne:use1b})
+
+A criticism of the language came from Participant D, describing the controlled
+natural language syntax as being perhaps counter-intuitive to users that are already programmers (Participant D,
+line~\lineref{lne:use1d}). Participant E stated that the need to declare the
+entities in advance may be a barrier to learning for non-programmers
+(Participant E, line~\lineref{lne:use1e}). The former issue is difficult to
+avoid when using a controlled natural language syntax targeted towards
+non-programmer users. The latter problem is difficult to address without
+developing an extremely sophisticated parser that is capable of identifying the
+subjects, verbs and objects in a natural language statement. The solution of
+requiring the user to define the subjects and objects up front (the entities)
+greatly simplifies the implementation and increases the predictability of the parser.
+
+This theme appears in these lines of the transcript:
 
 \begin{itemize}
 \item Participant A, line~\lineref{lne:use1a}
@@ -5826,16 +5962,37 @@ This theme appears in these lines of the transcript:
 
 \item \textbf{Visualisation}
 
+Participants found the visualisation of all possible paths through the story
+useful. Participant B in particular praised the ability to be able to see all
+the permutations of the story, stating that such a visualisation could also be
+applicable to domains such as architecture (for visualising different
+combinations of building designs). Participant E stated that the visualisation
+helped him to understand what was happening in his TropICAL code.
+
+This theme appears in these lines of the transcript:
+
 \begin{itemize}
 \item Participant B, lines~\lineref{lne:use2b},~\lineref{lne:use2b2},~\lineref{lne:use2b3}
-\item Participant E, lines~\lineref{lne:use2e},~\lineref{lne:use2e2},~\lineref{lne:use2e4}
+\item Participant E, lines~\lineref{lne:use2e},~\lineref{lne:use2e2},~\lineref{lne:use2e3}
 \end{itemize}
 
 \item \textbf{Tropes}
+
+Participants found the use of tropes as story components to be useful.
+Participant C, as a story writer, found that it was a natural fit with the way
+that she thought about story structure (Participant C, lines~\lineref{lne:use3c}
+and~\lineref{lne:use3c2}). Participant E stated that tropes are a useful way to
+divide a story into modules (Particpant E, line~\lineref{lne:use3e}).
+Participant F identified that the ability to embed tropes inside of other tropes
+prevented the problem of having unreasonable levels of nesting and indentation
+(Particpant F, line~\lineref{lne:use3f}).
+
+This theme appears in these lines of the transcript:
+  
 \begin{itemize}
 \item Participant C, lines~\lineref{lne:use3c},~\lineref{lne:use3c2}
 \item Participant E, lines~\lineref{lne:use3e},~\lineref{lne:use3e2},~\lineref{lne:use3e3}
-\item Participant F, lines~\lineref{lne:use3f}
+\item Participant F, line~\lineref{lne:use3f}
 \end{itemize}
 \end{itemize}
 

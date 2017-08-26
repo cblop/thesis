@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \usepackage{syntax}
 \usepackage{lineno}
+\usepackage{framed}
 % \usepackage[british]{babel}
 \usepackage[T2A]{fontenc}
 % \usepackage[T1]{fontenc}
@@ -4294,6 +4295,7 @@ The next section lists example answer set (trace) outputs of the solver with two
 tropes, both separately and combined.
 
 \section{Example Answer Sets (Traces)}
+\label{sec:example-traces}
 Answer Sets (also called ``traces'') are produced by the answer set solver when
 given the institutions compiled as ASP code, along with a set of constraints.
 The traces generated represent all of the \emph{possible} sequences of events
@@ -4886,7 +4888,7 @@ dropdown box of existing tropes, which then allows them to see its source code
 and visualise its structure in the story with a tree diagram.
 
 To address requirement~\ref{req:vis}, we parse the answer set outputs (traces)
-of our answer set solver (as described in Section~\ref{}) to create a tree
+of our answer set solver (as described in Section~\ref{sec:trope-visualisation}) to create a tree
 diagram of all of the possible events that they describe.
 
 \section{Interface}
@@ -4904,7 +4906,7 @@ Figure~\ref{fig:sb-start} shows what the user sees when they first start the
 \emph{edit} and \emph{arrange}. The \emph{edit} tab allows the user to edit
 existing tropes, or to create a new trope of their own. While editing these
 tropes, their structures are visualised on the right side of the screen (which
-is blank in this initial screenshot). Figure~\ref{fig:st-edit-ann} shows the
+is blank in this initial screenshot). Figure~\ref{fig:sb-edit-ann} shows the
 same screen as figure~\ref{fig:sb-start}, with the addition of annotations that
 explain the function of each item in the interface.
 
@@ -4963,6 +4965,39 @@ select and visualise it.
 \caption{An explanation of how a new trope is created}\label{fig:sb-new-ann}
 \end{figure}
 
+\subsubsection{Trope Visualisation}
+\label{sec:trope-visualisation}
+The tree visualisation that appears on the right side of the \emph{StoryBuilder}
+interface is produced from the output of running the \emph{clingo} answer set
+solver on the AnsProlog translation of the trope being edited. The output,
+which we refer to as \emph{answer sets} or \emph{traces} in Section~\ref{sec:t-asp}, are lists of events that are possible in one run
+through the story. \emph{Clingo} outputs one answer set for each possible
+interpretation of the events that can occur in a story. Examples of these traces
+are explained further in Section~\ref{sec:example-traces}.
+
+These traces are converted into a tree data structure by merging all events that
+occur at the same time step with the same predecessor events into one node. This
+eliminates redundant paths in the visualisation, reducing the visual clutter and
+making it easier for the author to understand. This data structure is used as
+the input to \emph{vis.js}\footnote{Accessible at the following website:
+  \url{http://visjs.org}, accessed 20170826.}, a Javascript library for graph visualisation. This
+library draws the tree on an interactive canvas on screen, allowing the user to
+drag the nodes around and zoom in on them.
+
+In the visualisation, each node is labelled with an event in
+\emph{verb_subject_object} prefix notation. For example, a node corresponding to
+``The Hero goes to the Land of Adventure'' would be labelled as
+\emph{``go_hero_landOfAdventure''}. The reason for this labelling is due to the
+fact that once the controlled natural language syntax has been translated to its
+formal representation, it is difficult to reverse the process. The edges between
+each node are labelled with the name of the trope that corresponds to the event with the
+later time step. For example, if
+Event A is an \emph{Evil Empire} trope event and is followed by Event B, a
+\emph{Hero's Journey} event, the edge linking the nodes together will be
+labelled with Event B's trope (\emph{The Hero's Journey}). In order to allow for
+easier visual identification of the different story paths that different tropes
+allow, the edge for each trope has a unique colour, with Trope A's lines
+appearing in blue, Trope B's being red, and Trope C's being green, for example.
 
 \subsubsection{The \emph{arrange} tab}
 
@@ -5082,9 +5117,7 @@ something like: ``Where is he?'', with the traditional audience response being
 ``He's behind you!''.
 
 There are also particular scenes that always feature in a Punch and Judy show.
-We want them to appear in our story as well, but one after another, in sequence.
-We will achieve this by using one as a subtrope of another. The two scenes that
-we will describe are the ``Babysitting scene'', where Judy leaves Punch with the
+The two scenes that we will describe are the ``Babysitting scene'', where Judy leaves Punch with the
 Baby, and the ``Crocodile Sausages'' scene, where a crocodile eats some sausages
 that Punch has been trusted with looking after.
 
@@ -5102,7 +5135,7 @@ passed to the answer set solver along with the other tropes in the story, so
 that its events can occur at any point. This is described further in
 section~\ref{sec:combining-tropes} below.
 
-\begin{lstlisting}[label={list:audience-participation},caption={The ``Audience participation'' trope}]
+\begin{lstlisting}[label={lst:audience-participation},caption={The ``Audience participation'' trope}]
 ``Audience Participation'' is a trope where:
 The Character is a role
 The Audience is a role
@@ -5115,13 +5148,13 @@ Then the Audience shouts at the Character
 \caption{The ``Audience Participation'' trope in StoryBuilder}\label{fig:audience-participation}
 \end{figure}
 
-Listing~\ref{lst:list:babysitting-trope} shows a trope to describe the
+Listing~\ref{lst:babysitting-trope} shows a trope to describe the
 ``Babysitting'' scene from Punch and Judy. We have decided to put a branching
 point in this trope, where Punch may either kill the baby, or the baby escapes.
 This gives the option of a more ``family-friendly'' alternative of the scene,
 suitable for younger audiences. The StoryBuilder visualisation appears in Figure~\ref{fig:babysitting-trope}.
 
-\begin{lstlisting}[label={list:babysitting-trope},caption={The ``Babysitting'' trope}]
+\begin{lstlisting}[label={lst:babysitting-trope},caption={The ``Babysitting'' trope}]
 ``Babysitting'' is a trope where:
   Punch is a role
   Judy is a role
@@ -5141,12 +5174,12 @@ suitable for younger audiences. The StoryBuilder visualisation appears in Figure
 \caption{The ``Babysitting'' trope in StoryBuilder}\label{fig:babysitting-trope}
 \end{figure}
 
-Listing~\ref{lst:list:sausages-trope} shows the TropICAL definition of the
+Listing~\ref{lst:sausages-trope} shows the TropICAL definition of the
 ``Crocodile Sausages'' scene in Punch and Judy. This scene is a simple sequence
 of events, but we will see how to interpose events from other tropes between
 them below. Its StoryBuilder visualisation appears in Figure~\ref{fig:crocodile-sausages}.
 
-\begin{lstlisting}[label={list:sausages-trope},caption={The ``Crocodile Sausages'' trope}]
+\begin{lstlisting}[label={lst:sausages-trope},caption={The ``Crocodile Sausages'' trope}]
 ``Crocodile Sausages'' is a trope where:
   Punch is a role
   Joey is a role
@@ -5293,9 +5326,10 @@ visualisation that updates as the story author is editing the tropes in the tool
 
 In order to evaluate the effectiveness of both TropICAL and StoryBuilder for the
 construction of tropes and nonlinear stories, we carried out a usability study,
-evaluated qualitatively through a thematic analysis (described by~\citet{clarke2014thematic}).
+evaluated qualitatively through a thematic analysis (described
+by~\citet{clarke2014thematic}, and in Section~\ref{sec:sb-analysis}).
 
-\subsection{Process}
+\subsection{Procedure}
 % TODO explain the process: 3
 
 The study begins with a brief explanation of the syntax and features of the
@@ -5306,6 +5340,30 @@ tasks. The tasks start with the user making simple changes to existing tropes,
 and give the user increasing freedom, finally giving them the opportunity to
 create tropes for a story of their own.
 
+\subsection{Participants}
+Eight participants were recruited for the study:
+
+\begin{itemize}
+\item \textbf{Participant A} is a computer science student,
+with good programming experience
+\item \textbf{Participant B} is an architect and former English teacher with a little programming experience
+\item \textbf{Participant C} is a creative writer with no programming experience
+\item \textbf{Participant D} is a computer science student with good programming experience
+\item \textbf{Participant E} is a computer science student with good programming experience
+\item \textbf{Participant F} is a creative computing student with some programming experience
+\item \textbf{Participant G} is a computer scientist that works on well-known
+interactive fiction tools
+\item \textbf{Participant H} is a computer science graduate student with good
+programming (and answer-set programming) experience
+\end{itemize}
+
+The studies were conducted using Google Hangouts, with each participant loading
+StoryBuilder by going to a web address
+(\url{http://mthompson.org/storybuilder}) and sharing a screen capture of their
+interactions with the system. Each study was recorded using screen capture
+software. The full transcripts, with annotations, are listed in
+Appendix~\ref{appendix:transcripts}.
+
 \subsection{User Tasks}
 This section describes the tasks that the users carried out as part of the study.
 
@@ -5314,9 +5372,11 @@ This section describes the tasks that the users carried out as part of the study
 The user is instructed to get a feel for the language by browsing through
 the examples provided, then presented with this task:
 
+\begin{framed}
 \begin{quote}
-In the 'edit' tab, select an existing trope from the dropdown box. Edit its text on the left, and then save it. Again, Matt will give you advice to make sure it compiles correctly. Once this is done, check to see that the visualisation seems to be as expected.
+In the 'edit' tab, select an existing trope from the dropdown box. Edit its text on the left, and then save it. Once this is done, check to see that the visualisation seems to be as expected.
 \end{quote}
+\end{framed}
 
 This task is designed to examine how easily the user is able to read and
 understand the TropICAL languages before making small changes to existing tropes.
@@ -5328,6 +5388,7 @@ The second task gives the user some specific character roles and places to use
 in their trope, and then instructs them to combine them together into a sequence
 of events:
 
+\begin{framed}
 \begin{quote}
 Given the following character roles:
 
@@ -5355,6 +5416,7 @@ Then the Villain kills the Hero
 
 Make sure to declare your roles and objects first.
 \end{quote}
+\end{framed}
 
 This task is designed to allow the users to gently begin creating their own
 tropes, by limiting their role and place choices at first, as well as limiting
@@ -5365,6 +5427,7 @@ their trope complexity by only allowing sequences of events without branches.
 
 This task extends task 2 by allowing the user to add objects to their trope.
 
+\begin{framed}
 \begin{quote}
 Add the following objects to your trope:
 
@@ -5380,6 +5443,7 @@ The Hero takes the Weapon
 Then the Villain makes an Evil Plan
 \end{verbatim}
 \end{quote}
+\end{framed}
 
 \subsubsection*{Task 4: Add branches to your trope}
 \label{sec:org80c0de6}
@@ -5387,6 +5451,7 @@ Then the Villain makes an Evil Plan
 In task 4, the user is asked to add some branching points to the trope that they
 have made:
 
+\begin{framed}
 \begin{quote}
 Using the "Or" keyword, add branches to your story. For example:
 
@@ -5398,6 +5463,7 @@ Then the Hero kills the Villain
   Or the Mentor goes home
 \end{verbatim}
 \end{quote}
+\end{framed}
 
 This task introduces the concept of branches to the user for the first time.
 
@@ -5407,9 +5473,11 @@ This task introduces the concept of branches to the user for the first time.
 In this task, the user takes two existing tropes from the database, and combines
 them together with the ``arrange'' tab:
 
+\begin{framed}
 \begin{quote}
 Using the "Arrange" tab in Storybuilder, select two (or more) tropes from the dropdown boxes to visualise all the possible paths through a story with those tropes.
 \end{quote}
+\end{framed}
 
 Once this task is completed, the user is able to see a visualisation of all of the possible
 combinations of events that result from combining two tropes together.
@@ -5420,6 +5488,7 @@ combinations of events that result from combining two tropes together.
 This task introduces the user to the concept of a \emph{subtrope}, asking them
 to embed an existing trope inside of a new one:
 
+\begin{framed}
 \begin{quote}
 Create a new trope that uses an existing trope as a "subtrope". For example:
 
@@ -5441,6 +5510,7 @@ Create a new trope that uses an existing trope as a "subtrope". For example:
 
 In the above example, the first trope is used inside the second trope.
 \end{quote}
+\end{framed}
 
 \subsubsection*{Task 7: Free Story Creation}
 \label{sec:orgeed4725}
@@ -5448,13 +5518,16 @@ In the above example, the first trope is used inside the second trope.
 Finally, the user is given the opportunity to create whatever they want. They
 can create new tropes, embed subtropes, and combine them into a story:
 
+\begin{framed}
 \begin{quote}
 Using a combination of the techniques learned up until now, please create a story of your own, using any combination of characters, places, objects, and subtropes.
 
 Once you have created the story, you can explore the possible paths through it with the tree visualisation.
 \end{quote}
+\end{framed}
 
 \subsection{Limitations of the System}
+\label{sec:limitations}
 
 Due to time restrictions and bugs in StoryBuilder, the following limitations
 applied to the participants' use of the software:
@@ -5482,34 +5555,16 @@ Despite these limitations, enough of the TropICAL language and StoryBuilder
 interface were implemented to test the usage of building a story using tropes as
 re-usable components.
 
-\subsection{Participants}
-Eight participants were recruited for the study:
+\subsection{Analysis}
+\label{sec:sb-analysis}
 
-\begin{itemize}
-\item \textbf{Participant A} is a computer science student,
-with good programming experience
-\item \textbf{Participant B} is an architect and former English teacher with a little programming experience
-\item \textbf{Participant C} is a creative writer with no programming experience
-\item \textbf{Participant D} is a computer science student with good programming experience
-\item \textbf{Participant E} is a computer science student with good programming experience
-\item \textbf{Participant F} is a creative computing student with some programming experience
-\item \textbf{Participant G} is a computer scientist that works on well-known
-interactive fiction tools
-\item \textbf{Participant H} is a computer science graduate student with good
-programming (and answer-set programming) experience
-\end{itemize}
+Transcripts for the interviews were analysed using the thematic analysis method
+described by~\citet{hayes2000doing} and~\citet{clarke2014thematic}. 
+This method involves careful reading of the transcripts and identification of
+categories (referred to as ``themes'') into which patterns identified in the
+responses can be organised.
 
-The studies were conducted using Google Hangouts, with each participant loading
-StoryBuilder by going to a web address
-(\url{http://mthompson.org/storybuilder}) and sharing a screen capture of their
-interactions with the system. Each study was recorded using screen capture
-software. The full transcripts are listed in
-Appendix~\ref{appendix:transcripts}.
-
-\subsection{Identified Themes}
-% ATODO intro: 1
-% TODO list themes: 4
-We identify eighteen different themes from the participant transcripts listed in
+We identify twenty different themes from the participant transcripts listed in
 Appendix~\ref{appendix:transcripts}. These themes fall into four categories:
 
 \begin{enumerate}
@@ -5522,8 +5577,49 @@ Appendix~\ref{appendix:transcripts}. These themes fall into four categories:
   interface and TropICAL language are for story authors
 \end{enumerate}
 
+The full list of twenty themes is as follows:
+
+\subsubsection{Features}
+\begin{enumerate}
+\item {Different characters in different tropes}
+\item {State management}
+\item {Event with three entities}
+\item {Event semantics}
+\item {Other types of entities}
+\item {Subject must be an agent}
+\item {Story structure}
+\item {Conditionals}
+\end{enumerate}
+
+\subsubsection{Syntax}
+\begin{enumerate}
+\setcounter{enumi}{8}
+\item {Spaces in words}
+\item {Using any verb}
+\item {Use of ``the''}
+\item {Entity declarations}
+\item {Capitalisation}
+\end{enumerate}
+
+\subsubsection{Limitations}
+\begin{enumerate}
+\setcounter{enumi}{13}
+\item {Five event limit}
+\item {Branch length limit}
+\item {Subtrope at end}
+\item {Error messages}
+\end{enumerate}
+
+\subsubsection{Usability}
+\begin{enumerate}
+\setcounter{enumi}{17}
+\item {Ease of use}
+\item {Visualisation}
+\item {Tropes}
+\end{enumerate}
+
 The themes, identified when a pattern appears in the experiences of two or more
-participants, are as follows:
+participants, are explained in detail below:
 
 \subsubsection{Features}
 \begin{itemize}
@@ -5619,9 +5715,9 @@ is up to the Hero to interpret this to mean that it physically has to move to
 another location, which should be described in a pre-existing plan.
 
 The expectation that the events would have semantics created surprising effects
-for the participants while visualising their tropes. Some users would write
-events where one character is killed, such as ``The Villain kills the Hero'',
-and expect all subsequent branches featuring the Hero to disappear after that
+for the participants while visualising their tropes. One user (Participant A,
+line~\lineref{lne:feature4a}) wrote a series of events where one character is killed, such as ``The Villain kills the Hero'',
+and expected all subsequent branches featuring the Hero to disappear after that
 event. This was not the case, as the solver has no way of knowing that the
 \emph{kill} verb should remove the Hero agent from the story.
 
@@ -5684,6 +5780,13 @@ Then the ``Trope B'' trope happens
 Then the ``Trope C'' trope happens
 Then the ``Trope D'' trope happens
 \end{verbatim}
+
+Participant G was concerned that the system was only able to express tropes at a
+certain level of abstraction, as it could only describe things that happen in
+terms of character actions, and could not describe changes in the abstract shape of the
+story. For example, TropICAL forces users to describe specific actions and
+events such as ``The Hero fights the Villain'', but cannot express that some
+kind of climactic scene happens in an abstract way.
 
 This theme appears in these lines of the transcript:
 
@@ -5852,7 +5955,7 @@ This theme appears in these lines of the transcript:
 \begin{itemize}
 \item \textbf{Five event limit}
 
-As explained above, the \emph{clingo} answer-set solver that StoryBuilder uses
+As explained above (Section~\ref{sec:limitations}), the \emph{clingo} answer-set solver that StoryBuilder uses
 was limited to producing answer sets of only five events in length for the
 duration of the study. This was done to reduce the amount of time that
 participants would have to wait when combining many tropes together. For
@@ -5913,7 +6016,7 @@ This theme appears in these lines of the transcript:
 \item \textbf{Error messages}
 
 When a piece of TropICAL code does not compile in StoryBuilder, of if zero
-answer sets are produced by the solver, the error message ``Compilation Error''
+answer sets are produced by the solver, the error message ``Compile Error''
 is displayed in place of the tree visualisation on the right. This is not very
 helpful to the user, as it does not give them enough detail to be able to
 identify the errors in their code in order to fix them. Solving this issue would
@@ -5997,13 +6100,75 @@ This theme appears in these lines of the transcript:
 \end{itemize}
 
 \section{Discussion}
-\subsection{Comparison with a Propp-based Formalism Approach}
 
-\subsection{Comparison with a Planner-Based Drama Manager Approach}
+The purpose of this analysis is to evaluate the experience of authors using
+tropes as a reusable component for interactive story authoring. The assumption
+of existing interactive story authoring systems is that a narrative formalism is
+needed to be learned by the story author before they are able to describe a
+narrative in terms of machine-readable components.
 
-% conclusion
+The most notable result of the study is that non-programmer story authors were able
+to become comfortable with the TropICAL language syntax and trope concept very
+easily (Participant B, line~\lineref{lne:use1b}, Participant C,
+lines~\lineref{lne:use3c} and~\lineref{lne:use3c2}). In fact, a comment from one experienced programmer participant
+suggested that he had more difficulty learning the language
+\emph{because} of his programing experience (Participant D,
+line~\lineref{lne:use1d}). This was an interesting theme that developed among
+the programmer group: they did not trust the ``cleverness'' of the language
+parser, preferring the lack of ambiguity that comes from a strictly defined
+programing language over the flexibility of the controlled natural language
+syntax that TropICAL uses.
 
-% HACK predicted poms remaining: 56
+The participant with the most experience in creative writing, Participant C,
+praised the use of tropes the most, explaining that it matched the way that she
+thought of story structure when writing stories (Participant C,
+lines~\lineref{lne:use3c} and~\lineref{lne:use3c2}). Other users' comments were
+more focused on TropICAL's controlled natural language syntax, with Participant B
+(line~\lineref{lne:use1b}) describing how its lack of ``punctuation'' (brackets
+and braces) eases the learning curve for non-programmers.
+
+Most of the frustrations that participants experienced when using StoryBuilder
+emerged from bugs or limitations from its implementation. The fact that tropes
+were limited to five events in length, and that branches could not be extended
+prevented most users from expressing the kinds of stories that they wanted to
+using the prototype. However, this is not due to the limitations of using tropes
+for the modelling of stories, but due to the incomplete nature of their
+implementation in StoryBuilder.
+
+The expression of tropes in terms of social norms was a limiting factor for some
+story authors, however, with Participant G explaining that it limited the level
+of abstraction at which he could describe story events (Participant G,
+line~\lineref{lne:feature7g}). It is true that each trope must be defined in
+terms of agent actions and events, but these tropes can be inserted into a story
+as abstractions once they are defined. This allows a user to be able to describe
+a story more abstractly with statements such as ``If trope A happens, then trope
+B happens or Trope C happens''. Due to the fact that trope A, B and C can be
+pre-written tropes from a library, a story author would not have to worry about
+their implementation in terms of agent actions at the lower level of abstraction.
+
+Finally, the use of story visualisation alongside the controlled natural
+language syntax helped authors to understand the story structures that they were
+creating with the language. Participant B
+(lines~\lineref{lne:use2b},~\lineref{lne:use2b2} and~\lineref{lne:use2b3}) describes
+how seeing all of the possible permutations could help story authors to refine
+the structure of their stories. Participant E
+(lines~\lineref{lne:use2e},~\lineref{lne:use2e2} and~\lineref{lne:use2e3})
+stated that the visualisations helped him see how changes to the TropICAL code
+affected the resulting branches of the story he was creating.
+
+Our data demonstrate that authors can create complex branching stories in
+TropICAL and StoryBuilder with minimal instruction, regardless of their level of
+programming experience. All were able to create their own tropes and combine
+them into non-linear narratives, without the need to learn any kind of
+pre-defined formalism. Once the authors' stories are created, their compilation
+into a formal institutional representation allows for the use of an answer set
+solver to generate all of the possible paths through the story. This
+demonstrates that it is possible to allow the informal specification of stories
+through tropes and controlled natural language in a way that can be converted
+into a formal representation. The fact that the visual output of the formal translation
+of the tropes (the branching story tree visualisation that is generated by the
+answer set solver) matches the authors' expectations suggests that the
+translation from informal to formal is successful with this system.
 
 \chapter{Conclusions \& Future Work}
 \label{cha:conclusions}

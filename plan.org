@@ -1,76 +1,8 @@
-* Introduction
-** Problem
-** Domain
-** Tropes
-* Literature Review
-* Institutions
-* Tropes
-* Intelligent Agents as Story Characters
-* TropICAL
-** Language Features
-** EBNF grammar
-** Explanations of trope nesting (bridging)
-** Intermediate hash map
-** InstAL code generation
-*** Initiates
-*** Terminates
-*** Generates
-*** Initially
-*** Bridge
-** Answer Set Generation
-*** Purpose
-*** How it works
-*** InstALQuery
-*** Adding constraints
-*** Examples of generated answer sets
-** Tests
-(Could be the "user stories" from next chapter)
-*** Samples of Generated Code
-*** Samples of Generated Answer Sets
-Explain that these are visualised in next section
-* StoryBuilder
-** Use Cases (user stories)
-Ask Steve about this!
-** Requirements
-Steve again
-** Overview of interface
-** Run through user stories with annotated diagrams of use
-** Return to requirements, explain how they are met
-** Return to tests from previous section, put screenshots of visualisations
-These could be the "user stories" from previous chapter
-* Evaluation
-** Methodology
-Explain the concept of "thematic analysis". Cite use of NVivo
-** Process
-** Questions
-** Transcripts
-(forward ref. to appendix)
-** Themes / codes
-* Conclusions & Future Work
-** Successes
-*** Trope formalism
-*** TropICAL syntax & features
-*** Code generated in InstAL
-*** Legal policy examples
-*** Answer Set Generation
-*** StoryBuilder interface
-*** Story visualisation
-** Potential improvements
-*** Trope formalism
-*** TropICAL syntax & features
-*** Code generated in InstAL
-*** Legal policy examples
-*** Answer Set Generation
-*** StoryBuilder interface
-*** Story visualisation
-** Future work
-*** Hierarchical institutions
-(Thomas King)
-*** Expand the use of tropes for policy description
-*** Role hierarchies
-(ref'd from Tropes section)
-*** "Verifiable" contracts for blockchain - ?
-*** IDE / IDE support
-With syntax completion, checking, etc.
-*** Visual Coding front end
-** Summary
+* DONE storybuilder: discussion
+  CLOSED: [2017-08-26 Sat 10:32]
+* DONE storybuilder: design justification
+  CLOSED: [2017-08-26 Sat 11:18]
+* TODO vis.js link
+* DONE storybuilder: change bit about Punch and Judy subtrope
+  CLOSED: [2017-08-26 Sat 11:02]
+* TODO storybuilder: different colour background for task descriptions

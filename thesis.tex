@@ -2550,6 +2550,7 @@ permitted to occur within the trope:
 \end{align*}
 
 \subsubsection{Trope Phases}
+\label{sec:trope-phases}
 
 While arranging these four tropes in a linear sequence describes the
 \emph{sausages} scene for the most part, our use of the \emph{Don't Touch It, You Idiot} trope in place of both of
@@ -2773,6 +2774,8 @@ corresponding translations to \emph{InstAL}.
 
 % tropical
 
+\section{Intelligent Agents as Story Characters}
+\label{sec:character-agents}
 \section{Punch and Judy with Emotional Agents}
 \label{sec:emotional-pj}
 
@@ -2888,26 +2891,36 @@ story tropes. The purpose of this language is to allow for the
 creation of interactive narratives through the description of tropes in a
 constrained natural language. The tropes created through the language are
 designed to be reusable components that can go into a ``library'', from which
-story authors can choose the tropes best suited to the particular story that they
+story authors can choose the tropes they wish for the particular story that they
 are creating.
 
 The motivation for the creation of TropICAL is the lack of any methods of
-creating interactive narrative that are suitable for non-programmers to use. The
-systems described in the literature review in
+creating agent-based interactive narrative that are suitable for non-programmers
+to use. Inform 7~\citep{reed2010creating} enables non-programmers to create
+interactive fiction, but not in a way that can be integrated into a multi-agent
+system.\mnote{Qualified this by emphasising \emph{agent-based} and explaining
+  how Inform lacks in that regard}
+The systems described in the literature review in
 chapter~\ref{cha:literature-review}, such as those using the Mimesis
 architecture~\citep{young2004architecture}, a drama manager and planner such as
 in Fa\c{c}ade's system~\citep{mateas2003faccade}, or linear logic as in Ceptre's
 system~\citep{martens2015ceptre}, all require the story author to be familiar with
 planner-based systems or the description of formal logics. The purpose of
 TropICAL is to greatly reduce the barrier to the creation of interactive stories
-by allowing authors to describe the components of their story using constrained
-natural language. In fact, many authors using our system should not even need to
+with intelligent agents by allowing authors to describe the components of their story using constrained
+natural language. These story components integrate with a multi-agent system by
+describing the constraints on the actions of each character agent in the story,
+telling each agent what they are permitted and obliged to do at any point in the
+narrative.\mnote{Added explanation of agent-oriented nature of TropICAL}
+
+Many authors using our system should not even need to
 write their own tropes using TropICAL, and will instead simply select the tropes
 that they need for their story from a pre-created ``library'' of tropes. This
 process is facilitated through the ``StoryBuilder'' user interface described in
-chapter~\ref{cha:storybuilder}
+Chapter~\ref{cha:storybuilder}
 
-The way in which our TropICAL language is used is as follows:
+Our TropICAL language design is as follows:\mnote{Changed to \emph{design},
+  rather than \emph{use}}
 
 \begin{itemize}
   \item It is based around the idea of using \emph{story tropes} as reusable
@@ -2930,11 +2943,12 @@ a set of requirements from them. Based upon these requirements, the features and
 design of the language are described in section~\ref{sec:language-design}.
 The translation of TropICAL to InstAL code is demonstrated in Section~\ref{sec:t-codegen}, with samples of generated InstAL
 institutions, Answer Set
-generation (section~\ref{sec:t-asp}), and finally its extension for the description of legal policies
-(section~\ref{sec:t-legal}). The chapter concludes with a summary in
-Section~\ref{sec:tropical-summary}, describing how some requirements from
-Section~\ref{sec:requirements} were met, while others are addressed through the
-\emph{StoryBuilder} tool described in Chapter~\ref{cha:storybuilder}.
+generation (section~\ref{sec:t-asp}), constraints
+(section~\ref{sec:t-constraints}), and output traces (section~\ref{sec:example-traces}). Finally, we show its extension for
+the description of legal policies (section~\ref{sec:t-legal}). The chapter
+concludes with a summary in Section~\ref{sec:tropical-summary}, describing how
+some requirements from Section~\ref{sec:requirements} were met, while others are
+addressed through the \emph{StoryBuilder} tool described in Chapter~\ref{cha:storybuilder}.
 
 
 \section{Controlled Natural Language Syntax}
@@ -2943,8 +2957,8 @@ Section~\ref{sec:requirements} were met, while others are addressed through the
 % DONE describe ACE: 2
 % DONE describe Inform 7: 2
 
-TropICAL uses a \emph{Controlled Natural Language} (also referred to as
-\emph{Constrained Natural Language}) syntax, meaning that it superficially
+TropICAL uses a \emph{Controlled Natural Language} syntax (also referred to as
+\emph{Constrained Natural Language}), meaning that it superficially
 resembles natural English, but is only a subset of the full language.
 
 There are two types of Controlled Natural Language (CNL). The first type are \emph{naturalistic} languages
@@ -2952,7 +2966,7 @@ such as ASD Simplified Technical English~\citep{asd2007simplified}, designed to
 be used in documentation for technical industries such as aerospace or defense,
 or Ogden Basic English~\citep{ogden1944basic}, a simplified language for teaching
 English as a second language. This type of Controlled Natural Language merely
-describe a subset of the parent language. The other type of CNL are
+describes a subset of the parent language. The other type of CNL are
 \emph{formalistic}, with a formal
 syntax and semantics, which can be mapped to rules in other formal languages
 such as first-order logic. Attempto Controlled English~\citep{fuchs1996attempto}
@@ -3009,11 +3023,14 @@ Other ways of modifying the sentences include \emph{negation}, adding
 \emph{quantifiers}, or making the sentences \emph{interrogative} or
 \emph{imperative}. We do not go into further details in this thesis, as we are
 using ACE simply as an inspiration for our syntax, rather than following its
-design entirely. For more details, see the ``ACE in a Nutshell'' page of its
-documentation for an overview of the language~\citep{ace-nutshell}.
+design entirely. For more details, see the ``ACE in a Nutshell''
+page\footnote{Located at the following URL:
+  \url{http://attempto.ifi.uzh.ch/site/docs/ace_nutshell.html}, accessed 20170826.} of its
+documentation for an overview of the language~\citep{ace-nutshell}.\mnote{Added
+  footnote with URL of documentation page}
 
 \subsection{Inform 7}
-In addition to ACE, the other main inspiration for TropICAL's syntax is the
+Besides ACE, the other main inspiration for TropICAL's syntax is the
 \emph{Inform 7} language.
 
 Inform is a programming language for the creation of Interactive Fiction (also
@@ -3081,8 +3098,11 @@ of the defined object.
 
 Before version 7, Inform was already widely used as a language for the creation
 of Interactive Fiction. Given its continued popularity after the switch to
-a controlled natural language syntax, it appears that the new programming
-paradigm is successful.
+a controlled natural language syntax\footnote{The Interactive Fiction Database
+  at \url{http://ifdb.tads.org} (accessed 20170826) lists 1078 games created
+  with Inform 6, and 914 created with Inform 7. Inform 6 has been in use since
+  1996, Inform 7 since 2006.}, it appears that the new programming
+paradigm is successful.\mnote{Added footnote with evidence for Inform 7's popularity}
 
 The wide adoption of Inform 7 by story authors with no other programming
 experience motivates our decision to create a controlled natural language syntax
@@ -3101,26 +3121,24 @@ Inform 7 would also be able to use TropICAL.
 
 The TropICAL language is designed to be used by authors of interactive
 narratives, enabling them to easily describe the ``rules'' of a story through
-tropes. It is designed to be used in interactive storytelling systems where
+tropes. As explained in Section~\ref{sec:character-agents}, it is designed to be used in interactive storytelling systems where
 intelligent software agents are acting out the roles of the characters in the
-story. These agents, through an architecture such as BDI (Belief, Desire,
+story. \mnote{Added reference back to section where this is introduced} These agents, through an architecture such as BDI (Belief, Desire,
 Intention), have their own goals and plans for how to achieve those goals.
 TropICAL does not assist in the authoring of these characters and their plans or
-lines of dialogue. Instead, its purpose is to direct the actions of these
-``character'' agents so that their behaviour follows the rules of the author's
-story. TropICAL is designed to be used with a system where the character agents have
+lines of dialogue. Instead, its purpose is to guide the actions of these
+``character'' agents so that certain behaviours are suggested by the rules of the author's
+story. \mnote{Made it clearer that control is not tight} TropICAL is designed to be used with a system where the character agents have
 already been authored. It guides them by allowing the characters to know what
-they are permitted and obliged to do according to the story. This is achieved by
-giving the characters new percepts so that they may \emph{believe} they are
-allowed to take certain courses of action. For a description of how this is
-implemented in practice, see section~\ref{sec:emotional-pj} of chapter~\ref{cha:agents}.
+they are permitted and obliged to do according to the story. For a description of how this is
+implemented in practice, see section~\ref{sec:emotional-pj} of
+chapter~\ref{cha:agents}.\mnote{May need to change this ref when chapter moved}
 
 \subsection{Use Cases}
 \label{sec:use-cases}
 
-In order to design a set of tools that is suited to interactive story authors,
-our intended end users, we derive our set of requirements from specific use
-cases. These use cases come from the user stories of three users: Alice, Bob and
+In order to design a set of tools that is suited to interactive story authors, we derive our set of requirements from specific use
+cases. These use cases come from the user stories of three hypothetical users: Alice, Bob and
 Charlie. In each case, we tell the user's story, highlighting their different
 levels of technical experience, along with
 their various needs for and ways of using tools for
@@ -3179,19 +3197,19 @@ specialist expertise in the field of intelligent agents:
 
 From Alice's story, we can derive the following requirements:
 
-\begin{itemize}
+\begin{enumerate}[{Alice} R1.]
 \item She needs a system for describing stories that can be used with a
-  multi-agent system framework such as JASON
+  multi-agent system framework such as JASON\label{req:alice1}
 \item The system needs to direct the behaviour of the agents so that their
-  actions fit within the description of a story
+  actions fit within the description of a story\label{req:alice2}
 \item She needs to be able to write and re-use story components that fit the
-  theme of her story (in this case, ``film noir'').
+  theme of her story (in this case, ``film noir'').\label{req:alice3}
 \item These story components must be able to express both sequences of events
-  and diverging (``branching'') events
-\item She wants to be able to select existing story components from a library or database
+  and diverging (``branching'') events\label{req:alice4}
+\item She wants to be able to select existing story components from a library or database\label{req:alice5}
 \item She also wants the ability to create her own story components and save
-  them to the database
-\end{itemize}
+  them to the database\label{req:alice6}
+\end{enumerate}\mnote{Numbered requirements}
 
 \subsubsection{Bob}
 
@@ -3244,22 +3262,23 @@ Our second hypothetical user, \emph{Bob}, has no technical expertise at all:
 
 Bob shares some requirements with Alice:
 
-\begin{itemize}
+\begin{enumerate}[{Bob} R1.]
   \item He wants to be able to create story components with sequences of events
-    and branching events
+    and branching events\label{req:bob1}
   \item He wants to be able to save and re-use the components (to a database,
-    for example)
+    for example)\label{req:bob2}
   \item He also wants the ability to create his own story components to add to
-    the database
-\end{itemize}
+    the database\label{req:bob3}
+\end{enumerate}
 
 However, Bob also has some different requirements from Alice:
 
-\begin{itemize}
-  \item He needs to embed tropes inside other tropes (as ``sub-tropes'')
+\begin{enumerate}[{Bob} R1.]
+  \setcounter{enumi}{3}
+  \item He needs to embed tropes inside other tropes (as ``sub-tropes'')\label{req:bob4}
   \item He needs to be able to visualise all of the story branches that result
-    when one or more tropes are combined together
-\end{itemize}
+    when one or more tropes are combined together\label{req:bob5}
+\end{enumerate}\mnote{Numbered requirements}
 
 \subsubsection{Charlie}
 
@@ -3296,10 +3315,10 @@ existing research techniques for interactive narrative generation:
 
 Charlie's only unique requirement is:
 
-\begin{itemize}
+\begin{enumerate}[{Charlie} R1.]
   \item A way to describe the story such that the agents are told what to do
-    next, but are able to break away from these commands when necessary.
-\end{itemize}
+    next, but are able to break away from these commands when necessary.\label{req:charlie1}
+\end{enumerate}\mnote{Numbered requirements}
 
 \subsection{Requirement Specification}
 \label{sec:requirements}
@@ -3309,22 +3328,24 @@ following requirements:
 
 \begin{enumerate}[R1.]
   \item\label{req:agents} The software must be able to integrate into a
-    multi-agent framework such as JASON
+    multi-agent framework such as JASON (Alice R\ref{req:alice1})
   \item\label{req:direct} The system must direct the behaviour of agents to fit
-    a story description
-  \item\label{req:components} The user should be able to write and re-use
-    existing story components (from a library)
-  \item\label{req:sequences} The components must be able to express sequences of events
+    a story description (Alice R\ref{req:alice2})
+  \item\label{req:components} The user must be able to write and re-use
+    existing story components (from a library) (Alice R\ref{req:alice3}, R\ref{req:alice5} and R\ref{req:alice6}, Bob R\ref{req:bob2})
+  \item\label{req:sequences} The components must be able to express sequences of
+    events (Alice R\ref{req:alice4}, Bob R\ref{req:bob1})
   \item\label{req:branches} The components must be able to express branching
-    (diverging) events
-  \item\label{req:subtropes} The user should have the ability to nest existing
-    components inside new components
-  \item\label{req:vis} The user should be able to visualise the branches of the
-    story that result in the addition or modification of components to the story.
+    (diverging) events (Alice R\ref{req:alice4}, Bob R\ref{req:bob1})
+  \item\label{req:subtropes} The user must have the ability to nest existing
+    components inside new components (Bob R\ref{req:bob4})
+  \item\label{req:vis} The user must be able to visualise the branches of the
+    story that result in the addition or modification of components to the
+    story. (Bob R\ref{req:bob5})
   \item\label{req:norm} The story must tell the character agents what to do, but
     they should be free to break away from it in extreme circumstances, to add a
-    degree of unpredictability
-\end{enumerate}
+    degree of unpredictability (Charlie R\ref{req:charlie1})
+\end{enumerate}\mnote{Referred to user's requirements}
 
 The next section describes the design of the TropICAL language, relating each
 design decision back to these requirements derived from the use cases.
@@ -3371,7 +3392,7 @@ A trope may contain three types of entities that take part in a trope:
 \end{itemize}
 
 Before an author can use any characters, objects or places in their tropes, they
-must first declare them at the top of the trope file. For example, to declare
+must first declare them at the top of the description file. For example, to declare
 that the \emph{Hero} and \emph{Evil Villain} are character roles, one would write:
 
 \begin{lstlisting}[label={lst:dec-roles}, caption={Role declarations}]
@@ -3405,10 +3426,11 @@ Once the author has declared the entities of their trope at the top of the trope
 definition, they are able to use them inside the events of the trope itself.
 
 \subsubsection{Entity Instances}
+\label{sec:entity-instances}
 In cases where multiple characters fulfil the same role (a story could have two
 hero characters, for example), or there are multiple objects or locations of the
-same type, these separate entity instances can be passed to the compiler in
-separate files. An example with multiple Heroes, Swords and Evil Lairs would be:
+same type, these entity instances can be declared separately. \mnote{Removed
+  technical details} An example with multiple Heroes, Swords and Evil Lairs would be:
 
 \begin{lstlisting}[label={lst:dec-instances}, caption={Entity instances}]
 Harry Potter is a Hero
@@ -3420,7 +3442,7 @@ The Secret Cave is an Evil Lair
 The Underground Bunker is an Evil Lair
 \end{lstlisting}
 
-If these instances are not input into the compiler, then each entity has just
+If these separate instances are not declared, \mnote{removed reference to compiler} then each entity has just
 one instance with the same name as its type (a hero called ``Hero'', a sword
 called ``Sword'', an evil lair called ``Evil Lair'', for example).
 
@@ -3437,17 +3459,19 @@ The Hero goes to the Land of Adventure
 \end{lstlisting}
 
 This specifies that the first event that occurs in the trope is that the \emph{Hero}
-character goes to a place called \emph{The Land of Adventure}. Due to the fact
-that this statement is compiled to a norm, it states only what is possible in
-the story, giving \emph{permission} for events to happen, not mandating that
-they occur. We do this to fulfil requirement~\ref{req:norm}, so that we guide
-the actions of character agents to fit our story, rather than regimenting their behaviour. It is
+character goes to a place called \emph{The Land of Adventure}. It is important
+to note that this means the event \emph{can} happen, but no that it \emph{must}.
+\mnote{Removed implementation details and rephrased}
+We do this to fulfil requirement~\ref{req:norm}, so that we \emph{guide}
+the actions of character agents to fit our story, rather than regimenting their
+behaviour. Section~\ref{sec:seq-code} describes how this is implemented when compiled. It is
 possible to tell the agents what to do in a stronger fashion using
 \emph{obligations}, which we describe in section~\ref{sec:obl-code}.
 
 Typically, tropes tend to consist
-of a sequence of several events, as is stated in requirement~\ref{req:sequences}. So we can
-extend this trope further to meet this requirement:
+of a sequence of several events, as is stated in requirement R\ref{req:sequences}. So we can
+extend this trope further to show how TropICAL expresses event sequences in
+order to this requirement:
 
 \begin{lstlisting}[label={lst:seq2}, caption={Two consecutive events}]
 The Hero goes to the Land of Adventure
@@ -3466,7 +3490,7 @@ the verbs and objects) thus:
 \end{figure}
 
 The \emph{Then} keyword denotes that the event is the next stage in a sequence
-of events. However, this keyword is syntactical sugar, and can be omitted with the same effect:
+of events. However, this keyword is syntactic sugar, and can be omitted for the same effect:
 
 \begin{lstlisting}[label={lst:seq3}, caption={``The'' instead of ``Then''}]
 The Hero goes to the Land of Adventure
@@ -3490,17 +3514,20 @@ Then the Hero returns Home
 The author can use any verb they wish to describe an event. The verbs are
 stemmed using \emph{WordNet}~\citep{miller1995wordnet} so that, for example,
 \emph{goes} becomes \emph{go} and \emph{wanted} becomes \emph{want} when the
-tropes are compiled.
+tropes are compiled. The reason for this is consistency: it allows an author to
+re-use verbs in any form throughout the trope. For example, they can write ``The
+Hero goes Home'', ``The Hero went Home'' or ``The Hero may go Home'', and the
+compiled code will be the same.\mnote{Added reason why}
 
 \subsection{Obligations}
 \label{sec:obl-code}
-All of the code examples until this point express events that \emph{may} occur
+All of the code examples up to this point express events that \emph{may} occur
 in the story. When compiled to InstAL, and expressed in terms of norms, they
 describe the \emph{permitted} behaviour of the agents in a story. This way, the
 character agents are aware of the actions available to them that follow the path
 of the author's narrative. However, there are other actions that an author may
 want to strongly encourage an agent to take, so that they can direct their
-actions with more control (as per requirement~\ref{req:direct}). The syntax for this type of action
+actions with more control (as per requirement R\ref{req:direct}). The syntax for this type of action
 is expressed with the \emph{must} keyword, and is shown in
 listing~\ref{lst:obl1}. In this case, the first action (\emph{The Hero goes
   Home}) is expressed as a permission, but the second action (\emph{Then the
@@ -3534,10 +3561,11 @@ consequences are compiled to InstAL code.
 
 \subsection{Branching Events}
 \label{sec:branch-code}
-As requirement~\ref{req:branches} states, a trope author may want to describe alternative possibilities in their story,
-where either the player or a character in the story may decide from one of
+As requirement R\ref{req:branches} states, a trope author may want to describe alternative possibilities in their story,
+where either the player or a character in the story may choose from one of
 multiple actions to take. This is implemented using the \emph{Or} keyword in
-TropICAL, along with a single indentation level of two spaces:
+TropICAL, along with a single indentation level of two spaces to indicate its
+dependency on the preceding statement:
 
 \begin{lstlisting}[label={lst:branch1}, caption={Two branches}]
 The Hero goes to the Land of Adventure
@@ -3585,7 +3613,7 @@ Then the Hero meets the Mentor
 
 In the previous example, only one event occurs in each branching story path
 before merging back into the main course of the story. In order to extend each
-story path further, one must indent an extra level:
+story path further, we use a further level of indentation.
 
 \begin{lstlisting}[label={lst:branch4}, caption={Extending branches}]
 The Hero goes Home
@@ -3635,15 +3663,15 @@ Then the Hero finds the Treasure
 
 Using this technique, branches can be extended indefinitely through increasing
 levels of indentation.
-Deeply indented code is often undesirable, however, and is usually a symptom
-that the code needs to be subdivided into modules. We can achieve this by
+Deeply indented tropes are often undesirable, however, and is usually a symptom
+that a trope needs to be subdivided. \mnote{Changed ``code'' to ``trope''} We can achieve this by
 embedding subtropes inside of other tropes.
 
 \subsection{Subtropes}
 \label{sec:subtrope-code}
-Requirement~\ref{req:subtropes} states that we need a mechanism for the
-nesting of tropes, so that we may create new abstractions by combining old
-tropes into new ones. We do this through \emph{Subtropes}, which are simply previously-written tropes that are embedded inside a
+Requirement R\ref{req:subtropes} states that we need a mechanism for the
+nesting of tropes, so that we may create new abstractions by combining existing
+tropes to create new ones. We do this through \emph{Subtropes}, which are simply previously-written tropes that are embedded inside a
 new trope. Take this simple trope example:
 
 \begin{lstlisting}[showstringspaces=false, label={lst:subtrope1}, caption={Subtrope
@@ -3664,7 +3692,11 @@ to be embedded}]
 
 To embed this trope inside another trope, we refer to it by name by writing
 \emph{Then the ``Item Search'' trope happens}. It is important to put the name
-of the trope inside quotation marks. An example of putting this trope at the end
+of the trope inside quotation marks. The reason for this is that it makes
+subtrope embedding statements easier to parse, as trope names may contain
+combinations of role, object and place names along with verbs. Putting the name
+of a trope inside quotation marks ensures that the parser will not confuse it
+with any other kind of statement. \mnote{Added reason for using quotation marks} An example of putting this trope at the end
 of another trope is shown in the following example:
 
 \begin{lstlisting}[showstringspaces=false, label={lst:subtrope2}, caption={Trope containing a subtrope}]
@@ -3729,17 +3761,180 @@ of the code examples described in this section.
 % TODO tech discussion: 1
 Once the tropes written in TropICAL have been parsed and converted into an
 intermediate hash map, this data structure is then used to generate InstAL code.
-This section describes how specific language features translate to
+This section describes how and why language features translate to
 InstAL, with fully translated examples of InstAL code appearing in Appendix~\ref{appendix:instal}.
 
-As described in section~\ref{sec:inst-events}, InstAL features three types of
-events: \emph{external}, \emph{institutional} and \emph{violation}. We begin by
-examining the translation of trope events to institutional events.
+\subsection{Compilation Strategy}
+
+The steps that the TropICAL compiler goes through to produce InstAL code are the
+following:
+
+\begin{enumerate}
+\item \textbf{Parse entity definitions}: The parser only looks at the first
+  lines of the file that define the roles, objects and places (such as \emph{The
+    Hero is a role} or \emph{The Sword is an object})
+\item \textbf{Parse the trope's events}: The parser then examines the rest of
+  the trope, with the previously defined entity definitions inserted into the
+  parser's grammar as keywords.
+\item \textbf{Transform the parse tree into a hash map}: The hash map is an
+  intermediate representation of the trope entities and events described in the
+  TropICAL code.
+\item \textbf{Generate InstAL institutions from the hash map representation}:
+  The hash map representation of each TropICAL trope is converted into a corresponding InstAL institution.
+\end{enumerate}
+
+Each TropICAL trope compiles to a separate InstAL institution, each of which is
+contained in its own file. Example pieces of code of the anatomy of an InstAL institution are
+shown in listing~\ref{lst:instal-anatomy}. 
+
+An InstAL institution contains the following parts:
+
+\begin{itemize}
+\item \emph{Institution Name}: the name of the insitution
+  (line~\ref{lne:inst-name} of listing~\ref{lst:instal-anatomy})
+\item \emph{Type Declarations}: types of entity that appear in the institution,
+  such as Agent, Object, and Place (lines~\ref{lne:type-start} -~\ref{lne:type-end})
+\item \emph{Fluent Declarations}: fluents are facts that tell us something about
+  the agents' environment (lines~\ref{lne:fluent-start} -~\ref{lne:fluent-end})
+\item \emph{Exogenous Event Declarations}: exogenous (external) events are
+  events that occur in the agents' environment, such as actions taken by the
+  agents, as opposed to actions that occur within an institution
+  (lines~\ref{lne:ex-start} -~\ref{lne:ex-end})
+\item \emph{Violation Event Declarations}: events that are triggered when obligations
+  are not fulfilled (line~\ref{lne:viol-event})
+\item \emph{Institutional Event Declarations}: these are events that occur
+  inside the institution to initiate and terminate norms (permissions and
+  obligations) and fluents. They are generated by the exogenous events, and have
+  a name that is prefixed with ``int'' (such as ``intHerosJourney'')
+  (lines~\ref{lne:instev-start} -~\ref{lne:instev-end})
+\item \emph{Obligation Fluent Declarations}: obligation fluents have three
+  parts: the institutional event that is obliged to happen, the institutional
+  event that acts as a deadline, and the violation event. The institutional
+  (obligation) event must occur before the deadline event happens. If the deadline event
+  happens before the obligation event, then the violation event is triggered
+  (line~\ref{lne:obl-fluent}, obligation events are described further in Section~\ref{sec:instal-obl})
+\item \emph{Norm / fluent initiation events}: this part of an institution
+  specifies which norms and fluents are initiated by its institutional
+  (internal) events (lines~\ref{lne:init-start} -~\ref{lne:init-end}, described
+  in Section~\ref{sec:anat-init})
+\item \emph{Norm / fluent termination events}: this specifies which norms and
+  fluents are terminated by institutional events (lines~\ref{lne:term-start}
+  -~\ref{lne:term-end}, described in Section~\ref{sec:termination})
+\item \emph{Generation events}: institutional events that are generated by
+  exogenous (external) events (line~\ref{lne:gen-start} -~\ref{lne:gen-end},
+  described in Section~\ref{sec:anat-gen})
+\item \emph{Norms / fluents that hold initially in the institution}: this
+  describes the initial state of the institution when it becomes active,
+  consisting of the norms corresponding to the trope's first event, and the
+  fluents that describe the role, object and place entities in the trope
+  (lines~\ref{lne:init-start} -~\ref{lne:init-end}, described in Section~\ref{sec:anat-initial})
+\end{itemize}
+
+When a trope's hash map representation is converted into InstAL, each entity
+(role, place, object) is assigned a letter to be used as a variable in the
+InstAL events. For example, the \emph{intHerosJourney} institutional event on
+line~\ref{lne:instev-start} of Listing~\ref{lne:instal-anatomy} is declared with four parameters of types
+\emph{Agent, Agent, PlaceName, PlaceName}. When this institutional event is used
+to initiate fluents on line~\ref{lne:init-start}, its parameters are input as
+variables \emph{R, S, T} and \emph{U}. In the original trope definition, the
+\emph{Hero's Journey} contains the \emph{Hero}, \emph{Villain} and \emph{Mentor}
+roles, and the \emph{Land of Adventure} location. When the
+\emph{intHerosJourney} event happens, its variables are filtered using the
+\emph{if} keyword to ensure that $R = \textit{Hero}$, $S = \textit{Villain}$, $T
+= \textit{Mentor}$ and $U = \textit{Land of Adventure}$. An example of this
+appears on lines~\ref{lne:init-vars} and~\ref{lne:init-end} of Listing~\ref{lst:instal-anatomy}.
+
+\begin{figure}[!h]
+\begin{minipage}{0.6\textwidth}
+\begin{lstlisting}[caption={Anatomy of an InstAL institution},basicstyle=\scriptsize\ttfamily,label=lst:instal-anatomy,escapechar=\~]
+institution herosJourney;~\label{lne:inst-name}~
+
+% TYPES ----------
+type Agent;~\label{lne:type-start}~
+type Role;
+type Phase;~\mylabel{t0}\label{lne:type-end}~
+
+% FLUENTS ----------
+fluent role(Agent, Role);~\label{lne:fluent-start}~
+fluent phase(Trope, Phase);~\mylabel{t1}\label{lne:fluent-end}~
+
+% EXTERNAL EVENTS ----------
+exogenous event kill(Agent, Agent);~\label{lne:ex-start}~
+exogenous event go(Agent, PlaceName);~\mylabel{t2}\label{lne:ex-end}~
+
+% VIOLATION EVENTS ----------
+violation event violHeroGoLandOfAdventure;~\mylabel{t3}\label{lne:viol-event}~
+
+% INST EVENTS ----------
+inst event intHerosJourney(Agent, Agent, PlaceName, PlaceName);~\label{lne:instev-start}~
+inst event intKill(Agent, Agent);
+inst event intGo(Agent, PlaceName);~\mylabel{t4}\label{lne:instev-end}~
+
+% OBLIGATION FLUENTS ----------
+obligation fluent obl(intGo(Agent, PlaceName), intKill(Agent, Agent), violHeroGoLandOfAdventure);~\mylabel{t5}\label{lne:obl-fluent}~
+
+% INITIATES ----------
+intHerosJourney(R, S, T, U) initiates~\label{lne:init-start}~
+    phase(herosJourney, phaseA),
+    perm(go(R, U)) if
+        phase(herosJourney, active),
+        role(R, hero),~\label{lne:init-vars}~
+        place(U, landOfAdventure);~\mylabel{t6}\label{lne:init-end}~
+
+% TERMINATES ----------
+intHerosJourney(R, S, T, U) terminates~\label{lne:term-start}~
+    phase(herosJourney, phaseA),
+    perm(go(R, U)) if
+        phase(herosJourney, phaseA),
+        role(R, hero),
+        place(U, landOfAdventure);~\mylabel{t7}\label{lne:term-end}~
+
+
+% GENERATES ----------
+go(R, U) generates~\label{lne:gen-start}~
+    intHerosJourney(R, S, T, U) if
+        role(R, hero),
+        place(U, landOfAdventure);
+kill(S, T) generates
+    intHerosJourney(R, S, T, U) if
+        role(T, mentor),
+        role(S, villain);~\mylabel{t8}\label{lne:gen-end}~
+
+% INITIALLY -----------
+initially~\label{lne:init-start}~
+    pow(intHerosJourney(R, S, T, U)) if role(R, hero), role(S, villain), role(T, mentor), place(U, landOfAdventure);
+    perm(intHerosJourney(R, S, T, U)) if role(R, hero), role(S, villain), role(T, mentor), place(U, landOfAdventure);
+    perm(kill(S, T)) if role(T, mentor), role(S, villain);
+    phase(herosJourney, active),
+    role(lukeSkywalker, hero),~\label{lne:roledef-start}~
+    role(darthVader, villain),
+    role(obiWan, mentor),
+    place(japan, landOfAdventure);~\mylabel{t9}\label{lne:init-end}~
+
+\end{lstlisting}
+\end{minipage}\hspace{0.08\textwidth}%\hfill
+\begin{minipage}{0.3\textwidth}\scriptsize
+  \myref{t0}{s0}{Type declarations}
+  \myref{t1}{s1}{Fluent declarations}
+  \myref{t2}{s2}{Exogenous event declarations}
+  \myref{t3}{s3}{Violation event declarations}
+  \myref{t4}{s4}{Institutional event declarations}
+  \myref{t5}{s5}{Obligation fluent declarations}
+  \myref{t6}{s6}{Norm / fluent initiation events}
+  \myref{t7}{s7}{Norm / fluent termination events}
+  \myref{t8}{s8}{Generation events}
+  \myref{t9}{s9}{Norms / fluents that hold initially in the institution}
+\end{minipage}
+\end{figure}
+
+The following sections describe how each part of a TropICAL trope compiles to
+the components of an InstAL institution as show above and in Listing~\ref{lst:instal-anatomy}.
 
 \subsection{Initial Conditions}
 % TODO before / after snippets: 2
 % TODO explanation: 2
 % TODO explain how the domain works in InstAL
+\label{sec:anat-initial}
 The \emph{initially} clause in InstAL specifies the fluents that initially hold
 when the institution is effected. Role, object and place declarations are
 translated into fluent declarations as part of this clause. For example, for a
@@ -3812,12 +4007,17 @@ of the institution, as is specified in the trope.
 \subsection{Generation}
 % TODO before / after snippets: 2
 % TODO explanation: 2
+\label{sec:anat-gen}
 
 Tropes usually consist of multiple events, so it is not enough to have one event
 permitted at the start of a trope. Once this first event has occurred, the next
 event in the sequence must have permission to happen.
 
-The institution watches for events to happen as \emph{external} events in the
+As described previously in section~\ref{sec:inst-events}, an institution
+consists of three types of events: \emph{external events} (events that occur in
+the agents' environment), \emph{intstitutional
+  events} (events triggered inside an institution) and \emph{violation events}
+(events that occur when an obligation is violated in an institution). \mnote{Added reference back to inst section} The institution watches for events to happen as \emph{external} events in the
 environment, and then has these events generate \emph{institutional} events that
 occur within the institution and create permissions or obligations for further
 external events to occur. Returning to listing~\ref{lst:seq4} above, the
@@ -3831,9 +4031,12 @@ external events that happen are:
 \end{itemize}
 
 These are translated into \emph{generates} statements in InstAL so that they
-generate the required institutional events:
+generate the required institutional events (denoted with an ``int''
+prefix, following the naming convention introduced in
+Section~\ref{sec:inst-events}):\mnote{Explained int prefix for institutional events}
 
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false, label={lst:instal-generates},
+caption={InstAL code resulting from the compilation of listing~\ref{lst:seq4}}]
 find(R, T) generates
     intSequence3(R, S, T, U, V) if
         role(R, hero),
@@ -3866,6 +4069,7 @@ section~\ref{sec:event-phases}) below.
 \subsection{Initiation}
 % TODO before / after snippets: 2
 % TODO explanation: 2
+\label{sec:anat-init}
 
 External events generate an internal event for the institution, which permits
 the next event or events in a sequence to occur. To ensure that the events of
@@ -3875,7 +4079,7 @@ mechanism called \emph{event phases}.
 \subsubsection{Event Phases}
 \label{sec:event-phases}
 An \emph{event phase} is a fluent that holds the state of the current
-institution. At the beginning of the trope, its state is simply \emph{active}.
+institution (described previously in Section~\ref{sec:trope-phases}). At the beginning of the trope, its state is simply \emph{active}.
 This is represented in the institution through the fluent \emph{phase(tropeName,
 active)}.
 Once the first event has occurred, the trope enters \emph{phase A}, which means
@@ -3989,7 +4193,8 @@ Then the Hero meets the Mentor
   Or the Hero goes to the Realm of Mystery
 \end{lstlisting}
 
-When compiled with the following entity instances:
+A fully compiled institution appears in Section~\ref{appendix:branch3} of
+Appendix~\ref{appendix:instal}, which uses the following entity instances:
 
 \begin{lstlisting}
 Harry Potter is a Hero
@@ -3999,8 +4204,6 @@ The Gryffindor Sword is a Sword
 Hogwarts is a Land of Adventure
 The Chamber of Secrets is a Realm of Mystery
 \end{lstlisting}
-
-The full institution appears in Section~\ref{appendix:branch3} of Appendix~\ref{appendix:instal}.
 
 The branching events are implemented in the \emph{initiates} and
 \emph{terminates} clauses. In listing~\ref{lst:branch-init} below, we see that three possible events are given
@@ -5634,7 +5837,8 @@ in them. Does our system allow us to use two different characters for each hero
 role, one per trope?
 
 This feature is very possible to implement. In fact, it was featured in an early
-version of StoryBuilder. The user was able to select named characters to fulfil
+version of StoryBuilder, but not included in the prototype. Its implementation
+in TropICAL is described in Section~\ref{sec:entity-instances}. The user was able to select named characters to fulfil
 roles. In this case, they could select (for example) ``Luke Skywalker'' to be
 the hero in the \emph{Hero's Journey}, and ``Harry Potter'' to be the hero in
 the \emph{Chase Scene}. In order to simplify the StoryBuilder interface for the
